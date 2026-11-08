@@ -247,3 +247,12 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 - **Import record:** `docs/asset-import/complete-ui-essential-pack-free/IMPORT_MANIFEST.md`.
 - **Attribution:** Crusenho — Complete UI Essential Pack. Modified/imported for Clone Lab Idle. https://creativecommons.org/licenses/by/4.0/
 - **Integration (2026-11-08):** Flat-theme sprites now skin the complete visible interface: top HUD, currency display frame, specimen/clone status panels, room viewport frame, room label, helper note, cloning-machine upgrade sheet, upgrade slots, purchase and close buttons, activity log/input panel, toast notifications, boss name banner, boss health bar/fill, and low-health clone bars. Fourteen UI sprites are preloaded from the preserved Flat Theme source folder. The UI stylesheet was rebuilt rather than layered over the former generic styling; legacy rounded-card borders, shadows, system-font declarations, and inline UI styling were removed. The game-room art and character sprites remain their existing approved assets. The room simulation, clone formation, and combat logic are not changed by this UI pass.
+
+
+## Font — Pixels, Ayden Snider
+
+- **Font:** Pixels by Ayden Snider (DaFont bitmap / 16 px category).
+- **Source:** https://www.dafont.com/pixels.font
+- **License:** Free for personal use only, as stated on the DaFont listing. Do not use in a commercial release without obtaining the creator's commercial permission/license.
+- **Repository location:** `assets/fonts/Pixels.ttf` (extracted from the user-supplied `pixels.zip`).
+- **Integration:** Loaded locally with `@font-face` and used for HTML interface text and canvas-rendered labels. No external font service is required.
