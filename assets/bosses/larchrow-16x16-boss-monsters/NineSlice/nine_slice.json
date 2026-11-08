@@ -1,0 +1,180 @@
+{
+ "boss_hp_frame_48x16.png": {
+  "kind": "three-slice",
+  "size": [
+   48,
+   16
+  ],
+  "margins_px": {
+   "left": 16,
+   "top": 0,
+   "right": 16,
+   "bottom": 0
+  },
+  "tiles": [
+   [
+    "boss_hp_frame_l",
+    "boss_hp_frame_m",
+    "boss_hp_frame_r"
+   ]
+  ],
+  "scaled_3x": "boss_hp_frame_144x48_3x.png"
+ },
+ "boss_hp_fill_red_48x16.png": {
+  "kind": "three-slice (overlay on the frame, same size)",
+  "size": [
+   48,
+   16
+  ],
+  "margins_px": {
+   "left": 16,
+   "top": 0,
+   "right": 16,
+   "bottom": 0
+  },
+  "tiles": [
+   [
+    "boss_hp_fill_red_l",
+    "boss_hp_fill_red_m",
+    "boss_hp_fill_red_r"
+   ]
+  ],
+  "scaled_3x": "boss_hp_fill_red_144x48_3x.png"
+ },
+ "boss_hp_fill_purple_48x16.png": {
+  "kind": "three-slice (overlay on the frame, same size)",
+  "size": [
+   48,
+   16
+  ],
+  "margins_px": {
+   "left": 16,
+   "top": 0,
+   "right": 16,
+   "bottom": 0
+  },
+  "tiles": [
+   [
+    "boss_hp_fill_purple_l",
+    "boss_hp_fill_purple_m",
+    "boss_hp_fill_purple_r"
+   ]
+  ],
+  "scaled_3x": "boss_hp_fill_purple_144x48_3x.png"
+ },
+ "boss_hp_fill_white_48x16.png": {
+  "kind": "three-slice (overlay on the frame, same size)",
+  "size": [
+   48,
+   16
+  ],
+  "margins_px": {
+   "left": 16,
+   "top": 0,
+   "right": 16,
+   "bottom": 0
+  },
+  "tiles": [
+   [
+    "boss_hp_fill_white_l",
+    "boss_hp_fill_white_m",
+    "boss_hp_fill_white_r"
+   ]
+  ],
+  "scaled_3x": "boss_hp_fill_white_144x48_3x.png"
+ },
+ "boss_hp_fill_gold_48x16.png": {
+  "kind": "three-slice (overlay on the frame, same size)",
+  "size": [
+   48,
+   16
+  ],
+  "margins_px": {
+   "left": 16,
+   "top": 0,
+   "right": 16,
+   "bottom": 0
+  },
+  "tiles": [
+   [
+    "boss_hp_fill_gold_l",
+    "boss_hp_fill_gold_m",
+    "boss_hp_fill_gold_r"
+   ]
+  ],
+  "scaled_3x": "boss_hp_fill_gold_144x48_3x.png"
+ },
+ "boss_hp_fill_green_48x16.png": {
+  "kind": "three-slice (overlay on the frame, same size)",
+  "size": [
+   48,
+   16
+  ],
+  "margins_px": {
+   "left": 16,
+   "top": 0,
+   "right": 16,
+   "bottom": 0
+  },
+  "tiles": [
+   [
+    "boss_hp_fill_green_l",
+    "boss_hp_fill_green_m",
+    "boss_hp_fill_green_r"
+   ]
+  ],
+  "scaled_3x": "boss_hp_fill_green_144x48_3x.png"
+ },
+ "boss_plate_48x16.png": {
+  "kind": "three-slice",
+  "size": [
+   48,
+   16
+  ],
+  "margins_px": {
+   "left": 4,
+   "top": 0,
+   "right": 4,
+   "bottom": 0
+  },
+  "tiles": [
+   [
+    "boss_plate_l",
+    "boss_plate_m",
+    "boss_plate_r"
+   ]
+  ],
+  "scaled_3x": "boss_plate_144x48_3x.png"
+ },
+ "boss_panel_48x48.png": {
+  "kind": "nine-slice",
+  "size": [
+   48,
+   48
+  ],
+  "margins_px": {
+   "left": 8,
+   "top": 8,
+   "right": 8,
+   "bottom": 8
+  },
+  "tiles": [
+   [
+    "boss_panel_00",
+    "boss_panel_01",
+    "boss_panel_02"
+   ],
+   [
+    "boss_panel_10",
+    "boss_panel_11",
+    "boss_panel_12"
+   ],
+   [
+    "boss_panel_20",
+    "boss_panel_21",
+    "boss_panel_22"
+   ]
+  ],
+  "scaled_3x": "boss_panel_144x144_3x.png"
+ }
+}

@@ -1,0 +1,591 @@
+{
+ "meta": {
+  "name": "Pixel Sci-Fi Tileset",
+  "tile_size": 16,
+  "image": "spritesheet.png",
+  "count": 83
+ },
+ "frames": {
+  "floor_steel_1": {
+   "x": 0,
+   "y": 0,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "floor_steel_2": {
+   "x": 16,
+   "y": 0,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "floor_dark_1": {
+   "x": 32,
+   "y": 0,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "floor_dark_2": {
+   "x": 48,
+   "y": 0,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "floor_blue_1": {
+   "x": 64,
+   "y": 0,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "floor_blue_2": {
+   "x": 80,
+   "y": 0,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "floor_green_1": {
+   "x": 96,
+   "y": 0,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "floor_green_2": {
+   "x": 112,
+   "y": 0,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "floor_white_1": {
+   "x": 128,
+   "y": 0,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "floor_white_2": {
+   "x": 144,
+   "y": 0,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "floor_rust_1": {
+   "x": 0,
+   "y": 16,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "floor_rust_2": {
+   "x": 16,
+   "y": 16,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "floor_hazard": {
+   "x": 32,
+   "y": 16,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "floor_holo_grid": {
+   "x": 48,
+   "y": 16,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "floor_vent": {
+   "x": 64,
+   "y": 16,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "conveyor_1": {
+   "x": 80,
+   "y": 16,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "conveyor_2": {
+   "x": 96,
+   "y": 16,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "conveyor_3": {
+   "x": 112,
+   "y": 16,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "space_bg": {
+   "x": 128,
+   "y": 16,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "acid": {
+   "x": 144,
+   "y": 16,
+   "w": 16,
+   "h": 16,
+   "category": "floors"
+  },
+  "wall_steel_face": {
+   "x": 0,
+   "y": 32,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "wall_steel_top": {
+   "x": 16,
+   "y": 32,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "wall_steel_cap_left": {
+   "x": 32,
+   "y": 32,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "wall_steel_cap_right": {
+   "x": 48,
+   "y": 32,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "wall_dark_face": {
+   "x": 64,
+   "y": 32,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "wall_dark_top": {
+   "x": 80,
+   "y": 32,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "wall_dark_cap_left": {
+   "x": 96,
+   "y": 32,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "wall_dark_cap_right": {
+   "x": 112,
+   "y": 32,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "wall_blue_face": {
+   "x": 128,
+   "y": 32,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "wall_blue_top": {
+   "x": 144,
+   "y": 32,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "wall_blue_cap_left": {
+   "x": 0,
+   "y": 48,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "wall_blue_cap_right": {
+   "x": 16,
+   "y": 48,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "wall_white_face": {
+   "x": 32,
+   "y": 48,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "wall_white_top": {
+   "x": 48,
+   "y": 48,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "wall_white_cap_left": {
+   "x": 64,
+   "y": 48,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "wall_white_cap_right": {
+   "x": 80,
+   "y": 48,
+   "w": 16,
+   "h": 16,
+   "category": "walls"
+  },
+  "door_sliding_blue": {
+   "x": 96,
+   "y": 48,
+   "w": 16,
+   "h": 16,
+   "category": "doors"
+  },
+  "door_sliding_steel": {
+   "x": 112,
+   "y": 48,
+   "w": 16,
+   "h": 16,
+   "category": "doors"
+  },
+  "door_open": {
+   "x": 128,
+   "y": 48,
+   "w": 16,
+   "h": 16,
+   "category": "doors"
+  },
+  "door_locked": {
+   "x": 144,
+   "y": 48,
+   "w": 16,
+   "h": 16,
+   "category": "doors"
+  },
+  "hatch_floor": {
+   "x": 0,
+   "y": 64,
+   "w": 16,
+   "h": 16,
+   "category": "doors"
+  },
+  "stairs_down": {
+   "x": 16,
+   "y": 64,
+   "w": 16,
+   "h": 16,
+   "category": "doors"
+  },
+  "stairs_up": {
+   "x": 32,
+   "y": 64,
+   "w": 16,
+   "h": 16,
+   "category": "doors"
+  },
+  "terminal_green": {
+   "x": 48,
+   "y": 64,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "terminal_blue": {
+   "x": 64,
+   "y": 64,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "terminal_red": {
+   "x": 80,
+   "y": 64,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "crate_blue": {
+   "x": 96,
+   "y": 64,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "crate_green": {
+   "x": 112,
+   "y": 64,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "barrel_hazard": {
+   "x": 128,
+   "y": 64,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "tank_top": {
+   "x": 144,
+   "y": 64,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "pipe_h": {
+   "x": 0,
+   "y": 80,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "pipe_v": {
+   "x": 16,
+   "y": 80,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "pipe_corner": {
+   "x": 32,
+   "y": 80,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "lamp_cyan": {
+   "x": 48,
+   "y": 80,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "lamp_red": {
+   "x": 64,
+   "y": 80,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "console_panel": {
+   "x": 80,
+   "y": 80,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "cable": {
+   "x": 96,
+   "y": 80,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "solar_panel": {
+   "x": 112,
+   "y": 80,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "reactor_core": {
+   "x": 128,
+   "y": 80,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "cryo_pod": {
+   "x": 144,
+   "y": 80,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "medbed": {
+   "x": 0,
+   "y": 96,
+   "w": 16,
+   "h": 16,
+   "category": "props"
+  },
+  "turret_idle": {
+   "x": 16,
+   "y": 96,
+   "w": 16,
+   "h": 16,
+   "category": "traps"
+  },
+  "turret_alert": {
+   "x": 32,
+   "y": 96,
+   "w": 16,
+   "h": 16,
+   "category": "traps"
+  },
+  "laser_gate_off": {
+   "x": 48,
+   "y": 96,
+   "w": 16,
+   "h": 16,
+   "category": "traps"
+  },
+  "laser_gate_on": {
+   "x": 64,
+   "y": 96,
+   "w": 16,
+   "h": 16,
+   "category": "traps"
+  },
+  "proximity_mine": {
+   "x": 80,
+   "y": 96,
+   "w": 16,
+   "h": 16,
+   "category": "traps"
+  },
+  "keycard_blue": {
+   "x": 96,
+   "y": 96,
+   "w": 16,
+   "h": 16,
+   "category": "items"
+  },
+  "keycard_red": {
+   "x": 112,
+   "y": 96,
+   "w": 16,
+   "h": 16,
+   "category": "items"
+  },
+  "energy_cell": {
+   "x": 128,
+   "y": 96,
+   "w": 16,
+   "h": 16,
+   "category": "items"
+  },
+  "medkit": {
+   "x": 144,
+   "y": 96,
+   "w": 16,
+   "h": 16,
+   "category": "items"
+  },
+  "data_chip": {
+   "x": 0,
+   "y": 112,
+   "w": 16,
+   "h": 16,
+   "category": "items"
+  },
+  "credit_coin": {
+   "x": 16,
+   "y": 112,
+   "w": 16,
+   "h": 16,
+   "category": "items"
+  },
+  "grenade": {
+   "x": 32,
+   "y": 112,
+   "w": 16,
+   "h": 16,
+   "category": "items"
+  },
+  "bot_scout_1": {
+   "x": 48,
+   "y": 112,
+   "w": 16,
+   "h": 16,
+   "category": "enemies"
+  },
+  "bot_scout_2": {
+   "x": 64,
+   "y": 112,
+   "w": 16,
+   "h": 16,
+   "category": "enemies"
+  },
+  "bot_guard_1": {
+   "x": 80,
+   "y": 112,
+   "w": 16,
+   "h": 16,
+   "category": "enemies"
+  },
+  "bot_guard_2": {
+   "x": 96,
+   "y": 112,
+   "w": 16,
+   "h": 16,
+   "category": "enemies"
+  },
+  "drone_1": {
+   "x": 112,
+   "y": 112,
+   "w": 16,
+   "h": 16,
+   "category": "enemies"
+  },
+  "drone_2": {
+   "x": 128,
+   "y": 112,
+   "w": 16,
+   "h": 16,
+   "category": "enemies"
+  },
+  "alien_blob_1": {
+   "x": 144,
+   "y": 112,
+   "w": 16,
+   "h": 16,
+   "category": "enemies"
+  },
+  "alien_blob_2": {
+   "x": 0,
+   "y": 128,
+   "w": 16,
+   "h": 16,
+   "category": "enemies"
+  },
+  "astronaut": {
+   "x": 16,
+   "y": 128,
+   "w": 16,
+   "h": 16,
+   "category": "player"
+  },
+  "pilot": {
+   "x": 32,
+   "y": 128,
+   "w": 16,
+   "h": 16,
+   "category": "player"
+  }
+ }
+}

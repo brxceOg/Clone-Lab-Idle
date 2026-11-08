@@ -1,0 +1,5190 @@
+{
+ "pack": "Larchrow 16x16 Boss Monsters",
+ "grid": 16,
+ "sheets": {
+  "small": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "large": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "markers": "Tilesheets/larchrow_bosses_markers_32x32.png",
+  "ui": "Tilesheets/larchrow_bosses_ui_16x16.png"
+ },
+ "bosses": [
+  {
+   "name": "slime_king",
+   "description": "giant crowned slime that hops and slams",
+   "size": [
+    32,
+    32
+   ],
+   "phase2": "turns red-hot",
+   "sheet": "Sprites/bosses/slime_king/slime_king_sheet_32x32.png",
+   "animations": [
+    "idle",
+    "attack",
+    "hurt",
+    "death",
+    "idle_enraged",
+    "attack_enraged"
+   ]
+  },
+  {
+   "name": "lich",
+   "description": "floating skeletal sorcerer with a soul-orb staff",
+   "size": [
+    32,
+    32
+   ],
+   "phase2": "robes burn crimson",
+   "sheet": "Sprites/bosses/lich/lich_sheet_32x32.png",
+   "animations": [
+    "idle",
+    "attack",
+    "hurt",
+    "death",
+    "idle_enraged",
+    "attack_enraged"
+   ]
+  },
+  {
+   "name": "dragon_whelp",
+   "description": "young fire dragon with flapping wings and fire breath",
+   "size": [
+    32,
+    32
+   ],
+   "phase2": "scales darken, fire runs hotter",
+   "sheet": "Sprites/bosses/dragon_whelp/dragon_whelp_sheet_32x32.png",
+   "animations": [
+    "idle",
+    "attack",
+    "hurt",
+    "death",
+    "idle_enraged",
+    "attack_enraged"
+   ]
+  },
+  {
+   "name": "stone_golem",
+   "description": "towering stone golem with mossy shoulders and glowing eyes",
+   "size": [
+    48,
+    48
+   ],
+   "phase2": "cracks glow with lava",
+   "sheet": "Sprites/bosses/stone_golem/stone_golem_sheet_48x48.png",
+   "animations": [
+    "idle",
+    "attack",
+    "hurt",
+    "death",
+    "idle_enraged",
+    "attack_enraged"
+   ]
+  },
+  {
+   "name": "kraken",
+   "description": "sea kraken rising from the water with four curling tentacles",
+   "size": [
+    48,
+    48
+   ],
+   "phase2": "turns blood-red",
+   "sheet": "Sprites/bosses/kraken/kraken_sheet_48x48.png",
+   "animations": [
+    "idle",
+    "attack",
+    "hurt",
+    "death",
+    "idle_enraged",
+    "attack_enraged"
+   ]
+  },
+  {
+   "name": "kraken_tentacle",
+   "description": "single kraken tentacle that bursts out of the water (use several around the kraken)",
+   "size": [
+    32,
+    32
+   ],
+   "phase2": "turns blood-red",
+   "sheet": "Sprites/bosses/kraken_tentacle/kraken_tentacle_sheet_32x32.png",
+   "animations": [
+    "idle",
+    "attack",
+    "hurt",
+    "death",
+    "idle_enraged",
+    "attack_enraged"
+   ]
+  },
+  {
+   "name": "demon_lord",
+   "description": "horned demon lord with bat wings and a fire orb",
+   "size": [
+    48,
+    48
+   ],
+   "phase2": "skin turns violet, wings ignite",
+   "sheet": "Sprites/bosses/demon_lord/demon_lord_sheet_48x48.png",
+   "animations": [
+    "idle",
+    "attack",
+    "hurt",
+    "death",
+    "idle_enraged",
+    "attack_enraged"
+   ]
+  },
+  {
+   "name": "tree_guardian",
+   "description": "ancient walking tree guardian with root legs and branch arms",
+   "size": [
+    48,
+    48
+   ],
+   "phase2": "leaves turn to autumn fire",
+   "sheet": "Sprites/bosses/tree_guardian/tree_guardian_sheet_48x48.png",
+   "animations": [
+    "idle",
+    "attack",
+    "hurt",
+    "death",
+    "idle_enraged",
+    "attack_enraged"
+   ]
+  },
+  {
+   "name": "minotaur",
+   "description": "bull-headed brute with a double-bladed axe",
+   "size": [
+    48,
+    48
+   ],
+   "phase2": "fur flushes red, eyes burn",
+   "sheet": "Sprites/bosses/minotaur/minotaur_sheet_48x48.png",
+   "animations": [
+    "idle",
+    "attack",
+    "hurt",
+    "death",
+    "idle_enraged",
+    "attack_enraged"
+   ]
+  },
+  {
+   "name": "spider_queen",
+   "description": "giant crowned spider queen that rears up and spits web",
+   "size": [
+    48,
+    48
+   ],
+   "phase2": "turns crimson",
+   "sheet": "Sprites/bosses/spider_queen/spider_queen_sheet_48x48.png",
+   "animations": [
+    "idle",
+    "attack",
+    "hurt",
+    "death",
+    "idle_enraged",
+    "attack_enraged"
+   ]
+  },
+  {
+   "name": "phantom_knight",
+   "description": "ghostly armoured knight that floats and slashes",
+   "size": [
+    32,
+    32
+   ],
+   "phase2": "spectral flame turns violet",
+   "sheet": "Sprites/bosses/phantom_knight/phantom_knight_sheet_32x32.png",
+   "animations": [
+    "idle",
+    "attack",
+    "hurt",
+    "death",
+    "idle_enraged",
+    "attack_enraged"
+   ]
+  },
+  {
+   "name": "frost_yeti",
+   "description": "huge frost yeti with ice horns that throws ice shards",
+   "size": [
+    48,
+    48
+   ],
+   "phase2": "fur frosts blue, eyes glow red",
+   "sheet": "Sprites/bosses/frost_yeti/frost_yeti_sheet_48x48.png",
+   "animations": [
+    "idle",
+    "attack",
+    "hurt",
+    "death",
+    "idle_enraged",
+    "attack_enraged"
+   ]
+  },
+  {
+   "name": "goblin_warlord",
+   "description": "goblin warlord in horned helmet with a spiked club and war cape",
+   "size": [
+    32,
+    32
+   ],
+   "phase2": "skin flushes with war rage",
+   "sheet": "Sprites/bosses/goblin_warlord/goblin_warlord_sheet_32x32.png",
+   "animations": [
+    "idle",
+    "attack",
+    "hurt",
+    "death",
+    "idle_enraged",
+    "attack_enraged"
+   ]
+  },
+  {
+   "name": "watcher_eye",
+   "description": "floating giant eye with tendrils that fires a beam",
+   "size": [
+    32,
+    32
+   ],
+   "phase2": "iris and tendrils burn red",
+   "sheet": "Sprites/bosses/watcher_eye/watcher_eye_sheet_32x32.png",
+   "animations": [
+    "idle",
+    "attack",
+    "hurt",
+    "death",
+    "idle_enraged",
+    "attack_enraged"
+   ]
+  }
+ ],
+ "animations": [
+  {
+   "name": "slime_king_idle",
+   "category": "boss",
+   "boss": "slime_king",
+   "action": "idle",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 180,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "slime_king_idle_f0",
+    "slime_king_idle_f1",
+    "slime_king_idle_f2",
+    "slime_king_idle_f3"
+   ],
+   "rects": [
+    [
+     0,
+     0,
+     32,
+     32
+    ],
+    [
+     32,
+     0,
+     32,
+     32
+    ],
+    [
+     64,
+     0,
+     32,
+     32
+    ],
+    [
+     96,
+     0,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/slime_king/slime_king_idle_strip_4f.png"
+  },
+  {
+   "name": "slime_king_attack",
+   "category": "boss",
+   "boss": "slime_king",
+   "action": "attack",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 110,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "slime_king_attack_f0",
+    "slime_king_attack_f1",
+    "slime_king_attack_f2",
+    "slime_king_attack_f3",
+    "slime_king_attack_f4",
+    "slime_king_attack_f5"
+   ],
+   "rects": [
+    [
+     0,
+     32,
+     32,
+     32
+    ],
+    [
+     32,
+     32,
+     32,
+     32
+    ],
+    [
+     64,
+     32,
+     32,
+     32
+    ],
+    [
+     96,
+     32,
+     32,
+     32
+    ],
+    [
+     128,
+     32,
+     32,
+     32
+    ],
+    [
+     160,
+     32,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/slime_king/slime_king_attack_strip_6f.png"
+  },
+  {
+   "name": "slime_king_hurt",
+   "category": "boss",
+   "boss": "slime_king",
+   "action": "hurt",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 2,
+   "ms_per_frame": 120,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "slime_king_hurt_f0",
+    "slime_king_hurt_f1"
+   ],
+   "rects": [
+    [
+     0,
+     64,
+     32,
+     32
+    ],
+    [
+     32,
+     64,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/slime_king/slime_king_hurt_strip_2f.png"
+  },
+  {
+   "name": "slime_king_death",
+   "category": "boss",
+   "boss": "slime_king",
+   "action": "death",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 130,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "slime_king_death_f0",
+    "slime_king_death_f1",
+    "slime_king_death_f2",
+    "slime_king_death_f3",
+    "slime_king_death_f4",
+    "slime_king_death_f5"
+   ],
+   "rects": [
+    [
+     0,
+     96,
+     32,
+     32
+    ],
+    [
+     32,
+     96,
+     32,
+     32
+    ],
+    [
+     64,
+     96,
+     32,
+     32
+    ],
+    [
+     96,
+     96,
+     32,
+     32
+    ],
+    [
+     128,
+     96,
+     32,
+     32
+    ],
+    [
+     160,
+     96,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/slime_king/slime_king_death_strip_6f.png"
+  },
+  {
+   "name": "slime_king_idle_enraged",
+   "category": "boss",
+   "boss": "slime_king",
+   "action": "idle",
+   "phase": 2,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 140,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "slime_king_idle_enraged_f0",
+    "slime_king_idle_enraged_f1",
+    "slime_king_idle_enraged_f2",
+    "slime_king_idle_enraged_f3"
+   ],
+   "rects": [
+    [
+     0,
+     128,
+     32,
+     32
+    ],
+    [
+     32,
+     128,
+     32,
+     32
+    ],
+    [
+     64,
+     128,
+     32,
+     32
+    ],
+    [
+     96,
+     128,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/slime_king/slime_king_idle_enraged_strip_4f.png"
+  },
+  {
+   "name": "slime_king_attack_enraged",
+   "category": "boss",
+   "boss": "slime_king",
+   "action": "attack",
+   "phase": 2,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 90,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "slime_king_attack_enraged_f0",
+    "slime_king_attack_enraged_f1",
+    "slime_king_attack_enraged_f2",
+    "slime_king_attack_enraged_f3",
+    "slime_king_attack_enraged_f4",
+    "slime_king_attack_enraged_f5"
+   ],
+   "rects": [
+    [
+     0,
+     160,
+     32,
+     32
+    ],
+    [
+     32,
+     160,
+     32,
+     32
+    ],
+    [
+     64,
+     160,
+     32,
+     32
+    ],
+    [
+     96,
+     160,
+     32,
+     32
+    ],
+    [
+     128,
+     160,
+     32,
+     32
+    ],
+    [
+     160,
+     160,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/slime_king/slime_king_attack_enraged_strip_6f.png"
+  },
+  {
+   "name": "lich_idle",
+   "category": "boss",
+   "boss": "lich",
+   "action": "idle",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 180,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "lich_idle_f0",
+    "lich_idle_f1",
+    "lich_idle_f2",
+    "lich_idle_f3"
+   ],
+   "rects": [
+    [
+     0,
+     192,
+     32,
+     32
+    ],
+    [
+     32,
+     192,
+     32,
+     32
+    ],
+    [
+     64,
+     192,
+     32,
+     32
+    ],
+    [
+     96,
+     192,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/lich/lich_idle_strip_4f.png"
+  },
+  {
+   "name": "lich_attack",
+   "category": "boss",
+   "boss": "lich",
+   "action": "attack",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 110,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "lich_attack_f0",
+    "lich_attack_f1",
+    "lich_attack_f2",
+    "lich_attack_f3",
+    "lich_attack_f4",
+    "lich_attack_f5"
+   ],
+   "rects": [
+    [
+     0,
+     224,
+     32,
+     32
+    ],
+    [
+     32,
+     224,
+     32,
+     32
+    ],
+    [
+     64,
+     224,
+     32,
+     32
+    ],
+    [
+     96,
+     224,
+     32,
+     32
+    ],
+    [
+     128,
+     224,
+     32,
+     32
+    ],
+    [
+     160,
+     224,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/lich/lich_attack_strip_6f.png"
+  },
+  {
+   "name": "lich_hurt",
+   "category": "boss",
+   "boss": "lich",
+   "action": "hurt",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 2,
+   "ms_per_frame": 120,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "lich_hurt_f0",
+    "lich_hurt_f1"
+   ],
+   "rects": [
+    [
+     0,
+     256,
+     32,
+     32
+    ],
+    [
+     32,
+     256,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/lich/lich_hurt_strip_2f.png"
+  },
+  {
+   "name": "lich_death",
+   "category": "boss",
+   "boss": "lich",
+   "action": "death",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 130,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "lich_death_f0",
+    "lich_death_f1",
+    "lich_death_f2",
+    "lich_death_f3",
+    "lich_death_f4",
+    "lich_death_f5"
+   ],
+   "rects": [
+    [
+     0,
+     288,
+     32,
+     32
+    ],
+    [
+     32,
+     288,
+     32,
+     32
+    ],
+    [
+     64,
+     288,
+     32,
+     32
+    ],
+    [
+     96,
+     288,
+     32,
+     32
+    ],
+    [
+     128,
+     288,
+     32,
+     32
+    ],
+    [
+     160,
+     288,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/lich/lich_death_strip_6f.png"
+  },
+  {
+   "name": "lich_idle_enraged",
+   "category": "boss",
+   "boss": "lich",
+   "action": "idle",
+   "phase": 2,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 140,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "lich_idle_enraged_f0",
+    "lich_idle_enraged_f1",
+    "lich_idle_enraged_f2",
+    "lich_idle_enraged_f3"
+   ],
+   "rects": [
+    [
+     0,
+     320,
+     32,
+     32
+    ],
+    [
+     32,
+     320,
+     32,
+     32
+    ],
+    [
+     64,
+     320,
+     32,
+     32
+    ],
+    [
+     96,
+     320,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/lich/lich_idle_enraged_strip_4f.png"
+  },
+  {
+   "name": "lich_attack_enraged",
+   "category": "boss",
+   "boss": "lich",
+   "action": "attack",
+   "phase": 2,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 90,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "lich_attack_enraged_f0",
+    "lich_attack_enraged_f1",
+    "lich_attack_enraged_f2",
+    "lich_attack_enraged_f3",
+    "lich_attack_enraged_f4",
+    "lich_attack_enraged_f5"
+   ],
+   "rects": [
+    [
+     0,
+     352,
+     32,
+     32
+    ],
+    [
+     32,
+     352,
+     32,
+     32
+    ],
+    [
+     64,
+     352,
+     32,
+     32
+    ],
+    [
+     96,
+     352,
+     32,
+     32
+    ],
+    [
+     128,
+     352,
+     32,
+     32
+    ],
+    [
+     160,
+     352,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/lich/lich_attack_enraged_strip_6f.png"
+  },
+  {
+   "name": "dragon_whelp_idle",
+   "category": "boss",
+   "boss": "dragon_whelp",
+   "action": "idle",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 180,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "dragon_whelp_idle_f0",
+    "dragon_whelp_idle_f1",
+    "dragon_whelp_idle_f2",
+    "dragon_whelp_idle_f3"
+   ],
+   "rects": [
+    [
+     0,
+     384,
+     32,
+     32
+    ],
+    [
+     32,
+     384,
+     32,
+     32
+    ],
+    [
+     64,
+     384,
+     32,
+     32
+    ],
+    [
+     96,
+     384,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/dragon_whelp/dragon_whelp_idle_strip_4f.png"
+  },
+  {
+   "name": "dragon_whelp_attack",
+   "category": "boss",
+   "boss": "dragon_whelp",
+   "action": "attack",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 110,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "dragon_whelp_attack_f0",
+    "dragon_whelp_attack_f1",
+    "dragon_whelp_attack_f2",
+    "dragon_whelp_attack_f3",
+    "dragon_whelp_attack_f4",
+    "dragon_whelp_attack_f5"
+   ],
+   "rects": [
+    [
+     0,
+     416,
+     32,
+     32
+    ],
+    [
+     32,
+     416,
+     32,
+     32
+    ],
+    [
+     64,
+     416,
+     32,
+     32
+    ],
+    [
+     96,
+     416,
+     32,
+     32
+    ],
+    [
+     128,
+     416,
+     32,
+     32
+    ],
+    [
+     160,
+     416,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/dragon_whelp/dragon_whelp_attack_strip_6f.png"
+  },
+  {
+   "name": "dragon_whelp_hurt",
+   "category": "boss",
+   "boss": "dragon_whelp",
+   "action": "hurt",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 2,
+   "ms_per_frame": 120,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "dragon_whelp_hurt_f0",
+    "dragon_whelp_hurt_f1"
+   ],
+   "rects": [
+    [
+     0,
+     448,
+     32,
+     32
+    ],
+    [
+     32,
+     448,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/dragon_whelp/dragon_whelp_hurt_strip_2f.png"
+  },
+  {
+   "name": "dragon_whelp_death",
+   "category": "boss",
+   "boss": "dragon_whelp",
+   "action": "death",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 130,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "dragon_whelp_death_f0",
+    "dragon_whelp_death_f1",
+    "dragon_whelp_death_f2",
+    "dragon_whelp_death_f3",
+    "dragon_whelp_death_f4",
+    "dragon_whelp_death_f5"
+   ],
+   "rects": [
+    [
+     0,
+     480,
+     32,
+     32
+    ],
+    [
+     32,
+     480,
+     32,
+     32
+    ],
+    [
+     64,
+     480,
+     32,
+     32
+    ],
+    [
+     96,
+     480,
+     32,
+     32
+    ],
+    [
+     128,
+     480,
+     32,
+     32
+    ],
+    [
+     160,
+     480,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/dragon_whelp/dragon_whelp_death_strip_6f.png"
+  },
+  {
+   "name": "dragon_whelp_idle_enraged",
+   "category": "boss",
+   "boss": "dragon_whelp",
+   "action": "idle",
+   "phase": 2,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 140,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "dragon_whelp_idle_enraged_f0",
+    "dragon_whelp_idle_enraged_f1",
+    "dragon_whelp_idle_enraged_f2",
+    "dragon_whelp_idle_enraged_f3"
+   ],
+   "rects": [
+    [
+     0,
+     512,
+     32,
+     32
+    ],
+    [
+     32,
+     512,
+     32,
+     32
+    ],
+    [
+     64,
+     512,
+     32,
+     32
+    ],
+    [
+     96,
+     512,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/dragon_whelp/dragon_whelp_idle_enraged_strip_4f.png"
+  },
+  {
+   "name": "dragon_whelp_attack_enraged",
+   "category": "boss",
+   "boss": "dragon_whelp",
+   "action": "attack",
+   "phase": 2,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 90,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "dragon_whelp_attack_enraged_f0",
+    "dragon_whelp_attack_enraged_f1",
+    "dragon_whelp_attack_enraged_f2",
+    "dragon_whelp_attack_enraged_f3",
+    "dragon_whelp_attack_enraged_f4",
+    "dragon_whelp_attack_enraged_f5"
+   ],
+   "rects": [
+    [
+     0,
+     544,
+     32,
+     32
+    ],
+    [
+     32,
+     544,
+     32,
+     32
+    ],
+    [
+     64,
+     544,
+     32,
+     32
+    ],
+    [
+     96,
+     544,
+     32,
+     32
+    ],
+    [
+     128,
+     544,
+     32,
+     32
+    ],
+    [
+     160,
+     544,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/dragon_whelp/dragon_whelp_attack_enraged_strip_6f.png"
+  },
+  {
+   "name": "stone_golem_idle",
+   "category": "boss",
+   "boss": "stone_golem",
+   "action": "idle",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 4,
+   "ms_per_frame": 180,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "stone_golem_idle_f0",
+    "stone_golem_idle_f1",
+    "stone_golem_idle_f2",
+    "stone_golem_idle_f3"
+   ],
+   "rects": [
+    [
+     0,
+     0,
+     48,
+     48
+    ],
+    [
+     48,
+     0,
+     48,
+     48
+    ],
+    [
+     96,
+     0,
+     48,
+     48
+    ],
+    [
+     144,
+     0,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/stone_golem/stone_golem_idle_strip_4f.png"
+  },
+  {
+   "name": "stone_golem_attack",
+   "category": "boss",
+   "boss": "stone_golem",
+   "action": "attack",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 110,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "stone_golem_attack_f0",
+    "stone_golem_attack_f1",
+    "stone_golem_attack_f2",
+    "stone_golem_attack_f3",
+    "stone_golem_attack_f4",
+    "stone_golem_attack_f5"
+   ],
+   "rects": [
+    [
+     0,
+     48,
+     48,
+     48
+    ],
+    [
+     48,
+     48,
+     48,
+     48
+    ],
+    [
+     96,
+     48,
+     48,
+     48
+    ],
+    [
+     144,
+     48,
+     48,
+     48
+    ],
+    [
+     192,
+     48,
+     48,
+     48
+    ],
+    [
+     240,
+     48,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/stone_golem/stone_golem_attack_strip_6f.png"
+  },
+  {
+   "name": "stone_golem_hurt",
+   "category": "boss",
+   "boss": "stone_golem",
+   "action": "hurt",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 2,
+   "ms_per_frame": 120,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "stone_golem_hurt_f0",
+    "stone_golem_hurt_f1"
+   ],
+   "rects": [
+    [
+     0,
+     96,
+     48,
+     48
+    ],
+    [
+     48,
+     96,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/stone_golem/stone_golem_hurt_strip_2f.png"
+  },
+  {
+   "name": "stone_golem_death",
+   "category": "boss",
+   "boss": "stone_golem",
+   "action": "death",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 130,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "stone_golem_death_f0",
+    "stone_golem_death_f1",
+    "stone_golem_death_f2",
+    "stone_golem_death_f3",
+    "stone_golem_death_f4",
+    "stone_golem_death_f5"
+   ],
+   "rects": [
+    [
+     0,
+     144,
+     48,
+     48
+    ],
+    [
+     48,
+     144,
+     48,
+     48
+    ],
+    [
+     96,
+     144,
+     48,
+     48
+    ],
+    [
+     144,
+     144,
+     48,
+     48
+    ],
+    [
+     192,
+     144,
+     48,
+     48
+    ],
+    [
+     240,
+     144,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/stone_golem/stone_golem_death_strip_6f.png"
+  },
+  {
+   "name": "stone_golem_idle_enraged",
+   "category": "boss",
+   "boss": "stone_golem",
+   "action": "idle",
+   "phase": 2,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 4,
+   "ms_per_frame": 140,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "stone_golem_idle_enraged_f0",
+    "stone_golem_idle_enraged_f1",
+    "stone_golem_idle_enraged_f2",
+    "stone_golem_idle_enraged_f3"
+   ],
+   "rects": [
+    [
+     0,
+     192,
+     48,
+     48
+    ],
+    [
+     48,
+     192,
+     48,
+     48
+    ],
+    [
+     96,
+     192,
+     48,
+     48
+    ],
+    [
+     144,
+     192,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/stone_golem/stone_golem_idle_enraged_strip_4f.png"
+  },
+  {
+   "name": "stone_golem_attack_enraged",
+   "category": "boss",
+   "boss": "stone_golem",
+   "action": "attack",
+   "phase": 2,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 90,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "stone_golem_attack_enraged_f0",
+    "stone_golem_attack_enraged_f1",
+    "stone_golem_attack_enraged_f2",
+    "stone_golem_attack_enraged_f3",
+    "stone_golem_attack_enraged_f4",
+    "stone_golem_attack_enraged_f5"
+   ],
+   "rects": [
+    [
+     0,
+     240,
+     48,
+     48
+    ],
+    [
+     48,
+     240,
+     48,
+     48
+    ],
+    [
+     96,
+     240,
+     48,
+     48
+    ],
+    [
+     144,
+     240,
+     48,
+     48
+    ],
+    [
+     192,
+     240,
+     48,
+     48
+    ],
+    [
+     240,
+     240,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/stone_golem/stone_golem_attack_enraged_strip_6f.png"
+  },
+  {
+   "name": "kraken_idle",
+   "category": "boss",
+   "boss": "kraken",
+   "action": "idle",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 4,
+   "ms_per_frame": 180,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "kraken_idle_f0",
+    "kraken_idle_f1",
+    "kraken_idle_f2",
+    "kraken_idle_f3"
+   ],
+   "rects": [
+    [
+     0,
+     288,
+     48,
+     48
+    ],
+    [
+     48,
+     288,
+     48,
+     48
+    ],
+    [
+     96,
+     288,
+     48,
+     48
+    ],
+    [
+     144,
+     288,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/kraken/kraken_idle_strip_4f.png"
+  },
+  {
+   "name": "kraken_attack",
+   "category": "boss",
+   "boss": "kraken",
+   "action": "attack",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 110,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "kraken_attack_f0",
+    "kraken_attack_f1",
+    "kraken_attack_f2",
+    "kraken_attack_f3",
+    "kraken_attack_f4",
+    "kraken_attack_f5"
+   ],
+   "rects": [
+    [
+     0,
+     336,
+     48,
+     48
+    ],
+    [
+     48,
+     336,
+     48,
+     48
+    ],
+    [
+     96,
+     336,
+     48,
+     48
+    ],
+    [
+     144,
+     336,
+     48,
+     48
+    ],
+    [
+     192,
+     336,
+     48,
+     48
+    ],
+    [
+     240,
+     336,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/kraken/kraken_attack_strip_6f.png"
+  },
+  {
+   "name": "kraken_hurt",
+   "category": "boss",
+   "boss": "kraken",
+   "action": "hurt",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 2,
+   "ms_per_frame": 120,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "kraken_hurt_f0",
+    "kraken_hurt_f1"
+   ],
+   "rects": [
+    [
+     0,
+     384,
+     48,
+     48
+    ],
+    [
+     48,
+     384,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/kraken/kraken_hurt_strip_2f.png"
+  },
+  {
+   "name": "kraken_death",
+   "category": "boss",
+   "boss": "kraken",
+   "action": "death",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 130,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "kraken_death_f0",
+    "kraken_death_f1",
+    "kraken_death_f2",
+    "kraken_death_f3",
+    "kraken_death_f4",
+    "kraken_death_f5"
+   ],
+   "rects": [
+    [
+     0,
+     432,
+     48,
+     48
+    ],
+    [
+     48,
+     432,
+     48,
+     48
+    ],
+    [
+     96,
+     432,
+     48,
+     48
+    ],
+    [
+     144,
+     432,
+     48,
+     48
+    ],
+    [
+     192,
+     432,
+     48,
+     48
+    ],
+    [
+     240,
+     432,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/kraken/kraken_death_strip_6f.png"
+  },
+  {
+   "name": "kraken_idle_enraged",
+   "category": "boss",
+   "boss": "kraken",
+   "action": "idle",
+   "phase": 2,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 4,
+   "ms_per_frame": 140,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "kraken_idle_enraged_f0",
+    "kraken_idle_enraged_f1",
+    "kraken_idle_enraged_f2",
+    "kraken_idle_enraged_f3"
+   ],
+   "rects": [
+    [
+     0,
+     480,
+     48,
+     48
+    ],
+    [
+     48,
+     480,
+     48,
+     48
+    ],
+    [
+     96,
+     480,
+     48,
+     48
+    ],
+    [
+     144,
+     480,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/kraken/kraken_idle_enraged_strip_4f.png"
+  },
+  {
+   "name": "kraken_attack_enraged",
+   "category": "boss",
+   "boss": "kraken",
+   "action": "attack",
+   "phase": 2,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 90,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "kraken_attack_enraged_f0",
+    "kraken_attack_enraged_f1",
+    "kraken_attack_enraged_f2",
+    "kraken_attack_enraged_f3",
+    "kraken_attack_enraged_f4",
+    "kraken_attack_enraged_f5"
+   ],
+   "rects": [
+    [
+     0,
+     528,
+     48,
+     48
+    ],
+    [
+     48,
+     528,
+     48,
+     48
+    ],
+    [
+     96,
+     528,
+     48,
+     48
+    ],
+    [
+     144,
+     528,
+     48,
+     48
+    ],
+    [
+     192,
+     528,
+     48,
+     48
+    ],
+    [
+     240,
+     528,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/kraken/kraken_attack_enraged_strip_6f.png"
+  },
+  {
+   "name": "kraken_tentacle_idle",
+   "category": "boss",
+   "boss": "kraken_tentacle",
+   "action": "idle",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 180,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "kraken_tentacle_idle_f0",
+    "kraken_tentacle_idle_f1",
+    "kraken_tentacle_idle_f2",
+    "kraken_tentacle_idle_f3"
+   ],
+   "rects": [
+    [
+     0,
+     576,
+     32,
+     32
+    ],
+    [
+     32,
+     576,
+     32,
+     32
+    ],
+    [
+     64,
+     576,
+     32,
+     32
+    ],
+    [
+     96,
+     576,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/kraken_tentacle/kraken_tentacle_idle_strip_4f.png"
+  },
+  {
+   "name": "kraken_tentacle_attack",
+   "category": "boss",
+   "boss": "kraken_tentacle",
+   "action": "attack",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 110,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "kraken_tentacle_attack_f0",
+    "kraken_tentacle_attack_f1",
+    "kraken_tentacle_attack_f2",
+    "kraken_tentacle_attack_f3",
+    "kraken_tentacle_attack_f4",
+    "kraken_tentacle_attack_f5"
+   ],
+   "rects": [
+    [
+     0,
+     608,
+     32,
+     32
+    ],
+    [
+     32,
+     608,
+     32,
+     32
+    ],
+    [
+     64,
+     608,
+     32,
+     32
+    ],
+    [
+     96,
+     608,
+     32,
+     32
+    ],
+    [
+     128,
+     608,
+     32,
+     32
+    ],
+    [
+     160,
+     608,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/kraken_tentacle/kraken_tentacle_attack_strip_6f.png"
+  },
+  {
+   "name": "kraken_tentacle_hurt",
+   "category": "boss",
+   "boss": "kraken_tentacle",
+   "action": "hurt",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 2,
+   "ms_per_frame": 120,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "kraken_tentacle_hurt_f0",
+    "kraken_tentacle_hurt_f1"
+   ],
+   "rects": [
+    [
+     0,
+     640,
+     32,
+     32
+    ],
+    [
+     32,
+     640,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/kraken_tentacle/kraken_tentacle_hurt_strip_2f.png"
+  },
+  {
+   "name": "kraken_tentacle_death",
+   "category": "boss",
+   "boss": "kraken_tentacle",
+   "action": "death",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 130,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "kraken_tentacle_death_f0",
+    "kraken_tentacle_death_f1",
+    "kraken_tentacle_death_f2",
+    "kraken_tentacle_death_f3",
+    "kraken_tentacle_death_f4",
+    "kraken_tentacle_death_f5"
+   ],
+   "rects": [
+    [
+     0,
+     672,
+     32,
+     32
+    ],
+    [
+     32,
+     672,
+     32,
+     32
+    ],
+    [
+     64,
+     672,
+     32,
+     32
+    ],
+    [
+     96,
+     672,
+     32,
+     32
+    ],
+    [
+     128,
+     672,
+     32,
+     32
+    ],
+    [
+     160,
+     672,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/kraken_tentacle/kraken_tentacle_death_strip_6f.png"
+  },
+  {
+   "name": "kraken_tentacle_idle_enraged",
+   "category": "boss",
+   "boss": "kraken_tentacle",
+   "action": "idle",
+   "phase": 2,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 140,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "kraken_tentacle_idle_enraged_f0",
+    "kraken_tentacle_idle_enraged_f1",
+    "kraken_tentacle_idle_enraged_f2",
+    "kraken_tentacle_idle_enraged_f3"
+   ],
+   "rects": [
+    [
+     0,
+     704,
+     32,
+     32
+    ],
+    [
+     32,
+     704,
+     32,
+     32
+    ],
+    [
+     64,
+     704,
+     32,
+     32
+    ],
+    [
+     96,
+     704,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/kraken_tentacle/kraken_tentacle_idle_enraged_strip_4f.png"
+  },
+  {
+   "name": "kraken_tentacle_attack_enraged",
+   "category": "boss",
+   "boss": "kraken_tentacle",
+   "action": "attack",
+   "phase": 2,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 90,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "kraken_tentacle_attack_enraged_f0",
+    "kraken_tentacle_attack_enraged_f1",
+    "kraken_tentacle_attack_enraged_f2",
+    "kraken_tentacle_attack_enraged_f3",
+    "kraken_tentacle_attack_enraged_f4",
+    "kraken_tentacle_attack_enraged_f5"
+   ],
+   "rects": [
+    [
+     0,
+     736,
+     32,
+     32
+    ],
+    [
+     32,
+     736,
+     32,
+     32
+    ],
+    [
+     64,
+     736,
+     32,
+     32
+    ],
+    [
+     96,
+     736,
+     32,
+     32
+    ],
+    [
+     128,
+     736,
+     32,
+     32
+    ],
+    [
+     160,
+     736,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/kraken_tentacle/kraken_tentacle_attack_enraged_strip_6f.png"
+  },
+  {
+   "name": "demon_lord_idle",
+   "category": "boss",
+   "boss": "demon_lord",
+   "action": "idle",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 4,
+   "ms_per_frame": 180,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "demon_lord_idle_f0",
+    "demon_lord_idle_f1",
+    "demon_lord_idle_f2",
+    "demon_lord_idle_f3"
+   ],
+   "rects": [
+    [
+     0,
+     576,
+     48,
+     48
+    ],
+    [
+     48,
+     576,
+     48,
+     48
+    ],
+    [
+     96,
+     576,
+     48,
+     48
+    ],
+    [
+     144,
+     576,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/demon_lord/demon_lord_idle_strip_4f.png"
+  },
+  {
+   "name": "demon_lord_attack",
+   "category": "boss",
+   "boss": "demon_lord",
+   "action": "attack",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 110,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "demon_lord_attack_f0",
+    "demon_lord_attack_f1",
+    "demon_lord_attack_f2",
+    "demon_lord_attack_f3",
+    "demon_lord_attack_f4",
+    "demon_lord_attack_f5"
+   ],
+   "rects": [
+    [
+     0,
+     624,
+     48,
+     48
+    ],
+    [
+     48,
+     624,
+     48,
+     48
+    ],
+    [
+     96,
+     624,
+     48,
+     48
+    ],
+    [
+     144,
+     624,
+     48,
+     48
+    ],
+    [
+     192,
+     624,
+     48,
+     48
+    ],
+    [
+     240,
+     624,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/demon_lord/demon_lord_attack_strip_6f.png"
+  },
+  {
+   "name": "demon_lord_hurt",
+   "category": "boss",
+   "boss": "demon_lord",
+   "action": "hurt",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 2,
+   "ms_per_frame": 120,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "demon_lord_hurt_f0",
+    "demon_lord_hurt_f1"
+   ],
+   "rects": [
+    [
+     0,
+     672,
+     48,
+     48
+    ],
+    [
+     48,
+     672,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/demon_lord/demon_lord_hurt_strip_2f.png"
+  },
+  {
+   "name": "demon_lord_death",
+   "category": "boss",
+   "boss": "demon_lord",
+   "action": "death",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 130,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "demon_lord_death_f0",
+    "demon_lord_death_f1",
+    "demon_lord_death_f2",
+    "demon_lord_death_f3",
+    "demon_lord_death_f4",
+    "demon_lord_death_f5"
+   ],
+   "rects": [
+    [
+     0,
+     720,
+     48,
+     48
+    ],
+    [
+     48,
+     720,
+     48,
+     48
+    ],
+    [
+     96,
+     720,
+     48,
+     48
+    ],
+    [
+     144,
+     720,
+     48,
+     48
+    ],
+    [
+     192,
+     720,
+     48,
+     48
+    ],
+    [
+     240,
+     720,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/demon_lord/demon_lord_death_strip_6f.png"
+  },
+  {
+   "name": "demon_lord_idle_enraged",
+   "category": "boss",
+   "boss": "demon_lord",
+   "action": "idle",
+   "phase": 2,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 4,
+   "ms_per_frame": 140,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "demon_lord_idle_enraged_f0",
+    "demon_lord_idle_enraged_f1",
+    "demon_lord_idle_enraged_f2",
+    "demon_lord_idle_enraged_f3"
+   ],
+   "rects": [
+    [
+     0,
+     768,
+     48,
+     48
+    ],
+    [
+     48,
+     768,
+     48,
+     48
+    ],
+    [
+     96,
+     768,
+     48,
+     48
+    ],
+    [
+     144,
+     768,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/demon_lord/demon_lord_idle_enraged_strip_4f.png"
+  },
+  {
+   "name": "demon_lord_attack_enraged",
+   "category": "boss",
+   "boss": "demon_lord",
+   "action": "attack",
+   "phase": 2,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 90,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "demon_lord_attack_enraged_f0",
+    "demon_lord_attack_enraged_f1",
+    "demon_lord_attack_enraged_f2",
+    "demon_lord_attack_enraged_f3",
+    "demon_lord_attack_enraged_f4",
+    "demon_lord_attack_enraged_f5"
+   ],
+   "rects": [
+    [
+     0,
+     816,
+     48,
+     48
+    ],
+    [
+     48,
+     816,
+     48,
+     48
+    ],
+    [
+     96,
+     816,
+     48,
+     48
+    ],
+    [
+     144,
+     816,
+     48,
+     48
+    ],
+    [
+     192,
+     816,
+     48,
+     48
+    ],
+    [
+     240,
+     816,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/demon_lord/demon_lord_attack_enraged_strip_6f.png"
+  },
+  {
+   "name": "tree_guardian_idle",
+   "category": "boss",
+   "boss": "tree_guardian",
+   "action": "idle",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 4,
+   "ms_per_frame": 180,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "tree_guardian_idle_f0",
+    "tree_guardian_idle_f1",
+    "tree_guardian_idle_f2",
+    "tree_guardian_idle_f3"
+   ],
+   "rects": [
+    [
+     0,
+     864,
+     48,
+     48
+    ],
+    [
+     48,
+     864,
+     48,
+     48
+    ],
+    [
+     96,
+     864,
+     48,
+     48
+    ],
+    [
+     144,
+     864,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/tree_guardian/tree_guardian_idle_strip_4f.png"
+  },
+  {
+   "name": "tree_guardian_attack",
+   "category": "boss",
+   "boss": "tree_guardian",
+   "action": "attack",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 110,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "tree_guardian_attack_f0",
+    "tree_guardian_attack_f1",
+    "tree_guardian_attack_f2",
+    "tree_guardian_attack_f3",
+    "tree_guardian_attack_f4",
+    "tree_guardian_attack_f5"
+   ],
+   "rects": [
+    [
+     0,
+     912,
+     48,
+     48
+    ],
+    [
+     48,
+     912,
+     48,
+     48
+    ],
+    [
+     96,
+     912,
+     48,
+     48
+    ],
+    [
+     144,
+     912,
+     48,
+     48
+    ],
+    [
+     192,
+     912,
+     48,
+     48
+    ],
+    [
+     240,
+     912,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/tree_guardian/tree_guardian_attack_strip_6f.png"
+  },
+  {
+   "name": "tree_guardian_hurt",
+   "category": "boss",
+   "boss": "tree_guardian",
+   "action": "hurt",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 2,
+   "ms_per_frame": 120,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "tree_guardian_hurt_f0",
+    "tree_guardian_hurt_f1"
+   ],
+   "rects": [
+    [
+     0,
+     960,
+     48,
+     48
+    ],
+    [
+     48,
+     960,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/tree_guardian/tree_guardian_hurt_strip_2f.png"
+  },
+  {
+   "name": "tree_guardian_death",
+   "category": "boss",
+   "boss": "tree_guardian",
+   "action": "death",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 130,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "tree_guardian_death_f0",
+    "tree_guardian_death_f1",
+    "tree_guardian_death_f2",
+    "tree_guardian_death_f3",
+    "tree_guardian_death_f4",
+    "tree_guardian_death_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1008,
+     48,
+     48
+    ],
+    [
+     48,
+     1008,
+     48,
+     48
+    ],
+    [
+     96,
+     1008,
+     48,
+     48
+    ],
+    [
+     144,
+     1008,
+     48,
+     48
+    ],
+    [
+     192,
+     1008,
+     48,
+     48
+    ],
+    [
+     240,
+     1008,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/tree_guardian/tree_guardian_death_strip_6f.png"
+  },
+  {
+   "name": "tree_guardian_idle_enraged",
+   "category": "boss",
+   "boss": "tree_guardian",
+   "action": "idle",
+   "phase": 2,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 4,
+   "ms_per_frame": 140,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "tree_guardian_idle_enraged_f0",
+    "tree_guardian_idle_enraged_f1",
+    "tree_guardian_idle_enraged_f2",
+    "tree_guardian_idle_enraged_f3"
+   ],
+   "rects": [
+    [
+     0,
+     1056,
+     48,
+     48
+    ],
+    [
+     48,
+     1056,
+     48,
+     48
+    ],
+    [
+     96,
+     1056,
+     48,
+     48
+    ],
+    [
+     144,
+     1056,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/tree_guardian/tree_guardian_idle_enraged_strip_4f.png"
+  },
+  {
+   "name": "tree_guardian_attack_enraged",
+   "category": "boss",
+   "boss": "tree_guardian",
+   "action": "attack",
+   "phase": 2,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 90,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "tree_guardian_attack_enraged_f0",
+    "tree_guardian_attack_enraged_f1",
+    "tree_guardian_attack_enraged_f2",
+    "tree_guardian_attack_enraged_f3",
+    "tree_guardian_attack_enraged_f4",
+    "tree_guardian_attack_enraged_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1104,
+     48,
+     48
+    ],
+    [
+     48,
+     1104,
+     48,
+     48
+    ],
+    [
+     96,
+     1104,
+     48,
+     48
+    ],
+    [
+     144,
+     1104,
+     48,
+     48
+    ],
+    [
+     192,
+     1104,
+     48,
+     48
+    ],
+    [
+     240,
+     1104,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/tree_guardian/tree_guardian_attack_enraged_strip_6f.png"
+  },
+  {
+   "name": "minotaur_idle",
+   "category": "boss",
+   "boss": "minotaur",
+   "action": "idle",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 4,
+   "ms_per_frame": 180,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "minotaur_idle_f0",
+    "minotaur_idle_f1",
+    "minotaur_idle_f2",
+    "minotaur_idle_f3"
+   ],
+   "rects": [
+    [
+     0,
+     1152,
+     48,
+     48
+    ],
+    [
+     48,
+     1152,
+     48,
+     48
+    ],
+    [
+     96,
+     1152,
+     48,
+     48
+    ],
+    [
+     144,
+     1152,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/minotaur/minotaur_idle_strip_4f.png"
+  },
+  {
+   "name": "minotaur_attack",
+   "category": "boss",
+   "boss": "minotaur",
+   "action": "attack",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 110,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "minotaur_attack_f0",
+    "minotaur_attack_f1",
+    "minotaur_attack_f2",
+    "minotaur_attack_f3",
+    "minotaur_attack_f4",
+    "minotaur_attack_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1200,
+     48,
+     48
+    ],
+    [
+     48,
+     1200,
+     48,
+     48
+    ],
+    [
+     96,
+     1200,
+     48,
+     48
+    ],
+    [
+     144,
+     1200,
+     48,
+     48
+    ],
+    [
+     192,
+     1200,
+     48,
+     48
+    ],
+    [
+     240,
+     1200,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/minotaur/minotaur_attack_strip_6f.png"
+  },
+  {
+   "name": "minotaur_hurt",
+   "category": "boss",
+   "boss": "minotaur",
+   "action": "hurt",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 2,
+   "ms_per_frame": 120,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "minotaur_hurt_f0",
+    "minotaur_hurt_f1"
+   ],
+   "rects": [
+    [
+     0,
+     1248,
+     48,
+     48
+    ],
+    [
+     48,
+     1248,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/minotaur/minotaur_hurt_strip_2f.png"
+  },
+  {
+   "name": "minotaur_death",
+   "category": "boss",
+   "boss": "minotaur",
+   "action": "death",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 130,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "minotaur_death_f0",
+    "minotaur_death_f1",
+    "minotaur_death_f2",
+    "minotaur_death_f3",
+    "minotaur_death_f4",
+    "minotaur_death_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1296,
+     48,
+     48
+    ],
+    [
+     48,
+     1296,
+     48,
+     48
+    ],
+    [
+     96,
+     1296,
+     48,
+     48
+    ],
+    [
+     144,
+     1296,
+     48,
+     48
+    ],
+    [
+     192,
+     1296,
+     48,
+     48
+    ],
+    [
+     240,
+     1296,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/minotaur/minotaur_death_strip_6f.png"
+  },
+  {
+   "name": "minotaur_idle_enraged",
+   "category": "boss",
+   "boss": "minotaur",
+   "action": "idle",
+   "phase": 2,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 4,
+   "ms_per_frame": 140,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "minotaur_idle_enraged_f0",
+    "minotaur_idle_enraged_f1",
+    "minotaur_idle_enraged_f2",
+    "minotaur_idle_enraged_f3"
+   ],
+   "rects": [
+    [
+     0,
+     1344,
+     48,
+     48
+    ],
+    [
+     48,
+     1344,
+     48,
+     48
+    ],
+    [
+     96,
+     1344,
+     48,
+     48
+    ],
+    [
+     144,
+     1344,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/minotaur/minotaur_idle_enraged_strip_4f.png"
+  },
+  {
+   "name": "minotaur_attack_enraged",
+   "category": "boss",
+   "boss": "minotaur",
+   "action": "attack",
+   "phase": 2,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 90,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "minotaur_attack_enraged_f0",
+    "minotaur_attack_enraged_f1",
+    "minotaur_attack_enraged_f2",
+    "minotaur_attack_enraged_f3",
+    "minotaur_attack_enraged_f4",
+    "minotaur_attack_enraged_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1392,
+     48,
+     48
+    ],
+    [
+     48,
+     1392,
+     48,
+     48
+    ],
+    [
+     96,
+     1392,
+     48,
+     48
+    ],
+    [
+     144,
+     1392,
+     48,
+     48
+    ],
+    [
+     192,
+     1392,
+     48,
+     48
+    ],
+    [
+     240,
+     1392,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/minotaur/minotaur_attack_enraged_strip_6f.png"
+  },
+  {
+   "name": "spider_queen_idle",
+   "category": "boss",
+   "boss": "spider_queen",
+   "action": "idle",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 4,
+   "ms_per_frame": 180,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "spider_queen_idle_f0",
+    "spider_queen_idle_f1",
+    "spider_queen_idle_f2",
+    "spider_queen_idle_f3"
+   ],
+   "rects": [
+    [
+     0,
+     1440,
+     48,
+     48
+    ],
+    [
+     48,
+     1440,
+     48,
+     48
+    ],
+    [
+     96,
+     1440,
+     48,
+     48
+    ],
+    [
+     144,
+     1440,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/spider_queen/spider_queen_idle_strip_4f.png"
+  },
+  {
+   "name": "spider_queen_attack",
+   "category": "boss",
+   "boss": "spider_queen",
+   "action": "attack",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 110,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "spider_queen_attack_f0",
+    "spider_queen_attack_f1",
+    "spider_queen_attack_f2",
+    "spider_queen_attack_f3",
+    "spider_queen_attack_f4",
+    "spider_queen_attack_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1488,
+     48,
+     48
+    ],
+    [
+     48,
+     1488,
+     48,
+     48
+    ],
+    [
+     96,
+     1488,
+     48,
+     48
+    ],
+    [
+     144,
+     1488,
+     48,
+     48
+    ],
+    [
+     192,
+     1488,
+     48,
+     48
+    ],
+    [
+     240,
+     1488,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/spider_queen/spider_queen_attack_strip_6f.png"
+  },
+  {
+   "name": "spider_queen_hurt",
+   "category": "boss",
+   "boss": "spider_queen",
+   "action": "hurt",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 2,
+   "ms_per_frame": 120,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "spider_queen_hurt_f0",
+    "spider_queen_hurt_f1"
+   ],
+   "rects": [
+    [
+     0,
+     1536,
+     48,
+     48
+    ],
+    [
+     48,
+     1536,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/spider_queen/spider_queen_hurt_strip_2f.png"
+  },
+  {
+   "name": "spider_queen_death",
+   "category": "boss",
+   "boss": "spider_queen",
+   "action": "death",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 130,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "spider_queen_death_f0",
+    "spider_queen_death_f1",
+    "spider_queen_death_f2",
+    "spider_queen_death_f3",
+    "spider_queen_death_f4",
+    "spider_queen_death_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1584,
+     48,
+     48
+    ],
+    [
+     48,
+     1584,
+     48,
+     48
+    ],
+    [
+     96,
+     1584,
+     48,
+     48
+    ],
+    [
+     144,
+     1584,
+     48,
+     48
+    ],
+    [
+     192,
+     1584,
+     48,
+     48
+    ],
+    [
+     240,
+     1584,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/spider_queen/spider_queen_death_strip_6f.png"
+  },
+  {
+   "name": "spider_queen_idle_enraged",
+   "category": "boss",
+   "boss": "spider_queen",
+   "action": "idle",
+   "phase": 2,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 4,
+   "ms_per_frame": 140,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "spider_queen_idle_enraged_f0",
+    "spider_queen_idle_enraged_f1",
+    "spider_queen_idle_enraged_f2",
+    "spider_queen_idle_enraged_f3"
+   ],
+   "rects": [
+    [
+     0,
+     1632,
+     48,
+     48
+    ],
+    [
+     48,
+     1632,
+     48,
+     48
+    ],
+    [
+     96,
+     1632,
+     48,
+     48
+    ],
+    [
+     144,
+     1632,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/spider_queen/spider_queen_idle_enraged_strip_4f.png"
+  },
+  {
+   "name": "spider_queen_attack_enraged",
+   "category": "boss",
+   "boss": "spider_queen",
+   "action": "attack",
+   "phase": 2,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 90,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "spider_queen_attack_enraged_f0",
+    "spider_queen_attack_enraged_f1",
+    "spider_queen_attack_enraged_f2",
+    "spider_queen_attack_enraged_f3",
+    "spider_queen_attack_enraged_f4",
+    "spider_queen_attack_enraged_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1680,
+     48,
+     48
+    ],
+    [
+     48,
+     1680,
+     48,
+     48
+    ],
+    [
+     96,
+     1680,
+     48,
+     48
+    ],
+    [
+     144,
+     1680,
+     48,
+     48
+    ],
+    [
+     192,
+     1680,
+     48,
+     48
+    ],
+    [
+     240,
+     1680,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/spider_queen/spider_queen_attack_enraged_strip_6f.png"
+  },
+  {
+   "name": "phantom_knight_idle",
+   "category": "boss",
+   "boss": "phantom_knight",
+   "action": "idle",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 180,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "phantom_knight_idle_f0",
+    "phantom_knight_idle_f1",
+    "phantom_knight_idle_f2",
+    "phantom_knight_idle_f3"
+   ],
+   "rects": [
+    [
+     0,
+     768,
+     32,
+     32
+    ],
+    [
+     32,
+     768,
+     32,
+     32
+    ],
+    [
+     64,
+     768,
+     32,
+     32
+    ],
+    [
+     96,
+     768,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/phantom_knight/phantom_knight_idle_strip_4f.png"
+  },
+  {
+   "name": "phantom_knight_attack",
+   "category": "boss",
+   "boss": "phantom_knight",
+   "action": "attack",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 110,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "phantom_knight_attack_f0",
+    "phantom_knight_attack_f1",
+    "phantom_knight_attack_f2",
+    "phantom_knight_attack_f3",
+    "phantom_knight_attack_f4",
+    "phantom_knight_attack_f5"
+   ],
+   "rects": [
+    [
+     0,
+     800,
+     32,
+     32
+    ],
+    [
+     32,
+     800,
+     32,
+     32
+    ],
+    [
+     64,
+     800,
+     32,
+     32
+    ],
+    [
+     96,
+     800,
+     32,
+     32
+    ],
+    [
+     128,
+     800,
+     32,
+     32
+    ],
+    [
+     160,
+     800,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/phantom_knight/phantom_knight_attack_strip_6f.png"
+  },
+  {
+   "name": "phantom_knight_hurt",
+   "category": "boss",
+   "boss": "phantom_knight",
+   "action": "hurt",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 2,
+   "ms_per_frame": 120,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "phantom_knight_hurt_f0",
+    "phantom_knight_hurt_f1"
+   ],
+   "rects": [
+    [
+     0,
+     832,
+     32,
+     32
+    ],
+    [
+     32,
+     832,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/phantom_knight/phantom_knight_hurt_strip_2f.png"
+  },
+  {
+   "name": "phantom_knight_death",
+   "category": "boss",
+   "boss": "phantom_knight",
+   "action": "death",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 130,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "phantom_knight_death_f0",
+    "phantom_knight_death_f1",
+    "phantom_knight_death_f2",
+    "phantom_knight_death_f3",
+    "phantom_knight_death_f4",
+    "phantom_knight_death_f5"
+   ],
+   "rects": [
+    [
+     0,
+     864,
+     32,
+     32
+    ],
+    [
+     32,
+     864,
+     32,
+     32
+    ],
+    [
+     64,
+     864,
+     32,
+     32
+    ],
+    [
+     96,
+     864,
+     32,
+     32
+    ],
+    [
+     128,
+     864,
+     32,
+     32
+    ],
+    [
+     160,
+     864,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/phantom_knight/phantom_knight_death_strip_6f.png"
+  },
+  {
+   "name": "phantom_knight_idle_enraged",
+   "category": "boss",
+   "boss": "phantom_knight",
+   "action": "idle",
+   "phase": 2,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 140,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "phantom_knight_idle_enraged_f0",
+    "phantom_knight_idle_enraged_f1",
+    "phantom_knight_idle_enraged_f2",
+    "phantom_knight_idle_enraged_f3"
+   ],
+   "rects": [
+    [
+     0,
+     896,
+     32,
+     32
+    ],
+    [
+     32,
+     896,
+     32,
+     32
+    ],
+    [
+     64,
+     896,
+     32,
+     32
+    ],
+    [
+     96,
+     896,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/phantom_knight/phantom_knight_idle_enraged_strip_4f.png"
+  },
+  {
+   "name": "phantom_knight_attack_enraged",
+   "category": "boss",
+   "boss": "phantom_knight",
+   "action": "attack",
+   "phase": 2,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 90,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "phantom_knight_attack_enraged_f0",
+    "phantom_knight_attack_enraged_f1",
+    "phantom_knight_attack_enraged_f2",
+    "phantom_knight_attack_enraged_f3",
+    "phantom_knight_attack_enraged_f4",
+    "phantom_knight_attack_enraged_f5"
+   ],
+   "rects": [
+    [
+     0,
+     928,
+     32,
+     32
+    ],
+    [
+     32,
+     928,
+     32,
+     32
+    ],
+    [
+     64,
+     928,
+     32,
+     32
+    ],
+    [
+     96,
+     928,
+     32,
+     32
+    ],
+    [
+     128,
+     928,
+     32,
+     32
+    ],
+    [
+     160,
+     928,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/phantom_knight/phantom_knight_attack_enraged_strip_6f.png"
+  },
+  {
+   "name": "frost_yeti_idle",
+   "category": "boss",
+   "boss": "frost_yeti",
+   "action": "idle",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 4,
+   "ms_per_frame": 180,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "frost_yeti_idle_f0",
+    "frost_yeti_idle_f1",
+    "frost_yeti_idle_f2",
+    "frost_yeti_idle_f3"
+   ],
+   "rects": [
+    [
+     0,
+     1728,
+     48,
+     48
+    ],
+    [
+     48,
+     1728,
+     48,
+     48
+    ],
+    [
+     96,
+     1728,
+     48,
+     48
+    ],
+    [
+     144,
+     1728,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/frost_yeti/frost_yeti_idle_strip_4f.png"
+  },
+  {
+   "name": "frost_yeti_attack",
+   "category": "boss",
+   "boss": "frost_yeti",
+   "action": "attack",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 110,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "frost_yeti_attack_f0",
+    "frost_yeti_attack_f1",
+    "frost_yeti_attack_f2",
+    "frost_yeti_attack_f3",
+    "frost_yeti_attack_f4",
+    "frost_yeti_attack_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1776,
+     48,
+     48
+    ],
+    [
+     48,
+     1776,
+     48,
+     48
+    ],
+    [
+     96,
+     1776,
+     48,
+     48
+    ],
+    [
+     144,
+     1776,
+     48,
+     48
+    ],
+    [
+     192,
+     1776,
+     48,
+     48
+    ],
+    [
+     240,
+     1776,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/frost_yeti/frost_yeti_attack_strip_6f.png"
+  },
+  {
+   "name": "frost_yeti_hurt",
+   "category": "boss",
+   "boss": "frost_yeti",
+   "action": "hurt",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 2,
+   "ms_per_frame": 120,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "frost_yeti_hurt_f0",
+    "frost_yeti_hurt_f1"
+   ],
+   "rects": [
+    [
+     0,
+     1824,
+     48,
+     48
+    ],
+    [
+     48,
+     1824,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/frost_yeti/frost_yeti_hurt_strip_2f.png"
+  },
+  {
+   "name": "frost_yeti_death",
+   "category": "boss",
+   "boss": "frost_yeti",
+   "action": "death",
+   "phase": 1,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 130,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "frost_yeti_death_f0",
+    "frost_yeti_death_f1",
+    "frost_yeti_death_f2",
+    "frost_yeti_death_f3",
+    "frost_yeti_death_f4",
+    "frost_yeti_death_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1872,
+     48,
+     48
+    ],
+    [
+     48,
+     1872,
+     48,
+     48
+    ],
+    [
+     96,
+     1872,
+     48,
+     48
+    ],
+    [
+     144,
+     1872,
+     48,
+     48
+    ],
+    [
+     192,
+     1872,
+     48,
+     48
+    ],
+    [
+     240,
+     1872,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/frost_yeti/frost_yeti_death_strip_6f.png"
+  },
+  {
+   "name": "frost_yeti_idle_enraged",
+   "category": "boss",
+   "boss": "frost_yeti",
+   "action": "idle",
+   "phase": 2,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 4,
+   "ms_per_frame": 140,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "frost_yeti_idle_enraged_f0",
+    "frost_yeti_idle_enraged_f1",
+    "frost_yeti_idle_enraged_f2",
+    "frost_yeti_idle_enraged_f3"
+   ],
+   "rects": [
+    [
+     0,
+     1920,
+     48,
+     48
+    ],
+    [
+     48,
+     1920,
+     48,
+     48
+    ],
+    [
+     96,
+     1920,
+     48,
+     48
+    ],
+    [
+     144,
+     1920,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/frost_yeti/frost_yeti_idle_enraged_strip_4f.png"
+  },
+  {
+   "name": "frost_yeti_attack_enraged",
+   "category": "boss",
+   "boss": "frost_yeti",
+   "action": "attack",
+   "phase": 2,
+   "frame_size": [
+    48,
+    48
+   ],
+   "frames": 6,
+   "ms_per_frame": 90,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+   "tiles": [
+    "frost_yeti_attack_enraged_f0",
+    "frost_yeti_attack_enraged_f1",
+    "frost_yeti_attack_enraged_f2",
+    "frost_yeti_attack_enraged_f3",
+    "frost_yeti_attack_enraged_f4",
+    "frost_yeti_attack_enraged_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1968,
+     48,
+     48
+    ],
+    [
+     48,
+     1968,
+     48,
+     48
+    ],
+    [
+     96,
+     1968,
+     48,
+     48
+    ],
+    [
+     144,
+     1968,
+     48,
+     48
+    ],
+    [
+     192,
+     1968,
+     48,
+     48
+    ],
+    [
+     240,
+     1968,
+     48,
+     48
+    ]
+   ],
+   "strip": "Sprites/bosses/frost_yeti/frost_yeti_attack_enraged_strip_6f.png"
+  },
+  {
+   "name": "goblin_warlord_idle",
+   "category": "boss",
+   "boss": "goblin_warlord",
+   "action": "idle",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 180,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "goblin_warlord_idle_f0",
+    "goblin_warlord_idle_f1",
+    "goblin_warlord_idle_f2",
+    "goblin_warlord_idle_f3"
+   ],
+   "rects": [
+    [
+     0,
+     960,
+     32,
+     32
+    ],
+    [
+     32,
+     960,
+     32,
+     32
+    ],
+    [
+     64,
+     960,
+     32,
+     32
+    ],
+    [
+     96,
+     960,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/goblin_warlord/goblin_warlord_idle_strip_4f.png"
+  },
+  {
+   "name": "goblin_warlord_attack",
+   "category": "boss",
+   "boss": "goblin_warlord",
+   "action": "attack",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 110,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "goblin_warlord_attack_f0",
+    "goblin_warlord_attack_f1",
+    "goblin_warlord_attack_f2",
+    "goblin_warlord_attack_f3",
+    "goblin_warlord_attack_f4",
+    "goblin_warlord_attack_f5"
+   ],
+   "rects": [
+    [
+     0,
+     992,
+     32,
+     32
+    ],
+    [
+     32,
+     992,
+     32,
+     32
+    ],
+    [
+     64,
+     992,
+     32,
+     32
+    ],
+    [
+     96,
+     992,
+     32,
+     32
+    ],
+    [
+     128,
+     992,
+     32,
+     32
+    ],
+    [
+     160,
+     992,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/goblin_warlord/goblin_warlord_attack_strip_6f.png"
+  },
+  {
+   "name": "goblin_warlord_hurt",
+   "category": "boss",
+   "boss": "goblin_warlord",
+   "action": "hurt",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 2,
+   "ms_per_frame": 120,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "goblin_warlord_hurt_f0",
+    "goblin_warlord_hurt_f1"
+   ],
+   "rects": [
+    [
+     0,
+     1024,
+     32,
+     32
+    ],
+    [
+     32,
+     1024,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/goblin_warlord/goblin_warlord_hurt_strip_2f.png"
+  },
+  {
+   "name": "goblin_warlord_death",
+   "category": "boss",
+   "boss": "goblin_warlord",
+   "action": "death",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 130,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "goblin_warlord_death_f0",
+    "goblin_warlord_death_f1",
+    "goblin_warlord_death_f2",
+    "goblin_warlord_death_f3",
+    "goblin_warlord_death_f4",
+    "goblin_warlord_death_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1056,
+     32,
+     32
+    ],
+    [
+     32,
+     1056,
+     32,
+     32
+    ],
+    [
+     64,
+     1056,
+     32,
+     32
+    ],
+    [
+     96,
+     1056,
+     32,
+     32
+    ],
+    [
+     128,
+     1056,
+     32,
+     32
+    ],
+    [
+     160,
+     1056,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/goblin_warlord/goblin_warlord_death_strip_6f.png"
+  },
+  {
+   "name": "goblin_warlord_idle_enraged",
+   "category": "boss",
+   "boss": "goblin_warlord",
+   "action": "idle",
+   "phase": 2,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 140,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "goblin_warlord_idle_enraged_f0",
+    "goblin_warlord_idle_enraged_f1",
+    "goblin_warlord_idle_enraged_f2",
+    "goblin_warlord_idle_enraged_f3"
+   ],
+   "rects": [
+    [
+     0,
+     1088,
+     32,
+     32
+    ],
+    [
+     32,
+     1088,
+     32,
+     32
+    ],
+    [
+     64,
+     1088,
+     32,
+     32
+    ],
+    [
+     96,
+     1088,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/goblin_warlord/goblin_warlord_idle_enraged_strip_4f.png"
+  },
+  {
+   "name": "goblin_warlord_attack_enraged",
+   "category": "boss",
+   "boss": "goblin_warlord",
+   "action": "attack",
+   "phase": 2,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 90,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "goblin_warlord_attack_enraged_f0",
+    "goblin_warlord_attack_enraged_f1",
+    "goblin_warlord_attack_enraged_f2",
+    "goblin_warlord_attack_enraged_f3",
+    "goblin_warlord_attack_enraged_f4",
+    "goblin_warlord_attack_enraged_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1120,
+     32,
+     32
+    ],
+    [
+     32,
+     1120,
+     32,
+     32
+    ],
+    [
+     64,
+     1120,
+     32,
+     32
+    ],
+    [
+     96,
+     1120,
+     32,
+     32
+    ],
+    [
+     128,
+     1120,
+     32,
+     32
+    ],
+    [
+     160,
+     1120,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/goblin_warlord/goblin_warlord_attack_enraged_strip_6f.png"
+  },
+  {
+   "name": "watcher_eye_idle",
+   "category": "boss",
+   "boss": "watcher_eye",
+   "action": "idle",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 180,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "watcher_eye_idle_f0",
+    "watcher_eye_idle_f1",
+    "watcher_eye_idle_f2",
+    "watcher_eye_idle_f3"
+   ],
+   "rects": [
+    [
+     0,
+     1152,
+     32,
+     32
+    ],
+    [
+     32,
+     1152,
+     32,
+     32
+    ],
+    [
+     64,
+     1152,
+     32,
+     32
+    ],
+    [
+     96,
+     1152,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/watcher_eye/watcher_eye_idle_strip_4f.png"
+  },
+  {
+   "name": "watcher_eye_attack",
+   "category": "boss",
+   "boss": "watcher_eye",
+   "action": "attack",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 110,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "watcher_eye_attack_f0",
+    "watcher_eye_attack_f1",
+    "watcher_eye_attack_f2",
+    "watcher_eye_attack_f3",
+    "watcher_eye_attack_f4",
+    "watcher_eye_attack_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1184,
+     32,
+     32
+    ],
+    [
+     32,
+     1184,
+     32,
+     32
+    ],
+    [
+     64,
+     1184,
+     32,
+     32
+    ],
+    [
+     96,
+     1184,
+     32,
+     32
+    ],
+    [
+     128,
+     1184,
+     32,
+     32
+    ],
+    [
+     160,
+     1184,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/watcher_eye/watcher_eye_attack_strip_6f.png"
+  },
+  {
+   "name": "watcher_eye_hurt",
+   "category": "boss",
+   "boss": "watcher_eye",
+   "action": "hurt",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 2,
+   "ms_per_frame": 120,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "watcher_eye_hurt_f0",
+    "watcher_eye_hurt_f1"
+   ],
+   "rects": [
+    [
+     0,
+     1216,
+     32,
+     32
+    ],
+    [
+     32,
+     1216,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/watcher_eye/watcher_eye_hurt_strip_2f.png"
+  },
+  {
+   "name": "watcher_eye_death",
+   "category": "boss",
+   "boss": "watcher_eye",
+   "action": "death",
+   "phase": 1,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 130,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "watcher_eye_death_f0",
+    "watcher_eye_death_f1",
+    "watcher_eye_death_f2",
+    "watcher_eye_death_f3",
+    "watcher_eye_death_f4",
+    "watcher_eye_death_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1248,
+     32,
+     32
+    ],
+    [
+     32,
+     1248,
+     32,
+     32
+    ],
+    [
+     64,
+     1248,
+     32,
+     32
+    ],
+    [
+     96,
+     1248,
+     32,
+     32
+    ],
+    [
+     128,
+     1248,
+     32,
+     32
+    ],
+    [
+     160,
+     1248,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/watcher_eye/watcher_eye_death_strip_6f.png"
+  },
+  {
+   "name": "watcher_eye_idle_enraged",
+   "category": "boss",
+   "boss": "watcher_eye",
+   "action": "idle",
+   "phase": 2,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 140,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "watcher_eye_idle_enraged_f0",
+    "watcher_eye_idle_enraged_f1",
+    "watcher_eye_idle_enraged_f2",
+    "watcher_eye_idle_enraged_f3"
+   ],
+   "rects": [
+    [
+     0,
+     1280,
+     32,
+     32
+    ],
+    [
+     32,
+     1280,
+     32,
+     32
+    ],
+    [
+     64,
+     1280,
+     32,
+     32
+    ],
+    [
+     96,
+     1280,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/watcher_eye/watcher_eye_idle_enraged_strip_4f.png"
+  },
+  {
+   "name": "watcher_eye_attack_enraged",
+   "category": "boss",
+   "boss": "watcher_eye",
+   "action": "attack",
+   "phase": 2,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 6,
+   "ms_per_frame": 90,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+   "tiles": [
+    "watcher_eye_attack_enraged_f0",
+    "watcher_eye_attack_enraged_f1",
+    "watcher_eye_attack_enraged_f2",
+    "watcher_eye_attack_enraged_f3",
+    "watcher_eye_attack_enraged_f4",
+    "watcher_eye_attack_enraged_f5"
+   ],
+   "rects": [
+    [
+     0,
+     1312,
+     32,
+     32
+    ],
+    [
+     32,
+     1312,
+     32,
+     32
+    ],
+    [
+     64,
+     1312,
+     32,
+     32
+    ],
+    [
+     96,
+     1312,
+     32,
+     32
+    ],
+    [
+     128,
+     1312,
+     32,
+     32
+    ],
+    [
+     160,
+     1312,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/bosses/watcher_eye/watcher_eye_attack_enraged_strip_6f.png"
+  },
+  {
+   "name": "aoe_circle",
+   "category": "telegraph",
+   "boss": "",
+   "action": "marker",
+   "phase": 0,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 150,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_markers_32x32.png",
+   "tiles": [
+    "aoe_circle_f0",
+    "aoe_circle_f1",
+    "aoe_circle_f2",
+    "aoe_circle_f3"
+   ],
+   "rects": [
+    [
+     0,
+     0,
+     32,
+     32
+    ],
+    [
+     32,
+     0,
+     32,
+     32
+    ],
+    [
+     64,
+     0,
+     32,
+     32
+    ],
+    [
+     96,
+     0,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/markers/aoe_circle_strip_4f.png"
+  },
+  {
+   "name": "aoe_shrink",
+   "category": "telegraph",
+   "boss": "",
+   "action": "marker",
+   "phase": 0,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 250,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_markers_32x32.png",
+   "tiles": [
+    "aoe_shrink_f0",
+    "aoe_shrink_f1",
+    "aoe_shrink_f2",
+    "aoe_shrink_f3"
+   ],
+   "rects": [
+    [
+     0,
+     32,
+     32,
+     32
+    ],
+    [
+     32,
+     32,
+     32,
+     32
+    ],
+    [
+     64,
+     32,
+     32,
+     32
+    ],
+    [
+     96,
+     32,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/markers/aoe_shrink_strip_4f.png"
+  },
+  {
+   "name": "target_lock",
+   "category": "telegraph",
+   "boss": "",
+   "action": "marker",
+   "phase": 0,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 120,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_markers_32x32.png",
+   "tiles": [
+    "target_lock_f0",
+    "target_lock_f1",
+    "target_lock_f2",
+    "target_lock_f3"
+   ],
+   "rects": [
+    [
+     0,
+     64,
+     32,
+     32
+    ],
+    [
+     32,
+     64,
+     32,
+     32
+    ],
+    [
+     64,
+     64,
+     32,
+     32
+    ],
+    [
+     96,
+     64,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/markers/target_lock_strip_4f.png"
+  },
+  {
+   "name": "ground_crack",
+   "category": "telegraph",
+   "boss": "",
+   "action": "marker",
+   "phase": 0,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 120,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_markers_32x32.png",
+   "tiles": [
+    "ground_crack_f0",
+    "ground_crack_f1",
+    "ground_crack_f2",
+    "ground_crack_f3"
+   ],
+   "rects": [
+    [
+     0,
+     96,
+     32,
+     32
+    ],
+    [
+     32,
+     96,
+     32,
+     32
+    ],
+    [
+     64,
+     96,
+     32,
+     32
+    ],
+    [
+     96,
+     96,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/markers/ground_crack_strip_4f.png"
+  },
+  {
+   "name": "enrage_burst",
+   "category": "telegraph",
+   "boss": "",
+   "action": "marker",
+   "phase": 0,
+   "frame_size": [
+    32,
+    32
+   ],
+   "frames": 4,
+   "ms_per_frame": 90,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_markers_32x32.png",
+   "tiles": [
+    "enrage_burst_f0",
+    "enrage_burst_f1",
+    "enrage_burst_f2",
+    "enrage_burst_f3"
+   ],
+   "rects": [
+    [
+     0,
+     128,
+     32,
+     32
+    ],
+    [
+     32,
+     128,
+     32,
+     32
+    ],
+    [
+     64,
+     128,
+     32,
+     32
+    ],
+    [
+     96,
+     128,
+     32,
+     32
+    ]
+   ],
+   "strip": "Sprites/markers/enrage_burst_strip_4f.png"
+  },
+  {
+   "name": "warn_exclaim",
+   "category": "telegraph",
+   "boss": "",
+   "action": "marker",
+   "phase": 0,
+   "frame_size": [
+    16,
+    16
+   ],
+   "frames": 3,
+   "ms_per_frame": 150,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_ui_16x16.png",
+   "tiles": [
+    "warn_exclaim_f0",
+    "warn_exclaim_f1",
+    "warn_exclaim_f2"
+   ],
+   "rects": [
+    [
+     64,
+     32,
+     16,
+     16
+    ],
+    [
+     80,
+     32,
+     16,
+     16
+    ],
+    [
+     96,
+     32,
+     16,
+     16
+    ]
+   ],
+   "strip": "Sprites/markers/warn_exclaim_strip_3f.png"
+  },
+  {
+   "name": "target_reticle",
+   "category": "telegraph",
+   "boss": "",
+   "action": "marker",
+   "phase": 0,
+   "frame_size": [
+    16,
+    16
+   ],
+   "frames": 4,
+   "ms_per_frame": 120,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_ui_16x16.png",
+   "tiles": [
+    "target_reticle_f0",
+    "target_reticle_f1",
+    "target_reticle_f2",
+    "target_reticle_f3"
+   ],
+   "rects": [
+    [
+     112,
+     32,
+     16,
+     16
+    ],
+    [
+     128,
+     32,
+     16,
+     16
+    ],
+    [
+     144,
+     32,
+     16,
+     16
+    ],
+    [
+     160,
+     32,
+     16,
+     16
+    ]
+   ],
+   "strip": "Sprites/markers/target_reticle_strip_4f.png"
+  },
+  {
+   "name": "drop_arrow",
+   "category": "telegraph",
+   "boss": "",
+   "action": "marker",
+   "phase": 0,
+   "frame_size": [
+    16,
+    16
+   ],
+   "frames": 4,
+   "ms_per_frame": 120,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_ui_16x16.png",
+   "tiles": [
+    "drop_arrow_f0",
+    "drop_arrow_f1",
+    "drop_arrow_f2",
+    "drop_arrow_f3"
+   ],
+   "rects": [
+    [
+     48,
+     48,
+     16,
+     16
+    ],
+    [
+     64,
+     48,
+     16,
+     16
+    ],
+    [
+     80,
+     48,
+     16,
+     16
+    ],
+    [
+     96,
+     48,
+     16,
+     16
+    ]
+   ],
+   "strip": "Sprites/markers/drop_arrow_strip_4f.png"
+  },
+  {
+   "name": "danger_stripes",
+   "category": "telegraph",
+   "boss": "",
+   "action": "marker",
+   "phase": 0,
+   "frame_size": [
+    16,
+    16
+   ],
+   "frames": 4,
+   "ms_per_frame": 100,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_ui_16x16.png",
+   "tiles": [
+    "danger_stripes_f0",
+    "danger_stripes_f1",
+    "danger_stripes_f2",
+    "danger_stripes_f3"
+   ],
+   "rects": [
+    [
+     112,
+     48,
+     16,
+     16
+    ],
+    [
+     128,
+     48,
+     16,
+     16
+    ],
+    [
+     144,
+     48,
+     16,
+     16
+    ],
+    [
+     160,
+     48,
+     16,
+     16
+    ]
+   ],
+   "strip": "Sprites/markers/danger_stripes_strip_4f.png"
+  },
+  {
+   "name": "countdown",
+   "category": "telegraph",
+   "boss": "",
+   "action": "marker",
+   "phase": 0,
+   "frame_size": [
+    16,
+    16
+   ],
+   "frames": 3,
+   "ms_per_frame": 1000,
+   "loop": false,
+   "sheet": "Tilesheets/larchrow_bosses_ui_16x16.png",
+   "tiles": [
+    "countdown_f0",
+    "countdown_f1",
+    "countdown_f2"
+   ],
+   "rects": [
+    [
+     48,
+     64,
+     16,
+     16
+    ],
+    [
+     64,
+     64,
+     16,
+     16
+    ],
+    [
+     80,
+     64,
+     16,
+     16
+    ]
+   ],
+   "strip": "Sprites/markers/countdown_strip_3f.png"
+  },
+  {
+   "name": "enrage_icon",
+   "category": "icon",
+   "boss": "",
+   "action": "marker",
+   "phase": 0,
+   "frame_size": [
+    16,
+    16
+   ],
+   "frames": 2,
+   "ms_per_frame": 200,
+   "loop": true,
+   "sheet": "Tilesheets/larchrow_bosses_ui_16x16.png",
+   "tiles": [
+    "enrage_icon_f0",
+    "enrage_icon_f1"
+   ],
+   "rects": [
+    [
+     96,
+     64,
+     16,
+     16
+    ],
+    [
+     112,
+     64,
+     16,
+     16
+    ]
+   ],
+   "strip": "Sprites/markers/enrage_icon_strip_2f.png"
+  }
+ ]
+}

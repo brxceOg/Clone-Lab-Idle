@@ -1,0 +1,4451 @@
+{
+ "Sprites/bosses/slime_king/slime_king_idle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 180,
+  "loop": true,
+  "tiles": [
+   "slime_king_idle_f0",
+   "slime_king_idle_f1",
+   "slime_king_idle_f2",
+   "slime_king_idle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    0,
+    32,
+    32
+   ],
+   [
+    32,
+    0,
+    32,
+    32
+   ],
+   [
+    64,
+    0,
+    32,
+    32
+   ],
+   [
+    96,
+    0,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/slime_king/slime_king_idle_strip_4f_3x.png"
+ },
+ "Sprites/bosses/slime_king/slime_king_attack_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 110,
+  "loop": false,
+  "tiles": [
+   "slime_king_attack_f0",
+   "slime_king_attack_f1",
+   "slime_king_attack_f2",
+   "slime_king_attack_f3",
+   "slime_king_attack_f4",
+   "slime_king_attack_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    32,
+    32,
+    32
+   ],
+   [
+    32,
+    32,
+    32,
+    32
+   ],
+   [
+    64,
+    32,
+    32,
+    32
+   ],
+   [
+    96,
+    32,
+    32,
+    32
+   ],
+   [
+    128,
+    32,
+    32,
+    32
+   ],
+   [
+    160,
+    32,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/slime_king/slime_king_attack_strip_6f_3x.png"
+ },
+ "Sprites/bosses/slime_king/slime_king_hurt_strip_2f.png": {
+  "frames": 2,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 120,
+  "loop": false,
+  "tiles": [
+   "slime_king_hurt_f0",
+   "slime_king_hurt_f1"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    64,
+    32,
+    32
+   ],
+   [
+    32,
+    64,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/slime_king/slime_king_hurt_strip_2f_3x.png"
+ },
+ "Sprites/bosses/slime_king/slime_king_death_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 130,
+  "loop": false,
+  "tiles": [
+   "slime_king_death_f0",
+   "slime_king_death_f1",
+   "slime_king_death_f2",
+   "slime_king_death_f3",
+   "slime_king_death_f4",
+   "slime_king_death_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    96,
+    32,
+    32
+   ],
+   [
+    32,
+    96,
+    32,
+    32
+   ],
+   [
+    64,
+    96,
+    32,
+    32
+   ],
+   [
+    96,
+    96,
+    32,
+    32
+   ],
+   [
+    128,
+    96,
+    32,
+    32
+   ],
+   [
+    160,
+    96,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/slime_king/slime_king_death_strip_6f_3x.png"
+ },
+ "Sprites/bosses/slime_king/slime_king_idle_enraged_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 140,
+  "loop": true,
+  "tiles": [
+   "slime_king_idle_enraged_f0",
+   "slime_king_idle_enraged_f1",
+   "slime_king_idle_enraged_f2",
+   "slime_king_idle_enraged_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    128,
+    32,
+    32
+   ],
+   [
+    32,
+    128,
+    32,
+    32
+   ],
+   [
+    64,
+    128,
+    32,
+    32
+   ],
+   [
+    96,
+    128,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/slime_king/slime_king_idle_enraged_strip_4f_3x.png"
+ },
+ "Sprites/bosses/slime_king/slime_king_attack_enraged_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 90,
+  "loop": false,
+  "tiles": [
+   "slime_king_attack_enraged_f0",
+   "slime_king_attack_enraged_f1",
+   "slime_king_attack_enraged_f2",
+   "slime_king_attack_enraged_f3",
+   "slime_king_attack_enraged_f4",
+   "slime_king_attack_enraged_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    160,
+    32,
+    32
+   ],
+   [
+    32,
+    160,
+    32,
+    32
+   ],
+   [
+    64,
+    160,
+    32,
+    32
+   ],
+   [
+    96,
+    160,
+    32,
+    32
+   ],
+   [
+    128,
+    160,
+    32,
+    32
+   ],
+   [
+    160,
+    160,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/slime_king/slime_king_attack_enraged_strip_6f_3x.png"
+ },
+ "Sprites/bosses/lich/lich_idle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 180,
+  "loop": true,
+  "tiles": [
+   "lich_idle_f0",
+   "lich_idle_f1",
+   "lich_idle_f2",
+   "lich_idle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    192,
+    32,
+    32
+   ],
+   [
+    32,
+    192,
+    32,
+    32
+   ],
+   [
+    64,
+    192,
+    32,
+    32
+   ],
+   [
+    96,
+    192,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/lich/lich_idle_strip_4f_3x.png"
+ },
+ "Sprites/bosses/lich/lich_attack_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 110,
+  "loop": false,
+  "tiles": [
+   "lich_attack_f0",
+   "lich_attack_f1",
+   "lich_attack_f2",
+   "lich_attack_f3",
+   "lich_attack_f4",
+   "lich_attack_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    224,
+    32,
+    32
+   ],
+   [
+    32,
+    224,
+    32,
+    32
+   ],
+   [
+    64,
+    224,
+    32,
+    32
+   ],
+   [
+    96,
+    224,
+    32,
+    32
+   ],
+   [
+    128,
+    224,
+    32,
+    32
+   ],
+   [
+    160,
+    224,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/lich/lich_attack_strip_6f_3x.png"
+ },
+ "Sprites/bosses/lich/lich_hurt_strip_2f.png": {
+  "frames": 2,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 120,
+  "loop": false,
+  "tiles": [
+   "lich_hurt_f0",
+   "lich_hurt_f1"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    256,
+    32,
+    32
+   ],
+   [
+    32,
+    256,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/lich/lich_hurt_strip_2f_3x.png"
+ },
+ "Sprites/bosses/lich/lich_death_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 130,
+  "loop": false,
+  "tiles": [
+   "lich_death_f0",
+   "lich_death_f1",
+   "lich_death_f2",
+   "lich_death_f3",
+   "lich_death_f4",
+   "lich_death_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    288,
+    32,
+    32
+   ],
+   [
+    32,
+    288,
+    32,
+    32
+   ],
+   [
+    64,
+    288,
+    32,
+    32
+   ],
+   [
+    96,
+    288,
+    32,
+    32
+   ],
+   [
+    128,
+    288,
+    32,
+    32
+   ],
+   [
+    160,
+    288,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/lich/lich_death_strip_6f_3x.png"
+ },
+ "Sprites/bosses/lich/lich_idle_enraged_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 140,
+  "loop": true,
+  "tiles": [
+   "lich_idle_enraged_f0",
+   "lich_idle_enraged_f1",
+   "lich_idle_enraged_f2",
+   "lich_idle_enraged_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    320,
+    32,
+    32
+   ],
+   [
+    32,
+    320,
+    32,
+    32
+   ],
+   [
+    64,
+    320,
+    32,
+    32
+   ],
+   [
+    96,
+    320,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/lich/lich_idle_enraged_strip_4f_3x.png"
+ },
+ "Sprites/bosses/lich/lich_attack_enraged_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 90,
+  "loop": false,
+  "tiles": [
+   "lich_attack_enraged_f0",
+   "lich_attack_enraged_f1",
+   "lich_attack_enraged_f2",
+   "lich_attack_enraged_f3",
+   "lich_attack_enraged_f4",
+   "lich_attack_enraged_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    352,
+    32,
+    32
+   ],
+   [
+    32,
+    352,
+    32,
+    32
+   ],
+   [
+    64,
+    352,
+    32,
+    32
+   ],
+   [
+    96,
+    352,
+    32,
+    32
+   ],
+   [
+    128,
+    352,
+    32,
+    32
+   ],
+   [
+    160,
+    352,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/lich/lich_attack_enraged_strip_6f_3x.png"
+ },
+ "Sprites/bosses/dragon_whelp/dragon_whelp_idle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 180,
+  "loop": true,
+  "tiles": [
+   "dragon_whelp_idle_f0",
+   "dragon_whelp_idle_f1",
+   "dragon_whelp_idle_f2",
+   "dragon_whelp_idle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    384,
+    32,
+    32
+   ],
+   [
+    32,
+    384,
+    32,
+    32
+   ],
+   [
+    64,
+    384,
+    32,
+    32
+   ],
+   [
+    96,
+    384,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/dragon_whelp/dragon_whelp_idle_strip_4f_3x.png"
+ },
+ "Sprites/bosses/dragon_whelp/dragon_whelp_attack_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 110,
+  "loop": false,
+  "tiles": [
+   "dragon_whelp_attack_f0",
+   "dragon_whelp_attack_f1",
+   "dragon_whelp_attack_f2",
+   "dragon_whelp_attack_f3",
+   "dragon_whelp_attack_f4",
+   "dragon_whelp_attack_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    416,
+    32,
+    32
+   ],
+   [
+    32,
+    416,
+    32,
+    32
+   ],
+   [
+    64,
+    416,
+    32,
+    32
+   ],
+   [
+    96,
+    416,
+    32,
+    32
+   ],
+   [
+    128,
+    416,
+    32,
+    32
+   ],
+   [
+    160,
+    416,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/dragon_whelp/dragon_whelp_attack_strip_6f_3x.png"
+ },
+ "Sprites/bosses/dragon_whelp/dragon_whelp_hurt_strip_2f.png": {
+  "frames": 2,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 120,
+  "loop": false,
+  "tiles": [
+   "dragon_whelp_hurt_f0",
+   "dragon_whelp_hurt_f1"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    448,
+    32,
+    32
+   ],
+   [
+    32,
+    448,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/dragon_whelp/dragon_whelp_hurt_strip_2f_3x.png"
+ },
+ "Sprites/bosses/dragon_whelp/dragon_whelp_death_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 130,
+  "loop": false,
+  "tiles": [
+   "dragon_whelp_death_f0",
+   "dragon_whelp_death_f1",
+   "dragon_whelp_death_f2",
+   "dragon_whelp_death_f3",
+   "dragon_whelp_death_f4",
+   "dragon_whelp_death_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    480,
+    32,
+    32
+   ],
+   [
+    32,
+    480,
+    32,
+    32
+   ],
+   [
+    64,
+    480,
+    32,
+    32
+   ],
+   [
+    96,
+    480,
+    32,
+    32
+   ],
+   [
+    128,
+    480,
+    32,
+    32
+   ],
+   [
+    160,
+    480,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/dragon_whelp/dragon_whelp_death_strip_6f_3x.png"
+ },
+ "Sprites/bosses/dragon_whelp/dragon_whelp_idle_enraged_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 140,
+  "loop": true,
+  "tiles": [
+   "dragon_whelp_idle_enraged_f0",
+   "dragon_whelp_idle_enraged_f1",
+   "dragon_whelp_idle_enraged_f2",
+   "dragon_whelp_idle_enraged_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    512,
+    32,
+    32
+   ],
+   [
+    32,
+    512,
+    32,
+    32
+   ],
+   [
+    64,
+    512,
+    32,
+    32
+   ],
+   [
+    96,
+    512,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/dragon_whelp/dragon_whelp_idle_enraged_strip_4f_3x.png"
+ },
+ "Sprites/bosses/dragon_whelp/dragon_whelp_attack_enraged_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 90,
+  "loop": false,
+  "tiles": [
+   "dragon_whelp_attack_enraged_f0",
+   "dragon_whelp_attack_enraged_f1",
+   "dragon_whelp_attack_enraged_f2",
+   "dragon_whelp_attack_enraged_f3",
+   "dragon_whelp_attack_enraged_f4",
+   "dragon_whelp_attack_enraged_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    544,
+    32,
+    32
+   ],
+   [
+    32,
+    544,
+    32,
+    32
+   ],
+   [
+    64,
+    544,
+    32,
+    32
+   ],
+   [
+    96,
+    544,
+    32,
+    32
+   ],
+   [
+    128,
+    544,
+    32,
+    32
+   ],
+   [
+    160,
+    544,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/dragon_whelp/dragon_whelp_attack_enraged_strip_6f_3x.png"
+ },
+ "Sprites/bosses/stone_golem/stone_golem_idle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 180,
+  "loop": true,
+  "tiles": [
+   "stone_golem_idle_f0",
+   "stone_golem_idle_f1",
+   "stone_golem_idle_f2",
+   "stone_golem_idle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    0,
+    48,
+    48
+   ],
+   [
+    48,
+    0,
+    48,
+    48
+   ],
+   [
+    96,
+    0,
+    48,
+    48
+   ],
+   [
+    144,
+    0,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/stone_golem/stone_golem_idle_strip_4f_3x.png"
+ },
+ "Sprites/bosses/stone_golem/stone_golem_attack_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 110,
+  "loop": false,
+  "tiles": [
+   "stone_golem_attack_f0",
+   "stone_golem_attack_f1",
+   "stone_golem_attack_f2",
+   "stone_golem_attack_f3",
+   "stone_golem_attack_f4",
+   "stone_golem_attack_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    48,
+    48,
+    48
+   ],
+   [
+    48,
+    48,
+    48,
+    48
+   ],
+   [
+    96,
+    48,
+    48,
+    48
+   ],
+   [
+    144,
+    48,
+    48,
+    48
+   ],
+   [
+    192,
+    48,
+    48,
+    48
+   ],
+   [
+    240,
+    48,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/stone_golem/stone_golem_attack_strip_6f_3x.png"
+ },
+ "Sprites/bosses/stone_golem/stone_golem_hurt_strip_2f.png": {
+  "frames": 2,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 120,
+  "loop": false,
+  "tiles": [
+   "stone_golem_hurt_f0",
+   "stone_golem_hurt_f1"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    96,
+    48,
+    48
+   ],
+   [
+    48,
+    96,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/stone_golem/stone_golem_hurt_strip_2f_3x.png"
+ },
+ "Sprites/bosses/stone_golem/stone_golem_death_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 130,
+  "loop": false,
+  "tiles": [
+   "stone_golem_death_f0",
+   "stone_golem_death_f1",
+   "stone_golem_death_f2",
+   "stone_golem_death_f3",
+   "stone_golem_death_f4",
+   "stone_golem_death_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    144,
+    48,
+    48
+   ],
+   [
+    48,
+    144,
+    48,
+    48
+   ],
+   [
+    96,
+    144,
+    48,
+    48
+   ],
+   [
+    144,
+    144,
+    48,
+    48
+   ],
+   [
+    192,
+    144,
+    48,
+    48
+   ],
+   [
+    240,
+    144,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/stone_golem/stone_golem_death_strip_6f_3x.png"
+ },
+ "Sprites/bosses/stone_golem/stone_golem_idle_enraged_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 140,
+  "loop": true,
+  "tiles": [
+   "stone_golem_idle_enraged_f0",
+   "stone_golem_idle_enraged_f1",
+   "stone_golem_idle_enraged_f2",
+   "stone_golem_idle_enraged_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    192,
+    48,
+    48
+   ],
+   [
+    48,
+    192,
+    48,
+    48
+   ],
+   [
+    96,
+    192,
+    48,
+    48
+   ],
+   [
+    144,
+    192,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/stone_golem/stone_golem_idle_enraged_strip_4f_3x.png"
+ },
+ "Sprites/bosses/stone_golem/stone_golem_attack_enraged_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 90,
+  "loop": false,
+  "tiles": [
+   "stone_golem_attack_enraged_f0",
+   "stone_golem_attack_enraged_f1",
+   "stone_golem_attack_enraged_f2",
+   "stone_golem_attack_enraged_f3",
+   "stone_golem_attack_enraged_f4",
+   "stone_golem_attack_enraged_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    240,
+    48,
+    48
+   ],
+   [
+    48,
+    240,
+    48,
+    48
+   ],
+   [
+    96,
+    240,
+    48,
+    48
+   ],
+   [
+    144,
+    240,
+    48,
+    48
+   ],
+   [
+    192,
+    240,
+    48,
+    48
+   ],
+   [
+    240,
+    240,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/stone_golem/stone_golem_attack_enraged_strip_6f_3x.png"
+ },
+ "Sprites/bosses/kraken/kraken_idle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 180,
+  "loop": true,
+  "tiles": [
+   "kraken_idle_f0",
+   "kraken_idle_f1",
+   "kraken_idle_f2",
+   "kraken_idle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    288,
+    48,
+    48
+   ],
+   [
+    48,
+    288,
+    48,
+    48
+   ],
+   [
+    96,
+    288,
+    48,
+    48
+   ],
+   [
+    144,
+    288,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/kraken/kraken_idle_strip_4f_3x.png"
+ },
+ "Sprites/bosses/kraken/kraken_attack_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 110,
+  "loop": false,
+  "tiles": [
+   "kraken_attack_f0",
+   "kraken_attack_f1",
+   "kraken_attack_f2",
+   "kraken_attack_f3",
+   "kraken_attack_f4",
+   "kraken_attack_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    336,
+    48,
+    48
+   ],
+   [
+    48,
+    336,
+    48,
+    48
+   ],
+   [
+    96,
+    336,
+    48,
+    48
+   ],
+   [
+    144,
+    336,
+    48,
+    48
+   ],
+   [
+    192,
+    336,
+    48,
+    48
+   ],
+   [
+    240,
+    336,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/kraken/kraken_attack_strip_6f_3x.png"
+ },
+ "Sprites/bosses/kraken/kraken_hurt_strip_2f.png": {
+  "frames": 2,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 120,
+  "loop": false,
+  "tiles": [
+   "kraken_hurt_f0",
+   "kraken_hurt_f1"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    384,
+    48,
+    48
+   ],
+   [
+    48,
+    384,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/kraken/kraken_hurt_strip_2f_3x.png"
+ },
+ "Sprites/bosses/kraken/kraken_death_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 130,
+  "loop": false,
+  "tiles": [
+   "kraken_death_f0",
+   "kraken_death_f1",
+   "kraken_death_f2",
+   "kraken_death_f3",
+   "kraken_death_f4",
+   "kraken_death_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    432,
+    48,
+    48
+   ],
+   [
+    48,
+    432,
+    48,
+    48
+   ],
+   [
+    96,
+    432,
+    48,
+    48
+   ],
+   [
+    144,
+    432,
+    48,
+    48
+   ],
+   [
+    192,
+    432,
+    48,
+    48
+   ],
+   [
+    240,
+    432,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/kraken/kraken_death_strip_6f_3x.png"
+ },
+ "Sprites/bosses/kraken/kraken_idle_enraged_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 140,
+  "loop": true,
+  "tiles": [
+   "kraken_idle_enraged_f0",
+   "kraken_idle_enraged_f1",
+   "kraken_idle_enraged_f2",
+   "kraken_idle_enraged_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    480,
+    48,
+    48
+   ],
+   [
+    48,
+    480,
+    48,
+    48
+   ],
+   [
+    96,
+    480,
+    48,
+    48
+   ],
+   [
+    144,
+    480,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/kraken/kraken_idle_enraged_strip_4f_3x.png"
+ },
+ "Sprites/bosses/kraken/kraken_attack_enraged_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 90,
+  "loop": false,
+  "tiles": [
+   "kraken_attack_enraged_f0",
+   "kraken_attack_enraged_f1",
+   "kraken_attack_enraged_f2",
+   "kraken_attack_enraged_f3",
+   "kraken_attack_enraged_f4",
+   "kraken_attack_enraged_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    528,
+    48,
+    48
+   ],
+   [
+    48,
+    528,
+    48,
+    48
+   ],
+   [
+    96,
+    528,
+    48,
+    48
+   ],
+   [
+    144,
+    528,
+    48,
+    48
+   ],
+   [
+    192,
+    528,
+    48,
+    48
+   ],
+   [
+    240,
+    528,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/kraken/kraken_attack_enraged_strip_6f_3x.png"
+ },
+ "Sprites/bosses/kraken_tentacle/kraken_tentacle_idle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 180,
+  "loop": true,
+  "tiles": [
+   "kraken_tentacle_idle_f0",
+   "kraken_tentacle_idle_f1",
+   "kraken_tentacle_idle_f2",
+   "kraken_tentacle_idle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    576,
+    32,
+    32
+   ],
+   [
+    32,
+    576,
+    32,
+    32
+   ],
+   [
+    64,
+    576,
+    32,
+    32
+   ],
+   [
+    96,
+    576,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/kraken_tentacle/kraken_tentacle_idle_strip_4f_3x.png"
+ },
+ "Sprites/bosses/kraken_tentacle/kraken_tentacle_attack_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 110,
+  "loop": false,
+  "tiles": [
+   "kraken_tentacle_attack_f0",
+   "kraken_tentacle_attack_f1",
+   "kraken_tentacle_attack_f2",
+   "kraken_tentacle_attack_f3",
+   "kraken_tentacle_attack_f4",
+   "kraken_tentacle_attack_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    608,
+    32,
+    32
+   ],
+   [
+    32,
+    608,
+    32,
+    32
+   ],
+   [
+    64,
+    608,
+    32,
+    32
+   ],
+   [
+    96,
+    608,
+    32,
+    32
+   ],
+   [
+    128,
+    608,
+    32,
+    32
+   ],
+   [
+    160,
+    608,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/kraken_tentacle/kraken_tentacle_attack_strip_6f_3x.png"
+ },
+ "Sprites/bosses/kraken_tentacle/kraken_tentacle_hurt_strip_2f.png": {
+  "frames": 2,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 120,
+  "loop": false,
+  "tiles": [
+   "kraken_tentacle_hurt_f0",
+   "kraken_tentacle_hurt_f1"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    640,
+    32,
+    32
+   ],
+   [
+    32,
+    640,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/kraken_tentacle/kraken_tentacle_hurt_strip_2f_3x.png"
+ },
+ "Sprites/bosses/kraken_tentacle/kraken_tentacle_death_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 130,
+  "loop": false,
+  "tiles": [
+   "kraken_tentacle_death_f0",
+   "kraken_tentacle_death_f1",
+   "kraken_tentacle_death_f2",
+   "kraken_tentacle_death_f3",
+   "kraken_tentacle_death_f4",
+   "kraken_tentacle_death_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    672,
+    32,
+    32
+   ],
+   [
+    32,
+    672,
+    32,
+    32
+   ],
+   [
+    64,
+    672,
+    32,
+    32
+   ],
+   [
+    96,
+    672,
+    32,
+    32
+   ],
+   [
+    128,
+    672,
+    32,
+    32
+   ],
+   [
+    160,
+    672,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/kraken_tentacle/kraken_tentacle_death_strip_6f_3x.png"
+ },
+ "Sprites/bosses/kraken_tentacle/kraken_tentacle_idle_enraged_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 140,
+  "loop": true,
+  "tiles": [
+   "kraken_tentacle_idle_enraged_f0",
+   "kraken_tentacle_idle_enraged_f1",
+   "kraken_tentacle_idle_enraged_f2",
+   "kraken_tentacle_idle_enraged_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    704,
+    32,
+    32
+   ],
+   [
+    32,
+    704,
+    32,
+    32
+   ],
+   [
+    64,
+    704,
+    32,
+    32
+   ],
+   [
+    96,
+    704,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/kraken_tentacle/kraken_tentacle_idle_enraged_strip_4f_3x.png"
+ },
+ "Sprites/bosses/kraken_tentacle/kraken_tentacle_attack_enraged_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 90,
+  "loop": false,
+  "tiles": [
+   "kraken_tentacle_attack_enraged_f0",
+   "kraken_tentacle_attack_enraged_f1",
+   "kraken_tentacle_attack_enraged_f2",
+   "kraken_tentacle_attack_enraged_f3",
+   "kraken_tentacle_attack_enraged_f4",
+   "kraken_tentacle_attack_enraged_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    736,
+    32,
+    32
+   ],
+   [
+    32,
+    736,
+    32,
+    32
+   ],
+   [
+    64,
+    736,
+    32,
+    32
+   ],
+   [
+    96,
+    736,
+    32,
+    32
+   ],
+   [
+    128,
+    736,
+    32,
+    32
+   ],
+   [
+    160,
+    736,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/kraken_tentacle/kraken_tentacle_attack_enraged_strip_6f_3x.png"
+ },
+ "Sprites/bosses/demon_lord/demon_lord_idle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 180,
+  "loop": true,
+  "tiles": [
+   "demon_lord_idle_f0",
+   "demon_lord_idle_f1",
+   "demon_lord_idle_f2",
+   "demon_lord_idle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    576,
+    48,
+    48
+   ],
+   [
+    48,
+    576,
+    48,
+    48
+   ],
+   [
+    96,
+    576,
+    48,
+    48
+   ],
+   [
+    144,
+    576,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/demon_lord/demon_lord_idle_strip_4f_3x.png"
+ },
+ "Sprites/bosses/demon_lord/demon_lord_attack_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 110,
+  "loop": false,
+  "tiles": [
+   "demon_lord_attack_f0",
+   "demon_lord_attack_f1",
+   "demon_lord_attack_f2",
+   "demon_lord_attack_f3",
+   "demon_lord_attack_f4",
+   "demon_lord_attack_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    624,
+    48,
+    48
+   ],
+   [
+    48,
+    624,
+    48,
+    48
+   ],
+   [
+    96,
+    624,
+    48,
+    48
+   ],
+   [
+    144,
+    624,
+    48,
+    48
+   ],
+   [
+    192,
+    624,
+    48,
+    48
+   ],
+   [
+    240,
+    624,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/demon_lord/demon_lord_attack_strip_6f_3x.png"
+ },
+ "Sprites/bosses/demon_lord/demon_lord_hurt_strip_2f.png": {
+  "frames": 2,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 120,
+  "loop": false,
+  "tiles": [
+   "demon_lord_hurt_f0",
+   "demon_lord_hurt_f1"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    672,
+    48,
+    48
+   ],
+   [
+    48,
+    672,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/demon_lord/demon_lord_hurt_strip_2f_3x.png"
+ },
+ "Sprites/bosses/demon_lord/demon_lord_death_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 130,
+  "loop": false,
+  "tiles": [
+   "demon_lord_death_f0",
+   "demon_lord_death_f1",
+   "demon_lord_death_f2",
+   "demon_lord_death_f3",
+   "demon_lord_death_f4",
+   "demon_lord_death_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    720,
+    48,
+    48
+   ],
+   [
+    48,
+    720,
+    48,
+    48
+   ],
+   [
+    96,
+    720,
+    48,
+    48
+   ],
+   [
+    144,
+    720,
+    48,
+    48
+   ],
+   [
+    192,
+    720,
+    48,
+    48
+   ],
+   [
+    240,
+    720,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/demon_lord/demon_lord_death_strip_6f_3x.png"
+ },
+ "Sprites/bosses/demon_lord/demon_lord_idle_enraged_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 140,
+  "loop": true,
+  "tiles": [
+   "demon_lord_idle_enraged_f0",
+   "demon_lord_idle_enraged_f1",
+   "demon_lord_idle_enraged_f2",
+   "demon_lord_idle_enraged_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    768,
+    48,
+    48
+   ],
+   [
+    48,
+    768,
+    48,
+    48
+   ],
+   [
+    96,
+    768,
+    48,
+    48
+   ],
+   [
+    144,
+    768,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/demon_lord/demon_lord_idle_enraged_strip_4f_3x.png"
+ },
+ "Sprites/bosses/demon_lord/demon_lord_attack_enraged_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 90,
+  "loop": false,
+  "tiles": [
+   "demon_lord_attack_enraged_f0",
+   "demon_lord_attack_enraged_f1",
+   "demon_lord_attack_enraged_f2",
+   "demon_lord_attack_enraged_f3",
+   "demon_lord_attack_enraged_f4",
+   "demon_lord_attack_enraged_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    816,
+    48,
+    48
+   ],
+   [
+    48,
+    816,
+    48,
+    48
+   ],
+   [
+    96,
+    816,
+    48,
+    48
+   ],
+   [
+    144,
+    816,
+    48,
+    48
+   ],
+   [
+    192,
+    816,
+    48,
+    48
+   ],
+   [
+    240,
+    816,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/demon_lord/demon_lord_attack_enraged_strip_6f_3x.png"
+ },
+ "Sprites/bosses/tree_guardian/tree_guardian_idle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 180,
+  "loop": true,
+  "tiles": [
+   "tree_guardian_idle_f0",
+   "tree_guardian_idle_f1",
+   "tree_guardian_idle_f2",
+   "tree_guardian_idle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    864,
+    48,
+    48
+   ],
+   [
+    48,
+    864,
+    48,
+    48
+   ],
+   [
+    96,
+    864,
+    48,
+    48
+   ],
+   [
+    144,
+    864,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/tree_guardian/tree_guardian_idle_strip_4f_3x.png"
+ },
+ "Sprites/bosses/tree_guardian/tree_guardian_attack_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 110,
+  "loop": false,
+  "tiles": [
+   "tree_guardian_attack_f0",
+   "tree_guardian_attack_f1",
+   "tree_guardian_attack_f2",
+   "tree_guardian_attack_f3",
+   "tree_guardian_attack_f4",
+   "tree_guardian_attack_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    912,
+    48,
+    48
+   ],
+   [
+    48,
+    912,
+    48,
+    48
+   ],
+   [
+    96,
+    912,
+    48,
+    48
+   ],
+   [
+    144,
+    912,
+    48,
+    48
+   ],
+   [
+    192,
+    912,
+    48,
+    48
+   ],
+   [
+    240,
+    912,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/tree_guardian/tree_guardian_attack_strip_6f_3x.png"
+ },
+ "Sprites/bosses/tree_guardian/tree_guardian_hurt_strip_2f.png": {
+  "frames": 2,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 120,
+  "loop": false,
+  "tiles": [
+   "tree_guardian_hurt_f0",
+   "tree_guardian_hurt_f1"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    960,
+    48,
+    48
+   ],
+   [
+    48,
+    960,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/tree_guardian/tree_guardian_hurt_strip_2f_3x.png"
+ },
+ "Sprites/bosses/tree_guardian/tree_guardian_death_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 130,
+  "loop": false,
+  "tiles": [
+   "tree_guardian_death_f0",
+   "tree_guardian_death_f1",
+   "tree_guardian_death_f2",
+   "tree_guardian_death_f3",
+   "tree_guardian_death_f4",
+   "tree_guardian_death_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1008,
+    48,
+    48
+   ],
+   [
+    48,
+    1008,
+    48,
+    48
+   ],
+   [
+    96,
+    1008,
+    48,
+    48
+   ],
+   [
+    144,
+    1008,
+    48,
+    48
+   ],
+   [
+    192,
+    1008,
+    48,
+    48
+   ],
+   [
+    240,
+    1008,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/tree_guardian/tree_guardian_death_strip_6f_3x.png"
+ },
+ "Sprites/bosses/tree_guardian/tree_guardian_idle_enraged_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 140,
+  "loop": true,
+  "tiles": [
+   "tree_guardian_idle_enraged_f0",
+   "tree_guardian_idle_enraged_f1",
+   "tree_guardian_idle_enraged_f2",
+   "tree_guardian_idle_enraged_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1056,
+    48,
+    48
+   ],
+   [
+    48,
+    1056,
+    48,
+    48
+   ],
+   [
+    96,
+    1056,
+    48,
+    48
+   ],
+   [
+    144,
+    1056,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/tree_guardian/tree_guardian_idle_enraged_strip_4f_3x.png"
+ },
+ "Sprites/bosses/tree_guardian/tree_guardian_attack_enraged_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 90,
+  "loop": false,
+  "tiles": [
+   "tree_guardian_attack_enraged_f0",
+   "tree_guardian_attack_enraged_f1",
+   "tree_guardian_attack_enraged_f2",
+   "tree_guardian_attack_enraged_f3",
+   "tree_guardian_attack_enraged_f4",
+   "tree_guardian_attack_enraged_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1104,
+    48,
+    48
+   ],
+   [
+    48,
+    1104,
+    48,
+    48
+   ],
+   [
+    96,
+    1104,
+    48,
+    48
+   ],
+   [
+    144,
+    1104,
+    48,
+    48
+   ],
+   [
+    192,
+    1104,
+    48,
+    48
+   ],
+   [
+    240,
+    1104,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/tree_guardian/tree_guardian_attack_enraged_strip_6f_3x.png"
+ },
+ "Sprites/bosses/minotaur/minotaur_idle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 180,
+  "loop": true,
+  "tiles": [
+   "minotaur_idle_f0",
+   "minotaur_idle_f1",
+   "minotaur_idle_f2",
+   "minotaur_idle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1152,
+    48,
+    48
+   ],
+   [
+    48,
+    1152,
+    48,
+    48
+   ],
+   [
+    96,
+    1152,
+    48,
+    48
+   ],
+   [
+    144,
+    1152,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/minotaur/minotaur_idle_strip_4f_3x.png"
+ },
+ "Sprites/bosses/minotaur/minotaur_attack_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 110,
+  "loop": false,
+  "tiles": [
+   "minotaur_attack_f0",
+   "minotaur_attack_f1",
+   "minotaur_attack_f2",
+   "minotaur_attack_f3",
+   "minotaur_attack_f4",
+   "minotaur_attack_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1200,
+    48,
+    48
+   ],
+   [
+    48,
+    1200,
+    48,
+    48
+   ],
+   [
+    96,
+    1200,
+    48,
+    48
+   ],
+   [
+    144,
+    1200,
+    48,
+    48
+   ],
+   [
+    192,
+    1200,
+    48,
+    48
+   ],
+   [
+    240,
+    1200,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/minotaur/minotaur_attack_strip_6f_3x.png"
+ },
+ "Sprites/bosses/minotaur/minotaur_hurt_strip_2f.png": {
+  "frames": 2,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 120,
+  "loop": false,
+  "tiles": [
+   "minotaur_hurt_f0",
+   "minotaur_hurt_f1"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1248,
+    48,
+    48
+   ],
+   [
+    48,
+    1248,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/minotaur/minotaur_hurt_strip_2f_3x.png"
+ },
+ "Sprites/bosses/minotaur/minotaur_death_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 130,
+  "loop": false,
+  "tiles": [
+   "minotaur_death_f0",
+   "minotaur_death_f1",
+   "minotaur_death_f2",
+   "minotaur_death_f3",
+   "minotaur_death_f4",
+   "minotaur_death_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1296,
+    48,
+    48
+   ],
+   [
+    48,
+    1296,
+    48,
+    48
+   ],
+   [
+    96,
+    1296,
+    48,
+    48
+   ],
+   [
+    144,
+    1296,
+    48,
+    48
+   ],
+   [
+    192,
+    1296,
+    48,
+    48
+   ],
+   [
+    240,
+    1296,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/minotaur/minotaur_death_strip_6f_3x.png"
+ },
+ "Sprites/bosses/minotaur/minotaur_idle_enraged_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 140,
+  "loop": true,
+  "tiles": [
+   "minotaur_idle_enraged_f0",
+   "minotaur_idle_enraged_f1",
+   "minotaur_idle_enraged_f2",
+   "minotaur_idle_enraged_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1344,
+    48,
+    48
+   ],
+   [
+    48,
+    1344,
+    48,
+    48
+   ],
+   [
+    96,
+    1344,
+    48,
+    48
+   ],
+   [
+    144,
+    1344,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/minotaur/minotaur_idle_enraged_strip_4f_3x.png"
+ },
+ "Sprites/bosses/minotaur/minotaur_attack_enraged_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 90,
+  "loop": false,
+  "tiles": [
+   "minotaur_attack_enraged_f0",
+   "minotaur_attack_enraged_f1",
+   "minotaur_attack_enraged_f2",
+   "minotaur_attack_enraged_f3",
+   "minotaur_attack_enraged_f4",
+   "minotaur_attack_enraged_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1392,
+    48,
+    48
+   ],
+   [
+    48,
+    1392,
+    48,
+    48
+   ],
+   [
+    96,
+    1392,
+    48,
+    48
+   ],
+   [
+    144,
+    1392,
+    48,
+    48
+   ],
+   [
+    192,
+    1392,
+    48,
+    48
+   ],
+   [
+    240,
+    1392,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/minotaur/minotaur_attack_enraged_strip_6f_3x.png"
+ },
+ "Sprites/bosses/spider_queen/spider_queen_idle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 180,
+  "loop": true,
+  "tiles": [
+   "spider_queen_idle_f0",
+   "spider_queen_idle_f1",
+   "spider_queen_idle_f2",
+   "spider_queen_idle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1440,
+    48,
+    48
+   ],
+   [
+    48,
+    1440,
+    48,
+    48
+   ],
+   [
+    96,
+    1440,
+    48,
+    48
+   ],
+   [
+    144,
+    1440,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/spider_queen/spider_queen_idle_strip_4f_3x.png"
+ },
+ "Sprites/bosses/spider_queen/spider_queen_attack_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 110,
+  "loop": false,
+  "tiles": [
+   "spider_queen_attack_f0",
+   "spider_queen_attack_f1",
+   "spider_queen_attack_f2",
+   "spider_queen_attack_f3",
+   "spider_queen_attack_f4",
+   "spider_queen_attack_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1488,
+    48,
+    48
+   ],
+   [
+    48,
+    1488,
+    48,
+    48
+   ],
+   [
+    96,
+    1488,
+    48,
+    48
+   ],
+   [
+    144,
+    1488,
+    48,
+    48
+   ],
+   [
+    192,
+    1488,
+    48,
+    48
+   ],
+   [
+    240,
+    1488,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/spider_queen/spider_queen_attack_strip_6f_3x.png"
+ },
+ "Sprites/bosses/spider_queen/spider_queen_hurt_strip_2f.png": {
+  "frames": 2,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 120,
+  "loop": false,
+  "tiles": [
+   "spider_queen_hurt_f0",
+   "spider_queen_hurt_f1"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1536,
+    48,
+    48
+   ],
+   [
+    48,
+    1536,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/spider_queen/spider_queen_hurt_strip_2f_3x.png"
+ },
+ "Sprites/bosses/spider_queen/spider_queen_death_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 130,
+  "loop": false,
+  "tiles": [
+   "spider_queen_death_f0",
+   "spider_queen_death_f1",
+   "spider_queen_death_f2",
+   "spider_queen_death_f3",
+   "spider_queen_death_f4",
+   "spider_queen_death_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1584,
+    48,
+    48
+   ],
+   [
+    48,
+    1584,
+    48,
+    48
+   ],
+   [
+    96,
+    1584,
+    48,
+    48
+   ],
+   [
+    144,
+    1584,
+    48,
+    48
+   ],
+   [
+    192,
+    1584,
+    48,
+    48
+   ],
+   [
+    240,
+    1584,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/spider_queen/spider_queen_death_strip_6f_3x.png"
+ },
+ "Sprites/bosses/spider_queen/spider_queen_idle_enraged_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 140,
+  "loop": true,
+  "tiles": [
+   "spider_queen_idle_enraged_f0",
+   "spider_queen_idle_enraged_f1",
+   "spider_queen_idle_enraged_f2",
+   "spider_queen_idle_enraged_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1632,
+    48,
+    48
+   ],
+   [
+    48,
+    1632,
+    48,
+    48
+   ],
+   [
+    96,
+    1632,
+    48,
+    48
+   ],
+   [
+    144,
+    1632,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/spider_queen/spider_queen_idle_enraged_strip_4f_3x.png"
+ },
+ "Sprites/bosses/spider_queen/spider_queen_attack_enraged_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 90,
+  "loop": false,
+  "tiles": [
+   "spider_queen_attack_enraged_f0",
+   "spider_queen_attack_enraged_f1",
+   "spider_queen_attack_enraged_f2",
+   "spider_queen_attack_enraged_f3",
+   "spider_queen_attack_enraged_f4",
+   "spider_queen_attack_enraged_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1680,
+    48,
+    48
+   ],
+   [
+    48,
+    1680,
+    48,
+    48
+   ],
+   [
+    96,
+    1680,
+    48,
+    48
+   ],
+   [
+    144,
+    1680,
+    48,
+    48
+   ],
+   [
+    192,
+    1680,
+    48,
+    48
+   ],
+   [
+    240,
+    1680,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/spider_queen/spider_queen_attack_enraged_strip_6f_3x.png"
+ },
+ "Sprites/bosses/phantom_knight/phantom_knight_idle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 180,
+  "loop": true,
+  "tiles": [
+   "phantom_knight_idle_f0",
+   "phantom_knight_idle_f1",
+   "phantom_knight_idle_f2",
+   "phantom_knight_idle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    768,
+    32,
+    32
+   ],
+   [
+    32,
+    768,
+    32,
+    32
+   ],
+   [
+    64,
+    768,
+    32,
+    32
+   ],
+   [
+    96,
+    768,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/phantom_knight/phantom_knight_idle_strip_4f_3x.png"
+ },
+ "Sprites/bosses/phantom_knight/phantom_knight_attack_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 110,
+  "loop": false,
+  "tiles": [
+   "phantom_knight_attack_f0",
+   "phantom_knight_attack_f1",
+   "phantom_knight_attack_f2",
+   "phantom_knight_attack_f3",
+   "phantom_knight_attack_f4",
+   "phantom_knight_attack_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    800,
+    32,
+    32
+   ],
+   [
+    32,
+    800,
+    32,
+    32
+   ],
+   [
+    64,
+    800,
+    32,
+    32
+   ],
+   [
+    96,
+    800,
+    32,
+    32
+   ],
+   [
+    128,
+    800,
+    32,
+    32
+   ],
+   [
+    160,
+    800,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/phantom_knight/phantom_knight_attack_strip_6f_3x.png"
+ },
+ "Sprites/bosses/phantom_knight/phantom_knight_hurt_strip_2f.png": {
+  "frames": 2,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 120,
+  "loop": false,
+  "tiles": [
+   "phantom_knight_hurt_f0",
+   "phantom_knight_hurt_f1"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    832,
+    32,
+    32
+   ],
+   [
+    32,
+    832,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/phantom_knight/phantom_knight_hurt_strip_2f_3x.png"
+ },
+ "Sprites/bosses/phantom_knight/phantom_knight_death_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 130,
+  "loop": false,
+  "tiles": [
+   "phantom_knight_death_f0",
+   "phantom_knight_death_f1",
+   "phantom_knight_death_f2",
+   "phantom_knight_death_f3",
+   "phantom_knight_death_f4",
+   "phantom_knight_death_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    864,
+    32,
+    32
+   ],
+   [
+    32,
+    864,
+    32,
+    32
+   ],
+   [
+    64,
+    864,
+    32,
+    32
+   ],
+   [
+    96,
+    864,
+    32,
+    32
+   ],
+   [
+    128,
+    864,
+    32,
+    32
+   ],
+   [
+    160,
+    864,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/phantom_knight/phantom_knight_death_strip_6f_3x.png"
+ },
+ "Sprites/bosses/phantom_knight/phantom_knight_idle_enraged_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 140,
+  "loop": true,
+  "tiles": [
+   "phantom_knight_idle_enraged_f0",
+   "phantom_knight_idle_enraged_f1",
+   "phantom_knight_idle_enraged_f2",
+   "phantom_knight_idle_enraged_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    896,
+    32,
+    32
+   ],
+   [
+    32,
+    896,
+    32,
+    32
+   ],
+   [
+    64,
+    896,
+    32,
+    32
+   ],
+   [
+    96,
+    896,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/phantom_knight/phantom_knight_idle_enraged_strip_4f_3x.png"
+ },
+ "Sprites/bosses/phantom_knight/phantom_knight_attack_enraged_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 90,
+  "loop": false,
+  "tiles": [
+   "phantom_knight_attack_enraged_f0",
+   "phantom_knight_attack_enraged_f1",
+   "phantom_knight_attack_enraged_f2",
+   "phantom_knight_attack_enraged_f3",
+   "phantom_knight_attack_enraged_f4",
+   "phantom_knight_attack_enraged_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    928,
+    32,
+    32
+   ],
+   [
+    32,
+    928,
+    32,
+    32
+   ],
+   [
+    64,
+    928,
+    32,
+    32
+   ],
+   [
+    96,
+    928,
+    32,
+    32
+   ],
+   [
+    128,
+    928,
+    32,
+    32
+   ],
+   [
+    160,
+    928,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/phantom_knight/phantom_knight_attack_enraged_strip_6f_3x.png"
+ },
+ "Sprites/bosses/frost_yeti/frost_yeti_idle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 180,
+  "loop": true,
+  "tiles": [
+   "frost_yeti_idle_f0",
+   "frost_yeti_idle_f1",
+   "frost_yeti_idle_f2",
+   "frost_yeti_idle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1728,
+    48,
+    48
+   ],
+   [
+    48,
+    1728,
+    48,
+    48
+   ],
+   [
+    96,
+    1728,
+    48,
+    48
+   ],
+   [
+    144,
+    1728,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/frost_yeti/frost_yeti_idle_strip_4f_3x.png"
+ },
+ "Sprites/bosses/frost_yeti/frost_yeti_attack_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 110,
+  "loop": false,
+  "tiles": [
+   "frost_yeti_attack_f0",
+   "frost_yeti_attack_f1",
+   "frost_yeti_attack_f2",
+   "frost_yeti_attack_f3",
+   "frost_yeti_attack_f4",
+   "frost_yeti_attack_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1776,
+    48,
+    48
+   ],
+   [
+    48,
+    1776,
+    48,
+    48
+   ],
+   [
+    96,
+    1776,
+    48,
+    48
+   ],
+   [
+    144,
+    1776,
+    48,
+    48
+   ],
+   [
+    192,
+    1776,
+    48,
+    48
+   ],
+   [
+    240,
+    1776,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/frost_yeti/frost_yeti_attack_strip_6f_3x.png"
+ },
+ "Sprites/bosses/frost_yeti/frost_yeti_hurt_strip_2f.png": {
+  "frames": 2,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 120,
+  "loop": false,
+  "tiles": [
+   "frost_yeti_hurt_f0",
+   "frost_yeti_hurt_f1"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1824,
+    48,
+    48
+   ],
+   [
+    48,
+    1824,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/frost_yeti/frost_yeti_hurt_strip_2f_3x.png"
+ },
+ "Sprites/bosses/frost_yeti/frost_yeti_death_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 130,
+  "loop": false,
+  "tiles": [
+   "frost_yeti_death_f0",
+   "frost_yeti_death_f1",
+   "frost_yeti_death_f2",
+   "frost_yeti_death_f3",
+   "frost_yeti_death_f4",
+   "frost_yeti_death_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1872,
+    48,
+    48
+   ],
+   [
+    48,
+    1872,
+    48,
+    48
+   ],
+   [
+    96,
+    1872,
+    48,
+    48
+   ],
+   [
+    144,
+    1872,
+    48,
+    48
+   ],
+   [
+    192,
+    1872,
+    48,
+    48
+   ],
+   [
+    240,
+    1872,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/frost_yeti/frost_yeti_death_strip_6f_3x.png"
+ },
+ "Sprites/bosses/frost_yeti/frost_yeti_idle_enraged_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 140,
+  "loop": true,
+  "tiles": [
+   "frost_yeti_idle_enraged_f0",
+   "frost_yeti_idle_enraged_f1",
+   "frost_yeti_idle_enraged_f2",
+   "frost_yeti_idle_enraged_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1920,
+    48,
+    48
+   ],
+   [
+    48,
+    1920,
+    48,
+    48
+   ],
+   [
+    96,
+    1920,
+    48,
+    48
+   ],
+   [
+    144,
+    1920,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/frost_yeti/frost_yeti_idle_enraged_strip_4f_3x.png"
+ },
+ "Sprites/bosses/frost_yeti/frost_yeti_attack_enraged_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   48,
+   48
+  ],
+  "ms_per_frame": 90,
+  "loop": false,
+  "tiles": [
+   "frost_yeti_attack_enraged_f0",
+   "frost_yeti_attack_enraged_f1",
+   "frost_yeti_attack_enraged_f2",
+   "frost_yeti_attack_enraged_f3",
+   "frost_yeti_attack_enraged_f4",
+   "frost_yeti_attack_enraged_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_large_48x48.png",
+  "sheet_rects": [
+   [
+    0,
+    1968,
+    48,
+    48
+   ],
+   [
+    48,
+    1968,
+    48,
+    48
+   ],
+   [
+    96,
+    1968,
+    48,
+    48
+   ],
+   [
+    144,
+    1968,
+    48,
+    48
+   ],
+   [
+    192,
+    1968,
+    48,
+    48
+   ],
+   [
+    240,
+    1968,
+    48,
+    48
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/frost_yeti/frost_yeti_attack_enraged_strip_6f_3x.png"
+ },
+ "Sprites/bosses/goblin_warlord/goblin_warlord_idle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 180,
+  "loop": true,
+  "tiles": [
+   "goblin_warlord_idle_f0",
+   "goblin_warlord_idle_f1",
+   "goblin_warlord_idle_f2",
+   "goblin_warlord_idle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    960,
+    32,
+    32
+   ],
+   [
+    32,
+    960,
+    32,
+    32
+   ],
+   [
+    64,
+    960,
+    32,
+    32
+   ],
+   [
+    96,
+    960,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/goblin_warlord/goblin_warlord_idle_strip_4f_3x.png"
+ },
+ "Sprites/bosses/goblin_warlord/goblin_warlord_attack_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 110,
+  "loop": false,
+  "tiles": [
+   "goblin_warlord_attack_f0",
+   "goblin_warlord_attack_f1",
+   "goblin_warlord_attack_f2",
+   "goblin_warlord_attack_f3",
+   "goblin_warlord_attack_f4",
+   "goblin_warlord_attack_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    992,
+    32,
+    32
+   ],
+   [
+    32,
+    992,
+    32,
+    32
+   ],
+   [
+    64,
+    992,
+    32,
+    32
+   ],
+   [
+    96,
+    992,
+    32,
+    32
+   ],
+   [
+    128,
+    992,
+    32,
+    32
+   ],
+   [
+    160,
+    992,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/goblin_warlord/goblin_warlord_attack_strip_6f_3x.png"
+ },
+ "Sprites/bosses/goblin_warlord/goblin_warlord_hurt_strip_2f.png": {
+  "frames": 2,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 120,
+  "loop": false,
+  "tiles": [
+   "goblin_warlord_hurt_f0",
+   "goblin_warlord_hurt_f1"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    1024,
+    32,
+    32
+   ],
+   [
+    32,
+    1024,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/goblin_warlord/goblin_warlord_hurt_strip_2f_3x.png"
+ },
+ "Sprites/bosses/goblin_warlord/goblin_warlord_death_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 130,
+  "loop": false,
+  "tiles": [
+   "goblin_warlord_death_f0",
+   "goblin_warlord_death_f1",
+   "goblin_warlord_death_f2",
+   "goblin_warlord_death_f3",
+   "goblin_warlord_death_f4",
+   "goblin_warlord_death_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    1056,
+    32,
+    32
+   ],
+   [
+    32,
+    1056,
+    32,
+    32
+   ],
+   [
+    64,
+    1056,
+    32,
+    32
+   ],
+   [
+    96,
+    1056,
+    32,
+    32
+   ],
+   [
+    128,
+    1056,
+    32,
+    32
+   ],
+   [
+    160,
+    1056,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/goblin_warlord/goblin_warlord_death_strip_6f_3x.png"
+ },
+ "Sprites/bosses/goblin_warlord/goblin_warlord_idle_enraged_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 140,
+  "loop": true,
+  "tiles": [
+   "goblin_warlord_idle_enraged_f0",
+   "goblin_warlord_idle_enraged_f1",
+   "goblin_warlord_idle_enraged_f2",
+   "goblin_warlord_idle_enraged_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    1088,
+    32,
+    32
+   ],
+   [
+    32,
+    1088,
+    32,
+    32
+   ],
+   [
+    64,
+    1088,
+    32,
+    32
+   ],
+   [
+    96,
+    1088,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/goblin_warlord/goblin_warlord_idle_enraged_strip_4f_3x.png"
+ },
+ "Sprites/bosses/goblin_warlord/goblin_warlord_attack_enraged_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 90,
+  "loop": false,
+  "tiles": [
+   "goblin_warlord_attack_enraged_f0",
+   "goblin_warlord_attack_enraged_f1",
+   "goblin_warlord_attack_enraged_f2",
+   "goblin_warlord_attack_enraged_f3",
+   "goblin_warlord_attack_enraged_f4",
+   "goblin_warlord_attack_enraged_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    1120,
+    32,
+    32
+   ],
+   [
+    32,
+    1120,
+    32,
+    32
+   ],
+   [
+    64,
+    1120,
+    32,
+    32
+   ],
+   [
+    96,
+    1120,
+    32,
+    32
+   ],
+   [
+    128,
+    1120,
+    32,
+    32
+   ],
+   [
+    160,
+    1120,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/goblin_warlord/goblin_warlord_attack_enraged_strip_6f_3x.png"
+ },
+ "Sprites/bosses/watcher_eye/watcher_eye_idle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 180,
+  "loop": true,
+  "tiles": [
+   "watcher_eye_idle_f0",
+   "watcher_eye_idle_f1",
+   "watcher_eye_idle_f2",
+   "watcher_eye_idle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    1152,
+    32,
+    32
+   ],
+   [
+    32,
+    1152,
+    32,
+    32
+   ],
+   [
+    64,
+    1152,
+    32,
+    32
+   ],
+   [
+    96,
+    1152,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/watcher_eye/watcher_eye_idle_strip_4f_3x.png"
+ },
+ "Sprites/bosses/watcher_eye/watcher_eye_attack_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 110,
+  "loop": false,
+  "tiles": [
+   "watcher_eye_attack_f0",
+   "watcher_eye_attack_f1",
+   "watcher_eye_attack_f2",
+   "watcher_eye_attack_f3",
+   "watcher_eye_attack_f4",
+   "watcher_eye_attack_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    1184,
+    32,
+    32
+   ],
+   [
+    32,
+    1184,
+    32,
+    32
+   ],
+   [
+    64,
+    1184,
+    32,
+    32
+   ],
+   [
+    96,
+    1184,
+    32,
+    32
+   ],
+   [
+    128,
+    1184,
+    32,
+    32
+   ],
+   [
+    160,
+    1184,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/watcher_eye/watcher_eye_attack_strip_6f_3x.png"
+ },
+ "Sprites/bosses/watcher_eye/watcher_eye_hurt_strip_2f.png": {
+  "frames": 2,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 120,
+  "loop": false,
+  "tiles": [
+   "watcher_eye_hurt_f0",
+   "watcher_eye_hurt_f1"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    1216,
+    32,
+    32
+   ],
+   [
+    32,
+    1216,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/watcher_eye/watcher_eye_hurt_strip_2f_3x.png"
+ },
+ "Sprites/bosses/watcher_eye/watcher_eye_death_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 130,
+  "loop": false,
+  "tiles": [
+   "watcher_eye_death_f0",
+   "watcher_eye_death_f1",
+   "watcher_eye_death_f2",
+   "watcher_eye_death_f3",
+   "watcher_eye_death_f4",
+   "watcher_eye_death_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    1248,
+    32,
+    32
+   ],
+   [
+    32,
+    1248,
+    32,
+    32
+   ],
+   [
+    64,
+    1248,
+    32,
+    32
+   ],
+   [
+    96,
+    1248,
+    32,
+    32
+   ],
+   [
+    128,
+    1248,
+    32,
+    32
+   ],
+   [
+    160,
+    1248,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/watcher_eye/watcher_eye_death_strip_6f_3x.png"
+ },
+ "Sprites/bosses/watcher_eye/watcher_eye_idle_enraged_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 140,
+  "loop": true,
+  "tiles": [
+   "watcher_eye_idle_enraged_f0",
+   "watcher_eye_idle_enraged_f1",
+   "watcher_eye_idle_enraged_f2",
+   "watcher_eye_idle_enraged_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    1280,
+    32,
+    32
+   ],
+   [
+    32,
+    1280,
+    32,
+    32
+   ],
+   [
+    64,
+    1280,
+    32,
+    32
+   ],
+   [
+    96,
+    1280,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/watcher_eye/watcher_eye_idle_enraged_strip_4f_3x.png"
+ },
+ "Sprites/bosses/watcher_eye/watcher_eye_attack_enraged_strip_6f.png": {
+  "frames": 6,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 90,
+  "loop": false,
+  "tiles": [
+   "watcher_eye_attack_enraged_f0",
+   "watcher_eye_attack_enraged_f1",
+   "watcher_eye_attack_enraged_f2",
+   "watcher_eye_attack_enraged_f3",
+   "watcher_eye_attack_enraged_f4",
+   "watcher_eye_attack_enraged_f5"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_small_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    1312,
+    32,
+    32
+   ],
+   [
+    32,
+    1312,
+    32,
+    32
+   ],
+   [
+    64,
+    1312,
+    32,
+    32
+   ],
+   [
+    96,
+    1312,
+    32,
+    32
+   ],
+   [
+    128,
+    1312,
+    32,
+    32
+   ],
+   [
+    160,
+    1312,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/bosses/watcher_eye/watcher_eye_attack_enraged_strip_6f_3x.png"
+ },
+ "Sprites/markers/aoe_circle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 150,
+  "loop": true,
+  "tiles": [
+   "aoe_circle_f0",
+   "aoe_circle_f1",
+   "aoe_circle_f2",
+   "aoe_circle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_markers_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    0,
+    32,
+    32
+   ],
+   [
+    32,
+    0,
+    32,
+    32
+   ],
+   [
+    64,
+    0,
+    32,
+    32
+   ],
+   [
+    96,
+    0,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/markers/aoe_circle_strip_4f_3x.png"
+ },
+ "Sprites/markers/aoe_shrink_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 250,
+  "loop": false,
+  "tiles": [
+   "aoe_shrink_f0",
+   "aoe_shrink_f1",
+   "aoe_shrink_f2",
+   "aoe_shrink_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_markers_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    32,
+    32,
+    32
+   ],
+   [
+    32,
+    32,
+    32,
+    32
+   ],
+   [
+    64,
+    32,
+    32,
+    32
+   ],
+   [
+    96,
+    32,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/markers/aoe_shrink_strip_4f_3x.png"
+ },
+ "Sprites/markers/target_lock_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 120,
+  "loop": true,
+  "tiles": [
+   "target_lock_f0",
+   "target_lock_f1",
+   "target_lock_f2",
+   "target_lock_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_markers_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    64,
+    32,
+    32
+   ],
+   [
+    32,
+    64,
+    32,
+    32
+   ],
+   [
+    64,
+    64,
+    32,
+    32
+   ],
+   [
+    96,
+    64,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/markers/target_lock_strip_4f_3x.png"
+ },
+ "Sprites/markers/ground_crack_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 120,
+  "loop": false,
+  "tiles": [
+   "ground_crack_f0",
+   "ground_crack_f1",
+   "ground_crack_f2",
+   "ground_crack_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_markers_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    96,
+    32,
+    32
+   ],
+   [
+    32,
+    96,
+    32,
+    32
+   ],
+   [
+    64,
+    96,
+    32,
+    32
+   ],
+   [
+    96,
+    96,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/markers/ground_crack_strip_4f_3x.png"
+ },
+ "Sprites/markers/enrage_burst_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   32,
+   32
+  ],
+  "ms_per_frame": 90,
+  "loop": false,
+  "tiles": [
+   "enrage_burst_f0",
+   "enrage_burst_f1",
+   "enrage_burst_f2",
+   "enrage_burst_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_markers_32x32.png",
+  "sheet_rects": [
+   [
+    0,
+    128,
+    32,
+    32
+   ],
+   [
+    32,
+    128,
+    32,
+    32
+   ],
+   [
+    64,
+    128,
+    32,
+    32
+   ],
+   [
+    96,
+    128,
+    32,
+    32
+   ]
+  ],
+  "scaled_3x": "Sprites/markers/enrage_burst_strip_4f_3x.png"
+ },
+ "Sprites/markers/warn_exclaim_strip_3f.png": {
+  "frames": 3,
+  "frame_size": [
+   16,
+   16
+  ],
+  "ms_per_frame": 150,
+  "loop": true,
+  "tiles": [
+   "warn_exclaim_f0",
+   "warn_exclaim_f1",
+   "warn_exclaim_f2"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_ui_16x16.png",
+  "sheet_rects": [
+   [
+    64,
+    32,
+    16,
+    16
+   ],
+   [
+    80,
+    32,
+    16,
+    16
+   ],
+   [
+    96,
+    32,
+    16,
+    16
+   ]
+  ],
+  "scaled_3x": "Sprites/markers/warn_exclaim_strip_3f_3x.png"
+ },
+ "Sprites/markers/target_reticle_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   16,
+   16
+  ],
+  "ms_per_frame": 120,
+  "loop": true,
+  "tiles": [
+   "target_reticle_f0",
+   "target_reticle_f1",
+   "target_reticle_f2",
+   "target_reticle_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_ui_16x16.png",
+  "sheet_rects": [
+   [
+    112,
+    32,
+    16,
+    16
+   ],
+   [
+    128,
+    32,
+    16,
+    16
+   ],
+   [
+    144,
+    32,
+    16,
+    16
+   ],
+   [
+    160,
+    32,
+    16,
+    16
+   ]
+  ],
+  "scaled_3x": "Sprites/markers/target_reticle_strip_4f_3x.png"
+ },
+ "Sprites/markers/drop_arrow_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   16,
+   16
+  ],
+  "ms_per_frame": 120,
+  "loop": true,
+  "tiles": [
+   "drop_arrow_f0",
+   "drop_arrow_f1",
+   "drop_arrow_f2",
+   "drop_arrow_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_ui_16x16.png",
+  "sheet_rects": [
+   [
+    48,
+    48,
+    16,
+    16
+   ],
+   [
+    64,
+    48,
+    16,
+    16
+   ],
+   [
+    80,
+    48,
+    16,
+    16
+   ],
+   [
+    96,
+    48,
+    16,
+    16
+   ]
+  ],
+  "scaled_3x": "Sprites/markers/drop_arrow_strip_4f_3x.png"
+ },
+ "Sprites/markers/danger_stripes_strip_4f.png": {
+  "frames": 4,
+  "frame_size": [
+   16,
+   16
+  ],
+  "ms_per_frame": 100,
+  "loop": true,
+  "tiles": [
+   "danger_stripes_f0",
+   "danger_stripes_f1",
+   "danger_stripes_f2",
+   "danger_stripes_f3"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_ui_16x16.png",
+  "sheet_rects": [
+   [
+    112,
+    48,
+    16,
+    16
+   ],
+   [
+    128,
+    48,
+    16,
+    16
+   ],
+   [
+    144,
+    48,
+    16,
+    16
+   ],
+   [
+    160,
+    48,
+    16,
+    16
+   ]
+  ],
+  "scaled_3x": "Sprites/markers/danger_stripes_strip_4f_3x.png"
+ },
+ "Sprites/markers/countdown_strip_3f.png": {
+  "frames": 3,
+  "frame_size": [
+   16,
+   16
+  ],
+  "ms_per_frame": 1000,
+  "loop": false,
+  "tiles": [
+   "countdown_f0",
+   "countdown_f1",
+   "countdown_f2"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_ui_16x16.png",
+  "sheet_rects": [
+   [
+    48,
+    64,
+    16,
+    16
+   ],
+   [
+    64,
+    64,
+    16,
+    16
+   ],
+   [
+    80,
+    64,
+    16,
+    16
+   ]
+  ],
+  "scaled_3x": "Sprites/markers/countdown_strip_3f_3x.png"
+ },
+ "Sprites/markers/enrage_icon_strip_2f.png": {
+  "frames": 2,
+  "frame_size": [
+   16,
+   16
+  ],
+  "ms_per_frame": 200,
+  "loop": true,
+  "tiles": [
+   "enrage_icon_f0",
+   "enrage_icon_f1"
+  ],
+  "sheet": "Tilesheets/larchrow_bosses_ui_16x16.png",
+  "sheet_rects": [
+   [
+    96,
+    64,
+    16,
+    16
+   ],
+   [
+    112,
+    64,
+    16,
+    16
+   ]
+  ],
+  "scaled_3x": "Sprites/markers/enrage_icon_strip_2f_3x.png"
+ }
+}
