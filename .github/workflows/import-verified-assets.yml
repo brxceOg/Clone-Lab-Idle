@@ -128,7 +128,7 @@ jobs:
               for path in image_files:
                   with path.open("rb") as stream:
                       header = stream.read(24)
-              if len(header) < 24 or header[:8] != bytes.fromhex("89504e470d0a1a0a") or header[12:16] != b"IHDR":
+                  if len(header) < 24 or header[:8] != bytes.fromhex("89504e470d0a1a0a") or header[12:16] != b"IHDR":
                       raise SystemExit(f"Invalid PNG header: {path}")
                   width, height = struct.unpack(">II", header[16:24])
                   dimensions = f"{width}×{height}"
