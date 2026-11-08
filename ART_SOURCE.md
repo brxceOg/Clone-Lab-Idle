@@ -10,16 +10,17 @@ The room should look like a clean, modern research laboratory rendered in warm, 
 
 The game should feel cute, readable, lively, and handcrafted—not sterile corporate software, not gritty science fiction, and not a generic fantasy battle screen.
 
-## Intended asset sources
+## Current starter asset sources
 
-The planned visual foundation is:
+The first usable asset library is installed under `assets/`. It uses three free CC0 sources so the selected files can be stored in the public GitHub repository and served by GitHub Pages:
 
-1. **Modern Interiors** — the intended itch.io pixel-art environment/interior asset pack for the laboratory room, furnishings, and lab details.
-2. **Tiny RPG Character** — the intended itch.io pixel-art character asset pack for the small warrior characters and related character animation material.
+1. **Ninja Adventure — Pixel-Boy and AAA:** two four-direction RPG warrior sheets plus interior floor and wall tiles. The 16×16-grid characters establish the initial 3/4-view camera.
+2. **Sci-Fi RTS — Kenney:** a selected sci-fi console/structure sprite for lab-fixture inspiration.
+3. **Monster Builder Pack — Kenney:** modular boss body and feature components used to assemble the first boss base image.
 
-The exact itch.io product pages, creators, included files, and license terms must be verified and recorded before assets are committed. Do not guess URLs, creators, or license permissions. Confirm whether each pack permits the intended use in a publicly hosted browser game, whether attribution is required, and whether redistribution of source files is restricted.
+See `assets/README.md` for the exact local files, source links, and license notes. All included files are recorded as CC0 1.0 / public-domain equivalent. The original creator's source files remain intact in the repository's asset folder; do not recolor or blur the warrior sprite sheets.
 
-If either intended pack cannot provide a required element, choose a visually compatible asset or create original pixel art. Do not silently substitute a different visual style.
+The previously discussed LimeZu Modern Interiors and Zerie Tiny RPG Character packs are not part of the installed starter library. They remain optional candidates only; do not substitute them without confirming the exact version and license for public browser-game delivery.
 
 ## Environment: the laboratory
 
@@ -147,41 +148,44 @@ Before approving a visual change, verify:
 Read this document before visual or animation work. Update it whenever the approved art direction, asset sources, rendering rules, or attribution requirements change. Product behavior and gameplay rules belong in `SOURCE_OF_TRUTH.md`.
 
 
-## Confirmed intended itch.io packs (not yet installed)
+## Installed starter asset library
 
-The user has supplied and confirmed these exact product pages as the intended art sources. These replace the previously recorded MarzoDev pack, which was the wrong pack and must not be used for this project.
+### Ninja Adventure — Pixel-Boy and AAA
 
-### Modern Interiors - RPG Tileset [16X16] — LimeZu
+- **Product page:** https://pixel-boy.itch.io/ninja-adventure-asset-pack
+- **Public source repository:** https://github.com/pixel-boy/NinjaAdventure
+- **License:** CC0 1.0 Universal, stated on the product page.
+- **Included local files:** `assets/warriors/ninja-blue.png`, `assets/warriors/samurai-blue.png`, `assets/lab/interior-floor-tiles.png`, and `assets/lab/interior-wall-tiles.png`.
+- **Perspective:** Four-direction, 3/4-view, 16×16-grid character art. Keep directions and frame order intact.
+- **Status:** Selected files copied into the project and committed. This is a small starter subset, not the full 89 MB itch.io archive.
 
-- **Product page:** https://limezu.itch.io/moderninteriors
-- **Format / scale:** 16×16 pixel-art RPG interior tileset. The page also lists versions/sizes for 32×32 and 48×48 workflows.
-- **Content:** A large collection of modular interior tiles and thousands of furniture sprites across many room themes, including living spaces, reception areas, bathrooms, bedrooms, classrooms, libraries, shops, kitchens, hospitals, control rooms, and more. The page also describes animated objects, character-generation content, and UI elements.
-- **Download tiers:** The page lists a free archive (`Modern_Interiors_Free_v2.2.zip`) and paid full content, including `Modern_Interiors_v41.4` (149 MB), with the complete version requiring at least $1.50. The page also lists an RPG Maker archive and character-generator files.
-- **License:** The complete-version license permits editing and use in commercial or non-commercial projects. It prohibits reselling or distributing the assets. The page states that credits are required; include a link to LimeZu's page in the game's credits and repository attribution. Verify the free-tier terms separately before using any free-tier files.
-- **Likely project use:** Primary source for the bright laboratory interior, modular walls/floors, furniture, and suitable lab props. Select only assets that fit the lab's clean, modern visual direction.
-- **Integration status:** Correct source confirmed by the user; not downloaded or installed. Verify the exact downloaded archive/version before integration.
+### Sci-Fi RTS — Kenney
 
-### Tiny RPG Character Asset Pack 01 V2.0 — Zerie
+- **Source:** https://kenney.nl/assets/sci-fi-rts
+- **License:** CC0 1.0, verified in the source mirror's metadata.
+- **Included local file:** `assets/lab/scifi-console.png`.
+- **Status:** One 64×64 structure/console sprite installed as a lab fixture reference. Build the room itself from coherent interior floor/wall pieces and original room detailing; do not stretch this object into a floor tile.
 
-- **Product page:** https://zerie.itch.io/tiny-rpg-character-asset-pack
-- **Contents:** 22 animated characters, 100×100 pixel tiles, idle, walk, attack, hurt, death, shield-block animations where applicable, selected summoning animations, projectile sprites, and an Aseprite source file.
-- **Full pack:** The page lists the full 22-character v2.0 ZIP at a $2.50 minimum payment.
-- **Free sample:** The free ZIP is limited to Soldier and Orc; it is not the full roster.
-- **License:** Personal and commercial video game use and modification are allowed. Redistribution, resale, or re-upload of the assets (modified or unmodified) is prohibited. Credit is appreciated but not required.
-- **Likely project use:** Initial clone/warrior roster and supported combat animations. Inspect the character silhouettes, animation frame timing, and scale before deciding which units fit the game's lab-combat presentation.
-- **Integration status:** Correct source confirmed by the user; not downloaded or installed. Confirm the downloaded archive is the full v2.0 pack, not the free sample or an older version.
+### Monster Builder Pack — Kenney
 
-### Public browser-game distribution check
+- **Source:** https://kenney.nl/assets/monster-builder-pack
+- **License:** CC0 1.0, verified in the source mirror's metadata.
+- **Included local components:** `assets/bosses/components/` (body, eyes, arms, legs, horn, mouth).
+- **First composition:** `assets/bosses/first-boss.svg` layers the local components into a static first-boss base image.
+- **Status:** Component art installed. The assembled base is not a complete animated boss; add in-game idle/hit/defeat motion and dedicated boss variations as the game develops.
 
-Both packs restrict redistribution of the asset files. Because this game is intended for public GitHub Pages hosting, the browser may expose downloaded image/sprite files to visitors even when those files are used as part of the game. Do not commit or publish the original archives or extracted source assets to the public repository until the creators' license terms are confirmed to permit this specific form of game distribution. If necessary, ask each creator for written clarification or obtain a license that explicitly covers publicly hosted browser-game asset delivery.
+### Rendering and integration notes
 
-### Acquisition and integration checklist
+- Use `image-rendering: pixelated` / nearest-neighbor sampling for raster assets.
+- Do not apply smoothing, fractional scaling, hue shifts, or blanket filters to warrior sprite sheets.
+- Slice Ninja Adventure character sheets using their original directional/frame layout; do not render the whole sheet as one character.
+- Treat the Monster Builder components as aligned full-canvas layers. Keep their source dimensions and layer order when composing a boss.
+- The first room should remain bright and predominantly white; use the sci-fi object as a small fixture, not as the entire art direction.
+- All local assets are documented in `assets/README.md`. Credit is not required under the recorded CC0 licenses, but preserve the source links.
 
-- [ ] Obtain the full intended version of each pack.
-- [ ] Verify archive contents and version after download.
-- [ ] Preserve original source files privately; create separate game-ready exports.
-- [ ] Inspect sprite sheets, animation frame order, transparency, and scale.
-- [ ] Confirm the creators' terms cover delivery of game asset files to players through a public browser game.
-- [ ] Integrate only the assets needed for the room and initial clone roster once distribution rights are clear.
-- [ ] Add LimeZu's required credit/link to the game's credits and repository attribution.
-- [ ] Keep asset credits/license notes consistent with the exact downloaded versions.
+### Deferred candidates
+
+- LimeZu Modern Interiors: https://limezu.itch.io/moderninteriors
+- Zerie Tiny RPG Character Asset Pack 01 V2.0: https://zerie.itch.io/tiny-rpg-character-asset-pack
+
+These were user-identified candidate packs earlier in planning, but were not downloaded or integrated for this free starter set. Revisit only after confirming the precise archive and the license terms for public GitHub Pages asset delivery.
