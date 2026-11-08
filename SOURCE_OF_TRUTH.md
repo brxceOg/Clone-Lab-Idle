@@ -66,7 +66,7 @@ The exact upgrade names, costs, scaling curves, class roster, and balance values
 - Combat and production are automatic. The player does not manually spawn or produce clones.
 - Boss attacks must damage clones; defeated clones are automatically replaced by the cloning machine after a short delay.
 - Melee units must approach the boss closely before attacking; ranged units may maintain distance.
-- Use gentle crowd separation so units keep visible personal space while remaining a cohesive army.
+- Clones behave as a coordinated mob: converge tightly around the boss, keep facing it while moving or attacking, and repeatedly strike whenever their individual attack cooldown allows. Use compact, close-packed rings and only enough soft separation to prevent sprite overlap; do not send ranged classes to distant firing lines.
 - Warriors should visibly travel from the machine area toward the boss before attacking, rather than simply appearing in a battle formation.
 - Warriors need readable idle/movement/attack/defeat states as supported by the chosen art assets.
 - The boss has health and a clear defeat state.
