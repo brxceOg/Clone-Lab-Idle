@@ -21,15 +21,16 @@ The laboratory should feel like a small, lively simulation that the player is ob
 ## Main gameplay loop
 
 1. The player opens the cloning machine interface by tapping the machine.
-2. The player spends the appropriate currency on machine upgrades.
-3. Production upgrades increase clone output, production cadence, or the number of clones produced per cycle.
+2. The player spends the appropriate currency on machine upgrades by tapping the machine in the room.
+3. The machine produces clones automatically on its own cycle; the player never presses a manual produce button. Production upgrades increase output, cadence, or batch size.
 4. Clone-type upgrades unlock additional warrior classes or variants.
 5. When an upgrade or production action creates a clone, the machine plays a readable production sequence.
-6. A newly produced warrior emerges from the machine, enters the room, and automatically approaches and attacks the active boss.
-7. Warriors continue fighting without requiring individual player commands.
-8. When the boss is defeated, its death animation plays to completion.
-9. The player receives the boss reward, and the next boss enters or appears.
-10. The player reinvests rewards into production and stronger clone types.
+6. A newly produced warrior emerges from the machine, enters the room, and automatically approaches and attacks the active boss. Melee classes close to the boss; ranged classes maintain a sensible firing distance.
+7. Warriors continue fighting without requiring individual player commands. They move as a coordinated army while maintaining personal space through soft crowd-separation steering.
+8. Boss attacks damage nearby clones. A defeated clone is placed in the machine replacement queue and automatically respawned after a short production delay.
+9. When the boss is defeated, its death animation plays to completion.
+10. The player receives the boss reward, and the next boss enters or appears.
+11. The player reinvests rewards into production and stronger clone types.
 
 Boss progression must be sequential: do not spawn the next boss over the previous boss before its defeat/death sequence has completed.
 
@@ -62,7 +63,10 @@ The exact upgrade names, costs, scaling curves, class roster, and balance values
 
 ## Combat rules
 
-- Combat is automatic after a warrior is produced.
+- Combat and production are automatic. The player does not manually spawn or produce clones.
+- Boss attacks must damage clones; defeated clones are automatically replaced by the cloning machine after a short delay.
+- Melee units must approach the boss closely before attacking; ranged units may maintain distance.
+- Use gentle crowd separation so units keep visible personal space while remaining a cohesive army.
 - Warriors should visibly travel from the machine area toward the boss before attacking, rather than simply appearing in a battle formation.
 - Warriors need readable idle/movement/attack/defeat states as supported by the chosen art assets.
 - The boss has health and a clear defeat state.
@@ -83,7 +87,7 @@ The game should reward both active interaction and letting the simulation run.
 ## Mobile-first interaction requirements
 
 - Portrait iPhone Safari is the primary target.
-- The room and important controls must fit the viewport without requiring awkward horizontal scrolling.
+- The entire lab play area and its interactive machine must fit within the viewport without page scrolling. The upgrade sheet may scroll internally when its contents exceed the available height.
 - Interactive targets, especially the cloning machine and upgrade controls, must be comfortable to tap.
 - Upgrade panels should scroll internally when needed; avoid making the entire game screen unexpectedly scroll.
 - Respect iPhone safe areas and browser viewport changes.
