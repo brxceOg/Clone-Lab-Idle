@@ -84,7 +84,7 @@ function defeatBoss(){if(state.phase==="death")return;state.phase="death";addLog
 function simulate(dt,now){
  if(!assetsReady)return;
  if(now-state.lastProduction>=state.rate*1000){state.lastProduction=now;produce(state.quantity)}
- while(state.respawns.length&&state.respawns[0].due<=now&&state.clones.length<26){const r=state.respawns.shift();spawnClone(r.type);state.phase="production";addLog("Cloning machine restored a fallen "+r.type+".");updateHud()}
+ while(state.respawns.length&&state.respawns[0].due<=now&&state.clones.length<26){const r=state.respawns.shift();spawnClone(r.type);spawnFx("machine",272,395);state.phase="production";addLog("Cloning machine restored a fallen "+r.type+".");updateHud()}
  const b=bossDef(),size=b.size?.[0]||32,cx=160,cy=196,bossRadius=size*Math.max(1,Math.min(4,Math.floor(144/size)))/2,orbitRadius=bossRadius+14,perRing=10,moveStep=dt*.042;
  for(let i=0;i<state.clones.length;i++){
   const c=state.clones[i],rank=Math.floor(i/perRing),slot=i%perRing,ringCount=Math.min(perRing,state.clones.length-rank*perRing),angle=(slot/Math.max(1,ringCount))*Math.PI*2+rank*.19,targetRadius=orbitRadius+rank*8,dx=cx-c.x,dy=cy-c.y,currentRadius=Math.max(1,Math.hypot(dx,dy)),currentAngle=Math.atan2(c.y-cy,c.x-cx);
