@@ -146,17 +146,28 @@ function simulate(dt,now){
  while(state.respawns.length&&state.respawns[0].due<=now&&state.clones.length<maxClones()){const r=state.respawns.shift();spawnClone(r.type);spawnFx("machine",272,395);state.phase="production";addLog("Cloning machine restored a fallen "+r.type+".");updateHud()}
  const b=bossDef(),size=b.size?.[0]||32,cx=160,cy=196,bossRadius=size*Math.max(1,Math.min(4,Math.floor(144/size)))/2,baseRadius=bossRadius+14,perRing=10,moveStep=dt*.042;
  for(let i=0;i<state.clones.length;i++){
-  const c=state.clones[i],rank=Math.floor(i/perRing),slot=i%perRing,ringCount=Math.min(perRing,state.clones.length-rank*perRing),angle=-Math.PI/2+(slot/Math.max(1,ringCount))*Math.PI*2+rank*.19,targetRadius=baseRadius+rank*16,targetX=cx+Math.cos(angle)*targetRadius,targetY=cy+Math.sin(angle)*targetRadius;
+  const c=state.clones[i],rank=Math.floor(i/perRing),slot=i%perRing,ringCount=Math.min(perRing,state.clones.length-rank*perRing),angle=-Math.PI/2+(slot/Math.max(1,ringCount))*Math.PI*2+rank*.19,targetRadius=baseRadius+rank*16,targetX=cx+Math.cos(angle)*targetRadius,targetY=cy+Math.sin(angle)*targetRadius,dx=cx-c.x,dy=cy-c.y,currentRadius=Math.max(1,Math.hypot(dx,dy)),currentAngle=Math.atan2(c.y-cy,c.x-cx);
   let sx=0,sy=0;
   for(let j=0;j<state.clones.length;j++){if(i===j)continue;const o=state.clones[j],ox=c.x-o.x,oy=c.y-o.y,od=Math.hypot(ox,oy);if(od>0&&od<12){const force=(12-od)/12;sx+=ox/od*force;sy+=oy/od*force}}
-  const dx=targetX-c.x,dy=targetY-c.y,distance=Math.max(.001,Math.hypot(dx,dy)),steerX=dx/distance+sx*.42,steerY=dy/distance+sy*.42,steerLength=Math.max(.001,Math.hypot(steerX,steerY));
-  if(distance>1.5){const step=Math.min(moveStep,distance);c.x+=steerX/steerLength*step;c.y+=steerY/steerLength*step;c.mode="walk"}else{c.x=targetX;c.y=targetY;c.mode="idle";hitBoss(c,now)}
-  c.slot=i;c.dir=Math.abs(cx-c.x)>Math.abs(cy-c.y)?(cx>c.x?"right":"left"):(cy>c.y?"down":"up");
-  // Crowd separation and knockback may displace a clone briefly, but it is always pulled back to its assigned orbit slot.
-  const fromSlotX=c.x-targetX,fromSlotY=c.y-targetY,slotError=Math.hypot(fromSlotX,fromSlotY);
-  if(distance<12&&slotError>2.5){c.x=targetX+fromSlotX/slotError*2.5;c.y=targetY+fromSlotY/slotError*2.5}
+  let moved=false;
+  // Approach the safe perimeter radially first, so a clone never cuts through the boss on its way to a far-side slot.
+  if(Math.abs(currentRadius-baseRadius)>2){
+   const direction=currentRadius>baseRadius?1:-1,step=Math.min(Math.abs(currentRadius-baseRadius),moveStep);
+   c.x+=dx/currentRadius*direction*step;c.y+=dy/currentRadius*direction*step;moved=step>.2;
+  }else{
+   let delta=((angle-currentAngle+Math.PI*3)%(Math.PI*2))-Math.PI;
+   const angularStep=moveStep/baseRadius;
+   if(Math.abs(delta)>.025){const turn=Math.sign(delta)*Math.min(Math.abs(delta),angularStep),next=currentAngle+turn;c.x=cx+Math.cos(next)*baseRadius;c.y=cy+Math.sin(next)*baseRadius;moved=true}
+   else if(targetRadius>baseRadius+2&&Math.abs(currentRadius-targetRadius)>1){const step=Math.min(targetRadius-currentRadius,moveStep);c.x+=Math.cos(angle)*step;c.y+=Math.sin(angle)*step;moved=step>.2}
+   else{c.x=targetX;c.y=targetY}
+  }
+  // Separation only nudges the path; the assigned slot remains the destination.
+  if(moved){c.x+=sx*.22;c.y+=sy*.22}
   const safeDistance=bossRadius+11,fromBossX=c.x-cx,fromBossY=c.y-cy,fromBossDistance=Math.max(.001,Math.hypot(fromBossX,fromBossY));
   if(fromBossDistance<safeDistance){c.x=cx+fromBossX/fromBossDistance*safeDistance;c.y=cy+fromBossY/fromBossDistance*safeDistance}
+  const slotDistance=Math.hypot(targetX-c.x,targetY-c.y);
+  if(slotDistance<2.5){c.x=targetX;c.y=targetY;c.mode="idle";hitBoss(c,now)}else c.mode="walk";
+  c.slot=i;c.dir=Math.abs(cx-c.x)>Math.abs(cy-c.y)?(cx>c.x?"right":"left"):(cy>c.y?"down":"up");
   c.x=Math.max(12,Math.min(308,c.x));c.y=Math.max(70,Math.min(440,c.y));
  }
  if(now-state.lastBossAttack>4700&&state.phase!=="death"&&state.phase!=="attack"){state.lastBossAttack=now;state.phase="telegraph";setTimeout(()=>{if(state.phase==="telegraph")bossStrike(Date.now())},650)}
