@@ -303,19 +303,23 @@ function simulate(dt,now){
   let sx=0,sy=0;
   for(let j=0;j<state.clones.length;j++){if(i===j)continue;const o=state.clones[j],ox=c.x-o.x,oy=c.y-o.y,od=Math.hypot(ox,oy);if(od>0&&od<12){const force=(12-od)/12;sx+=ox/od*force;sy+=oy/od*force}}
   let moved=false;
-  // Each class approaches and orbits its own assigned radius.
-  // Ranged clones use a wider ring throughout the entire movement, not only
-  // after reaching the melee perimeter, so they cannot be pulled back inward.
-  if(Math.abs(currentRadius-targetRadius)>2){
-   const radialDirection=currentRadius>targetRadius?-1:1,step=Math.min(Math.abs(currentRadius-targetRadius),moveStep);
-   c.x-=dx/currentRadius*radialDirection*step;c.y-=dy/currentRadius*radialDirection*step;moved=step>.2;
-  }else{
-   const delta=((angle-currentAngle+Math.PI*3)%(Math.PI*2))-Math.PI;
-   const angularStep=moveStep/targetRadius;
-   if(Math.abs(delta)>.025){const turn=Math.sign(delta)*Math.min(Math.abs(delta),angularStep),next=currentAngle+turn;c.x=cx+Math.cos(next)*targetRadius;c.y=cy+Math.sin(next)*targetRadius;moved=true}
-   else{c.x=targetX;c.y=targetY}
-  }
-  // Separation only nudges the path; the assigned slot remains the destination.
+  // All classes share the same formation angles, slot ordering, and inner orbit.
+  // Ranged clones only move outward after reaching that shared assigned angle,
+  // occupying a wider version of the same slot rather than a separate orbit.
+  const delta=((angle-currentAngle+Math.PI*3)%(Math.PI*2))-Math.PI,formationRadius=baseRadius+rank*16;
+  if(Math.abs(delta)>.025){
+   if(Math.abs(currentRadius-formationRadius)>2){
+    const radialStep=Math.min(Math.abs(currentRadius-formationRadius),moveStep),radialDirection=formationRadius>currentRadius?1:-1;
+    c.x+=(c.x-cx)/currentRadius*radialDirection*radialStep;c.y+=(c.y-cy)/currentRadius*radialDirection*radialStep;moved=radialStep>.2;
+   }else{
+    const angularStep=moveStep/formationRadius,turn=Math.sign(delta)*Math.min(Math.abs(delta),angularStep),next=currentAngle+turn;
+    c.x=cx+Math.cos(next)*formationRadius;c.y=cy+Math.sin(next)*formationRadius;moved=true;
+   }
+  }else if(Math.abs(currentRadius-targetRadius)>2){
+   const radialStep=Math.min(Math.abs(currentRadius-targetRadius),moveStep),radialDirection=targetRadius>currentRadius?1:-1;
+   c.x+=(c.x-cx)/currentRadius*radialDirection*radialStep;c.y+=(c.y-cy)/currentRadius*radialDirection*radialStep;moved=radialStep>.2;
+  }else{c.x=targetX;c.y=targetY}
+  // Separation remains a small local nudge, never a new formation destination.
   if(moved){c.x+=sx*.22;c.y+=sy*.22}
   const safeDistance=bossRadius+11,fromBossX=c.x-cx,fromBossY=c.y-cy,fromBossDistance=Math.max(.001,Math.hypot(fromBossX,fromBossY));
   if(fromBossDistance<safeDistance){c.x=cx+fromBossX/fromBossDistance*safeDistance;c.y=cy+fromBossY/fromBossDistance*safeDistance}
