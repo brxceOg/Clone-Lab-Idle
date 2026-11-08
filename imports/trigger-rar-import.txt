@@ -1,1 +1,0 @@
-One-time trigger for the RAR sprite import workflow. This file is removed by the workflow after import.
