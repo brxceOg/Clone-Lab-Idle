@@ -43,3 +43,12 @@ The authoritative source and QA notes are in `source-notes/VERIFIED_IMPORT.md`. 
 - Each atlas is 576×208 and uses 16×16 cells (36 columns × 13 rows). Use source rectangles with nearest-neighbour rendering; do not stretch or recolor the atlas.
 - License is for non-commercial game use; commercial use requires a contribution to the creator. Do not redistribute the pack as a standalone asset. See `docs/asset-import/effect-and-bullet-16x16/IMPORT_MANIFEST.md`.
 - Imported only; not yet assigned to in-game animation sequences.
+
+
+## Font — Pixels, Ayden Snider
+
+- **Font:** Pixels by Ayden Snider (DaFont bitmap / 16 px category).
+- **Source:** https://www.dafont.com/pixels.font
+- **License:** Free for personal use only, as stated on the DaFont listing. Do not use in a commercial release without obtaining the creator's commercial permission/license.
+- **Repository location:** `assets/fonts/Pixels.ttf` (extracted from the user-supplied `pixels.zip`).
+- **Integration:** Loaded locally with `@font-face` and used for HTML interface text and canvas-rendered labels. No external font service is required.
