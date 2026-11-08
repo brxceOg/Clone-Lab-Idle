@@ -1,0 +1,28 @@
+{
+  "source": "https://bdragon1727.itch.io/free-effect-and-bullet-16x16",
+  "creator": "BDragon1727",
+  "license": "Non-commercial game use; commercial use requires a contribution to the creator; no standalone redistribution.",
+  "cellWidth": 16,
+  "cellHeight": 16,
+  "columns": 36,
+  "rows": 13,
+  "variants": [
+    {
+      "id": "fire",
+      "file": "Effect and Bullet 16x16/Fire Effect and Bullet 16x16.png"
+    },
+    {
+      "id": "green",
+      "file": "Effect and Bullet 16x16/Green Effect and Bullet 16x16.png"
+    },
+    {
+      "id": "purple",
+      "file": "Effect and Bullet 16x16/Purple Effect and Bullet 16x16.png"
+    },
+    {
+      "id": "water",
+      "file": "Effect and Bullet 16x16/Water Effect and Bullet 16x16.png"
+    }
+  ],
+  "note": "Atlas imported unchanged. Animation frame groupings have not yet been mapped."
+}
