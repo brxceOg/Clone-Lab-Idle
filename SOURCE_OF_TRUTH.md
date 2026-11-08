@@ -34,6 +34,15 @@ The laboratory should feel like a small, lively simulation that the player is ob
 
 Boss progression must be sequential: do not spawn the next boss over the previous boss before its defeat/death sequence has completed.
 
+## Endless boss progression and difficulty scaling
+
+- The 14 existing boss appearances repeat in their established order; reusing a sprite does not reset encounter progression or difficulty.
+- Preserve the authored opening health curve for the first 14 encounters: 100, 180, 280, 430, 620, 900, 1,280, 1,800, 2,500, 3,500, 4,900, 6,800, 9,400, and 13,000 health.
+- After the first full roster, each new encounter starts from the previous roster's 13,000-health benchmark and increases maximum boss health by 18% per defeat. This calculation is based on the lifetime encounter index, never the position within the repeating roster.
+- Bosses also become gradually more relentless: their attack interval shortens by 1.8% per encounter, with a 1.9-second minimum so attacks remain readable and playable.
+- Existing local saves retain their current boss encounter and health progress proportionally when the new scaling is applied. The encounter index remains the source of truth for future scaling.
+- Boss rewards continue to scale with encounter progression so later victories remain worthwhile.
+
 ## Primary screen composition
 
 The main play area is one large, bright laboratory room.
