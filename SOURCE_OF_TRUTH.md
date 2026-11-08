@@ -146,3 +146,10 @@ Additional clone types, larger boss rosters, deeper upgrade trees, offline progr
 ## Change control
 
 This file is the canonical source of truth for product behavior and scope. When a new decision changes the core loop, screen composition, platform target, or progression rules, update this file as part of that implementation. Record visual and asset-specific rules in `ART_SOURCE.md`.
+
+## Clone approach and formation behavior
+
+- Newly produced and restored clones begin at the cloning machine output and use a deliberate three-stage route to the boss: (1) walk radially inward to the shared inner perimeter, (2) travel around that perimeter to their deterministic assigned formation angle, then (3) move outward only when their assigned formation radius requires it.
+- Knights and the inner rank hold the inner combat perimeter. Mages and Archers use the same angular slot pattern but a wider radius; additional ranks also use their assigned outer radius. No clone should select a random destination, orbit independently, or take a direct diagonal shortcut from the machine to its final slot.
+- Once a clone reaches its assigned slot, it holds that position and attacks. If the roster changes and its assigned angle changes, it reconverges through the same perimeter approach/orbit sequence.
+- Keep crowd separation as a small local anti-overlap nudge only; it must not redirect clones away from their assigned formation path.
