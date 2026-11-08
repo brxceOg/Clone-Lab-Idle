@@ -10,4 +10,4 @@
 - Suggested credit: VFX from PVFX Foundry by Pixel VFX Studio (attribution appreciated, not required).
 - No Pixel VFX Studio software or effect-program source is included or imported.
 
-The original archive remains at the repository root. Only the 101 Lit/grid sprite sheets, their exact manifests, pack index, and source/license documentation are copied into this folder.
+The original archive remains at the repository root. Only the 101 Lit/grid sprite sheets, their exact manifests, source/license documentation are copied into this folder.
