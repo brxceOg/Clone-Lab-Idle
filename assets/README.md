@@ -35,3 +35,11 @@ The authoritative source and QA notes are in `source-notes/VERIFIED_IMPORT.md`. 
 - reodesuxz Pixel Sci-Fi Tileset: https://reodesuxz.itch.io/free-pixel-sci-fi-tileset-16x16 — commercial/personal use and modification allowed; no attribution required; no standalone redistribution.
 - Larchrow Characters & Monsters: https://larchrow.itch.io/larchrow-16x16-characters-monsters — royalty-free commercial/non-commercial use and modification; attribution optional; no resale/asset-pack redistribution.
 - Larchrow Boss Monsters: https://larchrow.itch.io/larchrow-16x16-boss-monsters — royalty-free commercial/non-commercial use and modification; attribution optional; no resale/asset-pack redistribution.
+
+
+## Effects
+
+- **Free Effect and Bullet 16x16 — BDragon1727:** Four palette atlases (Fire, Green, Purple, Water) in `effects/effect-and-bullet-16x16/`.
+- Each atlas is 576×208 and uses 16×16 cells (36 columns × 13 rows). Use source rectangles with nearest-neighbour rendering; do not stretch or recolor the atlas.
+- License is for non-commercial game use; commercial use requires a contribution to the creator. Do not redistribute the pack as a standalone asset. See `docs/asset-import/effect-and-bullet-16x16/IMPORT_MANIFEST.md`.
+- Imported only; not yet assigned to in-game animation sequences.
