@@ -274,3 +274,16 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 ### Clone spawn effect layering (2026-11-08)
 - The authored cyan clone-emergence effect is rendered in the room background-effects pass, immediately after the floor and before boss and clone sprites. This keeps the effect visible around the spawn point while ensuring all character sprites are composited above it.
 - Keep the effect drawing pass before character rendering; do not move it into the foreground effects pass. The effect artwork, colors, particle count, and 760 ms lifetime remain unchanged.
+
+
+## Effects expansion — PVFX Foundry 1.0
+
+- **Creator:** Pixel VFX Studio.
+- **Product:** https://pixel-vfx-studio.itch.io/pvfx-foundry
+- **License:** CC0 1.0 Universal applies to the rendered sprite sheets and bundled per-effect manifests/documentation. It does not apply to Pixel VFX Studio software or program source, neither of which is included. Attribution is optional; suggested credit: “VFX from PVFX Foundry by Pixel VFX Studio.”
+- **Repository:** `assets/effects/pvfx-foundry/`; 101 Lit-tier fixed-grid sprite sheets and 101 matching JSON frame manifests are imported. The original archive is preserved at the repository root.
+- **Frame handling:** Use each manifest's `source_size`, `pivot`, per-frame `sheet` rectangle, and exact `duration`. Render with canvas smoothing disabled and preserve alpha; do not slice by guessed dimensions or resample the source sheets.
+- **Current gameplay mapping:** Knight attacks use sword-combo plus hit-spark; Mage attacks use a moving magic-missile plus delayed impact; Archer attacks use a moving arrow-impact plus delayed hit-spark; boss attacks use ground-slam and shockwave-ring with small-explosion feedback on struck clones; boss defeat uses big-explosion; cloning uses portal-summon and teleport-in; upgrades use level-up; boss rewards use coin-pickup.
+- **Layering:** Teleport-in is drawn in the world-background pass beneath clone sprites. Combat, machine, upgrade, and reward effects use the foreground pass. Keep effects brief and avoid obscuring characters, boss health, or the cloning machine.
+- **Runtime:** The game preloads only the selected effect subset; the full imported library remains available for future effects. The existing BDragon1727 atlases and custom clone-emergence ring remain intact as fallbacks and complementary effects.
+- **Import record:** `assets/effects/pvfx-foundry/IMPORT_MANIFEST.md`.
