@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - "imports/Clone-Lab-Idle-verified-assets.zip"
+      - "Effect and Bullet 16x16.rar"
+      - ".github/workflows/import-verified-assets.yml"
   workflow_dispatch:
 
 permissions:
@@ -24,47 +26,120 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Verify and extract source bundle
+      - name: Install RAR extraction support
+        run: |
+          if [ -f "Effect and Bullet 16x16.rar" ]; then
+            sudo apt-get update
+            sudo apt-get install -y unar
+          fi
+
+      - name: Verify and extract supplied asset archive
         run: |
           python3 - <<'PY'
           from pathlib import Path
           from zipfile import ZipFile
           import shutil
-
-          archive = Path("imports/Clone-Lab-Idle-verified-assets.zip")
-          if not archive.is_file():
-              raise SystemExit("Expected import archive is missing.")
+          import subprocess
 
           temp = Path("/tmp/clone-lab-asset-import")
           shutil.rmtree(temp, ignore_errors=True)
           temp.mkdir(parents=True)
 
-          with ZipFile(archive) as zf:
-              bad = zf.testzip()
-              if bad:
-                  raise SystemExit(f"ZIP integrity check failed at: {bad}")
-              for item in zf.infolist():
-                  target = (temp / item.filename).resolve()
-                  if temp.resolve() not in target.parents and target != temp.resolve():
-                      raise SystemExit(f"Unsafe archive path: {item.filename}")
-              zf.extractall(temp)
+          zip_archive = Path("imports/Clone-Lab-Idle-verified-assets.zip")
+          rar_archive = Path("Effect and Bullet 16x16.rar")
 
-          source_assets = temp / "assets"
-          if not source_assets.is_dir():
-              raise SystemExit("Bundle does not contain the expected assets/ directory.")
+          if zip_archive.is_file():
+              with ZipFile(zip_archive) as zf:
+                  bad = zf.testzip()
+                  if bad:
+                      raise SystemExit(f"ZIP integrity check failed at: {bad}")
+                  for item in zf.infolist():
+                      target = (temp / item.filename).resolve()
+                      if temp.resolve() not in target.parents and target != temp.resolve():
+                          raise SystemExit(f"Unsafe archive path: {item.filename}")
+                  zf.extractall(temp)
 
-          pngs = list(source_assets.rglob("*.png")) + list(source_assets.rglob("*.PNG"))
-          if len(pngs) < 100:
-              raise SystemExit(f"Expected at least 100 PNGs; found {len(pngs)}. Refusing import.")
+              source_assets = temp / "assets"
+              if not source_assets.is_dir():
+                  raise SystemExit("ZIP bundle does not contain the expected assets/ directory.")
+              pngs = list(source_assets.rglob("*.png")) + list(source_assets.rglob("*.PNG"))
+              if len(pngs) < 100:
+                  raise SystemExit(f"Expected at least 100 PNGs in verified ZIP; found {len(pngs)}.")
+              shutil.copytree(source_assets, Path("assets"), dirs_exist_ok=True)
 
-          shutil.copytree(source_assets, Path("assets"), dirs_exist_ok=True)
-          notes = temp / "IMPORT_NOTES.md"
-          if notes.is_file():
-              destination = Path("docs/asset-import")
+              notes = temp / "IMPORT_NOTES.md"
+              if notes.is_file():
+                  destination = Path("docs/asset-import")
+                  destination.mkdir(parents=True, exist_ok=True)
+                  shutil.copy2(notes, destination / "IMPORT_NOTES.md")
+              print(f"Verified and staged {len(pngs)} PNG files from the verified ZIP.")
+
+          elif rar_archive.is_file():
+              extracted = temp / "rar"
+              extracted.mkdir()
+              subprocess.run(
+                  ["unar", "-q", "-f", "-o", str(extracted), str(rar_archive.resolve())],
+                  check=True
+              )
+
+              image_files = sorted(
+                  p for p in extracted.rglob("*")
+                  if p.is_file() and p.suffix.lower() == ".png"
+              )
+              if not image_files:
+                  raise SystemExit("RAR archive contains no PNG sprites; refusing import.")
+
+              destination = Path("assets/effects/effect-and-bullet-16x16")
               destination.mkdir(parents=True, exist_ok=True)
-              shutil.copy2(notes, destination / "IMPORT_NOTES.md")
+              for source in image_files:
+                  relative = source.relative_to(extracted)
+                  target = destination / relative
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  if target.exists():
+                      raise SystemExit(f"Import would overwrite an existing asset: {target}")
+                  shutil.copy2(source, target)
 
-          print(f"Verified and staged {len(pngs)} PNG files.")
+              # Preserve accompanying source/license documentation for attribution review.
+              docs = [
+                  p for p in extracted.rglob("*")
+                  if p.is_file() and p.suffix.lower() in {".txt", ".md", ".license"}
+              ]
+              if docs:
+                  doc_dir = Path("docs/asset-import/effect-and-bullet-16x16")
+                  doc_dir.mkdir(parents=True, exist_ok=True)
+                  for source in docs:
+                      target = doc_dir / source.relative_to(extracted)
+                      target.parent.mkdir(parents=True, exist_ok=True)
+                      shutil.copy2(source, target)
+
+              # Record the original file paths and image dimensions without resampling pixels.
+              try:
+                  from PIL import Image
+              except ImportError:
+                  subprocess.run(["python3", "-m", "pip", "install", "Pillow"], check=True)
+                  from PIL import Image
+
+              manifest = [
+                  "# Effect and Bullet 16x16 — import manifest",
+                  "",
+                  "Source archive: `Effect and Bullet 16x16.rar`",
+                  "Imported to: `assets/effects/effect-and-bullet-16x16/`",
+                  "",
+                  "| File | Dimensions |",
+                  "|---|---:|",
+              ]
+              for path in image_files:
+                  with Image.open(path) as image:
+                      dimensions = f"{image.width}×{image.height}"
+                  rel = path.relative_to(extracted).as_posix()
+                  manifest.append(f"| `{rel}` | {dimensions} |")
+
+              manifest_path = Path("docs/asset-import/effect-and-bullet-16x16/IMPORT_MANIFEST.md")
+              manifest_path.parent.mkdir(parents=True, exist_ok=True)
+              manifest_path.write_text("\n".join(manifest) + "\n", encoding="utf-8")
+              print(f"Extracted {len(image_files)} PNG sprite(s) into {destination}.")
+          else:
+              raise SystemExit("No supported asset archive was found.")
           PY
 
       - name: Commit imported source assets
@@ -73,9 +148,10 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets docs/asset-import
           git rm --ignore-unmatch imports/Clone-Lab-Idle-verified-assets.zip
+          git rm --ignore-unmatch "Effect and Bullet 16x16.rar"
           if git diff --cached --quiet; then
             echo "No asset changes detected."
             exit 1
           fi
-          git commit -m "Import verified sci-fi lab, clone, and boss assets"
+          git commit -m "Import verified assets and 16x16 effects sprites"
           git push origin HEAD:main
