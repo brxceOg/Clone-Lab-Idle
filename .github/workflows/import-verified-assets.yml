@@ -7,6 +7,7 @@ on:
       - "imports/Clone-Lab-Idle-verified-assets.zip"
       - "Effect and Bullet 16x16.rar"
       - ".github/workflows/import-verified-assets.yml"
+      - "imports/trigger-rar-import.txt"
   workflow_dispatch:
 
 permissions:
@@ -149,6 +150,7 @@ jobs:
           git add assets docs/asset-import
           git rm --ignore-unmatch imports/Clone-Lab-Idle-verified-assets.zip
           git rm --ignore-unmatch "Effect and Bullet 16x16.rar"
+          git rm --ignore-unmatch imports/trigger-rar-import.txt
           if git diff --cached --quiet; then
             echo "No asset changes detected."
             exit 1
