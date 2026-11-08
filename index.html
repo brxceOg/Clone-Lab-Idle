@@ -152,45 +152,32 @@ const availableDnaTypes=()=>CLONE_TYPES.filter(type=>!state.unlocked.includes(ty
 const dnaResearchCost=()=>Math.round(220*Math.pow(1.9,Math.max(0,state.unlocked.length-1)));
 function renderUpgrades(){
  const panel=$("upgrades");if(!panel)return;
- const levels={rate:state.rateLevel,quantity:Math.max(0,state.quantity-1),power:Math.max(0,state.power-1)};
- // Clone Capacity is the single central research core. Every other upgrade
- // follows its own isolated radial route; no route branches into another.
  const core={x:1100,y:1100};
  const paths=[
-  {id:"rate",label:"AUTOMATION",short:"AUTO",angle:-Math.PI*3/4},
-  {id:"quantity",label:"BATCH EXPANSION",short:"BATCH",angle:-Math.PI/4},
-  {id:"power",label:"COMBAT SYSTEMS",short:"COMBAT",angle:Math.PI/2}
+  {id:"rate",label:"AUTOMATION",short:"AUTO",angle:-Math.PI*3/4,level:state.rateLevel},
+  {id:"quantity",label:"BATCH EXPANSION",short:"BATCH",angle:-Math.PI/4,level:Math.max(0,state.quantity-1)},
+  {id:"power",label:"COMBAT SYSTEMS",short:"COMBAT",angle:Math.PI/2,level:Math.max(0,state.power-1)}
  ];
- const step=145,nodeCount=8;
  const defs=paths.map(p=>{
-  const u=upgrades.find(x=>x.id===p.id),level=levels[p.id]||0,maxed=p.id==="rate"&&state.rate<=1.5;
-  const nodes=Array.from({length:Math.max(nodeCount,level+1)},(_,i)=>{
-   const radius=210+i*step,x=core.x+Math.cos(p.angle)*radius,y=core.y+Math.sin(p.angle)*radius;
-   return {x,y,rank:i+1,done:i<level,available:i===level&&!maxed,locked:i>level||maxed};
-  });
-  return {...p,u,level,maxed,nodes};
+  const u=upgrades.find(x=>x.id===p.id),maxed=p.id==="rate"&&state.rate<=1.5,radius=285;
+  return {...p,u,maxed,node:{x:core.x+Math.cos(p.angle)*radius,y:core.y+Math.sin(p.angle)*radius}};
  });
- const capacity=upgrades.find(x=>x.id==="capacity"),capacityCost=capacity.cost();
- const capacityNode={done:false,available:true,rank:state.capacityLevel+1};
- const nodeW=126,nodeH=88;
+ const capacity=upgrades.find(x=>x.id==="capacity");
+ const capacityNode={x:core.x,y:core.y,rank:state.capacityLevel};
+ const nodeW=156,nodeH=104;
  const edge=(a,b,done=false)=>'<line class="skill-link '+(done?"complete":"")+'" x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+'"/>';
  let svg='<svg class="skill-links" viewBox="0 0 2200 2200" aria-hidden="true">';
  for(const p of defs){
-  const first=p.nodes[0],dx=first.x-core.x,dy=first.y-core.y,len=Math.hypot(dx,dy),startPoint={x:core.x+dx/len*92,y:core.y+dy/len*72};
-  const firstPoint={x:first.x-dx/len*66,y:first.y-dy/len*46};
-  svg+=edge(startPoint,firstPoint,first.done);
-  for(let i=0;i<p.nodes.length-1;i++){
-   const a=p.nodes[i],b=p.nodes[i+1],vx=b.x-a.x,vy=b.y-a.y,d=Math.hypot(vx,vy);
-   svg+=edge({x:a.x+vx/d*66,y:a.y+vy/d*46},{x:b.x-vx/d*66,y:b.y-vy/d*46},b.done);
-  }
+  const dx=p.node.x-core.x,dy=p.node.y-core.y,len=Math.hypot(dx,dy);
+  svg+=edge({x:core.x+dx/len*100,y:core.y+dy/len*74},{x:p.node.x-dx/len*82,y:p.node.y-dy/len*55},p.level>0);
  }
  svg+='</svg>';
- const nodes=defs.map(p=>p.nodes.map(n=>{
-  const cost=p.u.cost(),status=n.done?"complete":n.available?"available":"locked";
-  const caption=n.done?"INSTALLED":n.available?(p.maxed?"MAX RANK":formatCount(cost)+" CR"):"LOCKED";
-  return '<button type="button" class="skill-node '+status+'" data-skill="'+p.id+'" data-rank="'+n.rank+'" style="left:'+(n.x-nodeW/2)+'px;top:'+(n.y-nodeH/2)+'px"><span class="node-kind">'+p.short+'</span><strong>'+p.label+'</strong><span class="node-rank">RANK '+n.rank+'</span><span class="node-cost">'+caption+'</span></button>';
- }).join("")).join("");
- panel.innerHTML='<div class="skill-tree-tools"><small>CLONE CAPACITY IS THE CORE · FOLLOW EACH SEPARATE PATH · DRAG TO EXPLORE</small><div class="skill-zoom"><button type="button" id="skillZoomOut" aria-label="Zoom out">−</button><button type="button" id="skillZoomIn" aria-label="Zoom in">+</button><button type="button" id="skillZoomReset">RESET</button></div></div><div class="skill-viewport" id="skillViewport"><div class="skill-world" id="skillWorld">'+svg+'<button type="button" class="skill-hub" data-skill="capacity" data-rank="'+capacityNode.rank+'"><strong>CLONE CAPACITY</strong><small>CORE UPGRADE<br>RANK '+capacityNode.rank+' · '+formatCount(capacityCost)+' CR</small></button>'+nodes+'</div></div><div class="skill-selected" id="skillSelected"><div class="skill-selected-copy"><strong>SELECT A NODE</strong><small>Clone Capacity is the central core. Choose a separate path around it to inspect upgrades.</small></div><button class="buy" type="button" disabled>RESEARCH</button></div>';
+ const nodes=defs.map(p=>{
+  const cost=p.u.cost(),status=p.maxed?"locked":p.level>0?"complete":"available";
+  const label=p.maxed?"MAX LEVEL":p.level>0?"LEVEL "+p.level:"UNLOCK";
+  return '<button type="button" class="skill-node '+status+'" data-skill="'+p.id+'" data-rank="1" style="left:'+(p.node.x-nodeW/2)+'px;top:'+(p.node.y-nodeH/2)+'px;width:'+nodeW+'px;min-height:'+nodeH+'px"><span class="node-kind">'+p.short+'</span><strong>'+p.label+'</strong><span class="node-rank">'+label+'</span><span class="node-cost">'+(p.maxed?"MAXED":formatCount(cost)+" CR")+'</span></button>';
+ }).join("");
+ panel.innerHTML='<div class="skill-tree-tools"><small>CLONE CAPACITY IS THE CORE · EACH OUTER NODE REPEATEDLY UPGRADES ITS OWN PATH · DRAG TO EXPLORE</small><div class="skill-zoom"><button type="button" id="skillZoomOut" aria-label="Zoom out">−</button><button type="button" id="skillZoomIn" aria-label="Zoom in">+</button><button type="button" id="skillZoomReset">RESET</button></div></div><div class="skill-viewport" id="skillViewport"><div class="skill-world" id="skillWorld">'+svg+'<button type="button" class="skill-hub" data-skill="capacity" data-rank="1"><strong>CLONE CAPACITY</strong><small>CORE UPGRADE<br>LEVEL '+state.capacityLevel+' · '+formatCount(capacity.cost())+' CR</small></button>'+nodes+'</div></div><div class="skill-selected" id="skillSelected"><div class="skill-selected-copy"><strong>SELECT AN UPGRADE</strong><small>Unlock an outer path once, then keep selecting that same node to purchase higher levels. No scrolling through duplicate tier nodes.</small></div><button class="buy" type="button" disabled>RESEARCH</button></div>';
  const viewport=$("skillViewport"),world=$("skillWorld");
  if(!window.skillViewState)window.skillViewState={scale:.42,x:0,y:0};
  const view=window.skillViewState;
@@ -205,17 +192,17 @@ function renderUpgrades(){
  viewport.onpointermove=e=>{if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===2&&pinchStart){const a=[...pointers.values()],dist=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),rect=viewport.getBoundingClientRect(),cx=pinchStart.center.x-rect.left,cy=pinchStart.center.y-rect.top,ratio=dist/Math.max(1,pinchStart.distance),next=Math.max(.28,Math.min(1.2,pinchStart.scale*ratio)),factor=next/view.scale;view.x=cx-(cx-view.x)*factor;view.y=cy-(cy-view.y)*factor;view.scale=next;clamp()}else if(drag&&pointers.size===1){view.x=drag.ox+(e.clientX-drag.x);view.y=drag.oy+(e.clientY-drag.y);clamp()}};
  const endPointer=e=>{pointers.delete(e.pointerId);if(pointers.size<2)pinchStart=null;if(!pointers.size){drag=null;viewport.classList.remove("dragging")}else if(pointers.size===1){const p=[...pointers.values()][0];drag={x:p.x,y:p.y,ox:view.x,oy:view.y}}};
  viewport.onpointerup=endPointer;viewport.onpointercancel=endPointer;viewport.onwheel=e=>{e.preventDefault();const rect=viewport.getBoundingClientRect(),cx=e.clientX-rect.left,cy=e.clientY-rect.top,next=Math.max(.28,Math.min(1.2,view.scale*(e.deltaY<0?1.1:.9))),factor=next/view.scale;view.x=cx-(cx-view.x)*factor;view.y=cy-(cy-view.y)*factor;view.scale=next;clamp()};
- const inspect=(id,rank)=>{
+ const inspect=id=>{
   const p=defs.find(x=>x.id===id),isCore=id==="capacity",u=isCore?capacity:p?.u;
   if(!u)return;
-  const node=isCore?capacityNode:p.nodes[rank-1],cost=u.cost(),done=!isCore&&node.done,available=isCore||node.available&&!p.maxed;
-  const detail=done?"This rank is already installed.":available?u.desc()+" Next rank costs "+formatCount(cost)+" credits.": "Complete the earlier nodes on this path to unlock this rank.";
-  const title=isCore?"CLONE CAPACITY · CORE":" "+p.label+" · RANK "+rank;
+  const level=isCore?state.capacityLevel:p.level,cost=u.cost(),maxed=!isCore&&p.maxed,available=!maxed;
+  const detail=maxed?"This upgrade has reached its maximum level.":u.desc()+" Current level: "+level+". The next level costs "+formatCount(cost)+" credits.";
+  const title=isCore?"CLONE CAPACITY · CORE":p.label;
   const box=$("skillSelected");
-  box.innerHTML='<div class="skill-selected-copy"><strong>'+title+'</strong><small>'+detail+'</small></div><button class="buy" type="button" '+(!available||state.coins<cost?"disabled":"")+'>'+(done?"INSTALLED":available?"RESEARCH · "+formatCount(cost):"LOCKED")+'</button>';
+  box.innerHTML='<div class="skill-selected-copy"><strong>'+title+' · LEVEL '+level+'</strong><small>'+detail+'</small></div><button class="buy" type="button" '+(!available||state.coins<cost?"disabled":"")+'>'+(maxed?"MAX LEVEL":(level===0?"UNLOCK":"UPGRADE")+" · "+formatCount(cost))+'</button>';
   box.querySelector("button").onclick=()=>{if(available&&state.coins>=cost)buyUpgrade(id)};
  };
- panel.querySelectorAll("[data-skill]").forEach(btn=>btn.addEventListener("click",e=>{e.stopPropagation();inspect(btn.dataset.skill,Number(btn.dataset.rank))}));
+ panel.querySelectorAll("[data-skill]").forEach(btn=>btn.addEventListener("click",e=>{e.stopPropagation();inspect(btn.dataset.skill)}));
 }
 
 function renderDnaResearch(){
@@ -247,7 +234,7 @@ function runDnaResearch(){
  };
  tick();
 }
-function buyUpgrade(id){const u=upgrades.find(x=>x.id===id);if(!u)return;if(id==="rate"&&state.rate<=1.5)return;const cost=u.cost();if(state.coins<cost)return;state.coins-=cost;u.buy();state.machineLevel++;addLog(u.name+" installed.");notify("UPGRADE INSTALLED");save();updateHud()}
+function buyUpgrade(id){const u=upgrades.find(x=>x.id===id);if(!u)return;if(id==="rate"&&state.rate<=1.5)return;const cost=u.cost();if(state.coins<cost)return;state.coins-=cost;u.buy();state.machineLevel++;addLog(u.name+" upgraded.");notify("UPGRADE INSTALLED");save();updateHud();if($("overlay").classList.contains("open"))renderUpgrades()}
 function queueCloneSpawnFx(){const now=performance.now(),startAt=Math.max(now,nextCloneSpawnFxAt);nextCloneSpawnFxAt=startAt+85;spawnFx("cloneSpawn",224,400,null,null,startAt-now)}
 function showExistingCloneSpawnFx(){nextCloneSpawnFxAt=performance.now();for(let i=0;i<state.clones.length;i++)queueCloneSpawnFx()}
 function spawnClone(type){if(state.clones.length>=maxClones())return;const i=state.clones.length;/* Release every new clone from the output point immediately left of the machine; crowd separation and boss-swarm movement take over in simulate(). */state.clones.push({type,x:224,y:400,mode:"walk",dir:"up",nextHit:0,flash:0,hp:3,slot:i});state.totalClones++;queueCloneSpawnFx()}
