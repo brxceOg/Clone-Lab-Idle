@@ -6,6 +6,8 @@ on:
     paths:
       - "imports/Clone-Lab-Idle-verified-assets.zip"
       - "Effect and Bullet 16x16.rar"
+      - "Complete_UI_Essential_Pack_Free.7z"
+      - ".github/workflows/import-verified-assets.yml"
   workflow_dispatch:
 
 permissions:
@@ -25,11 +27,11 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Install RAR extraction support
+      - name: Install archive extraction support
         run: |
-          if [ -f "Effect and Bullet 16x16.rar" ]; then
+          if [ -f "Effect and Bullet 16x16.rar" ] || [ -f "Complete_UI_Essential_Pack_Free.7z" ]; then
             sudo apt-get update
-            sudo apt-get install -y unar
+            sudo apt-get install -y unar p7zip-full
           fi
 
       - name: Verify and extract supplied asset archive
@@ -137,6 +139,67 @@ jobs:
               manifest_path.parent.mkdir(parents=True, exist_ok=True)
               manifest_path.write_text("\n".join(manifest) + "\n", encoding="utf-8")
               print(f"Extracted {len(image_files)} PNG sprite(s) into {destination}.")
+          elif Path("Complete_UI_Essential_Pack_Free.7z").is_file():
+              archive = Path("Complete_UI_Essential_Pack_Free.7z")
+              extracted = temp / "ui-pack"
+              extracted.mkdir()
+              subprocess.run(
+                  ["7z", "x", "-y", f"-o{extracted}", str(archive.resolve())],
+                  check=True,
+                  stdout=subprocess.PIPE,
+                  stderr=subprocess.STDOUT,
+                  text=True
+              )
+
+              image_files = sorted(
+                  p for p in extracted.rglob("*")
+                  if p.is_file() and p.suffix.lower() == ".png"
+              )
+              if not image_files:
+                  raise SystemExit("7z archive contains no PNG UI assets; refusing import.")
+
+              destination = Path("assets/ui/complete-ui-essential-pack-free")
+              destination.mkdir(parents=True, exist_ok=True)
+              manifest = [
+                  "# Complete UI Essential Pack (Free / Flat Theme) — import manifest",
+                  "",
+                  "Creator: Crusenho",
+                  "Source: https://crusenho.itch.io/complete-ui-essential-pack",
+                  "License: Creative Commons Attribution 4.0 International (CC BY 4.0)",
+                  "Attribution: Crusenho — Complete UI Essential Pack. Modified/imported for Clone Lab Idle. https://creativecommons.org/licenses/by/4.0/",
+                  "",
+                  "| File | Dimensions |",
+                  "|---|---:|",
+              ]
+              import struct
+              for source in image_files:
+                  relative = source.relative_to(extracted)
+                  target = destination / relative
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  if target.exists():
+                      raise SystemExit(f"Import would overwrite an existing asset: {target}")
+                  with source.open("rb") as stream:
+                      header = stream.read(24)
+                  if len(header) < 24 or header[:8] != bytes.fromhex("89504e470d0a1a0a") or header[12:16] != b"IHDR":
+                      raise SystemExit(f"Invalid PNG header: {source}")
+                  width, height = struct.unpack(">II", header[16:24])
+                  shutil.copy2(source, target)
+                  manifest.append(f"| `{relative.as_posix()}` | {width}×{height} |")
+
+              docs = [
+                  p for p in extracted.rglob("*")
+                  if p.is_file() and p.suffix.lower() in {".txt", ".md", ".license"}
+              ]
+              doc_dir = Path("docs/asset-import/complete-ui-essential-pack-free")
+              doc_dir.mkdir(parents=True, exist_ok=True)
+              for source in docs:
+                  target = doc_dir / source.relative_to(extracted)
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  shutil.copy2(source, target)
+
+              manifest_path = doc_dir / "IMPORT_MANIFEST.md"
+              manifest_path.write_text("\\n".join(manifest) + "\\n", encoding="utf-8")
+              print(f"Extracted and verified {len(image_files)} UI PNG assets into {destination}.")
           else:
               raise SystemExit("No supported asset archive was found.")
           PY
@@ -149,6 +212,7 @@ jobs:
           git rm --ignore-unmatch imports/Clone-Lab-Idle-verified-assets.zip
           git rm --ignore-unmatch "Effect and Bullet 16x16.rar"
           git rm --ignore-unmatch imports/trigger-rar-import.txt
+          git rm --ignore-unmatch "Complete_UI_Essential_Pack_Free.7z"
           if git diff --cached --quiet; then
             echo "No asset changes detected."
             exit 1
