@@ -145,3 +145,36 @@ Before approving a visual change, verify:
 ## Change control
 
 Read this document before visual or animation work. Update it whenever the approved art direction, asset sources, rendering rules, or attribution requirements change. Product behavior and gameplay rules belong in `SOURCE_OF_TRUTH.md`.
+
+
+## Identified itch.io packs (not yet installed)
+
+The following exact product pages have been identified for the intended art sources:
+
+### Modern Interior - RPG Pack [32x32] — MarzoDev
+
+- **Product page:** https://marzodev.itch.io/interior-modern-asset-pack
+- **Format / scale:** Transparent PNG props, 32px.
+- **Free tier:** 12 props.
+- **Paid tier:** Full pack; the product page lists an additional 15-assets ZIP at a $1 minimum payment.
+- **License distinction:** The free pack is stated to be for personal use, with editing and game-development use allowed. The paid full pack is stated to allow personal or commercial use, with editing and game-development use allowed. Both prohibit redistribution/resale of the assets.
+- **Integration status:** Identified only; not downloaded or installed. Confirm the purchased/downloaded archive contents before integration.
+
+### Tiny RPG Character Asset Pack 01 V2.0 — Zerie
+
+- **Product page:** https://zerie.itch.io/tiny-rpg-character-asset-pack
+- **Contents:** 22 animated characters, 100×100 pixel tiles, idle, walk, attack, hurt, death, shield-block animations where applicable, selected summoning animations, projectile sprites, and an Aseprite source file.
+- **Full pack:** The page lists the full 22-character v2.0 ZIP at a $2.50 minimum payment.
+- **Free sample:** The free ZIP is limited to Soldier and Orc; it is not the full roster.
+- **License:** Personal and commercial video game use and modification are allowed. Redistribution, resale, or re-upload of the assets (modified or unmodified) is prohibited. Credit is appreciated but not required.
+- **Integration status:** Identified only; not downloaded or installed. Confirm the downloaded archive is the full v2.0 pack, not the free sample or an older version.
+
+### Acquisition and integration checklist
+
+- [ ] Obtain the full intended version of each pack.
+- [ ] Verify archive contents and version after download.
+- [ ] Preserve original source files; create separate game-ready exports.
+- [ ] Inspect sprite sheets, animation frame order, transparency, and scale.
+- [ ] Integrate only the assets needed for the room and initial clone roster.
+- [ ] Keep asset credits/license notes consistent with the exact downloaded versions.
+
