@@ -2,7 +2,7 @@
 
 **Inspection date:** 2026-11-08  
 **Project:** Clone Lab Idle  
-**Status:** ZIP contents verified; repository binary import remains pending.
+**Status:** Verified source assets imported and committed to `main`.
 
 ## Archive integrity
 
@@ -38,12 +38,14 @@ The included report records all checks as passed:
 - Native PNGs, 4× PNGs, a 160×144 spritesheet + JSON, and sample scene are included.
 - License permits personal and commercial projects and modification; no attribution required. Standalone resale/redistribution is prohibited.
 
+## Repository import result
+
+The verified bulk-import workflow extracted the curated bundle, committed the source assets under `assets/`, and removed the temporary ZIP. The completed repository import contains 403 PNG assets across the supplied archives, alongside the original spritesheets, individual animation strips, CSV/JSON indexes, palettes, previews, and license/readme files.
+
+The import commit is `e118bcfa07cb0882b5090f170a5fc66d4e740bc8` (2026-11-08). The workflow definition is `.github/workflows/import-verified-assets.yml`.
+
 ## Main-scene asset choice
 
 Use the top-down sci-fi tiles and Larchrow characters/bosses together. The two Larchrow packs explicitly share a 32-colour palette and 16px grid. Keep the previously committed Ninja Adventure 3/4-view assets as a separate prototype set.
 
-## Import bundle
-
-A curated engine-neutral bundle was prepared with native lab PNGs, character animation strips/sheets/indexes, boss strips/sheets/tiles/UI/indexes, palettes, and original license/readme files. It omits redundant engine exports and enlarged duplicate sheets. The bundle is a convenience import artifact, not a substitute for committing the source assets to the repository.
-
-**Important:** This audit does not claim that the binary assets have been committed or that a playable game exists. The repository still needs its actual browser-game implementation.
+**Game implementation status:** The first browser-game implementation has now been committed as `index.html`. GitHub Pages publication still needs to be checked independently before describing the game as live.
