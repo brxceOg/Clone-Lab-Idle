@@ -202,7 +202,7 @@ function renderUpgrades(){
   box.innerHTML='<div class="skill-selected-copy"><strong>'+title+' · LEVEL '+level+'</strong><small>'+detail+'</small></div><button class="buy" type="button" '+(!available||state.coins<cost?"disabled":"")+'>'+(maxed?"MAX LEVEL":(level===0?"UNLOCK":"UPGRADE")+" · "+formatCount(cost))+'</button>';
   box.querySelector("button").onclick=()=>{if(available&&state.coins>=cost)buyUpgrade(id)};
  };
- panel.querySelectorAll("[data-skill]").forEach(btn=>btn.addEventListener("click",e=>{e.stopPropagation();inspect(btn.dataset.skill)}));
+ panel.querySelectorAll("[data-skill]").forEach(btn=>btn.addEventListener("click",e=>{e.stopPropagation();const id=btn.dataset.skill,u=upgrades.find(x=>x.id===id),blocked=id==="rate"&&state.rate<=1.5;if(u&&!blocked&&state.coins>=u.cost()){buyUpgrade(id)}else{inspect(id)}}));
 }
 
 function renderDnaResearch(){
