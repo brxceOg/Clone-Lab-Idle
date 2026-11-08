@@ -1,0 +1,81 @@
+name: Import verified asset bundle
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "imports/Clone-Lab-Idle-verified-assets.zip"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verified-asset-import
+  cancel-in-progress: false
+
+jobs:
+  import-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Verify and extract source bundle
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          import shutil
+
+          archive = Path("imports/Clone-Lab-Idle-verified-assets.zip")
+          if not archive.is_file():
+              raise SystemExit("Expected import archive is missing.")
+
+          temp = Path("/tmp/clone-lab-asset-import")
+          shutil.rmtree(temp, ignore_errors=True)
+          temp.mkdir(parents=True)
+
+          with ZipFile(archive) as zf:
+              bad = zf.testzip()
+              if bad:
+                  raise SystemExit(f"ZIP integrity check failed at: {bad}")
+              for item in zf.infolist():
+                  target = (temp / item.filename).resolve()
+                  if temp.resolve() not in target.parents and target != temp.resolve():
+                      raise SystemExit(f"Unsafe archive path: {item.filename}")
+              zf.extractall(temp)
+
+          source_assets = temp / "assets"
+          if not source_assets.is_dir():
+              raise SystemExit("Bundle does not contain the expected assets/ directory.")
+
+          pngs = list(source_assets.rglob("*.png")) + list(source_assets.rglob("*.PNG"))
+          if len(pngs) < 100:
+              raise SystemExit(f"Expected at least 100 PNGs; found {len(pngs)}. Refusing import.")
+
+          shutil.copytree(source_assets, Path("assets"), dirs_exist_ok=True)
+          notes = temp / "IMPORT_NOTES.md"
+          if notes.is_file():
+              destination = Path("docs/asset-import")
+              destination.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(notes, destination / "IMPORT_NOTES.md")
+
+          print(f"Verified and staged {len(pngs)} PNG files.")
+          PY
+
+      - name: Commit imported source assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets docs/asset-import
+          git rm --ignore-unmatch imports/Clone-Lab-Idle-verified-assets.zip
+          if git diff --cached --quiet; then
+            echo "No asset changes detected."
+            exit 1
+          fi
+          git commit -m "Import verified sci-fi lab, clone, and boss assets"
+          git push origin HEAD:main
