@@ -53,7 +53,7 @@ jobs:
               for name in names:
                   p = PurePosixPath(name)
                   parts = p.parts
-                  if len(parts) >= 7 and parts[0] == "effects" and parts[-3:] in (("lit","grid","sprite-sheet.png"),("lit","grid","manifest.json")):
+                  if len(parts) >= 6 and parts[0] == "effects" and parts[-3:] in (("lit","grid","sprite-sheet.png"),("lit","grid","manifest.json")):
                       selected.append(name)
                       effects.add("/".join(parts[:3]))
                   elif len(parts) == 1 and parts[0] in allowed_docs:
