@@ -221,7 +221,7 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 - Keep the older Ninja Adventure 3/4-view assets as an alternate set, not mixed into the top-down scene.
 - Preserve native pixel dimensions, frame order, original palette, and nearest-neighbour rendering.
 - A curated, engine-neutral import bundle was prepared as `Clone-Lab-Idle-verified-assets.zip` for the selected asset folders and their frame metadata. It contains no game code.
-- **Repository status:** the archive contents are verified, but the PNG binaries have not yet been committed into the GitHub repository. The repository still has no `index.html` or playable implementation. Do not claim the assets are installed or the game is playable until those steps are completed.
+- **Repository status (updated 2026-11-08):** the selected PNG assets and animation indexes are committed in the repository, and `index.html` contains the playable browser implementation. The imported source assets remain preserved separately from game code.
 
 
 
@@ -235,3 +235,15 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 - **Credit:** BDragon1727 — Free Effect and Bullet 16x16.
 - **Status:** Imported and wired into the browser game. The game loads the four palette atlases and draws selected 16×16 source cells with nearest-neighbour rendering. Current uses: Knight melee impact, Mage spell projectile, Archer projectile, boss attack impact, and cloning-machine production/replacement burst. Preserve source palettes; the authored frame map is `assets/effects/effect-and-bullet-16x16/animation-map.json`.
 - **Import record:** `docs/asset-import/effect-and-bullet-16x16/IMPORT_MANIFEST.md`.
+
+
+## UI — Complete UI Essential Pack (Free / Flat Theme), Crusenho
+
+- **Product:** https://crusenho.itch.io/complete-ui-essential-pack
+- **Imported archive:** `Complete_UI_Essential_Pack_Free.7z`
+- **Theme used:** Flat Theme.
+- **License:** Creative Commons Attribution 4.0 International (CC BY 4.0). Commercial use and modifications are permitted with attribution; include a link to the license and indicate changes.
+- **Repository location:** `assets/ui/complete-ui-essential-pack-free/Complete_UI_Essential_Pack_Free/01_Flat_Theme/`.
+- **Import record:** `docs/asset-import/complete-ui-essential-pack-free/IMPORT_MANIFEST.md`.
+- **Attribution:** Crusenho — Complete UI Essential Pack. Modified/imported for Clone Lab Idle. https://creativecommons.org/licenses/by/4.0/
+- **Integration:** Flat-theme frame, slot, button, input-field, and banner sprites skin the top HUD, specimen/clone status panels, cloning-machine upgrade sheet, upgrade rows, purchase controls, activity log, and notifications. The original source sprites and sprite sheets are preserved. The room simulation, clone formation, and combat logic are not changed by this UI pass.
