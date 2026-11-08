@@ -1,0 +1,75 @@
+name: Validate Clone Lab PVFX integration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "assets/effects/pvfx-foundry/**"
+      - ".github/workflows/validate-pvfx-game.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Check JavaScript syntax and effect manifests
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          import json, re
+
+          html = Path("index.html").read_text(encoding="utf-8")
+          match = re.search(r"<script>(.*?)</script>", html, re.S)
+          if not match:
+              raise SystemExit("Inline game script not found.")
+          Path("/tmp/clone-lab.js").write_text(match.group(1), encoding="utf-8")
+          base = Path("assets/effects/pvfx-foundry")
+          sheets = list(base.glob("effects/*/*/lit/grid/sprite-sheet.png"))
+          manifests = list(base.glob("effects/*/*/lit/grid/manifest.json"))
+          if len(sheets) != 101 or len(manifests) != 101:
+              raise SystemExit(f"Expected 101 imported sheets/manifests; found {len(sheets)}/{len(manifests)}.")
+          selected = [
+              "effects/melee/sword-combo",
+              "effects/impacts/hit-spark",
+              "effects/projectiles/magic-missile",
+              "effects/projectiles/arrow-impact",
+              "effects/impacts/ground-slam",
+              "effects/impacts/shockwave-ring",
+              "effects/explosions/small-explosion",
+              "effects/explosions/big-explosion",
+              "effects/arcane/portal-summon",
+              "effects/arcane/teleport-in",
+              "effects/arcane/magic-circle",
+              "effects/ui/level-up",
+              "effects/ui/coin-pickup",
+              "effects/explosions/arcane-burst",
+          ]
+          for folder in selected:
+              stem = base / folder / "lit/grid"
+              image_path, manifest_path = stem / "sprite-sheet.png", stem / "manifest.json"
+              if not image_path.is_file() or not manifest_path.is_file():
+                  raise SystemExit(f"Missing selected PVFX asset: {folder}")
+              manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+              if not manifest.get("frames") or len(manifest.get("source_size", [])) != 2 or len(manifest.get("pivot", [])) != 2:
+                  raise SystemExit(f"Incomplete animation manifest: {folder}")
+              with Image.open(image_path) as im:
+                  width, height = im.size
+                  for frame in manifest["frames"]:
+                      rect = frame.get("sheet", {})
+                      x, y, w, h = (rect.get(k, -1) for k in ("x","y","width","height"))
+                      if min(x,y,w,h) < 0 or w == 0 or h == 0 or x+w > width or y+h > height:
+                          raise SystemExit(f"Out-of-bounds frame rectangle in {folder}")
+                      duration = frame.get("duration", {})
+                      if duration.get("numerator_ms", 0) <= 0 or duration.get("denominator", 0) <= 0:
+                          raise SystemExit(f"Invalid frame duration in {folder}")
+          print(f"Validated JavaScript source, {len(sheets)} source sheets, {len(manifests)} manifests, and {len(selected)} runtime effects.")
+          PY
+          node --check /tmp/clone-lab.js
