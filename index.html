@@ -13,12 +13,14 @@
 "use strict";
 const $=id=>document.getElementById(id),canvas=$("room"),ctx=canvas.getContext("2d");ctx.imageSmoothingEnabled=false;
 const BASE="assets/lab/pixel-sci-fi-tileset/",WARR="assets/warriors/larchrow-16x16-characters-monsters/",BOSS="assets/bosses/larchrow-16x16-boss-monsters/";
+const FXBASE="assets/effects/effect-and-bullet-16x16/",FXMAP={knight:{palette:"fire",frames:[[7,0],[8,0],[9,0],[10,0],[11,0],[12,0]],size:30},mage:{palette:"purple",frames:[[14,0],[15,0],[16,0],[17,0],[18,0],[19,0]],size:28},archer:{palette:"water",frames:[[23,0],[24,0],[25,0],[26,0],[27,0],[28,0]],size:24},boss:{palette:"green",frames:[[0,3],[1,3],[2,3],[3,3],[4,3],[5,3],[6,3]],size:54},machine:{palette:"water",frames:[[0,12],[1,12],[2,12],[3,12],[4,12],[5,12],[6,12]],size:58}};
 const state={coins:0,bossIndex:0,bossHp:100,bossMax:100,clones:[],totalClones:0,rate:8,quantity:1,power:1,unlocked:["knight"],lastProduction:Date.now(),lastBossAttack:Date.now(),lastSave:Date.now(),machineLevel:1,phase:"idle",toastUntil:0,log:[],defeats:0,respawns:[]};
 const bossStats=[100,180,280,430,620,900,1280,1800,2500,3500,4900,6800,9400,13000];
-let labImg=null,labFrames={},warData=null,bossData=null,warImgs={},bossImgs={},assetsReady=false,lastFrame=0;
+let labImg=null,labFrames={},warData=null,bossData=null,warImgs={},bossImgs={},fxImgs={},fxEvents=[],assetsReady=false,lastFrame=0;
 const loadImage=src=>new Promise((resolve,reject)=>{const im=new Image();im.onload=()=>resolve(im);im.onerror=reject;im.src=src;});
 async function loadAssets(){try{
  const [lab,lf,wd,bd]=await Promise.all([loadImage(BASE+"spritesheet.png"),fetch(BASE+"spritesheet.json").then(r=>r.json()),fetch(WARR+"animation_index.json").then(r=>r.json()),fetch(BOSS+"animation_index.json").then(r=>r.json())]);
+ const fxNames=["fire","green","purple","water"];await Promise.all(fxNames.map(async name=>{try{fxImgs[name]=await loadImage(FXBASE+"Effect and Bullet 16x16/"+name[0].toUpperCase()+name.slice(1)+" Effect and Bullet 16x16.png")}catch(err){console.warn("Effect atlas unavailable:",name,err)}}));
  labImg=lab;labFrames=lf.frames;warData=wd;bossData=bd;
  const chars=wd.characters.filter(c=>c.group==="heroes");
  for(const c of chars){const anims={};for(const a of c.animations){try{anims[a.name]=await loadImage(WARR+a.strip)}catch{}}warImgs[c.name]=anims;}
@@ -27,6 +29,23 @@ async function loadAssets(){try{
  }catch(err){console.error(err);$("hint").textContent="Some art files could not be loaded. Check the asset paths in the repository."}}
 function tile(name,x,y,w=16,h=16){const f=labFrames[name];if(labImg&&f)ctx.drawImage(labImg,f.x,f.y,f.w,f.h,x,y,w,h)}
 function stripFrame(img,index,fw,fh,x,y,w,h){if(!img)return;const frames=Math.max(1,Math.floor(img.width/fw));ctx.drawImage(img,(index%frames)*fw,0,fw,fh,Math.round(x),Math.round(y),w||fw,h||fh)}
+function spawnFx(kind,x,y,targetX=null,targetY=null){
+ const def=FXMAP[kind];if(!def||!fxImgs[def.palette])return;
+ fxEvents.push({kind,x,y,targetX,targetY,started:performance.now(),duration:kind==="machine"?620:kind==="boss"?560:460});
+ if(fxEvents.length>70)fxEvents.splice(0,fxEvents.length-70);
+}
+function drawEffects(t){
+ fxEvents=fxEvents.filter(e=>t-e.started<e.duration);
+ for(const e of fxEvents){
+  const def=FXMAP[e.kind],img=fxImgs[def.palette];if(!img)continue;
+  const age=Math.max(0,t-e.started),p=Math.min(.999,age/e.duration),idx=Math.min(def.frames.length-1,Math.floor(p*def.frames.length)),[col,row]=def.frames[idx];
+  const x=e.targetX==null?e.x:e.x+(e.targetX-e.x)*p,y=e.targetY==null?e.y:e.y+(e.targetY-e.y)*p;
+  const size=def.size*(e.kind==="machine"?(.7+.3*Math.sin(p*Math.PI)):e.kind==="boss"?(1+p*.35):1);
+  ctx.globalAlpha=e.kind==="machine"?.82:Math.max(.18,1-p*.65);
+  ctx.drawImage(img,col*16,row*16,16,16,Math.round(x-size/2),Math.round(y-size/2),size,size);
+  ctx.globalAlpha=1;
+ }
+}
 function bossDef(){return bossData?.bosses[state.bossIndex%bossData.bosses.length]||{name:"slime_king",size:[32,32]}}
 function bossAnim(action){const b=bossDef(),rage=state.bossHp<=state.bossMax*.5&&action!=="death",key=b.name+"_"+(rage&&action==="idle"?"idle_enraged":rage&&action==="attack"?"attack_enraged":action);return bossData?.animations.find(a=>a.name===key)||bossData?.animations.find(a=>a.name===b.name+"_idle")}
 function charAnim(type,action,dir){return warData?.characters.find(c=>c.name===type)?.animations.find(a=>a.name===action+"_"+dir)}
@@ -42,7 +61,7 @@ function drawRoom(t){
  if(img)stripFrame(img,frame,size,size,bx,by,drawSize,drawSize);else{ctx.fillStyle="#8ac5a6";ctx.fillRect(bx,by,drawSize,drawSize)}
  for(const c of state.clones){ctx.fillStyle="#8da0a8";ctx.globalAlpha=.25;ctx.fillRect(c.x-4,c.y+5,9,3);ctx.globalAlpha=1;const action=c.mode==="walk"?"walk":c.mode==="attack"?"attack":"idle",a=charAnim(c.type,action,c.dir||"up")||charAnim(c.type,"idle",c.dir||"up"),image=warImgs[c.type]?.[a?.name]||warImgs[c.type]?.["idle_down"],frame=a?Math.floor(t/(1000/(a.fps||6)))%a.frames:0;if(image)stripFrame(image,frame,16,16,c.x-8,c.y-8,16,16);if(c.flash>t){ctx.fillStyle="#fff4a8";ctx.fillRect(c.x-5,c.y-7,10,2)}if(c.hp<3){ctx.fillStyle="#344d59";ctx.fillRect(c.x-5,c.y-11,10,2);ctx.fillStyle="#df7776";ctx.fillRect(c.x-5,c.y-11,10*Math.max(0,c.hp/3),2)}}
  const pulse=Math.sin(t/180)*1.5;ctx.fillStyle="#b4c8cf";ctx.fillRect(238,354,72,92);ctx.fillStyle="#dce9ec";ctx.fillRect(242,358,64,82);tile("cryo_pod",248,360,48,64);tile("tank_top",240,344);tile("reactor_core",288,344);tile("terminal_blue",240,426);tile("lamp_cyan",288,426+Math.round(pulse));ctx.fillStyle="#3d7187";ctx.fillRect(251,376,42,28);ctx.fillStyle="#a9e4df";ctx.fillRect(255,380,34,20);ctx.fillStyle="#e4fbf7";ctx.fillRect(259,384,26,12);ctx.fillStyle="#4f9cb2";ctx.fillRect(264,388,16,4);ctx.fillStyle="#496673";ctx.font="bold 7px system-ui";ctx.fillText("CLONE",272,418);if(state.phase==="production"){ctx.fillStyle="#b7fff2";ctx.globalAlpha=.62;ctx.fillRect(254,379,36,22);ctx.globalAlpha=1;ctx.fillStyle="#ffffff";ctx.fillRect(263,373,18,4);ctx.fillStyle="#8ce6d6";ctx.fillRect(258,402,28,3)}ctx.fillStyle="#d5e5e9";ctx.fillRect(238,446,72,5);ctx.strokeStyle="#73b9b0";ctx.lineWidth=1;ctx.strokeRect(235,350,78,100);
- ctx.fillStyle="#56717c";ctx.font="bold 8px system-ui";ctx.textAlign="left";ctx.fillText("PRODUCTION BAY",12,464);ctx.textAlign="right";ctx.fillText("SPECIMEN "+String(state.bossIndex+1).padStart(2,"0"),308,464)
+ drawEffects(t);ctx.fillStyle="#56717c";ctx.font="bold 8px system-ui";ctx.textAlign="left";ctx.fillText("PRODUCTION BAY",12,464);ctx.textAlign="right";ctx.fillText("SPECIMEN "+String(state.bossIndex+1).padStart(2,"0"),308,464)
 }
 function addLog(s){state.log.unshift(s);state.log=state.log.slice(0,8);if($("log"))$("log").innerHTML=state.log.map(x=>"• "+x).join("<br>")}
 function notify(s){$("toast").textContent=s;$("toast").classList.add("show");state.toastUntil=Date.now()+1500}
@@ -57,10 +76,10 @@ const upgrades=[
 function renderUpgrades(){if(!$("upgrades"))return;$("upgrades").innerHTML=upgrades.map(u=>{const bought=(u.id==="mage"||u.id==="archer")&&state.unlocked.includes(u.id),cost=u.cost();return '<div class="upgrade"><div class="info"><b>'+u.name+'</b><small>'+u.desc()+'</small></div><button class="buy" data-up="'+u.id+'" '+(bought||state.coins<cost?"disabled":"")+'>'+(bought?"UNLOCKED":cost+" CREDITS")+'</button></div>'}).join("");$("upgrades").querySelectorAll("[data-up]").forEach(btn=>btn.addEventListener("click",()=>buyUpgrade(btn.dataset.up)))}
 function buyUpgrade(id){const u=upgrades.find(x=>x.id===id);if(!u)return;if((id==="mage"||id==="archer")&&state.unlocked.includes(id))return;const cost=u.cost();if(state.coins<cost)return;state.coins-=cost;u.buy();state.machineLevel++;addLog(u.name+" installed.");notify("UPGRADE INSTALLED");save();updateHud()}
 function spawnClone(type){if(state.clones.length>=26)return;const i=state.clones.length;state.clones.push({type,x:224+(Math.random()*4-2),y:342+(Math.random()*6-3),mode:"walk",dir:"up",nextHit:0,flash:0,hp:3,slot:i});state.totalClones++}
-function produce(count=state.quantity,respawn=false){let made=0;for(let i=0;i<count&&state.clones.length<26;i++){const type=respawn?state.respawns.shift()?.type:state.unlocked[state.totalClones%state.unlocked.length];if(!type)break;spawnClone(type);made++}if(!made)return;state.phase="production";setTimeout(()=>{if(state.phase==="production")state.phase="idle"},420);addLog((respawn?"Machine replacement cycle · ":"Automatic production · ")+made+" clone"+(made===1?"":"s"));if(!respawn)notify(made===1?"CLONE RELEASED":"BATCH RELEASED");updateHud();save()}
-function hitBoss(c,now){if(now<c.nextHit)return;c.nextHit=now+(c.type==="knight"?1050:1450);c.mode="attack";state.bossHp-=state.power*(c.type==="knight"?1.15:1);c.flash=now+110;if(state.phase!=="attack"&&state.phase!=="telegraph")state.phase="hurt";setTimeout(()=>{if(c.mode==="attack")c.mode="idle";if(state.phase==="hurt")state.phase="idle"},220);if(state.bossHp<=0)defeatBoss()}
+function produce(count=state.quantity,respawn=false){let made=0;for(let i=0;i<count&&state.clones.length<26;i++){const type=respawn?state.respawns.shift()?.type:state.unlocked[state.totalClones%state.unlocked.length];if(!type)break;spawnClone(type);made++}if(!made)return;spawnFx("machine",272,395);state.phase="production";setTimeout(()=>{if(state.phase==="production")state.phase="idle"},620);addLog((respawn?"Machine replacement cycle · ":"Automatic production · ")+made+" clone"+(made===1?"":"s"));if(!respawn)notify(made===1?"CLONE RELEASED":"BATCH RELEASED");updateHud();save()}
+function hitBoss(c,now){if(now<c.nextHit)return;c.nextHit=now+(c.type==="knight"?1050:1450);c.mode="attack";spawnFx(c.type==="knight"?"knight":c.type==="mage"?"mage":"archer",c.x,c.y,160,196);state.bossHp-=state.power*(c.type==="knight"?1.15:1);c.flash=now+150;if(state.phase!=="attack"&&state.phase!=="telegraph")state.phase="hurt";setTimeout(()=>{if(c.mode==="attack")c.mode="idle";if(state.phase==="hurt")state.phase="idle"},220);if(state.bossHp<=0)defeatBoss()}
 function killClone(c,now){const i=state.clones.indexOf(c);if(i<0)return;state.clones.splice(i,1);state.respawns.push({type:c.type,due:now+2800});addLog(c.type+" lost · replacement queued");updateHud();save()}
-function bossStrike(now){state.phase="attack";for(const c of [...state.clones]){const d=Math.hypot(c.x-160,c.y-205);if(d<112){c.hp--;c.flash=now+260;c.x+=Math.sign(c.x-160||1)*8;c.y+=Math.sign(c.y-205||1)*8;if(c.hp<=0)killClone(c,now)}}setTimeout(()=>{if(state.phase==="attack")state.phase="idle"},520)}
+function bossStrike(now){state.phase="attack";spawnFx("boss",160,196);for(const c of [...state.clones]){const d=Math.hypot(c.x-160,c.y-205);if(d<112){spawnFx("boss",c.x,c.y);c.hp--;c.flash=now+260;c.x+=Math.sign(c.x-160||1)*8;c.y+=Math.sign(c.y-205||1)*8;if(c.hp<=0)killClone(c,now)}}setTimeout(()=>{if(state.phase==="attack")state.phase="idle"},520)}
 function defeatBoss(){if(state.phase==="death")return;state.phase="death";addLog(bossDef().name.replaceAll("_"," ")+" defeated.");const anim=bossAnim("death"),duration=(anim?.frames||6)*(anim?.ms_per_frame||130);setTimeout(()=>{const reward=Math.round(35*Math.pow(1.42,state.bossIndex));state.coins+=reward;state.defeats++;state.bossIndex++;state.bossMax=bossStats[state.bossIndex%bossStats.length]*Math.pow(1.38,Math.floor(state.bossIndex/bossStats.length));state.bossHp=state.bossMax;state.phase="idle";state.clones=state.clones.slice(0,12);addLog("Reward collected · +"+reward+" credits. Next specimen released.");notify("BOSS CLEARED  +"+reward);updateHud();save()},duration)}
 function simulate(dt,now){
  if(!assetsReady)return;
