@@ -1,49 +1,48 @@
-# Clone Lab Idle — starter art library
+# Clone Lab Idle — asset library
 
-Selected original PNG assets are stored locally in this repository so the browser game can load them without third-party hotlinks. All included packs are CC0 1.0 / public-domain equivalent, allowing use, modification and redistribution, including in public and commercial games.
+The repository's original starter assets are retained as a separate 3/4-view prototype set. The preferred art direction for the main game scene is now top-down on a 16×16 grid, using the three user-supplied packs documented below.
 
-## Included assets
+## Existing starter assets (alternate 3/4-view set)
 
-- `warriors/ninja-blue.png`, `warriors/samurai-blue.png`: 4-direction 3/4-view RPG character sheets from Ninja Adventure.
-- `lab/interior-floor-tiles.png`, `lab/interior-wall-tiles.png`: interior floor and wall tiles from Ninja Adventure. These are starter interior tiles, not a finished laboratory by themselves.
-- `lab/scifi-console.png`: one 64×64 sci-fi structure sprite from Kenney's Sci-Fi RTS pack, suitable as a small room fixture.
-- `bosses/components/`: modular body, eyes, arms, legs, horn and mouth layers from Kenney's Monster Builder Pack. These are source components, not a finished animated boss.
+- `warriors/ninja-blue.png`, `warriors/samurai-blue.png`: four-direction 3/4-view sheets from Ninja Adventure.
+- `lab/interior-floor-tiles.png`, `lab/interior-wall-tiles.png`: interior tiles from Ninja Adventure.
+- `lab/scifi-console.png`: Kenney Sci-Fi RTS fixture.
+- `bosses/components/` and `bosses/first-boss.svg`: Kenney Monster Builder components and a static composition.
 
-## Perspective and rendering
+Do not mix these perspective-specific assets into the top-down room without deliberate conversion.
 
-The selected warrior art is 16×16-grid, four-direction, 3/4-view. This establishes a top-down/3/4 room camera for the initial art pipeline. Use nearest-neighbor rendering; do not blur or hue-shift the character sheets.
+## Verified incoming top-down packs (2026-11-08)
+
+All three supplied ZIP archives were inspected. Every PNG in each archive opened successfully. Full QA results and license notes are in `source-notes/VERIFIED_IMPORT.md`.
+
+1. **Lab — reodesuxz, Free Pixel Sci-Fi Tileset (16x16)**  
+   https://reodesuxz.itch.io/free-pixel-sci-fi-tileset-16x16  
+   83 described 16×16 tiles/sprites; native PNGs, spritesheet + JSON, sample scene. Commercial use and modification allowed; no attribution required; no standalone redistribution/resale.
+
+2. **Warriors — Larchrow, 16x16 Characters & Monsters**  
+   https://larchrow.itch.io/larchrow-16x16-characters-monsters  
+   8 heroes/NPCs + 10 monsters; 122 animations / 356 frames. The included QA report passed all checks. Commercial use and modification allowed; attribution optional; no resale/asset-pack redistribution.
+
+3. **Bosses — Larchrow, 16x16 Boss Monsters**  
+   https://larchrow.itch.io/larchrow-16x16-boss-monsters  
+   14 bosses (32×32 and 48×48); 95 animations / 432 frames, telegraphs and HP UI. The included QA report passed all checks. Commercial use and modification allowed; attribution optional; no resale/asset-pack redistribution.
+
+## Rendering rules
+
+- Use nearest-neighbour / `image-rendering: pixelated`.
+- Keep 16×16 source frames at native resolution and preserve the provided animation indexes.
+- The two Larchrow packs share a 32-colour palette. Do not apply hue shifts, blur, or blanket filters.
+- Use the larger 32×32 / 48×48 boss frames to maintain a clear scale difference over 16×16 warriors.
+
+## Repository status
+
+The supplied ZIPs have been verified, but the PNG binaries are not yet committed to this repository. The curated engine-neutral bundle `Clone-Lab-Idle-verified-assets.zip` was prepared separately for import. No game code or playable page exists yet; do not reference uncommitted assets from game code.
 
 ## Sources and licenses
 
-### Ninja Adventure — Pixel-Boy and AAA
-- Product: https://pixel-boy.itch.io/ninja-adventure-asset-pack
-- Public source repository: https://github.com/pixel-boy/NinjaAdventure
-- License: CC0 1.0 Universal, as stated on the itch.io product page.
-- Included: two warrior sheets and two interior tile sheets.
-
-### Sci-Fi RTS — Kenney
-- Source: https://kenney.nl/assets/sci-fi-rts
-- CC0 mirror metadata: https://github.com/Tiddybub/2d-assets/tree/main/sci-fi/sci-fi-rts
-- License: CC0 1.0, recorded in the mirror's SOURCE.md and License.txt.
-- Included: one sci-fi console/structure sprite.
-
-### Monster Builder Pack — Kenney
-- Source: https://kenney.nl/assets/monster-builder-pack
-- CC0 mirror metadata: https://github.com/Tiddybub/2d-assets/tree/main/characters/monster-builder-pack
-- License: CC0 1.0, recorded in the mirror's SOURCE.md and License.txt.
-- Included: selected modular components for assembling boss appearances.
-
-Credit is not required for these CC0 assets, but links are retained for provenance. The full Ninja Adventure itch.io download contains a much larger roster than the subset currently installed here.
-
-
-## Next free asset downloads (selected, pending)
-
-The following three archives are the preferred expansion set for the first playable lab/warrior/boss scene. They are not in this repository yet; do not reference them from game code until the user supplies the ZIPs and the contents/frame maps are inspected.
-
-1. **Lab:** [Free Pixel Sci-Fi Tileset (16x16)](https://reodesuxz.itch.io/free-pixel-sci-fi-tileset-16x16) — `Pixel_Sci-Fi_Tileset_v1.0.zip`, 121 KB, 83 top-down 16×16 tiles/props, includes white floors/walls and lab machinery.
-2. **Warriors:** [16x16 Characters & Monsters](https://larchrow.itch.io/larchrow-16x16-characters-monsters) — `larchrow-16x16-characters-monsters.zip`, 1.4 MB, 8 four-directional heroes and 10 animated monsters.
-3. **Bosses:** [16x16 Boss Monsters](https://larchrow.itch.io/larchrow-16x16-boss-monsters) — `larchrow-16x16-boss-monsters.zip`, 2.4 MB, 14 larger bosses with idle/attack/hurt/death/enraged animations and frame metadata.
-
-These three packs are a stronger perspective match for one another than combining the 3/4-view Ninja Adventure sheets with a top-down room. The existing Ninja Adventure starter assets remain available as a separate 3/4-view prototype set; don't mix both perspectives in one scene without deliberate conversion.
-
-**Next step:** download the three free $0 ZIPs from itch.io and attach them to the chat. After inspection, place selected lab art in `lab/`, character art in `warriors/`, boss art in `bosses/`, and keep required frame maps/metadata in `source-notes/`. Keep original archive names and source notes in the import record.
+- Ninja Adventure: https://pixel-boy.itch.io/ninja-adventure-asset-pack — CC0 1.0.
+- Kenney Sci-Fi RTS: https://kenney.nl/assets/sci-fi-rts — CC0 1.0.
+- Kenney Monster Builder Pack: https://kenney.nl/assets/monster-builder-pack — CC0 1.0.
+- reodesuxz Pixel Sci-Fi Tileset: https://reodesuxz.itch.io/free-pixel-sci-fi-tileset-16x16 — commercial/personal use and modification allowed; no attribution required; no standalone redistribution.
+- Larchrow Characters & Monsters: https://larchrow.itch.io/larchrow-16x16-characters-monsters — royalty-free commercial/non-commercial use and modification; attribution optional; no resale/asset-pack redistribution.
+- Larchrow Boss Monsters: https://larchrow.itch.io/larchrow-16x16-boss-monsters — royalty-free commercial/non-commercial use and modification; attribution optional; no resale/asset-pack redistribution.
