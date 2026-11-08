@@ -54,6 +54,7 @@ Upgrade families:
 
 - **Production quantity:** More warriors produced per cycle or more warriors in a production batch.
 - **Production rate:** Shorter time between production cycles.
+  - The Production cycle upgrade starts at 35 credits and scales by 1.5× for every purchase using a saved purchase level. Existing saves infer that level from their current production interval. The upgrade stops accepting purchases at the 1.5-second minimum.
 - **Clone unlocks:** New warrior types/classes become available.
 - **Clone improvements:** Where appropriate, improve the strength or effectiveness of unlocked warriors.
 
