@@ -42,7 +42,7 @@ The authoritative source and QA notes are in `source-notes/VERIFIED_IMPORT.md`. 
 - **Free Effect and Bullet 16x16 — BDragon1727:** Four palette atlases (Fire, Green, Purple, Water) in `effects/effect-and-bullet-16x16/`.
 - Each atlas is 576×208 and uses 16×16 cells (36 columns × 13 rows). Use source rectangles with nearest-neighbour rendering; do not stretch or recolor the atlas.
 - License is for non-commercial game use; commercial use requires a contribution to the creator. Do not redistribute the pack as a standalone asset. See `docs/asset-import/effect-and-bullet-16x16/IMPORT_MANIFEST.md`.
-- Imported only; not yet assigned to in-game animation sequences.
+- Integrated into in-game sequences for Knight melee, Mage and Archer projectiles, boss attacks, machine production, and clone emergence. Original atlases and authored frame map remain preserved.
 
 
 ## Font — Pixels, Ayden Snider
@@ -52,3 +52,15 @@ The authoritative source and QA notes are in `source-notes/VERIFIED_IMPORT.md`. 
 - **License:** Free for personal use only, as stated on the DaFont listing. Do not use in a commercial release without obtaining the creator's commercial permission/license.
 - **Repository location:** `assets/fonts/Pixels.ttf` (extracted from the user-supplied `pixels.zip`).
 - **Integration:** Loaded locally with `@font-face` and used for HTML interface text and canvas-rendered labels. No external font service is required.
+
+
+## PVFX Foundry 1.0 — Pixel VFX Studio
+
+- **Source:** https://pixel-vfx-studio.itch.io/pvfx-foundry
+- **Release:** PVFX Foundry 1.0.
+- **License:** CC0 1.0 Universal for the rendered sprite sheets and bundled manifests/documentation. The license does not cover Pixel VFX Studio software or source code, which are not included. Attribution is appreciated but not required; suggested credit: “VFX from PVFX Foundry by Pixel VFX Studio.”
+- **Repository location:** `assets/effects/pvfx-foundry/`.
+- **Import:** 101 Lit-tier fixed-grid sprite sheets and their matching per-effect JSON manifests. Original frame pixels and timings are preserved. The original user-supplied ZIP remains at the repository root.
+- **Rendering:** Canvas draws exact manifest frame rectangles and per-frame durations with smoothing disabled, preserving transparent alpha and authored pivots. Only a curated subset is preloaded by the game; all 101 imported effects remain available for future gameplay additions.
+- **Current integration:** Knight sword-combo and impact sparks; Mage magic-missile travel and impact; Archer arrow-impact travel and sparks; boss ground-slam, shockwave, clone-hit bursts, and defeat explosion; machine portal activation and clone teleport-in; upgrade level-up feedback; boss-reward coin pickup.
+- **Import record:** `assets/effects/pvfx-foundry/IMPORT_MANIFEST.md`.
