@@ -34,3 +34,16 @@ The selected warrior art is 16×16-grid, four-direction, 3/4-view. This establis
 - Included: selected modular components for assembling boss appearances.
 
 Credit is not required for these CC0 assets, but links are retained for provenance. The full Ninja Adventure itch.io download contains a much larger roster than the subset currently installed here.
+
+
+## Next free asset downloads (selected, pending)
+
+The following three archives are the preferred expansion set for the first playable lab/warrior/boss scene. They are not in this repository yet; do not reference them from game code until the user supplies the ZIPs and the contents/frame maps are inspected.
+
+1. **Lab:** [Free Pixel Sci-Fi Tileset (16x16)](https://reodesuxz.itch.io/free-pixel-sci-fi-tileset-16x16) — `Pixel_Sci-Fi_Tileset_v1.0.zip`, 121 KB, 83 top-down 16×16 tiles/props, includes white floors/walls and lab machinery.
+2. **Warriors:** [16x16 Characters & Monsters](https://larchrow.itch.io/larchrow-16x16-characters-monsters) — `larchrow-16x16-characters-monsters.zip`, 1.4 MB, 8 four-directional heroes and 10 animated monsters.
+3. **Bosses:** [16x16 Boss Monsters](https://larchrow.itch.io/larchrow-16x16-boss-monsters) — `larchrow-16x16-boss-monsters.zip`, 2.4 MB, 14 larger bosses with idle/attack/hurt/death/enraged animations and frame metadata.
+
+These three packs are a stronger perspective match for one another than combining the 3/4-view Ninja Adventure sheets with a top-down room. The existing Ninja Adventure starter assets remain available as a separate 3/4-view prototype set; don't mix both perspectives in one scene without deliberate conversion.
+
+**Next step:** download the three free $0 ZIPs from itch.io and attach them to the chat. After inspection, place selected lab art in `lab/`, character art in `warriors/`, boss art in `bosses/`, and keep required frame maps/metadata in `source-notes/`. Keep original archive names and source notes in the import record.
