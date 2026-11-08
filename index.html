@@ -153,8 +153,8 @@ function simulate(dt,now){
   if(distance>1.5){const step=Math.min(moveStep,distance);c.x+=steerX/steerLength*step;c.y+=steerY/steerLength*step;c.mode="walk"}else{c.x=targetX;c.y=targetY;c.mode="idle";hitBoss(c,now)}
   c.slot=i;c.dir=Math.abs(cx-c.x)>Math.abs(cy-c.y)?(cx>c.x?"right":"left"):(cy>c.y?"down":"up");
   // Crowd separation and knockback may displace a clone briefly, but it is always pulled back to its assigned orbit slot.
-  const fromSlotX=c.x-targetX,fromSlotY=c.y-targetY,slotError=Math.hypot(fromSlotX,fromSlotY),slotSlack=distance>2?7:2;
-  if(slotError>slotSlack){c.x=targetX+fromSlotX/slotError*slotSlack;c.y=targetY+fromSlotY/slotError*slotSlack}
+  const fromSlotX=c.x-targetX,fromSlotY=c.y-targetY,slotError=Math.hypot(fromSlotX,fromSlotY);
+  if(distance<12&&slotError>2.5){c.x=targetX+fromSlotX/slotError*2.5;c.y=targetY+fromSlotY/slotError*2.5}
   const safeDistance=bossRadius+11,fromBossX=c.x-cx,fromBossY=c.y-cy,fromBossDistance=Math.max(.001,Math.hypot(fromBossX,fromBossY));
   if(fromBossDistance<safeDistance){c.x=cx+fromBossX/fromBossDistance*safeDistance;c.y=cy+fromBossY/fromBossDistance*safeDistance}
   c.x=Math.max(12,Math.min(308,c.x));c.y=Math.max(70,Math.min(440,c.y));
