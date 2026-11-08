@@ -319,8 +319,8 @@ function simulate(dt,now){
   if(moved){c.x+=sx*.08;c.y+=sy*.08}
   const safeDistance=bossRadius+11,fromBossX=c.x-cx,fromBossY=c.y-cy,fromBossDistance=Math.max(.001,Math.hypot(fromBossX,fromBossY));
   if(fromBossDistance<safeDistance){c.x=cx+fromBossX/fromBossDistance*safeDistance;c.y=cy+fromBossY/fromBossDistance*safeDistance}
-  const slotDistance=Math.hypot(targetX-c.x,targetY-c.y);
-  if(slotDistance<2.5){c.x=targetX;c.y=targetY;c.mode="idle";hitBoss(c,now)}else c.mode="walk";
+  const remainingSlotDistance=Math.hypot(targetX-c.x,targetY-c.y);
+  if(remainingSlotDistance<2.5){c.x=targetX;c.y=targetY;c.mode="idle";hitBoss(c,now)}else c.mode="walk";
   c.slot=i;c.dir=Math.abs(cx-c.x)>Math.abs(cy-c.y)?(cx>c.x?"right":"left"):(cy>c.y?"down":"up");
   c.x=Math.max(12,Math.min(308,c.x));c.y=Math.max(70,Math.min(440,c.y));
  }
