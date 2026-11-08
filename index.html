@@ -86,7 +86,7 @@ function drawNineSlice(c,img,x,y,w,h,b){if(!img||w<=0||h<=0)return;const sw=img.
 function tile(name,x,y,w=16,h=16){const f=labFrames[name];if(labImg&&f)ctx.drawImage(labImg,f.x,f.y,f.w,f.h,x,y,w,h)}
 function stripFrame(img,index,fw,fh,x,y,w,h){if(!img)return;const frames=Math.max(1,Math.floor(img.width/fw));ctx.drawImage(img,(index%frames)*fw,0,fw,fh,Math.round(x),Math.round(y),w||fw,h||fh)}
 function spawnFx(kind,x,y,targetX=null,targetY=null,delay=0){
- const def=FXMAP[kind];if(!def||!fxImgs[def.palette])return;
+ const def=FXMAP[kind];if(!def||(!fxImgs[def.palette]&&kind!=="cloneSpawn"))return;
  fxEvents.push({kind,x,y,targetX,targetY,started:performance.now()+Math.max(0,delay),duration:kind==="machine"?620:kind==="cloneSpawn"?760:kind==="boss"?560:460});
  if(fxEvents.length>90)fxEvents.splice(0,fxEvents.length-90);
 }
@@ -94,10 +94,23 @@ function drawEffects(t){
  fxEvents=fxEvents.filter(e=>e.started+e.duration>t);
  for(const e of fxEvents){
   if(t<e.started)continue;
-  const def=FXMAP[e.kind],img=fxImgs[def.palette];if(!img)continue;
-  const age=Math.max(0,t-e.started),p=Math.min(.999,age/e.duration),idx=Math.min(def.frames.length-1,Math.floor(p*def.frames.length)),[col,row]=def.frames[idx];
+  const def=FXMAP[e.kind];
+  const age=Math.max(0,t-e.started),p=Math.min(.999,age/e.duration);
   const x=e.targetX==null?e.x:e.x+(e.targetX-e.x)*p,y=e.targetY==null?e.y:e.y+(e.targetY-e.y)*p;
-  const size=def.size*(e.kind==="machine"?(.7+.3*Math.sin(p*Math.PI)):e.kind==="cloneSpawn"?( .45+1.05*Math.sin(p*Math.PI)):e.kind==="boss"?(1+p*.35):1);
+  if(e.kind==="cloneSpawn"){
+   const fade=1-p,ring=8+p*27,pulse=Math.sin(p*Math.PI);
+   ctx.save();ctx.globalAlpha=fade;
+   ctx.strokeStyle="#5cecff";ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,ring,0,Math.PI*2);ctx.stroke();
+   ctx.strokeStyle="#eaffff";ctx.lineWidth=1;ctx.beginPath();ctx.arc(x,y,Math.max(2,ring-5),0,Math.PI*2);ctx.stroke();
+   const sparks=[[0,-1],[1,0],[0,1],[-1,0],[.7,-.7],[.7,.7],[-.7,.7],[-.7,-.7]];
+   ctx.fillStyle="#b8fbff";
+   for(let i=0;i<sparks.length;i++){const a=i*Math.PI/4+p*Math.PI*2,dist=ring+3,px=Math.round(x+Math.cos(a)*dist),py=Math.round(y+Math.sin(a)*dist),sz=i%2?3:4;ctx.fillRect(px-sz/2,py-sz/2,sz,sz)}
+   ctx.fillStyle="#ffffff";ctx.globalAlpha=fade*(.45+.55*pulse);ctx.fillRect(Math.round(x-3),Math.round(y-3),6,6);
+   ctx.restore();continue;
+  }
+  const img=fxImgs[def.palette];if(!img)continue;
+  const idx=Math.min(def.frames.length-1,Math.floor(p*def.frames.length)),[col,row]=def.frames[idx];
+  const size=def.size*(e.kind==="machine"?( .7+.3*Math.sin(p*Math.PI)):e.kind==="boss"?(1+p*.35):1);
   ctx.globalAlpha=e.kind==="machine"?.82:Math.max(.18,1-p*.65);
   ctx.drawImage(img,col*16,row*16,16,16,Math.round(x-size/2),Math.round(y-size/2),size,size);
   ctx.globalAlpha=1;
