@@ -100,6 +100,14 @@ The game should reward both active interaction and letting the simulation run.
 - Keep text legible at phone size and avoid relying on hover interactions.
 - Desktop layouts may use additional space but must preserve the same visual hierarchy and game rules.
 
+## Startup and asset initialization
+
+- On every page load, show a dedicated branded loading screen before the title menu.
+- The loading screen must report real initialization stages and must not expose PLAY until required laboratory, warrior, boss, and pixel-font assets have finished loading.
+- Optional UI and particle-effect assets may fail without blocking startup; required scene and character assets must fail visibly and offer a retry instead of allowing a partially initialized game to start.
+- After successful initialization, reveal the title screen with PLAY and RESET SAVE. Restore the local save only after the player chooses PLAY.
+- Keep the simulation paused behind the startup screens; loading and title presentation must not advance production or combat.
+
 ## Technical direction
 
 - Target a lightweight browser implementation suitable for GitHub Pages.
