@@ -1,0 +1,91 @@
+name: Inspect PVFX Foundry archive
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "pvfx-foundry-thirteen-spritesheets.zip"
+      - ".github/workflows/inspect-pvfx-archive.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Inspect archive without importing assets
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path, PurePosixPath
+          from zipfile import ZipFile
+          from PIL import Image, ImageDraw
+          import json
+
+          archive = Path("pvfx-foundry-thirteen-spritesheets.zip")
+          if not archive.is_file():
+              raise SystemExit("Expected PVFX archive was not found.")
+          out = Path("/tmp/pvfx-audit")
+          out.mkdir()
+          with ZipFile(archive) as z:
+              bad = z.testzip()
+              if bad:
+                  raise SystemExit(f"ZIP integrity failure: {bad}")
+              infos = [i for i in z.infolist() if not i.is_dir()]
+              for i in infos:
+                  p = PurePosixPath(i.filename)
+                  if p.is_absolute() or ".." in p.parts:
+                      raise SystemExit(f"Unsafe archive path: {i.filename}")
+              docs, pngs = [], []
+              for i in infos:
+                  name = i.filename.lower()
+                  if name.endswith((".txt",".md",".json",".xml",".html",".license")):
+                      data = z.read(i).decode("utf-8", "replace")
+                      if any(k in name for k in ("readme","license","licence","credit","terms")) or any(k in data.lower() for k in ("license","licence","commercial","attribution","copyright","credit")):
+                          docs.append({"path":i.filename,"text":data[:12000]})
+                  if name.endswith(".png"):
+                      raw = out / f"source-{len(pngs):03d}.png"
+                      raw.write_bytes(z.read(i))
+                      im = Image.open(raw)
+                      im.verify()
+                      im = Image.open(raw)
+                      pngs.append({"path":i.filename,"width":im.width,"height":im.height,"mode":im.mode,"bytes":i.file_size,"local":str(raw)})
+              report = {"archive":archive.name,"entries":len(infos),"png_count":len(pngs),"documents":docs,"pngs":[{k:v for k,v in p.items() if k!="local"} for p in pngs]}
+              (out/"audit.json").write_text(json.dumps(report,indent=2),encoding="utf-8")
+              thumbs=[]
+              for p in pngs:
+                  im=Image.open(p["local"]).convert("RGBA")
+                  im.thumbnail((220,150),Image.Resampling.NEAREST)
+                  tile=Image.new("RGBA",(250,190),(238,244,246,255))
+                  tile.alpha_composite(im,((250-im.width)//2,5+(150-im.height)//2))
+                  d=ImageDraw.Draw(tile)
+                  d.text((6,160),Path(p["path"]).name[:34],fill=(35,55,65,255))
+                  d.text((6,176),f'{p["width"]}x{p["height"]} · {p["mode"]}',fill=(65,85,95,255))
+                  thumbs.append(tile.convert("RGB"))
+              cols=3
+              rows=max(1,(len(thumbs)+cols-1)//cols)
+              sheet=Image.new("RGB",(cols*250,rows*190),(220,230,234))
+              for n,im in enumerate(thumbs):
+                  sheet.paste(im,((n%cols)*250,(n//cols)*190))
+              sheet.save(out/"contact-sheet.png")
+              lines=["## PVFX archive audit",f"- Archive: {archive.name}",f"- Files: {len(infos)}",f"- Valid PNGs: {len(pngs)}","","### PNG inventory"]
+              lines += [f'- {p["path"]} — {p["width"]}×{p["height"]}, {p["mode"]}, {p["bytes"]:,} bytes' for p in pngs]
+              lines += ["","### License/source documents"]
+              for d in docs:
+                  lines += [f'#### {d["path"]}',"", d["text"][:6000],""]
+              Path("/tmp/summary.md").write_text("\n".join(lines),encoding="utf-8")
+              print(Path("/tmp/summary.md").read_text())
+          PY
+          cat /tmp/summary.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload audit and visual contact sheet
+        uses: actions/upload-artifact@v4
+        with:
+          name: pvfx-foundry-audit
+          path: /tmp/pvfx-audit/
+          if-no-files-found: error
+          retention-days: 7
