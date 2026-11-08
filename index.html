@@ -281,7 +281,7 @@ function simulate(dt,now){
  while(state.respawns.length&&state.respawns[0].due<=now&&state.clones.length<maxClones()){const r=state.respawns.shift();spawnClone(r.type);spawnFx("machine",272,395);state.phase="production";addLog("Cloning machine restored a fallen "+r.type+".");updateHud()}
  const b=bossDef(),size=b.size?.[0]||32,cx=160,cy=196,bossRadius=size*Math.max(1,Math.min(4,Math.floor(144/size)))/2,baseRadius=bossRadius+14,perRing=10,moveStep=dt*.042;
  for(let i=0;i<state.clones.length;i++){
-  const c=state.clones[i],rank=Math.floor(i/perRing),slot=i%perRing,ringCount=Math.min(perRing,state.clones.length-rank*perRing),angle=-Math.PI/2+(slot/Math.max(1,ringCount))*Math.PI*2+rank*.19,targetRadius=baseRadius+rank*16,targetX=cx+Math.cos(angle)*targetRadius,targetY=cy+Math.sin(angle)*targetRadius,dx=cx-c.x,dy=cy-c.y,currentRadius=Math.max(1,Math.hypot(dx,dy)),currentAngle=Math.atan2(c.y-cy,c.x-cx);
+  const c=state.clones[i],rank=Math.floor(i/perRing),slot=i%perRing,ringCount=Math.min(perRing,state.clones.length-rank*perRing),angle=-Math.PI/2+(slot/Math.max(1,ringCount))*Math.PI*2+rank*.19,rangedOffset=(c.type==="mage"||c.type==="archer")?12:0,targetRadius=baseRadius+rangedOffset+rank*16,targetX=cx+Math.cos(angle)*targetRadius,targetY=cy+Math.sin(angle)*targetRadius,dx=cx-c.x,dy=cy-c.y,currentRadius=Math.max(1,Math.hypot(dx,dy)),currentAngle=Math.atan2(c.y-cy,c.x-cx);
   let sx=0,sy=0;
   for(let j=0;j<state.clones.length;j++){if(i===j)continue;const o=state.clones[j],ox=c.x-o.x,oy=c.y-o.y,od=Math.hypot(ox,oy);if(od>0&&od<12){const force=(12-od)/12;sx+=ox/od*force;sy+=oy/od*force}}
   let moved=false;
