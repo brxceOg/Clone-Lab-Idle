@@ -285,15 +285,17 @@ function simulate(dt,now){
   let sx=0,sy=0;
   for(let j=0;j<state.clones.length;j++){if(i===j)continue;const o=state.clones[j],ox=c.x-o.x,oy=c.y-o.y,od=Math.hypot(ox,oy);if(od>0&&od<12){const force=(12-od)/12;sx+=ox/od*force;sy+=oy/od*force}}
   let moved=false;
-  // Move directly onto the clone's assigned ring before orbiting to its angular slot.
-  // Ranged classes use a clearly separate outer ring; melee classes stay on the close perimeter.
-  if(Math.abs(currentRadius-targetRadius)>2){
-   const direction=currentRadius>targetRadius?1:-1,step=Math.min(Math.abs(currentRadius-targetRadius),moveStep);
+  // Preserve the established swarm path: approach the shared melee perimeter,
+  // orbit into the assigned slot, then let ranged clones step back to their firing ring.
+  // This keeps newly spawned clones converging as one group instead of fanning outward.
+  if(Math.abs(currentRadius-baseRadius)>2){
+   const direction=currentRadius>baseRadius?1:-1,step=Math.min(Math.abs(currentRadius-baseRadius),moveStep);
    c.x+=dx/currentRadius*direction*step;c.y+=dy/currentRadius*direction*step;moved=step>.2;
   }else{
    let delta=((angle-currentAngle+Math.PI*3)%(Math.PI*2))-Math.PI;
-   const angularStep=moveStep/targetRadius;
-   if(Math.abs(delta)>.025){const turn=Math.sign(delta)*Math.min(Math.abs(delta),angularStep),next=currentAngle+turn;c.x=cx+Math.cos(next)*targetRadius;c.y=cy+Math.sin(next)*targetRadius;moved=true}
+   const angularStep=moveStep/baseRadius;
+   if(Math.abs(delta)>.025){const turn=Math.sign(delta)*Math.min(Math.abs(delta),angularStep),next=currentAngle+turn;c.x=cx+Math.cos(next)*baseRadius;c.y=cy+Math.sin(next)*baseRadius;moved=true}
+   else if(targetRadius>baseRadius+2&&Math.abs(currentRadius-targetRadius)>1){const step=Math.min(targetRadius-currentRadius,moveStep);c.x+=Math.cos(angle)*step;c.y+=Math.sin(angle)*step;moved=step>.2}
    else{c.x=targetX;c.y=targetY}
   }
   // Separation only nudges the path; the assigned slot remains the destination.
