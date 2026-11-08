@@ -269,3 +269,8 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 - Fixed the effect queue so staggered events are retained until their scheduled start time instead of being filtered out on the first render frame. Pending effects are skipped while waiting, then rendered normally.
 
 - **Clone emergence layering correction (2026-11-08):** The direct-drawn cyan cloneSpawn burst is rendered in its own pass after the boss but immediately before clone shadows/sprites, so the ring, sparks, and flash sit behind the emerging clone. Other combat and machine effects retain their existing foreground pass.
+
+
+### Clone spawn effect layering (2026-11-08)
+- The authored cyan clone-emergence effect is rendered in the room background-effects pass, immediately after the floor and before boss and clone sprites. This keeps the effect visible around the spawn point while ensuring all character sprites are composited above it.
+- Keep the effect drawing pass before character rendering; do not move it into the foreground effects pass. The effect artwork, colors, particle count, and 760 ms lifetime remain unchanged.
