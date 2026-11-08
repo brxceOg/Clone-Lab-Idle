@@ -1,0 +1,1 @@
+Drop `Clone-Lab-Idle-verified-assets.zip` into this folder using GitHub's web upload. The `Import verified asset bundle` Actions workflow will validate it, extract the original assets and animation metadata, commit them under `assets/`, and remove the uploaded ZIP after a successful import. Do not unzip or rename the archive before uploading.
