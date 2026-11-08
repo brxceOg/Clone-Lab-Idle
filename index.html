@@ -302,25 +302,21 @@ function simulate(dt,now){
   const c=state.clones[i],rank=Math.floor(i/perRing),slot=i%perRing,ringCount=Math.min(perRing,state.clones.length-rank*perRing),angle=-Math.PI/2+(slot/Math.max(1,ringCount))*Math.PI*2+rank*.19,rangedOffset=(c.type==="mage"||c.type==="archer")?28:0,targetRadius=baseRadius+rangedOffset+rank*16,targetX=cx+Math.cos(angle)*targetRadius,targetY=cy+Math.sin(angle)*targetRadius,dx=cx-c.x,dy=cy-c.y,currentRadius=Math.max(1,Math.hypot(dx,dy)),currentAngle=Math.atan2(c.y-cy,c.x-cx);
   let sx=0,sy=0;
   for(let j=0;j<state.clones.length;j++){if(i===j)continue;const o=state.clones[j],ox=c.x-o.x,oy=c.y-o.y,od=Math.hypot(ox,oy);if(od>0&&od<12){const force=(12-od)/12;sx+=ox/od*force;sy+=oy/od*force}}
+  // Move directly toward each clone's fixed formation slot.
+  // Every class uses the same slot angles and ring ordering; ranged units only
+  // have a wider target radius so they don't overlap the melee line.
+  const slotDx=targetX-c.x,slotDy=targetY-c.y,slotDistance=Math.hypot(slotDx,slotDy);
   let moved=false;
-  // All classes share the same formation angles, slot ordering, and inner orbit.
-  // Ranged clones only move outward after reaching that shared assigned angle,
-  // occupying a wider version of the same slot rather than a separate orbit.
-  const delta=((angle-currentAngle+Math.PI*3)%(Math.PI*2))-Math.PI,formationRadius=baseRadius+rank*16;
-  if(Math.abs(delta)>.025){
-   if(Math.abs(currentRadius-formationRadius)>2){
-    const radialStep=Math.min(Math.abs(currentRadius-formationRadius),moveStep),radialDirection=formationRadius>currentRadius?1:-1;
-    c.x+=(c.x-cx)/currentRadius*radialDirection*radialStep;c.y+=(c.y-cy)/currentRadius*radialDirection*radialStep;moved=radialStep>.2;
-   }else{
-    const angularStep=moveStep/formationRadius,turn=Math.sign(delta)*Math.min(Math.abs(delta),angularStep),next=currentAngle+turn;
-    c.x=cx+Math.cos(next)*formationRadius;c.y=cy+Math.sin(next)*formationRadius;moved=true;
-   }
-  }else if(Math.abs(currentRadius-targetRadius)>2){
-   const radialStep=Math.min(Math.abs(currentRadius-targetRadius),moveStep),radialDirection=targetRadius>currentRadius?1:-1;
-   c.x+=(c.x-cx)/currentRadius*radialDirection*radialStep;c.y+=(c.y-cy)/currentRadius*radialDirection*radialStep;moved=radialStep>.2;
-  }else{c.x=targetX;c.y=targetY}
-  // Separation remains a small local nudge, never a new formation destination.
-  if(moved){c.x+=sx*.22;c.y+=sy*.22}
+  if(slotDistance>2){
+   const step=Math.min(slotDistance,moveStep);
+   c.x+=slotDx/slotDistance*step;
+   c.y+=slotDy/slotDistance*step;
+   moved=step>.2;
+  }else{
+   c.x=targetX;c.y=targetY;
+  }
+  // Tiny local separation prevents sprite overlap without changing slot targets.
+  if(moved){c.x+=sx*.08;c.y+=sy*.08}
   const safeDistance=bossRadius+11,fromBossX=c.x-cx,fromBossY=c.y-cy,fromBossDistance=Math.max(.001,Math.hypot(fromBossX,fromBossY));
   if(fromBossDistance<safeDistance){c.x=cx+fromBossX/fromBossDistance*safeDistance;c.y=cy+fromBossY/fromBossDistance*safeDistance}
   const slotDistance=Math.hypot(targetX-c.x,targetY-c.y);
