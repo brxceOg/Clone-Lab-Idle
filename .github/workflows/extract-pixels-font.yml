@@ -1,0 +1,30 @@
+name: Extract Pixels font
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  extract-font:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract font from supplied archive
+        run: |
+          mkdir -p assets/fonts
+          unzip -o pixels.zip Pixels.ttf -d assets/fonts
+          test -s assets/fonts/Pixels.ttf
+      - name: Commit extracted font
+        run: |
+          if git diff --quiet -- assets/fonts/Pixels.ttf; then
+            echo "Pixels font already extracted."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/fonts/Pixels.ttf
+          git commit -m "Add Pixels font asset"
+          git push origin main
