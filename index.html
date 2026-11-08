@@ -123,11 +123,12 @@ function charAnim(type,action,dir){return warData?.characters.find(c=>c.name===t
 function drawRoom(t){
  ctx.clearRect(0,0,320,480);ctx.fillStyle="#e9f0f2";ctx.fillRect(0,0,320,480);
  for(let y=0;y<480;y+=16)for(let x=0;x<320;x+=16)tile((x/16+y/16)%3===0?"floor_white_2":"floor_white_1",x,y);
- drawEffects(t,"cloneSpawn"); // Background FX: render before every character layer.
  for(let x=0;x<320;x+=16){tile("wall_white_top",x,0);tile("wall_white_face",x,16);if(x===0)tile("wall_white_cap_left",x,0);if(x===304)tile("wall_white_cap_right",x,0)}
  for(let y=32;y<480;y+=16){tile("wall_steel_face",0,y);tile("wall_steel_face",304,y)}
  tile("terminal_blue",18,48);tile("terminal_green",272,48);tile("pipe_h",64,42,64,16);tile("lamp_cyan",144,44);tile("lamp_cyan",160,44);tile("cryo_pod",18,116,32,48);tile("medbed",258,116,32,32);tile("crate_blue",24,300);tile("barrel_hazard",56,300);tile("solar_panel",246,286,32,16);tile("console_panel",264,320,32,16);
  ctx.fillStyle="#d7e8ec";ctx.fillRect(76,108,168,176);ctx.strokeStyle="#a7c5ce";ctx.lineWidth=2;ctx.strokeRect(76,108,168,176);ctx.strokeStyle="#d2e3e7";ctx.lineWidth=1;ctx.beginPath();ctx.arc(160,205,68,0,Math.PI*2);ctx.stroke();ctx.fillStyle="#edf5f5";ctx.fillRect(80,112,160,168);
+ // Clone emergence is a dedicated world-background pass: after room geometry, before boss and all clone sprites.
+ drawEffects(t,"cloneSpawn");
  const b=bossDef(),hp=Math.max(0,state.bossHp/state.bossMax);ctx.fillStyle="#304957";ctx.font="bold 12px Pixels";ctx.textAlign="center";ctx.fillText(b.name.replaceAll("_"," ").toUpperCase(),160,93);if(uiImgs["UI_Flat_Bar01a.png"])drawNineSlice(ctx,uiImgs["UI_Flat_Bar01a.png"],101,98,118,10,4);if(uiImgs["UI_Flat_BarFill01a.png"])drawNineSlice(ctx,uiImgs["UI_Flat_BarFill01a.png"],102,101,116*hp,4,1);
  const anim=bossAnim(state.phase==="death"?"death":state.phase==="attack"||state.phase==="telegraph"?"attack":state.phase==="hurt"?"hurt":"idle"),img=bossImgs[b.name]?.[anim?.name]||bossImgs[b.name]?.[b.name+"_idle"],size=b.size?.[0]||32,bossScale=Math.max(1,Math.min(4,Math.floor(144/size))),drawSize=size*bossScale,frame=anim?Math.floor(t/anim.ms_per_frame)%anim.frames:0,bx=160-drawSize/2,by=196-drawSize/2;
  if(img)stripFrame(img,frame,size,size,bx,by,drawSize,drawSize);else{ctx.fillStyle="#8ac5a6";ctx.fillRect(bx,by,drawSize,drawSize)}
