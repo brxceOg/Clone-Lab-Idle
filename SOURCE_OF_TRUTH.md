@@ -85,6 +85,7 @@ The game should reward both active interaction and letting the simulation run.
 - When active clones plus queued respawns fall below the upgraded capacity, automatic production fills only unreserved slots according to the current batch size and production rate. Pending respawns reserve their own slots until they return, preventing overproduction and stuck replacement queues.
 - Clone Capacity costs 250 credits initially and scales by 1.8× per purchase; its level is stored in the local save.
 - Progression should be incremental and understandable: the player can see how each machine upgrade improves output or unlocks new options.
+- Large numeric counters use compact suffixes consistently: thousands `k`, millions `M`, billions `B`, and trillions `T` (for example, 10,000 displays as 10k). Values below 1,000 remain whole numbers.
 - Save player progress locally in the browser so a refresh does not erase the run.
 - Use elapsed-time/offline progress only when it can be implemented reliably and capped sensibly; never grant duplicate or implausible rewards after clock changes or long absences.
 - Keep core game state separate from UI rendering so balancing and saving remain reliable.
