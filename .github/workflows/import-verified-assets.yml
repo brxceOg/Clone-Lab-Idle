@@ -114,11 +114,7 @@ jobs:
                       shutil.copy2(source, target)
 
               # Record the original file paths and image dimensions without resampling pixels.
-              try:
-                  from PIL import Image
-              except ImportError:
-                  subprocess.run(["python3", "-m", "pip", "install", "Pillow"], check=True)
-                  from PIL import Image
+              import struct
 
               manifest = [
                   "# Effect and Bullet 16x16 — import manifest",
@@ -130,8 +126,12 @@ jobs:
                   "|---|---:|",
               ]
               for path in image_files:
-                  with Image.open(path) as image:
-                      dimensions = f"{image.width}×{image.height}"
+                  with path.open("rb") as stream:
+                      header = stream.read(24)
+                  if len(header) < 24 or header[:8] != b"\\x89PNG\\r\\n\\x1a\\n" or header[12:16] != b"IHDR":
+                      raise SystemExit(f"Invalid PNG header: {path}")
+                  width, height = struct.unpack(">II", header[16:24])
+                  dimensions = f"{width}×{height}"
                   rel = path.relative_to(extracted).as_posix()
                   manifest.append(f"| `{rel}` | {dimensions} |")
 
