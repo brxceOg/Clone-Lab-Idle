@@ -287,7 +287,7 @@ function showExistingCloneSpawnFx(){
  nextCloneSpawnFxAt=performance.now();
  if(state.clones.length)spawnFx("cloneSpawn",224,400);
 }
-function spawnClone(type){if(state.clones.length>=maxClones())return;const i=state.clones.length;/* Release every new clone from the output point immediately left of the machine; crowd separation and boss-swarm movement take over in simulate(). */state.clones.push({type,x:224,y:400,mode:"walk",dir:"up",nextHit:0,flash:0,hp:3,slot:i});state.totalClones++;queueCloneSpawnFx()}
+function spawnClone(type){if(state.clones.length>=maxClones())return;const i=state.clones.length;/* Release every new clone from the output point immediately left of the machine; crowd separation and boss-swarm movement take over in simulate(). */state.clones.push({type,x:224,y:400,mode:"walk",dir:"up",nextHit:0,flash:0,hp:3,slot:i,formationPhase:"approach"});state.totalClones++;queueCloneSpawnFx()}
 function produce(count=state.quantity,respawn=false){const openSlots=Math.max(0,maxClones()-state.clones.length-state.respawns.length),batch=Math.min(Math.max(0,count),openSlots);let made=0;for(let i=0;i<batch;i++){const type=respawn?state.respawns.shift()?.type:state.unlocked[state.totalClones%state.unlocked.length];if(!type)break;spawnClone(type);made++}if(!made)return;spawnFx("machine",272,395);spawnPvfx("portalSummon",272,402,null,null,.38,"foreground");spawnPvfx("magicCircle",272,462,null,null,.48,"foreground");state.phase="production";setTimeout(()=>{if(state.phase==="production")state.phase="idle"},620);addLog((respawn?"Machine replacement cycle · ":"Automatic production · ")+made+" clone"+(made===1?"":"s"));if(!respawn)notify(made===1?"CLONE RELEASED":"BATCH RELEASED");updateHud();save()}
 function hitBoss(c,now){if(now<c.nextHit||state.phase==="death")return;c.nextHit=now+(c.type==="knight"?1050:1450);c.mode="attack";if(c.type==="knight"){if(!spawnPvfx("swordCombo",160,196,null,null,.54))spawnFx("knight",160,196);spawnPvfx("hitSpark",160,196,null,null,.58,"foreground",320)}else if(c.type==="mage"){if(!spawnPvfx("magicMissile",c.x,c.y,160,196,.34))spawnFx("mage",c.x,c.y,160,196);if(!spawnPvfx("arcaneBurst",160,196,null,null,.5,"foreground",900))spawnPvfx("hitSpark",160,196,null,null,.46)}else{if(!spawnPvfx("arrowImpact",c.x,c.y,160,196,.64))spawnFx("archer",c.x,c.y,160,196);spawnPvfx("hitSpark",160,196,null,null,.46,"foreground",560)}const damage=state.power*(c.type==="knight"?1.15:1);state.bossHp-=damage;combatPopups.push({label:"-"+(Math.round(damage*10)/10),x:160+(Math.random()-.5)*28,y:132,born:now,duration:720});if(combatPopups.length>12)combatPopups.shift();state.coins+=1+state.earningsLevel;$("coins").textContent=formatCount(state.coins);c.flash=now+150;if(state.phase!=="attack"&&state.phase!=="telegraph")state.phase="hurt";setTimeout(()=>{if(c.mode==="attack")c.mode="idle";if(state.phase==="hurt")state.phase="idle"},220);if(state.bossHp<=0)defeatBoss()}
 function killClone(c,now){const i=state.clones.indexOf(c);if(i<0)return;state.clones.splice(i,1);state.respawns.push({type:c.type,due:now+2800});addLog(c.type+" lost · replacement queued");updateHud();save()}
@@ -299,28 +299,52 @@ function simulate(dt,now){
  while(state.respawns.length&&state.respawns[0].due<=now&&state.clones.length<maxClones()){const r=state.respawns.shift();spawnClone(r.type);spawnFx("machine",272,395);state.phase="production";addLog("Cloning machine restored a fallen "+r.type+".");updateHud()}
  const b=bossDef(),size=b.size?.[0]||32,cx=160,cy=196,bossRadius=size*Math.max(1,Math.min(4,Math.floor(144/size)))/2,baseRadius=bossRadius+14,perRing=10,moveStep=dt*.042;
  for(let i=0;i<state.clones.length;i++){
-  const c=state.clones[i],rank=Math.floor(i/perRing),slot=i%perRing,ringCount=Math.min(perRing,state.clones.length-rank*perRing),angle=-Math.PI/2+(slot/Math.max(1,ringCount))*Math.PI*2+rank*.19,rangedOffset=(c.type==="mage"||c.type==="archer")?28:0,targetRadius=baseRadius+rangedOffset+rank*16,targetX=cx+Math.cos(angle)*targetRadius,targetY=cy+Math.sin(angle)*targetRadius,dx=cx-c.x,dy=cy-c.y,currentRadius=Math.max(1,Math.hypot(dx,dy)),currentAngle=Math.atan2(c.y-cy,c.x-cx);
+  const c=state.clones[i],rank=Math.floor(i/perRing),slot=i%perRing,ringCount=Math.min(perRing,state.clones.length-rank*perRing),angle=-Math.PI/2+(slot/Math.max(1,ringCount))*Math.PI*2+rank*.19,ranged=(c.type==="mage"||c.type==="archer"),targetRadius=baseRadius+(ranged?28:0)+rank*16,targetX=cx+Math.cos(angle)*targetRadius,targetY=cy+Math.sin(angle)*targetRadius;
+  const dx=c.x-cx,dy=c.y-cy,currentRadius=Math.max(.001,Math.hypot(dx,dy)),currentAngle=Math.atan2(dy,dx);
   let sx=0,sy=0;
   for(let j=0;j<state.clones.length;j++){if(i===j)continue;const o=state.clones[j],ox=c.x-o.x,oy=c.y-o.y,od=Math.hypot(ox,oy);if(od>0&&od<12){const force=(12-od)/12;sx+=ox/od*force;sy+=oy/od*force}}
-  // Move directly toward each clone's fixed formation slot.
-  // Every class uses the same slot angles and ring ordering; ranged units only
-  // have a wider target radius so they don't overlap the melee line.
-  const slotDx=targetX-c.x,slotDy=targetY-c.y,slotDistance=Math.hypot(slotDx,slotDy);
-  let moved=false;
-  if(slotDistance>2){
-   const step=Math.min(slotDistance,moveStep);
-   c.x+=slotDx/slotDistance*step;
-   c.y+=slotDy/slotDistance*step;
-   moved=step>.2;
+  // If the roster changes a clone's assigned angle, reconverge through the
+  // perimeter approach rather than cutting directly across the room.
+  if(c.formationAngle===undefined||Math.abs(((angle-c.formationAngle+Math.PI*3)%(Math.PI*2))-Math.PI)>.01){
+   if(c.formationAngle!==undefined)c.formationPhase="approach";
+   c.formationAngle=angle;
+  }
+  if(!c.formationPhase)c.formationPhase="approach";
+  let moving=false;
+  if(c.formationPhase==="approach"){
+   const radialDelta=baseRadius-currentRadius;
+   if(Math.abs(radialDelta)>1.5){
+    const step=Math.min(Math.abs(radialDelta),moveStep),direction=Math.sign(radialDelta);
+    c.x+=dx/currentRadius*direction*step;c.y+=dy/currentRadius*direction*step;moving=step>.1;
+   }else{
+    c.x=cx+dx/currentRadius*baseRadius;c.y=cy+dy/currentRadius*baseRadius;
+    c.formationPhase="orbit";
+   }
+  }else if(c.formationPhase==="orbit"){
+   const delta=((angle-currentAngle+Math.PI*3)%(Math.PI*2))-Math.PI,angularStep=moveStep/baseRadius;
+   if(Math.abs(delta)>angularStep){
+    const nextAngle=currentAngle+Math.sign(delta)*angularStep;
+    c.x=cx+Math.cos(nextAngle)*baseRadius;c.y=cy+Math.sin(nextAngle)*baseRadius;moving=true;
+   }else{
+    c.x=cx+Math.cos(angle)*baseRadius;c.y=cy+Math.sin(angle)*baseRadius;
+    c.formationPhase=ranged?"offset":"formed";
+   }
+  }else if(c.formationPhase==="offset"){
+   const radialDelta=targetRadius-currentRadius;
+   if(Math.abs(radialDelta)>1.5){
+    const step=Math.min(Math.abs(radialDelta),moveStep);
+    c.x+=Math.cos(angle)*step;c.y+=Math.sin(angle)*step;moving=true;
+   }else{
+    c.x=targetX;c.y=targetY;c.formationPhase="formed";
+   }
   }else{
    c.x=targetX;c.y=targetY;
   }
-  // Tiny local separation prevents sprite overlap without changing slot targets.
-  if(moved){c.x+=sx*.08;c.y+=sy*.08}
+  // Tiny local separation prevents sprite overlap without breaking the path.
+  if(moving){c.x+=sx*.08;c.y+=sy*.08}
   const safeDistance=bossRadius+11,fromBossX=c.x-cx,fromBossY=c.y-cy,fromBossDistance=Math.max(.001,Math.hypot(fromBossX,fromBossY));
   if(fromBossDistance<safeDistance){c.x=cx+fromBossX/fromBossDistance*safeDistance;c.y=cy+fromBossY/fromBossDistance*safeDistance}
-  const remainingSlotDistance=Math.hypot(targetX-c.x,targetY-c.y);
-  if(remainingSlotDistance<2.5){c.x=targetX;c.y=targetY;c.mode="idle";hitBoss(c,now)}else c.mode="walk";
+  if(c.formationPhase==="formed"){c.x=targetX;c.y=targetY;c.mode="idle";hitBoss(c,now)}else c.mode="walk";
   c.slot=i;c.dir=Math.abs(cx-c.x)>Math.abs(cy-c.y)?(cx>c.x?"right":"left"):(cy>c.y?"down":"up");
   c.x=Math.max(12,Math.min(308,c.x));c.y=Math.max(70,Math.min(440,c.y));
  }
@@ -328,7 +352,7 @@ function simulate(dt,now){
 }
 let labRenderError="";function render(now){const dt=Math.min(40,now-(lastFrame||now));lastFrame=now;try{if(assetsReady){if(gameStarted)simulate(dt,Date.now());drawRoom(now)}else{ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle="#e9f0f2";ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle="#304957";ctx.font="16px Pixels";ctx.textAlign="center";ctx.fillText("LOADING LAB ASSETS…",canvas.width/2,canvas.height/2)}}catch(err){labRenderError=String(err?.name||"Error")+": "+String(err?.message||err);console.error("Lab render failed:",err);try{ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle="#e9f0f2";ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle="#9b2630";ctx.textAlign="center";ctx.font="bold 15px Pixels";ctx.fillText("LAB RENDER ERROR",canvas.width/2,canvas.height/2-24);ctx.fillStyle="#304957";ctx.font="11px Pixels";const msg=labRenderError.slice(0,68);ctx.fillText(msg,canvas.width/2,canvas.height/2+4)}catch(drawErr){console.error("Could not draw lab error fallback:",drawErr)}}if(state.toastUntil<Date.now())$("toast").classList.remove("show");requestAnimationFrame(render)}
 function save(){state.lastSave=Date.now();const d={coins:state.coins,bossIndex:state.bossIndex,bossHp:state.bossHp,bossMax:state.bossMax,totalClones:state.totalClones,cloneRoster:state.clones.map(c=>c.type),respawns:state.respawns,rate:state.rate,rateLevel:state.rateLevel,quantity:state.quantity,power:state.power,capacityLevel:state.capacityLevel,earningsLevel:state.earningsLevel,unlocked:state.unlocked,machineLevel:state.machineLevel,defeats:state.defeats,lastSave:state.lastSave};try{localStorage.setItem("cloneLabIdleSave",JSON.stringify(d))}catch{}}
-function loadSave(){try{const d=JSON.parse(localStorage.getItem("cloneLabIdleSave")||"null");if(!d)return;Object.assign(state,d);if(!Number.isFinite(Number(d.rateLevel)))state.rateLevel=Math.max(0,Math.round(Math.log(Math.max(1.5,Math.min(8,Number(state.rate)||8))/8)/Math.log(.82)));state.clones=(d.cloneRoster||[]).slice(0,maxClones()).map((type,i)=>({type,x:224,y:400,mode:"walk",dir:"up",nextHit:0,flash:0,hp:3,slot:i}));state.respawns=d.respawns||[];if(assetsReady)showExistingCloneSpawnFx();const elapsed=Math.max(0,Date.now()-(d.lastSave||Date.now()));state.lastProduction=Date.now()-(elapsed%(state.rate*1000));addLog("Saved lab data restored.")}catch(e){console.warn("Save could not be loaded",e)}}
+function loadSave(){try{const d=JSON.parse(localStorage.getItem("cloneLabIdleSave")||"null");if(!d)return;Object.assign(state,d);if(!Number.isFinite(Number(d.rateLevel)))state.rateLevel=Math.max(0,Math.round(Math.log(Math.max(1.5,Math.min(8,Number(state.rate)||8))/8)/Math.log(.82)));state.clones=(d.cloneRoster||[]).slice(0,maxClones()).map((type,i)=>({type,x:224,y:400,mode:"walk",dir:"up",nextHit:0,flash:0,hp:3,slot:i,formationPhase:"approach"}));state.respawns=d.respawns||[];if(assetsReady)showExistingCloneSpawnFx();const elapsed=Math.max(0,Date.now()-(d.lastSave||Date.now()));state.lastProduction=Date.now()-(elapsed%(state.rate*1000));addLog("Saved lab data restored.")}catch(e){console.warn("Save could not be loaded",e)}}
 $("upgradesButton").addEventListener("click",()=>{$("overlay").classList.add("open")});$("close").addEventListener("click",()=>$("overlay").classList.remove("open"));$("overlay").addEventListener("click",e=>{if(e.target===$("overlay"))$("overlay").classList.remove("open")});$("dnaResearchOpenButton").addEventListener("click",()=>{$("dnaOverlay").classList.add("open")});$("dnaClose").addEventListener("click",()=>$("dnaOverlay").classList.remove("open"));$("dnaOverlay").addEventListener("click",e=>{if(e.target===$("dnaOverlay"))$("dnaOverlay").classList.remove("open")});for(const eventName of ["gesturestart","gesturechange","gestureend"])document.addEventListener(eventName,e=>e.preventDefault(),{passive:false});document.addEventListener("touchstart",e=>{if(e.touches.length>1&&!e.target.closest("#skillViewport"))e.preventDefault()},{passive:false});document.addEventListener("dblclick",e=>e.preventDefault(),{passive:false});
 function startGame(){if(!assetsReady||gameStarted)return;loadSave();gameStarted=true;state.lastBossAttack=Date.now();$("startMenu").style.display="none";updateHud()}
 $("playButton").addEventListener("click",startGame);
