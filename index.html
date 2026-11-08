@@ -65,7 +65,7 @@ button:focus-visible{outline:2px solid #2d829a;outline-offset:2px}
 "use strict";
 const $=id=>document.getElementById(id),canvas=$("room"),ctx=canvas.getContext("2d");ctx.imageSmoothingEnabled=false;
 const BASE="assets/lab/pixel-sci-fi-tileset/",WARR="assets/warriors/larchrow-16x16-characters-monsters/",BOSS="assets/bosses/larchrow-16x16-boss-monsters/";
-const FXBASE="assets/effects/effect-and-bullet-16x16/",FXMAP={knight:{palette:"fire",frames:[[7,0],[8,0],[9,0],[10,0],[11,0],[12,0]],size:30},mage:{palette:"purple",frames:[[14,0],[15,0],[16,0],[17,0],[18,0],[19,0]],size:28},archer:{palette:"water",frames:[[23,0],[24,0],[25,0],[26,0],[27,0],[28,0]],size:24},boss:{palette:"green",frames:[[0,3],[1,3],[2,3],[3,3],[4,3],[5,3],[6,3]],size:54},machine:{palette:"water",frames:[[0,12],[1,12],[2,12],[3,12],[4,12],[5,12],[6,12]],size:58},cloneSpawn:{palette:"water",frames:[[0,12],[1,12],[2,12],[3,12],[4,12],[5,12],[6,12]],size:34}};
+const FXBASE="assets/effects/effect-and-bullet-16x16/",FXMAP={knight:{palette:"fire",frames:[[7,0],[8,0],[9,0],[10,0],[11,0],[12,0]],size:30},mage:{palette:"purple",frames:[[14,0],[15,0],[16,0],[17,0],[18,0],[19,0]],size:28},archer:{palette:"water",frames:[[23,0],[24,0],[25,0],[26,0],[27,0],[28,0]],size:24},boss:{palette:"green",frames:[[0,3],[1,3],[2,3],[3,3],[4,3],[5,3],[6,3]],size:54},machine:{palette:"water",frames:[[0,12],[1,12],[2,12],[3,12],[4,12],[5,12],[6,12]],size:58},cloneSpawn:{palette:"water",frames:[[0,12],[1,12],[2,12],[3,12],[4,12],[5,12],[6,12]],size:52}};
 const BASE_MAX_CLONES=26;
 const state={coins:0,bossIndex:0,bossHp:100,bossMax:100,clones:[],totalClones:0,rate:8,quantity:1,power:1,capacityLevel:0,unlocked:["knight"],lastProduction:Date.now(),lastBossAttack:Date.now(),lastSave:Date.now(),machineLevel:1,phase:"idle",toastUntil:0,log:[],defeats:0,respawns:[]};
 const maxClones=()=>BASE_MAX_CLONES+Math.max(0,Math.floor(Number(state.capacityLevel)||0))*5;
@@ -80,14 +80,14 @@ async function loadAssets(){try{
  const chars=wd.characters.filter(c=>c.group==="heroes");
  for(const c of chars){const anims={};for(const a of c.animations){try{anims[a.name]=await loadImage(WARR+a.strip)}catch{}}warImgs[c.name]=anims;}
  for(const b of bd.bosses){const anims={};for(const a of bd.animations.filter(a=>a.boss===b.name)){try{anims[a.name]=await loadImage(BOSS+a.strip)}catch{}}bossImgs[b.name]=anims;}
- assetsReady=true;addLog("Asset library loaded · "+chars.length+" warrior classes · "+bd.bosses.length+" bosses");
+ assetsReady=true;if(gameStarted)showExistingCloneSpawnFx();addLog("Asset library loaded · "+chars.length+" warrior classes · "+bd.bosses.length+" bosses");
  }catch(err){console.error(err);$("hint").textContent="Some art files could not be loaded. Check the asset paths in the repository."}}
 function drawNineSlice(c,img,x,y,w,h,b){if(!img||w<=0||h<=0)return;const sw=img.width,sh=img.height,ix=Math.min(b,Math.floor(sw/2)),iy=Math.min(b,Math.floor(sh/2)),cx=sw-ix*2,cy=sh-iy*2,dw=Math.min(ix,w/2),dh=Math.min(iy,h/2),mx=Math.max(0,w-dw*2),my=Math.max(0,h-dh*2);const parts=[[0,0,ix,iy,x,y,dw,dh],[ix,0,cx,iy,x+dw,y,mx,dh],[sw-ix,0,ix,iy,x+w-dw,y,dw,dh],[0,iy,ix,cy,x,y+dh,dw,my],[ix,iy,cx,cy,x+dw,y+dh,mx,my],[sw-ix,iy,ix,cy,x+w-dw,y+dh,dw,my],[0,sh-iy,ix,iy,x,y+h-dh,dw,dh],[ix,sh-iy,cx,iy,x+dw,y+h-dh,mx,dh],[sw-ix,sh-iy,ix,iy,x+w-dw,y+h-dh,dw,dh]];for(const p of parts)if(p[2]>0&&p[3]>0&&p[6]>0&&p[7]>0)c.drawImage(img,...p)}
 function tile(name,x,y,w=16,h=16){const f=labFrames[name];if(labImg&&f)ctx.drawImage(labImg,f.x,f.y,f.w,f.h,x,y,w,h)}
 function stripFrame(img,index,fw,fh,x,y,w,h){if(!img)return;const frames=Math.max(1,Math.floor(img.width/fw));ctx.drawImage(img,(index%frames)*fw,0,fw,fh,Math.round(x),Math.round(y),w||fw,h||fh)}
 function spawnFx(kind,x,y,targetX=null,targetY=null,delay=0){
  const def=FXMAP[kind];if(!def||!fxImgs[def.palette])return;
- fxEvents.push({kind,x,y,targetX,targetY,started:performance.now()+Math.max(0,delay),duration:kind==="machine"?620:kind==="cloneSpawn"?520:kind==="boss"?560:460});
+ fxEvents.push({kind,x,y,targetX,targetY,started:performance.now()+Math.max(0,delay),duration:kind==="machine"?620:kind==="cloneSpawn"?620:kind==="boss"?560:460});
  if(fxEvents.length>90)fxEvents.splice(0,fxEvents.length-90);
 }
 function drawEffects(t){
@@ -96,7 +96,7 @@ function drawEffects(t){
   const def=FXMAP[e.kind],img=fxImgs[def.palette];if(!img)continue;
   const age=Math.max(0,t-e.started),p=Math.min(.999,age/e.duration),idx=Math.min(def.frames.length-1,Math.floor(p*def.frames.length)),[col,row]=def.frames[idx];
   const x=e.targetX==null?e.x:e.x+(e.targetX-e.x)*p,y=e.targetY==null?e.y:e.y+(e.targetY-e.y)*p;
-  const size=def.size*(e.kind==="machine"?(.7+.3*Math.sin(p*Math.PI)):e.kind==="boss"?(1+p*.35):1);
+  const size=def.size*(e.kind==="machine"?(.7+.3*Math.sin(p*Math.PI)):e.kind==="cloneSpawn"?( .65+.65*Math.sin(p*Math.PI)):e.kind==="boss"?(1+p*.35):1);
   ctx.globalAlpha=e.kind==="machine"?.82:Math.max(.18,1-p*.65);
   ctx.drawImage(img,col*16,row*16,16,16,Math.round(x-size/2),Math.round(y-size/2),size,size);
   ctx.globalAlpha=1;
@@ -132,7 +132,9 @@ const upgrades=[
 ];
 function renderUpgrades(){if(!$("upgrades"))return;$("upgrades").innerHTML=upgrades.map(u=>{const bought=(u.id==="mage"||u.id==="archer")&&state.unlocked.includes(u.id),cost=u.cost();return '<div class="upgrade"><div class="info"><b>'+u.name+'</b><small>'+u.desc()+'</small></div><button class="buy" data-up="'+u.id+'" '+(bought||state.coins<cost?"disabled":"")+'>'+(bought?"UNLOCKED":cost+" CREDITS")+'</button></div>'}).join("");$("upgrades").querySelectorAll("[data-up]").forEach(btn=>btn.addEventListener("click",()=>buyUpgrade(btn.dataset.up)))}
 function buyUpgrade(id){const u=upgrades.find(x=>x.id===id);if(!u)return;if((id==="mage"||id==="archer")&&state.unlocked.includes(id))return;const cost=u.cost();if(state.coins<cost)return;state.coins-=cost;u.buy();state.machineLevel++;addLog(u.name+" installed.");notify("UPGRADE INSTALLED");save();updateHud()}
-function spawnClone(type){if(state.clones.length>=maxClones())return;const i=state.clones.length;/* Release every new clone from the output point immediately left of the machine; crowd separation and boss-swarm movement take over in simulate(). */state.clones.push({type,x:224,y:400,mode:"walk",dir:"up",nextHit:0,flash:0,hp:3,slot:i});state.totalClones++;const now=performance.now(),startAt=Math.max(now,nextCloneSpawnFxAt);nextCloneSpawnFxAt=startAt+85;spawnFx("cloneSpawn",224,400,null,null,startAt-now)}
+function queueCloneSpawnFx(){const now=performance.now(),startAt=Math.max(now,nextCloneSpawnFxAt);nextCloneSpawnFxAt=startAt+85;spawnFx("cloneSpawn",224,400,null,null,startAt-now)}
+function showExistingCloneSpawnFx(){nextCloneSpawnFxAt=performance.now();for(let i=0;i<state.clones.length;i++)queueCloneSpawnFx()}
+function spawnClone(type){if(state.clones.length>=maxClones())return;const i=state.clones.length;/* Release every new clone from the output point immediately left of the machine; crowd separation and boss-swarm movement take over in simulate(). */state.clones.push({type,x:224,y:400,mode:"walk",dir:"up",nextHit:0,flash:0,hp:3,slot:i});state.totalClones++;queueCloneSpawnFx()}
 function produce(count=state.quantity,respawn=false){const openSlots=Math.max(0,maxClones()-state.clones.length-state.respawns.length),batch=Math.min(Math.max(0,count),openSlots);let made=0;for(let i=0;i<batch;i++){const type=respawn?state.respawns.shift()?.type:state.unlocked[state.totalClones%state.unlocked.length];if(!type)break;spawnClone(type);made++}if(!made)return;spawnFx("machine",272,395);state.phase="production";setTimeout(()=>{if(state.phase==="production")state.phase="idle"},620);addLog((respawn?"Machine replacement cycle · ":"Automatic production · ")+made+" clone"+(made===1?"":"s"));if(!respawn)notify(made===1?"CLONE RELEASED":"BATCH RELEASED");updateHud();save()}
 function hitBoss(c,now){if(now<c.nextHit)return;c.nextHit=now+(c.type==="knight"?1050:1450);c.mode="attack";if(c.type==="knight")spawnFx("knight",160,196);else spawnFx(c.type==="mage"?"mage":"archer",c.x,c.y,160,196);state.bossHp-=state.power*(c.type==="knight"?1.15:1);c.flash=now+150;if(state.phase!=="attack"&&state.phase!=="telegraph")state.phase="hurt";setTimeout(()=>{if(c.mode==="attack")c.mode="idle";if(state.phase==="hurt")state.phase="idle"},220);if(state.bossHp<=0)defeatBoss()}
 function killClone(c,now){const i=state.clones.indexOf(c);if(i<0)return;state.clones.splice(i,1);state.respawns.push({type:c.type,due:now+2800});addLog(c.type+" lost · replacement queued");updateHud();save()}
@@ -142,36 +144,26 @@ function simulate(dt,now){
  if(!assetsReady)return;
  if(now-state.lastProduction>=state.rate*1000){state.lastProduction=now;produce(state.quantity)}
  while(state.respawns.length&&state.respawns[0].due<=now&&state.clones.length<maxClones()){const r=state.respawns.shift();spawnClone(r.type);spawnFx("machine",272,395);state.phase="production";addLog("Cloning machine restored a fallen "+r.type+".");updateHud()}
- const b=bossDef(),size=b.size?.[0]||32,cx=160,cy=196,bossRadius=size*Math.max(1,Math.min(4,Math.floor(144/size)))/2,orbitRadius=bossRadius+14,perRing=10,moveStep=dt*.042;
+ const b=bossDef(),size=b.size?.[0]||32,cx=160,cy=196,bossRadius=size*Math.max(1,Math.min(4,Math.floor(144/size)))/2,baseRadius=bossRadius+14,perRing=10,moveStep=dt*.042;
  for(let i=0;i<state.clones.length;i++){
-  const c=state.clones[i],rank=Math.floor(i/perRing),slot=i%perRing,ringCount=Math.min(perRing,state.clones.length-rank*perRing),angle=(slot/Math.max(1,ringCount))*Math.PI*2+rank*.19,targetRadius=orbitRadius+rank*8,dx=cx-c.x,dy=cy-c.y,currentRadius=Math.max(1,Math.hypot(dx,dy)),currentAngle=Math.atan2(c.y-cy,c.x-cx);
+  const c=state.clones[i],rank=Math.floor(i/perRing),slot=i%perRing,ringCount=Math.min(perRing,state.clones.length-rank*perRing),angle=-Math.PI/2+(slot/Math.max(1,ringCount))*Math.PI*2+rank*.19,targetRadius=baseRadius+rank*16,targetX=cx+Math.cos(angle)*targetRadius,targetY=cy+Math.sin(angle)*targetRadius;
   let sx=0,sy=0;
-  for(let j=0;j<state.clones.length;j++){if(i===j)continue;const o=state.clones[j],ox=c.x-o.x,oy=c.y-o.y,od=Math.hypot(ox,oy);if(od>0&&od<10){sx+=ox/od*(10-od)*.5;sy+=oy/od*(10-od)*.5}}
-  const toBossX=cx-c.x,toBossY=cy-c.y;c.dir=Math.abs(toBossX)>Math.abs(toBossY)?(toBossX>0?"right":"left"):(toBossY>0?"down":"up");
-  let moved=false;
-  // First approach the safe orbit radially; never cut across the boss.
-  if(Math.abs(currentRadius-orbitRadius)>2){
-   const direction=currentRadius>orbitRadius?1:-1,step=Math.min(Math.abs(currentRadius-orbitRadius),moveStep);
-   c.x+=dx/currentRadius*direction*step;c.y+=dy/currentRadius*direction*step;moved=step>.2;
-  }else{
-   // Once on the perimeter, travel around the boss to the assigned slot.
-   let delta=((angle-currentAngle+Math.PI*3)%(Math.PI*2))-Math.PI;
-   const angularStep=moveStep/orbitRadius;
-   if(Math.abs(delta)>.035){const turn=Math.sign(delta)*Math.min(Math.abs(delta),angularStep);const next=currentAngle+turn;c.x=cx+Math.cos(next)*orbitRadius;c.y=cy+Math.sin(next)*orbitRadius;moved=true}
-   else if(targetRadius>orbitRadius+2){const step=Math.min(targetRadius-orbitRadius,moveStep);c.x+=Math.cos(angle)*step;c.y+=Math.sin(angle)*step;moved=step>.2}
-  }
-  // Keep crowd pressure from pushing a sprite into the boss or through another clone.
-  c.x+=sx*1.1;c.y+=sy*1.1;
-  const safeDistance=bossRadius+11,afterX=c.x-cx,afterY=c.y-cy,afterDistance=Math.hypot(afterX,afterY);
-  if(afterDistance<safeDistance){c.x=cx+afterX/Math.max(1,afterDistance)*safeDistance;c.y=cy+afterY/Math.max(1,afterDistance)*safeDistance}
-  if(moved){c.mode="walk"}else{c.mode="idle";hitBoss(c,now)}
+  for(let j=0;j<state.clones.length;j++){if(i===j)continue;const o=state.clones[j],ox=c.x-o.x,oy=c.y-o.y,od=Math.hypot(ox,oy);if(od>0&&od<12){const force=(12-od)/12;sx+=ox/od*force;sy+=oy/od*force}}
+  const dx=targetX-c.x,dy=targetY-c.y,distance=Math.max(.001,Math.hypot(dx,dy)),steerX=dx/distance+sx*.42,steerY=dy/distance+sy*.42,steerLength=Math.max(.001,Math.hypot(steerX,steerY));
+  if(distance>1.5){const step=Math.min(moveStep,distance);c.x+=steerX/steerLength*step;c.y+=steerY/steerLength*step;c.mode="walk"}else{c.x=targetX;c.y=targetY;c.mode="idle";hitBoss(c,now)}
+  c.slot=i;c.dir=Math.abs(cx-c.x)>Math.abs(cy-c.y)?(cx>c.x?"right":"left"):(cy>c.y?"down":"up");
+  // Crowd separation and knockback may displace a clone briefly, but it is always pulled back to its assigned orbit slot.
+  const fromSlotX=c.x-targetX,fromSlotY=c.y-targetY,slotError=Math.hypot(fromSlotX,fromSlotY),slotSlack=distance>2?7:2;
+  if(slotError>slotSlack){c.x=targetX+fromSlotX/slotError*slotSlack;c.y=targetY+fromSlotY/slotError*slotSlack}
+  const safeDistance=bossRadius+11,fromBossX=c.x-cx,fromBossY=c.y-cy,fromBossDistance=Math.max(.001,Math.hypot(fromBossX,fromBossY));
+  if(fromBossDistance<safeDistance){c.x=cx+fromBossX/fromBossDistance*safeDistance;c.y=cy+fromBossY/fromBossDistance*safeDistance}
   c.x=Math.max(12,Math.min(308,c.x));c.y=Math.max(70,Math.min(440,c.y));
  }
  if(now-state.lastBossAttack>4700&&state.phase!=="death"&&state.phase!=="attack"){state.lastBossAttack=now;state.phase="telegraph";setTimeout(()=>{if(state.phase==="telegraph")bossStrike(Date.now())},650)}
 }
 function render(now){const dt=Math.min(40,now-(lastFrame||now));lastFrame=now;if(gameStarted&&assetsReady)simulate(dt,Date.now());drawRoom(now);if(state.toastUntil<Date.now())$("toast").classList.remove("show");requestAnimationFrame(render)}
 function save(){state.lastSave=Date.now();const d={coins:state.coins,bossIndex:state.bossIndex,bossHp:state.bossHp,bossMax:state.bossMax,totalClones:state.totalClones,cloneRoster:state.clones.map(c=>c.type),respawns:state.respawns,rate:state.rate,quantity:state.quantity,power:state.power,capacityLevel:state.capacityLevel,unlocked:state.unlocked,machineLevel:state.machineLevel,defeats:state.defeats,lastSave:state.lastSave};try{localStorage.setItem("cloneLabIdleSave",JSON.stringify(d))}catch{}}
-function loadSave(){try{const d=JSON.parse(localStorage.getItem("cloneLabIdleSave")||"null");if(!d)return;Object.assign(state,d);state.clones=(d.cloneRoster||[]).slice(0,maxClones()).map((type,i)=>({type,x:224,y:400,mode:"walk",dir:"up",nextHit:0,flash:0,hp:3,slot:i}));state.respawns=d.respawns||[];const elapsed=Math.max(0,Date.now()-(d.lastSave||Date.now()));state.lastProduction=Date.now()-(elapsed%(state.rate*1000));addLog("Saved lab data restored.")}catch(e){console.warn("Save could not be loaded",e)}}
+function loadSave(){try{const d=JSON.parse(localStorage.getItem("cloneLabIdleSave")||"null");if(!d)return;Object.assign(state,d);state.clones=(d.cloneRoster||[]).slice(0,maxClones()).map((type,i)=>({type,x:224,y:400,mode:"walk",dir:"up",nextHit:0,flash:0,hp:3,slot:i}));state.respawns=d.respawns||[];if(assetsReady)showExistingCloneSpawnFx();const elapsed=Math.max(0,Date.now()-(d.lastSave||Date.now()));state.lastProduction=Date.now()-(elapsed%(state.rate*1000));addLog("Saved lab data restored.")}catch(e){console.warn("Save could not be loaded",e)}}
 $("upgradesButton").addEventListener("click",()=>{$("overlay").classList.add("open")});$("close").addEventListener("click",()=>$("overlay").classList.remove("open"));$("overlay").addEventListener("click",e=>{if(e.target===$("overlay"))$("overlay").classList.remove("open")});for(const eventName of ["gesturestart","gesturechange","gestureend"])document.addEventListener(eventName,e=>e.preventDefault(),{passive:false});document.addEventListener("touchstart",e=>{if(e.touches.length>1)e.preventDefault()},{passive:false});document.addEventListener("dblclick",e=>e.preventDefault(),{passive:false});
 function startGame(){if(gameStarted)return;loadSave();gameStarted=true;state.lastBossAttack=Date.now();$("startMenu").style.display="none";updateHud()}
 $("playButton").addEventListener("click",startGame);
