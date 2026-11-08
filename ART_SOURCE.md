@@ -223,3 +223,15 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 - A curated, engine-neutral import bundle was prepared as `Clone-Lab-Idle-verified-assets.zip` for the selected asset folders and their frame metadata. It contains no game code.
 - **Repository status:** the archive contents are verified, but the PNG binaries have not yet been committed into the GitHub repository. The repository still has no `index.html` or playable implementation. Do not claim the assets are installed or the game is playable until those steps are completed.
 
+
+
+## Effects — Free Effect and Bullet 16x16
+
+- **Creator:** BDragon1727.
+- **Source:** https://bdragon1727.itch.io/free-effect-and-bullet-16x16
+- **License:** Free for non-commercial games; modifications are allowed. The creator requests a contribution of any value for commercial game use. Do not resell or redistribute the pack as a standalone asset.
+- **Imported source:** Four 576×208 PNG atlases (Fire, Green, Purple, Water), each arranged on a 16×16 grid.
+- **Repository location:** `assets/effects/effect-and-bullet-16x16/`.
+- **Credit:** BDragon1727 — Free Effect and Bullet 16x16.
+- **Status:** Imported and visually inspected; not yet wired into game animations. Preserve the source palette and nearest-neighbour rendering. Map individual animation sequences before assigning them to attacks, projectiles, hit reactions, or cloning-machine effects.
+- **Import record:** `docs/asset-import/effect-and-bullet-16x16/IMPORT_MANIFEST.md`.
