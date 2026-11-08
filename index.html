@@ -19,7 +19,7 @@ button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
 .stat span{display:block;color:#617b87;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
 .stat strong{font-size:16px;color:#304957}
 .room-wrap{position:relative;width:100%;flex:1;min-height:0;overflow:hidden;line-height:0;display:flex;align-items:center;justify-content:center;padding:4px;background-color:transparent;border:16px solid transparent;border-image:url("assets/ui/complete-ui-essential-pack-free/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Frame03a.png") 16 fill / 16px / 0 stretch}
-#room{display:block;width:100%;height:100%;max-height:100%;aspect-ratio:2/3;object-fit:contain;image-rendering:pixelated;touch-action:manipulation}
+#room{display:block;width:100%;height:100%;max-height:100%;aspect-ratio:2/3;object-fit:contain;background:#e9f0f2;image-rendering:pixelated;touch-action:manipulation}
 .room-label{position:absolute;left:13px;top:13px;line-height:1;background:transparent;padding:7px 12px;font-size:11px;font-weight:900;letter-spacing:.08em;color:#304957}
 .toast{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%);padding:10px 22px;min-width:150px;text-align:center;background:transparent;color:#5e431b;font-size:14px;font-weight:900;opacity:0;pointer-events:none;transition:opacity .2s;white-space:nowrap}
 .toast.show{opacity:1}
@@ -93,7 +93,7 @@ function bossDef(){return bossData?.bosses[state.bossIndex%bossData.bosses.lengt
 function bossAnim(action){const b=bossDef(),rage=state.bossHp<=state.bossMax*.5&&action!=="death",key=b.name+"_"+(rage&&action==="idle"?"idle_enraged":rage&&action==="attack"?"attack_enraged":action);return bossData?.animations.find(a=>a.name===key)||bossData?.animations.find(a=>a.name===b.name+"_idle")}
 function charAnim(type,action,dir){return warData?.characters.find(c=>c.name===type)?.animations.find(a=>a.name===action+"_"+dir)}
 function drawRoom(t){
- ctx.clearRect(0,0,320,480);
+ ctx.clearRect(0,0,320,480);ctx.fillStyle="#e9f0f2";ctx.fillRect(0,0,320,480);
  for(let y=0;y<480;y+=16)for(let x=0;x<320;x+=16)tile((x/16+y/16)%3===0?"floor_white_2":"floor_white_1",x,y);
  for(let x=0;x<320;x+=16){tile("wall_white_top",x,0);tile("wall_white_face",x,16);if(x===0)tile("wall_white_cap_left",x,0);if(x===304)tile("wall_white_cap_right",x,0)}
  for(let y=32;y<480;y+=16){tile("wall_steel_face",0,y);tile("wall_steel_face",304,y)}
