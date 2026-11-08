@@ -5,7 +5,7 @@
     "columns": 36,
     "rows": 13
   },
-  "note": "Authored frame selections from the original atlas. Coordinates are zero-based [column,row]; source art is unchanged. Frames are presentation selections, not creator-supplied animation metadata.",
+  "note": "Authored frame selections from the original atlas. Coordinates are zero-based [column,row]; source art is unchanged. Frames are presentation selections, not creator-supplied animation metadata. The machineProduction selection uses the visible vertical energy-beam frames at row 12, columns 18–24; cloneSpawn uses the visible opening water-splash frames at row 0, columns 0–6.",
   "animations": {
     "knightMelee": {
       "palette": "fire",
@@ -143,31 +143,31 @@
       "palette": "water",
       "frames": [
         [
-          0,
+          18,
           12
         ],
         [
-          1,
+          19,
           12
         ],
         [
-          2,
+          20,
           12
         ],
         [
-          3,
+          21,
           12
         ],
         [
-          4,
+          22,
           12
         ],
         [
-          5,
+          23,
           12
         ],
         [
-          6,
+          24,
           12
         ]
       ],
@@ -180,36 +180,36 @@
       "frames": [
         [
           0,
-          12
+          0
         ],
         [
           1,
-          12
+          0
         ],
         [
           2,
-          12
+          0
         ],
         [
           3,
-          12
+          0
         ],
         [
           4,
-          12
+          0
         ],
         [
           5,
-          12
+          0
         ],
         [
           6,
-          12
+          0
         ]
       ],
-      "durationMs": 620,
-      "displaySize": 52,
-      "trigger": "Each newly produced clone and each clone restored from a saved roster; staggered in multi-clone batches at the machine output."
+      "durationMs": 760,
+      "displaySize": 60,
+      "trigger": "Each newly produced clone and each clone restored from a saved roster; queued effects remain pending until their staggered start time and render over the clone at the machine output."
     }
   }
 }
