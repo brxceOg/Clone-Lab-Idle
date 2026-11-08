@@ -14,20 +14,20 @@
 
 ## Core experience
 
-The player manages one laboratory room. A large boss occupies the central combat area. A cloning machine sits in the bottom-right area and is the primary progression interface. The player improves the machine, produces warriors, watches them emerge, and lets them fight automatically.
+The player manages one laboratory room. A large boss occupies the central combat area. A cloning machine sits in the bottom-right area and is the primary progression interface. The player improves the machine from a dedicated UPGRADES button in the bottom-left of the lab, watches warriors emerge from the machine in the bottom-right, and lets them fight automatically.
 
 The laboratory should feel like a small, lively simulation that the player is observing—not a conventional RPG battle menu or a static upgrade screen.
 
 ## Main gameplay loop
 
-1. The player opens the cloning machine interface by tapping the machine.
-2. The player spends the appropriate currency on machine upgrades by tapping the machine in the room.
+1. The player opens the upgrade interface with the dedicated UPGRADES button in the bottom-left of the lab.
+2. The player spends the appropriate currency on production and clone upgrades in the upgrade panel.
 3. The machine produces clones automatically on its own cycle; the player never presses a manual produce button. Production upgrades increase output, cadence, or batch size.
 4. Clone-type upgrades unlock additional warrior classes or variants.
 5. When an upgrade or production action creates a clone, the machine plays a readable production sequence.
 6. A newly produced warrior emerges from the machine, enters the room, and automatically approaches and attacks the active boss. Melee classes close to the boss; ranged classes maintain a sensible firing distance.
 7. Warriors continue fighting without requiring individual player commands. They move as a coordinated army while maintaining personal space through soft crowd-separation steering.
-8. Boss attacks damage nearby clones. A defeated clone is placed in the machine replacement queue and automatically respawned after a short production delay.
+8. Boss attacks damage nearby clones. A defeated clone is placed in the machine replacement queue and automatically respawned after a short production delay. The machine maintains the army toward its 26-active-clone capacity, reserving space for queued replacements so it cannot overfill the room or strand a replacement queue.
 9. When the boss is defeated, its death animation plays to completion.
 10. The player receives the boss reward, and the next boss enters or appears.
 11. The player reinvests rewards into production and stronger clone types.
@@ -42,7 +42,7 @@ The main play area is one large, bright laboratory room.
 - **Cloning machine:** Anchored in the bottom-right of the room. It must remain easy to identify and tap.
 - **Warriors:** Small characters produced by the machine. They occupy the room and visibly engage the boss.
 - **HUD:** Currency, current boss/progression, and essential production/combat information. Keep it compact so the room remains the focus.
-- **Machine upgrade interface:** Opens when the machine is tapped. It should feel attached to the machine and expose production and clone-type upgrades without permanently covering the battle.
+- **Upgrade interface:** Opens from a dedicated UPGRADES button anchored at the bottom-left of the lab. It exposes production and clone-type upgrades without permanently covering the battle. Tapping the cloning machine itself does not open the panel.
 
 Exact screen coordinates may adapt to device dimensions, but the relative hierarchy and visual relationships above are canonical.
 
@@ -80,6 +80,8 @@ The exact upgrade names, costs, scaling curves, class roster, and balance values
 The game should reward both active interaction and letting the simulation run.
 
 - Production and combat should proceed automatically after upgrades are purchased.
+- The army has a fixed capacity of 26 active clones. The HUD displays active clones / 26, not lifetime clones produced.
+- When active clones plus queued respawns fall below capacity, automatic production fills only unreserved slots according to the current batch size and production rate. Pending respawns reserve their own slots until they return, preventing overproduction and stuck replacement queues.
 - Progression should be incremental and understandable: the player can see how each machine upgrade improves output or unlocks new options.
 - Save player progress locally in the browser so a refresh does not erase the run.
 - Use elapsed-time/offline progress only when it can be implemented reliably and capped sensibly; never grant duplicate or implausible rewards after clock changes or long absences.
