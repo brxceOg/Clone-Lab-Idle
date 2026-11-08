@@ -180,6 +180,7 @@ function renderUpgrades(){
   return '<button type="button" class="skill-node path-'+p.id+' '+status+'" data-skill="'+p.id+'" data-rank="1" style="left:'+(p.node.x-nodeW/2)+'px;top:'+(p.node.y-nodeH/2)+'px;width:'+nodeW+'px;min-height:'+nodeH+'px"><span class="node-kind">'+p.short+'</span><strong>'+p.label+'</strong><span class="node-rank">'+label+'</span><span class="node-cost">'+(p.maxed?"MAXED":'<span class="'+(state.coins>=cost?'price-affordable':'price-unaffordable')+'">'+formatCount(cost)+' CR</span>')+'</span></button>';
  }).join("");
  panel.innerHTML='<div class="skill-tree-tools"><small>CLONE CAPACITY IS THE CORE · EACH OUTER NODE REPEATEDLY UPGRADES ITS OWN PATH · DRAG TO EXPLORE</small><div class="skill-zoom"><button type="button" id="skillZoomOut" aria-label="Zoom out">−</button><button type="button" id="skillZoomIn" aria-label="Zoom in">+</button><button type="button" id="skillZoomReset">RESET</button></div></div><div class="skill-viewport" id="skillViewport"><div class="skill-world" id="skillWorld">'+svg+'<button type="button" class="skill-hub" data-skill="capacity" data-rank="1"><strong>CLONE CAPACITY</strong><small>CORE UPGRADE<br>LEVEL '+state.capacityLevel+' · <span class="skill-price '+(state.coins>=capacity.cost()?'price-affordable':'price-unaffordable')+'">'+formatCount(capacity.cost())+' CR</span></small></button>'+nodes+'</div></div><div class="skill-selected" id="skillSelected"><div class="skill-selected-copy"><strong>SELECT AN UPGRADE</strong><small>Unlock an outer path once, then keep selecting that same node to purchase higher levels. No scrolling through duplicate tier nodes.</small></div><button class="buy" type="button" disabled>RESEARCH</button></div>';
+ const viewport=$("skillViewport"),world=$("skillWorld");
  const tooltip=document.createElement("div");
  tooltip.className="skill-tooltip";
  tooltip.setAttribute("role","tooltip");
@@ -206,7 +207,6 @@ function renderUpgrades(){
   btn.addEventListener("focus",()=>showSkillTip(btn));
   btn.addEventListener("blur",hideSkillTip);
  });
- const viewport=$("skillViewport"),world=$("skillWorld");
  if(!window.skillViewState)window.skillViewState={scale:.55,x:0,y:0};
  const view=window.skillViewState;
  const clamp=()=>{view.scale=Math.max(.28,Math.min(1.2,view.scale));const w=viewport.clientWidth,h=viewport.clientHeight;view.x=Math.min(30,Math.max(w-2200*view.scale-30,view.x));view.y=Math.min(30,Math.max(h-2200*view.scale-30,view.y));world.style.transform='translate('+view.x+'px,'+view.y+'px) scale('+view.scale+')'};
