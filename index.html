@@ -281,10 +281,11 @@ function runDnaResearch(){
 }
 function buyUpgrade(id){const u=upgrades.find(x=>x.id===id);if(!u)return;if(id==="rate"&&state.rate<=1.5)return;const cost=u.cost();if(state.coins<cost)return;state.coins-=cost;u.buy();state.machineLevel++;spawnPvfx("levelUp",160,118,null,null,.46);addLog(u.name+" upgraded.");notify("UPGRADE INSTALLED");save();updateHud();if($("overlay").classList.contains("open"))renderUpgrades()}
 function queueCloneSpawnFx(){const now=performance.now();nextCloneSpawnFxAt=now+45;spawnFx("cloneSpawn",224,400,null,null,0)}
-// Saved clones re-enter through the machine output on page load, with a short stagger so every emergence is visible.
+// Restored clones appear together when the saved lab opens, so use one immediate group emergence burst.
+// Do not stagger this by clone index: large saved rosters would leave effects playing long after the clones are visible.
 function showExistingCloneSpawnFx(){
  nextCloneSpawnFxAt=performance.now();
- state.clones.forEach((clone,index)=>spawnFx("cloneSpawn",224,400,null,null,index*85));
+ if(state.clones.length)spawnFx("cloneSpawn",224,400);
 }
 function spawnClone(type){if(state.clones.length>=maxClones())return;const i=state.clones.length;/* Release every new clone from the output point immediately left of the machine; crowd separation and boss-swarm movement take over in simulate(). */state.clones.push({type,x:224,y:400,mode:"walk",dir:"up",nextHit:0,flash:0,hp:3,slot:i});state.totalClones++;queueCloneSpawnFx()}
 function produce(count=state.quantity,respawn=false){const openSlots=Math.max(0,maxClones()-state.clones.length-state.respawns.length),batch=Math.min(Math.max(0,count),openSlots);let made=0;for(let i=0;i<batch;i++){const type=respawn?state.respawns.shift()?.type:state.unlocked[state.totalClones%state.unlocked.length];if(!type)break;spawnClone(type);made++}if(!made)return;spawnFx("machine",272,395);spawnPvfx("portalSummon",272,402,null,null,.38,"foreground");spawnPvfx("magicCircle",272,462,null,null,.48,"foreground");state.phase="production";setTimeout(()=>{if(state.phase==="production")state.phase="idle"},620);addLog((respawn?"Machine replacement cycle · ":"Automatic production · ")+made+" clone"+(made===1?"":"s"));if(!respawn)notify(made===1?"CLONE RELEASED":"BATCH RELEASED");updateHud();save()}
