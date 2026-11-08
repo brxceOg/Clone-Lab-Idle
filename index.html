@@ -327,7 +327,7 @@ function simulate(dt,now){
     c.x=cx+Math.cos(nextAngle)*baseRadius;c.y=cy+Math.sin(nextAngle)*baseRadius;moving=true;
    }else{
     c.x=cx+Math.cos(angle)*baseRadius;c.y=cy+Math.sin(angle)*baseRadius;
-    c.formationPhase=ranged?"offset":"formed";
+    c.formationPhase=targetRadius>baseRadius+2?"offset":"formed";
    }
   }else if(c.formationPhase==="offset"){
    const radialDelta=targetRadius-currentRadius;
