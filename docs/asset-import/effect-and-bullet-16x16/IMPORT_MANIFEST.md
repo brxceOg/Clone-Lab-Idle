@@ -16,4 +16,4 @@ The archive contains four palette variants. Each source PNG is a 576×208 atlas 
 | Purple | `Effect and Bullet 16x16/Purple Effect and Bullet 16x16.png` | 576×208 | 36×13 |
 | Water | `Effect and Bullet 16x16/Water Effect and Bullet 16x16.png` | 576×208 | 36×13 |
 
-**Integration status:** Imported and visually inspected. The atlases are not yet connected to game combat or cloning-machine animations. No frame-by-frame animation map was included in the archive, so animation sequences must be mapped from the atlas before use.
+**Integration status:** The four atlases are loaded by `index.html`. The game currently uses palette-specific effects for Knight melee impacts (Fire), Mage spell shots (Purple), Archer shots (Water), boss attack impacts (Green), and cloning-machine production/replacement (Water). Source rectangles remain 16×16 and are scaled with canvas smoothing disabled. The source pack did not include animation metadata; the project's authored coordinate selections and timings are recorded in `assets/effects/effect-and-bullet-16x16/animation-map.json`.
