@@ -1,42 +1,31 @@
 # Clone Lab Idle — asset library
 
-The repository's original starter assets are retained as a separate 3/4-view prototype set. The preferred art direction for the main game scene is now top-down on a 16×16 grid, using the three user-supplied packs documented below.
+The repository contains the verified source artwork for the browser game. The supplied art is committed under `assets/`; use these exact files rather than substitutes.
 
-## Existing starter assets (alternate 3/4-view set)
+## Main-scene art pipeline
 
-- `warriors/ninja-blue.png`, `warriors/samurai-blue.png`: four-direction 3/4-view sheets from Ninja Adventure.
-- `lab/interior-floor-tiles.png`, `lab/interior-wall-tiles.png`: interior tiles from Ninja Adventure.
-- `lab/scifi-console.png`: Kenney Sci-Fi RTS fixture.
-- `bosses/components/` and `bosses/first-boss.svg`: Kenney Monster Builder components and a static composition.
+The approved main game scene is top-down on a 16×16 grid:
 
-Do not mix these perspective-specific assets into the top-down room without deliberate conversion.
+1. **Laboratory:** reodesuxz Pixel Sci-Fi Tileset (16×16), in `lab/pixel-sci-fi-tileset/`.
+2. **Warriors:** Larchrow 16×16 Characters & Monsters, in `warriors/larchrow-16x16-characters-monsters/`.
+3. **Bosses:** Larchrow 16×16 Boss Monsters, in `bosses/larchrow-16x16-boss-monsters/`.
 
-## Verified incoming top-down packs (2026-11-08)
+The Larchrow character and boss packs share a 32-colour palette and 16px grid. Keep the original Ninja Adventure 3/4-view prototype art separate; do not mix its perspective into the top-down room.
 
-All three supplied ZIP archives were inspected. Every PNG in each archive opened successfully. Full QA results and license notes are in `source-notes/VERIFIED_IMPORT.md`.
+## Imported asset status
 
-1. **Lab — reodesuxz, Free Pixel Sci-Fi Tileset (16x16)**  
-   https://reodesuxz.itch.io/free-pixel-sci-fi-tileset-16x16  
-   83 described 16×16 tiles/sprites; native PNGs, spritesheet + JSON, sample scene. Commercial use and modification allowed; no attribution required; no standalone redistribution/resale.
+The verified bulk import completed successfully on 2026-11-08. The repository contains 403 PNG assets across the supplied packs, plus source spritesheets, animation indexes, CSV/JSON metadata, palettes, previews, and original license/readme files. The temporary ZIP was removed after extraction.
 
-2. **Warriors — Larchrow, 16x16 Characters & Monsters**  
-   https://larchrow.itch.io/larchrow-16x16-characters-monsters  
-   8 heroes/NPCs + 10 monsters; 122 animations / 356 frames. The included QA report passed all checks. Commercial use and modification allowed; attribution optional; no resale/asset-pack redistribution.
-
-3. **Bosses — Larchrow, 16x16 Boss Monsters**  
-   https://larchrow.itch.io/larchrow-16x16-boss-monsters  
-   14 bosses (32×32 and 48×48); 95 animations / 432 frames, telegraphs and HP UI. The included QA report passed all checks. Commercial use and modification allowed; attribution optional; no resale/asset-pack redistribution.
+The authoritative source and QA notes are in `source-notes/VERIFIED_IMPORT.md`. The import workflow is `.github/workflows/import-verified-assets.yml`.
 
 ## Rendering rules
 
-- Use nearest-neighbour / `image-rendering: pixelated`.
-- Keep 16×16 source frames at native resolution and preserve the provided animation indexes.
-- The two Larchrow packs share a 32-colour palette. Do not apply hue shifts, blur, or blanket filters.
-- Use the larger 32×32 / 48×48 boss frames to maintain a clear scale difference over 16×16 warriors.
-
-## Repository status
-
-The supplied ZIPs have been verified, but the PNG binaries are not yet committed to this repository. The curated engine-neutral bundle `Clone-Lab-Idle-verified-assets.zip` was prepared separately for import. No game code or playable page exists yet; do not reference uncommitted assets from game code.
+- Use nearest-neighbour rendering (`image-rendering: pixelated` / canvas smoothing disabled).
+- Preserve original source frame dimensions and proportions.
+- Read the supplied animation metadata; do not guess sprite-sheet frame layouts.
+- Do not apply hue shifts, blur, blanket filters, or resampling that softens pixel edges.
+- Use the 32×32 / 48×48 boss frames to maintain a clear scale difference over 16×16 warriors.
+- Keep the legacy Ninja Adventure art separate from the top-down game scene.
 
 ## Sources and licenses
 
