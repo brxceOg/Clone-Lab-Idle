@@ -6,8 +6,6 @@ on:
     paths:
       - "imports/Clone-Lab-Idle-verified-assets.zip"
       - "Effect and Bullet 16x16.rar"
-      - ".github/workflows/import-verified-assets.yml"
-      - "imports/trigger-rar-import.txt"
   workflow_dispatch:
 
 permissions:
