@@ -260,3 +260,10 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 - **Integration:** Loaded locally with `@font-face` and used for HTML interface text and canvas-rendered labels. No external font service is required.
 
 - **Upgrade access update (2026-11-08):** upgrade controls are opened with a dedicated UPGRADES button anchored at the bottom-left of the laboratory viewport. The button uses the existing Flat Theme nine-slice button sprite and pressed-state sprite. Tapping the cloning machine itself no longer opens the upgrade panel.
+
+
+### Clone emergence effect correction (2026-11-08)
+
+- The original `machineProduction` and `cloneSpawn` frame selections pointed at row 12, columns 0–6, which are transparent/empty cells in the water atlas. This made the clone-spawn effect invisible (and also left the machine's atlas effect invisible).
+- `machineProduction` now uses the visible water energy-beam frames at row 12, columns 18–24. `cloneSpawn` now uses visible water splash frames at row 0, columns 0–6, enlarged to 60px and shown for 760ms.
+- Fixed the effect queue so staggered events are retained until their scheduled start time instead of being filtered out on the first render frame. Pending effects are skipped while waiting, then rendered normally.
