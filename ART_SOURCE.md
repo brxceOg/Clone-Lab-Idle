@@ -134,7 +134,7 @@ Do not commit assets whose license is unclear or incompatible with public GitHub
 Before approving a visual change, verify:
 
 - [ ] The scene still reads as a bright, modern pixel-art laboratory.
-- [ ] The boss remains the central focal point.
+- [ ] The boss remains the central focal point and fills most of the white containment platform.
 - [ ] The cloning machine remains in the bottom-right and easy to identify.
 - [ ] Warriors are small but readable at iPhone portrait scale.
 - [ ] Sprite edges remain crisp with no blur or unwanted recoloring.
