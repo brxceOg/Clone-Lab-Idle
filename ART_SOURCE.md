@@ -233,5 +233,5 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 - **Imported source:** Four 576×208 PNG atlases (Fire, Green, Purple, Water), each arranged on a 16×16 grid.
 - **Repository location:** `assets/effects/effect-and-bullet-16x16/`.
 - **Credit:** BDragon1727 — Free Effect and Bullet 16x16.
-- **Status:** Imported and visually inspected; not yet wired into game animations. Preserve the source palette and nearest-neighbour rendering. Map individual animation sequences before assigning them to attacks, projectiles, hit reactions, or cloning-machine effects.
+- **Status:** Imported and wired into the browser game. The game loads the four palette atlases and draws selected 16×16 source cells with nearest-neighbour rendering. Current uses: Knight melee impact, Mage spell projectile, Archer projectile, boss attack impact, and cloning-machine production/replacement burst. Preserve source palettes; the authored frame map is `assets/effects/effect-and-bullet-16x16/animation-map.json`.
 - **Import record:** `docs/asset-import/effect-and-bullet-16x16/IMPORT_MANIFEST.md`.
