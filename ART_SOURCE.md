@@ -147,18 +147,19 @@ Before approving a visual change, verify:
 Read this document before visual or animation work. Update it whenever the approved art direction, asset sources, rendering rules, or attribution requirements change. Product behavior and gameplay rules belong in `SOURCE_OF_TRUTH.md`.
 
 
-## Identified itch.io packs (not yet installed)
+## Confirmed intended itch.io packs (not yet installed)
 
-The following exact product pages have been identified for the intended art sources:
+The user has supplied and confirmed these exact product pages as the intended art sources. These replace the previously recorded MarzoDev pack, which was the wrong pack and must not be used for this project.
 
-### Modern Interior - RPG Pack [32x32] — MarzoDev
+### Modern Interiors - RPG Tileset [16X16] — LimeZu
 
-- **Product page:** https://marzodev.itch.io/interior-modern-asset-pack
-- **Format / scale:** Transparent PNG props, 32px.
-- **Free tier:** 12 props.
-- **Paid tier:** Full pack; the product page lists an additional 15-assets ZIP at a $1 minimum payment.
-- **License distinction:** The free pack is stated to be for personal use, with editing and game-development use allowed. The paid full pack is stated to allow personal or commercial use, with editing and game-development use allowed. Both prohibit redistribution/resale of the assets.
-- **Integration status:** Identified only; not downloaded or installed. Confirm the purchased/downloaded archive contents before integration.
+- **Product page:** https://limezu.itch.io/moderninteriors
+- **Format / scale:** 16×16 pixel-art RPG interior tileset. The page also lists versions/sizes for 32×32 and 48×48 workflows.
+- **Content:** A large collection of modular interior tiles and thousands of furniture sprites across many room themes, including living spaces, reception areas, bathrooms, bedrooms, classrooms, libraries, shops, kitchens, hospitals, control rooms, and more. The page also describes animated objects, character-generation content, and UI elements.
+- **Download tiers:** The page lists a free archive (`Modern_Interiors_Free_v2.2.zip`) and paid full content, including `Modern_Interiors_v41.4` (149 MB), with the complete version requiring at least $1.50. The page also lists an RPG Maker archive and character-generator files.
+- **License:** The complete-version license permits editing and use in commercial or non-commercial projects. It prohibits reselling or distributing the assets. The page states that credits are required; include a link to LimeZu's page in the game's credits and repository attribution. Verify the free-tier terms separately before using any free-tier files.
+- **Likely project use:** Primary source for the bright laboratory interior, modular walls/floors, furniture, and suitable lab props. Select only assets that fit the lab's clean, modern visual direction.
+- **Integration status:** Correct source confirmed by the user; not downloaded or installed. Verify the exact downloaded archive/version before integration.
 
 ### Tiny RPG Character Asset Pack 01 V2.0 — Zerie
 
@@ -167,14 +168,20 @@ The following exact product pages have been identified for the intended art sour
 - **Full pack:** The page lists the full 22-character v2.0 ZIP at a $2.50 minimum payment.
 - **Free sample:** The free ZIP is limited to Soldier and Orc; it is not the full roster.
 - **License:** Personal and commercial video game use and modification are allowed. Redistribution, resale, or re-upload of the assets (modified or unmodified) is prohibited. Credit is appreciated but not required.
-- **Integration status:** Identified only; not downloaded or installed. Confirm the downloaded archive is the full v2.0 pack, not the free sample or an older version.
+- **Likely project use:** Initial clone/warrior roster and supported combat animations. Inspect the character silhouettes, animation frame timing, and scale before deciding which units fit the game's lab-combat presentation.
+- **Integration status:** Correct source confirmed by the user; not downloaded or installed. Confirm the downloaded archive is the full v2.0 pack, not the free sample or an older version.
+
+### Public browser-game distribution check
+
+Both packs restrict redistribution of the asset files. Because this game is intended for public GitHub Pages hosting, the browser may expose downloaded image/sprite files to visitors even when those files are used as part of the game. Do not commit or publish the original archives or extracted source assets to the public repository until the creators' license terms are confirmed to permit this specific form of game distribution. If necessary, ask each creator for written clarification or obtain a license that explicitly covers publicly hosted browser-game asset delivery.
 
 ### Acquisition and integration checklist
 
 - [ ] Obtain the full intended version of each pack.
 - [ ] Verify archive contents and version after download.
-- [ ] Preserve original source files; create separate game-ready exports.
+- [ ] Preserve original source files privately; create separate game-ready exports.
 - [ ] Inspect sprite sheets, animation frame order, transparency, and scale.
-- [ ] Integrate only the assets needed for the room and initial clone roster.
+- [ ] Confirm the creators' terms cover delivery of game asset files to players through a public browser game.
+- [ ] Integrate only the assets needed for the room and initial clone roster once distribution rights are clear.
+- [ ] Add LimeZu's required credit/link to the game's credits and repository attribution.
 - [ ] Keep asset credits/license notes consistent with the exact downloaded versions.
-
