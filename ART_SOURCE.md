@@ -12,13 +12,13 @@ The game should feel cute, readable, lively, and handcrafted—not sterile corpo
 
 ## Current starter asset sources
 
-The first usable asset library is installed under `assets/`. It uses three free CC0 sources so the selected files can be stored in the public GitHub repository and served by GitHub Pages:
+The original starter library remains under `assets/` and is retained as an alternate 3/4-view prototype set:
 
-1. **Ninja Adventure — Pixel-Boy and AAA:** two four-direction RPG warrior sheets plus interior floor and wall tiles. The 16×16-grid characters establish the initial 3/4-view camera.
-2. **Sci-Fi RTS — Kenney:** a selected sci-fi console/structure sprite for lab-fixture inspiration.
-3. **Monster Builder Pack — Kenney:** modular boss body and feature components used to assemble the first boss base image.
+1. **Ninja Adventure — Pixel-Boy and AAA:** two four-direction RPG warrior sheets plus interior floor and wall tiles.
+2. **Sci-Fi RTS — Kenney:** a selected sci-fi console/structure sprite.
+3. **Monster Builder Pack — Kenney:** modular boss components and a static first-boss composition.
 
-See `assets/README.md` for the exact local files, source links, and license notes. All included files are recorded as CC0 1.0 / public-domain equivalent. The original creator's source files remain intact in the repository's asset folder; do not recolor or blur the warrior sprite sheets.
+For the main game scene, the preferred camera/art pipeline is now **top-down on a 16×16 grid**, using the verified reodesuxz laboratory tiles and Larchrow character/boss packs. Keep the original Ninja Adventure art separate; do not mix the two perspectives without deliberate conversion. See `assets/README.md` and `assets/source-notes/VERIFIED_IMPORT.md` for exact source, license, and QA records.
 
 The previously discussed LimeZu Modern Interiors and Zerie Tiny RPG Character packs are not part of the installed starter library. They remain optional candidates only; do not substitute them without confirming the exact version and license for public browser-game delivery.
 
@@ -191,36 +191,35 @@ Read this document before visual or animation work. Update it whenever the appro
 These were user-identified candidate packs earlier in planning, but were not downloaded or integrated for this free starter set. Revisit only after confirming the precise archive and the license terms for public GitHub Pages asset delivery.
 
 
-## Additional free expansion packs selected for evaluation
+## Verified free expansion packs — archives received and inspected (2026-11-08)
 
-These are the preferred next downloads because they provide a consistent 16×16 top-down set for the lab, clone roster, and boss progression. They have been researched but are **not downloaded or installed yet**.
+The user supplied all three ZIP archives. Their contents, source documentation, and licenses were inspected. All PNG files in the three archives opened successfully; the Larchrow QA reports were also checked.
 
-### Laboratory expansion — Free Pixel Sci-Fi Tileset (16x16), reodesuxz
+### Laboratory — Free Pixel Sci-Fi Tileset (16x16), reodesuxz
 - Product: https://reodesuxz.itch.io/free-pixel-sci-fi-tileset-16x16
-- Download file: `Pixel_Sci-Fi_Tileset_v1.0.zip` (121 KB; free $0 option).
-- 83 transparent 16×16 sci-fi tiles and props, including white/steel/blue floors and walls, wall caps, doors, terminals, consoles, pipes, lamps, cables, reactor core, cryo pod, medbed, bots, and drones. Includes native and 4× PNGs, spritesheet + JSON, and a sample scene.
-- Top-down perspective. Free for personal and commercial projects; no attribution required (credit appreciated). Product page says not to resell or redistribute the files themselves.
-- Intended role: add clean white lab surfaces, modular wall structure, and lab equipment to the starter room assets.
+- Supplied archive: `Pixel_Sci-Fi_Tileset_v1.0.zip`
+- 191 archive entries, including 169 valid PNGs. The pack README describes 83 top-down 16×16 tiles/sprites, with native PNGs, 4× PNGs, a 160×144 spritesheet + JSON, and a sample scene.
+- License inspected: personal and commercial use permitted; modification permitted; attribution not required (credit appreciated); no standalone redistribution/resale.
+- The pack includes white, steel, blue, green, and other floor/wall options plus lab props such as terminals, cryo pod, medbed, reactor core, pipes, and lamps.
 
-### Clone expansion — 16x16 Characters & Monsters, Larchrow
+### Clone roster — 16x16 Characters & Monsters, Larchrow
 - Product: https://larchrow.itch.io/larchrow-16x16-characters-monsters
-- Download file: `larchrow-16x16-characters-monsters.zip` (1.4 MB; free $0 option).
-- 8 heroes/NPCs and 10 monsters. Four-direction idle/walk animations for heroes; idle/move/hit/death for monsters. 16×16 frames, hard pixels, closed outlines, and a shared 32-colour palette.
-- Top-down perspective. Royalty-free for commercial and non-commercial use in games/apps/videos; credit appreciated, not required; modification allowed. Product page prohibits reselling or redistributing the assets as-is or as part of another asset pack.
-- Intended role: expand the initial cloned warrior classes and provide compatible test enemies.
+- Supplied archive: `larchrow-16x16-characters-monsters.zip`
+- 267 archive entries, including 186 valid PNGs. Contains 8 heroes/NPCs and 10 monsters, 122 animations and 356 frames, with 16×16 strips, per-character sheets, combined sheet, and CSV/JSON animation indexes.
+- The included QA report states all checks passed: 32-colour palette, binary alpha, closed outlines, non-empty/non-static frames, consistent strips/sheets/indexes, and Godot 4.3 validation.
+- License inspected: royalty-free for commercial and non-commercial games/apps/videos; modification permitted; attribution appreciated but not required; no resale or redistribution as an asset pack.
 
-### Boss expansion — 16x16 Boss Monsters, Larchrow
+### Boss roster — 16x16 Boss Monsters, Larchrow
 - Product: https://larchrow.itch.io/larchrow-16x16-boss-monsters
-- Download file: `larchrow-16x16-boss-monsters.zip` (2.4 MB; free $0 option).
-- 14 bosses at 32×32 and 48×48 on a 16px grid, with idle, attack, hurt, death, and enraged phase animations. Includes HP-bar art, telegraphs, spritesheets, animation strips, CSV/JSON frame indices, and Godot/Tiled data.
-- Top-down perspective and same 32-colour palette/grid as Larchrow's character/monster pack.
-- Royalty-free for commercial and non-commercial use in games/apps/videos; credit appreciated, not required; modification allowed. Product page prohibits reselling or redistributing the assets as-is or as part of another asset pack.
-- Intended role: primary boss progression, with the larger 32×32/48×48 variants giving bosses a clear scale advantage over 16×16 clones.
+- Supplied archive: `larchrow-16x16-boss-monsters.zip`
+- 351 archive entries, including 315 valid PNGs. Contains 14 bosses (7 at 32×32 and 7 at 48×48), 95 animations and 432 frames, telegraphs, HP-bar art, nine-slice UI, and CSV/JSON indexes.
+- The included QA report states all checks passed: 32-colour palette, binary alpha, 16px-grid sizing, 466 indexed tiles, animation completeness, and Godot/Tiled validation.
+- License inspected: royalty-free for commercial and non-commercial games/apps/videos; modification permitted; attribution appreciated but not required; no resale or redistribution as an asset pack.
 
-### Why these three are preferred
-- The sci-fi tileset and Larchrow packs use a top-down 16×16 grid, avoiding a perspective mismatch.
-- The Larchrow character and boss packs explicitly share a palette and are designed to work together.
-- The existing Ninja Adventure starter sheets remain in the repository as a useful 3/4-view prototype subset, but should not be mixed indiscriminately with the new top-down set. Choose one perspective for the actual scene before final sprite composition.
+### Chosen integration direction
+- Use the top-down 16×16 sci-fi lab and Larchrow packs together; the Larchrow character and boss art share the same 32-colour palette.
+- Keep the older Ninja Adventure 3/4-view assets as an alternate set, not mixed into the top-down scene.
+- Preserve native pixel dimensions, frame order, original palette, and nearest-neighbour rendering.
+- A curated, engine-neutral import bundle was prepared as `Clone-Lab-Idle-verified-assets.zip` for the selected asset folders and their frame metadata. It contains no game code.
+- **Repository status:** the archive contents are verified, but the PNG binaries have not yet been committed into the GitHub repository. The repository still has no `index.html` or playable implementation. Do not claim the assets are installed or the game is playable until those steps are completed.
 
-### Download handoff
-The itch.io pages show a free $0 option, but the ZIPs are delivered after an interactive itch.io download step that cannot be submitted from this session. The three archives must be downloaded from their product pages and attached to the conversation before their binary contents can be integrated. Do not mark these packs as installed until their archives have been inspected and committed.
