@@ -153,33 +153,46 @@ const dnaResearchCost=()=>Math.round(220*Math.pow(1.9,Math.max(0,state.unlocked.
 function renderUpgrades(){
  const panel=$("upgrades");if(!panel)return;
  const levels={rate:state.rateLevel,quantity:Math.max(0,state.quantity-1),power:Math.max(0,state.power-1),capacity:state.capacityLevel};
+ // Four independent research branches occupy the four quadrants. Each branch has
+ // its own curved spine; outer bridges create a readable connected web without
+ // drawing lines through the center or across unrelated nodes.
  const paths=[
-  {id:"rate",label:"AUTOMATION",short:"AUTO",points:[[310,290],[190,185],[75,285],[190,410]]},
-  {id:"quantity",label:"FABRICATION",short:"BATCH",points:[[620,285],[770,175],[920,290],[800,420]]},
-  {id:"power",label:"COMBAT SYSTEMS",short:"COMBAT",points:[[620,525],[790,650],[930,535],[805,735]]},
-  {id:"capacity",label:"SPECIMEN STORAGE",short:"CAPACITY",points:[[310,525],[170,655],[65,535],[190,735]]}
+  {id:"rate",label:"AUTOMATION",short:"AUTO",points:[[450,350],[330,245],[190,145],[80,65]]},
+  {id:"quantity",label:"FABRICATION",short:"BATCH",points:[[750,350],[870,245],[1010,145],[1120,65]]},
+  {id:"power",label:"COMBAT SYSTEMS",short:"COMBAT",points:[[750,650],[870,755],[1010,855],[1120,935]]},
+  {id:"capacity",label:"SPECIMEN STORAGE",short:"CAPACITY",points:[[450,650],[330,755],[190,855],[80,935]]}
  ];
  const defs=paths.map(p=>{const u=upgrades.find(x=>x.id===p.id),level=levels[p.id]||0,maxed=p.id==="rate"&&state.rate<=1.5;return {...p,u,level,maxed,nodes:p.points.map((pt,i)=>({x:pt[0],y:pt[1],rank:i+1,done:i<level,available:i===level&&!maxed,locked:i>level||maxed}))}});
- let svg='<svg class="skill-links" viewBox="0 0 1000 820" aria-hidden="true">';
- for(const p of defs){let prev=[500,410];for(const n of p.nodes){svg+='<path class="skill-link '+(n.done?"complete":"")+'" d="M '+prev[0]+' '+prev[1]+' L '+n.x+' '+n.y+'"/>';prev=[n.x,n.y]}}
- svg+='<path class="skill-link minor" d="M 190 185 Q 500 40 770 175 M 190 655 Q 500 790 790 650 M 75 285 Q 500 410 920 290 M 65 535 Q 500 410 930 535"/></svg>';
- const nodes=defs.map(p=>p.nodes.map(n=>{const c=p.u.cost(),status=n.done?"complete":n.available?"available":"locked",caption=n.done?"PURCHASED":n.available?(p.maxed?"MAX RANK":formatCount(c)+" CR"):"LOCKED";return '<button type="button" class="skill-node '+status+'" data-skill="'+p.id+'" data-rank="'+n.rank+'" style="left:'+(n.x-63)+'px;top:'+(n.y-44)+'px"><span class="node-kind">'+p.short+'</span><strong>'+p.label+'</strong><span class="node-rank">RANK '+n.rank+'</span><span class="node-cost">'+caption+'</span></button>'}).join("")).join("");
- panel.innerHTML='<div class="skill-tree-tools"><small>DRAG TO EXPLORE · SELECT A NODE TO RESEARCH</small><div class="skill-zoom"><button type="button" id="skillZoomOut" aria-label="Zoom out">−</button><button type="button" id="skillZoomIn" aria-label="Zoom in">+</button><button type="button" id="skillZoomReset">RESET</button></div></div><div class="skill-viewport" id="skillViewport"><div class="skill-world" id="skillWorld">'+svg+'<div class="skill-hub"><strong>CLONE LAB</strong><small>RESEARCH CORE<br>4 SPECIALIST PATHS</small></div>'+nodes+'</div></div><div class="skill-selected" id="skillSelected"><div class="skill-selected-copy"><strong>SELECT A NODE</strong><small>Choose an available research node to view its effect and cost.</small></div><button class="buy" type="button" disabled>RESEARCH</button></div>';
+ const edge=(a,b,curve=0,done=false)=>{const mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2;const dx=b[0]-a[0],dy=b[1]-a[1],len=Math.max(1,Math.hypot(dx,dy)),cx=mx-(dy/len)*curve,cy=my+(dx/len)*curve;return '<path class="skill-link '+(done?"complete":"")+'" d="M '+a[0]+' '+a[1]+' Q '+cx+' '+cy+' '+b[0]+' '+b[1]+'"/>'};
+ let svg='<svg class="skill-links" viewBox="0 0 1200 1000" aria-hidden="true">';
+ const core=[600,500];
+ for(const p of defs){svg+=edge(core,p.points[0],0,p.nodes[0].done);for(let i=0;i<p.points.length-1;i++)svg+=edge(p.points[i],p.points[i+1],i%2===0?12:-12,p.nodes[i+1].done)}
+ // Outer ring and four short cross-links form the web's perimeter. These are
+ // connectors between research routes, not lines drawn across the central hub.
+ svg+=edge([80,65],[1120,65],-28,false);
+ svg+=edge([1120,65],[1120,935],-28,false);
+ svg+=edge([1120,935],[80,935],-28,false);
+ svg+=edge([80,935],[80,65],-28,false);
+ svg+=edge([190,145],[1010,145],-42,false);
+ svg+=edge([1010,855],[190,855],42,false);
+ svg+='</svg>';
+ const nodes=defs.map(p=>p.nodes.map(n=>{const c=p.u.cost(),status=n.done?"complete":n.available?"available":"locked",caption=n.done?"INSTALLED":n.available?(p.maxed?"MAX RANK":formatCount(c)+" CR"):"LOCKED";return '<button type="button" class="skill-node '+status+'" data-skill="'+p.id+'" data-rank="'+n.rank+'" style="left:'+(n.x-63)+'px;top:'+(n.y-44)+'px"><span class="node-kind">'+p.short+'</span><strong>'+p.label+'</strong><span class="node-rank">RANK '+n.rank+'</span><span class="node-cost">'+caption+'</span></button>'}).join("")).join("");
+ panel.innerHTML='<div class="skill-tree-tools"><small>FOLLOW A BRANCH · DRAG TO EXPLORE · PINCH TO ZOOM</small><div class="skill-zoom"><button type="button" id="skillZoomOut" aria-label="Zoom out">−</button><button type="button" id="skillZoomIn" aria-label="Zoom in">+</button><button type="button" id="skillZoomReset">RESET</button></div></div><div class="skill-viewport" id="skillViewport"><div class="skill-world" id="skillWorld">'+svg+'<div class="skill-hub"><strong>CLONE LAB</strong><small>RESEARCH CORE<br>CHOOSE YOUR PATH</small></div>'+nodes+'</div></div><div class="skill-selected" id="skillSelected"><div class="skill-selected-copy"><strong>SELECT A NODE</strong><small>Choose an available node to inspect its research effect and cost.</small></div><button class="buy" type="button" disabled>RESEARCH</button></div>';
  const viewport=$("skillViewport"),world=$("skillWorld");
- if(!window.skillViewState)window.skillViewState={scale:.62,x:0,y:0};
+ if(!window.skillViewState)window.skillViewState={scale:.48,x:0,y:0};
  const view=window.skillViewState;
- const clamp=()=>{view.scale=Math.max(.38,Math.min(1.35,view.scale));const w=viewport.clientWidth,h=viewport.clientHeight;view.x=Math.min(40,Math.max(w-1000*view.scale-40,view.x));view.y=Math.min(30,Math.max(h-820*view.scale-30,view.y));world.style.transform='translate('+view.x+'px,'+view.y+'px) scale('+view.scale+')'};
- if(!view.initialized){view.x=(viewport.clientWidth-1000*view.scale)/2;view.y=(viewport.clientHeight-820*view.scale)/2;view.initialized=true}
+ const clamp=()=>{view.scale=Math.max(.32,Math.min(1.2,view.scale));const w=viewport.clientWidth,h=viewport.clientHeight;view.x=Math.min(30,Math.max(w-1200*view.scale-30,view.x));view.y=Math.min(30,Math.max(h-1000*view.scale-30,view.y));world.style.transform='translate('+view.x+'px,'+view.y+'px) scale('+view.scale+')'};
+ if(!view.initialized){view.x=(viewport.clientWidth-1200*view.scale)/2;view.y=(viewport.clientHeight-1000*view.scale)/2;view.initialized=true}
  clamp();
  $("skillZoomIn").onclick=()=>{view.scale*=1.18;clamp()};
  $("skillZoomOut").onclick=()=>{view.scale/=1.18;clamp()};
- $("skillZoomReset").onclick=()=>{view.scale=.62;view.x=(viewport.clientWidth-1000*view.scale)/2;view.y=(viewport.clientHeight-820*view.scale)/2;clamp()};
+ $("skillZoomReset").onclick=()=>{view.scale=.48;view.x=(viewport.clientWidth-1200*view.scale)/2;view.y=(viewport.clientHeight-1000*view.scale)/2;clamp()};
  let pointers=new Map(),drag=null,pinchStart=null;
  viewport.onpointerdown=e=>{if(e.target.closest("button"))return;viewport.setPointerCapture(e.pointerId);pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===1){drag={x:e.clientX,y:e.clientY,ox:view.x,oy:view.y};viewport.classList.add("dragging")}else if(pointers.size===2){const a=[...pointers.values()];pinchStart={distance:Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),scale:view.scale,center:{x:(a[0].x+a[1].x)/2,y:(a[0].y+a[1].y)/2}};drag=null}};
- viewport.onpointermove=e=>{if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===2&&pinchStart){const a=[...pointers.values()],dist=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),rect=viewport.getBoundingClientRect(),cx=pinchStart.center.x-rect.left,cy=pinchStart.center.y-rect.top,ratio=dist/Math.max(1,pinchStart.distance),next=Math.max(.38,Math.min(1.35,pinchStart.scale*ratio)),factor=next/view.scale;view.x=cx-(cx-view.x)*factor;view.y=cy-(cy-view.y)*factor;view.scale=next;clamp()}else if(drag&&pointers.size===1){view.x=drag.ox+(e.clientX-drag.x);view.y=drag.oy+(e.clientY-drag.y);clamp()}};
+ viewport.onpointermove=e=>{if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===2&&pinchStart){const a=[...pointers.values()],dist=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),rect=viewport.getBoundingClientRect(),cx=pinchStart.center.x-rect.left,cy=pinchStart.center.y-rect.top,ratio=dist/Math.max(1,pinchStart.distance),next=Math.max(.32,Math.min(1.2,pinchStart.scale*ratio)),factor=next/view.scale;view.x=cx-(cx-view.x)*factor;view.y=cy-(cy-view.y)*factor;view.scale=next;clamp()}else if(drag&&pointers.size===1){view.x=drag.ox+(e.clientX-drag.x);view.y=drag.oy+(e.clientY-drag.y);clamp()}};
  const endPointer=e=>{pointers.delete(e.pointerId);if(pointers.size<2)pinchStart=null;if(!pointers.size){drag=null;viewport.classList.remove("dragging")}else if(pointers.size===1){const p=[...pointers.values()][0];drag={x:p.x,y:p.y,ox:view.x,oy:view.y}}};
- viewport.onpointerup=endPointer;viewport.onpointercancel=endPointer;viewport.onwheel=e=>{e.preventDefault();const rect=viewport.getBoundingClientRect(),cx=e.clientX-rect.left,cy=e.clientY-rect.top,next=Math.max(.38,Math.min(1.35,view.scale*(e.deltaY<0?1.1:.9))),factor=next/view.scale;view.x=cx-(cx-view.x)*factor;view.y=cy-(cy-view.y)*factor;view.scale=next;clamp()};
- panel.querySelectorAll("[data-skill]").forEach(btn=>btn.addEventListener("click",e=>{e.stopPropagation();const p=defs.find(x=>x.id===btn.dataset.skill),rank=Number(btn.dataset.rank),node=p.nodes[rank-1],cost=p.u.cost(),done=node.done,available=node.available&&!p.maxed,detail=done?"This rank is already installed.":available?p.u.desc()+" Next rank costs "+formatCount(cost)+" credits.":"Complete the earlier ranks in this branch to unlock this node.";const box=$("skillSelected");box.innerHTML='<div class="skill-selected-copy"><strong>'+p.label+' · RANK '+rank+'</strong><small>'+detail+'</small></div><button class="buy" type="button" '+(!available||state.coins<cost?"disabled":"")+'>'+(done?"INSTALLED":available?"RESEARCH · "+formatCount(cost):"LOCKED")+'</button>';box.querySelector("button").onclick=()=>{if(available&&state.coins>=cost)buyUpgrade(p.id)}}));
+ viewport.onpointerup=endPointer;viewport.onpointercancel=endPointer;viewport.onwheel=e=>{e.preventDefault();const rect=viewport.getBoundingClientRect(),cx=e.clientX-rect.left,cy=e.clientY-rect.top,next=Math.max(.32,Math.min(1.2,view.scale*(e.deltaY<0?1.1:.9))),factor=next/view.scale;view.x=cx-(cx-view.x)*factor;view.y=cy-(cy-view.y)*factor;view.scale=next;clamp()};
+ panel.querySelectorAll("[data-skill]").forEach(btn=>btn.addEventListener("click",e=>{e.stopPropagation();const p=defs.find(x=>x.id===btn.dataset.skill),rank=Number(btn.dataset.rank),node=p.nodes[rank-1],cost=p.u.cost(),done=node.done,available=node.available&&!p.maxed,detail=done?"This rank is already installed.":available?p.u.desc()+" Next rank costs "+formatCount(cost)+" credits.":"Complete the earlier nodes in this branch to unlock this rank.";const box=$("skillSelected");box.innerHTML='<div class="skill-selected-copy"><strong>'+p.label+' · RANK '+rank+'</strong><small>'+detail+'</small></div><button class="buy" type="button" '+(!available||state.coins<cost?"disabled":"")+'>'+(done?"INSTALLED":available?"RESEARCH · "+formatCount(cost):"LOCKED")+'</button>';box.querySelector("button").onclick=()=>{if(available&&state.coins>=cost)buyUpgrade(p.id)}}));
 }
 function renderDnaResearch(){
  const panel=$("dnaResearchPanel");if(!panel)return;
