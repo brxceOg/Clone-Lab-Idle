@@ -199,3 +199,6 @@ This file is the canonical source of truth for product behavior and scope. When 
 - The first successful Necromancer DNA discovery immediately deploys an Elder clone when capacity permits, in addition to unlocking it in the production pool. Existing saves with Necromancer DNA but no active Elder or queued Elder replacement receive a queued recovery deployment.
 - A persistent lab-room status strip below the boss health bar reports active Necromancers and Skeletons versus their current target, or clearly indicates locked DNA / pending recovery.
 - Skeleton combat uses the imported named `hit` strip during attacks and the named `death` strip on defeat; these are resolved by their actual manifest names, not directional animation aliases.
+
+### Burning countdown UI clarity
+- The boss-side burning indicator uses a dark high-contrast panel, a bold sans-serif `BURNING` label, a larger seconds countdown, and a wide progress bar. This status label intentionally prioritizes legibility over the game's pixel display font; damage and duration are unchanged.
