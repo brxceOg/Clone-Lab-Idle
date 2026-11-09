@@ -69,11 +69,12 @@ Upgrade families:
 
 ### Combat and survivability upgrade paths
 
-- The Combat Systems path is sequential: Combat Systems is its first node, Divine Intervention is the second, and Attack Speed is the third. Divine Intervention cannot be purchased until Combat Systems is unlocked; Attack Speed cannot be purchased until Divine Intervention is unlocked.
+- The Combat Systems path is sequential: Combat Systems is its first node, Divine Intervention is the second, Attack Speed is the third, and Double Hit Chance is directly below Attack Speed as the fourth node. Divine Intervention cannot be purchased until Combat Systems is unlocked; Attack Speed cannot be purchased until Divine Intervention is unlocked; Double Hit Chance cannot be purchased until Attack Speed is unlocked.
+- Double Hit Chance starts at a 12% chance and increases by 4 percentage points per level, capped at 40%. Only regular Knight clones can trigger it; summoned Skeletons, Mages, Archers, and Necromancers are excluded. After a Knight's normal strike lands, a successful proc delivers one clearly signaled follow-up strike after a short 150 ms beat. The bonus strike uses the same 1.15× Knight damage and earns the normal per-strike credits, but it does not modify or reset the Knight's regular attack cooldown.
 - Divine Intervention gives a clone that would otherwise be defeated by a boss attack a 20% chance to revive immediately at half of its current maximum health. Each additional level adds 10 percentage points, capped at 75%. A successful revival prevents the normal defeat/replacement queue for that hit.
 - Attack Speed reduces the time between clone attacks by 8% per level, applied multiplicatively. Cooldowns have a 420 ms minimum to preserve readable combat timing.
 - A separate Clone Health path branches from the lower-left side of the core, opposite Credit Yield. Each level increases every clone's base maximum health by 1 HP; existing active clones gain the same 1 HP immediately, and future/restored clones use the upgraded base health.
-- Persist Divine Intervention, Attack Speed, and Clone Health levels in the local save. Older saves default these levels to zero and retain their existing progression.
+- Persist Divine Intervention, Attack Speed, Double Hit Chance, and Clone Health levels in the local save. Older saves default the new Double Hit Chance level to zero and retain their existing progression.
 
 An upgrade that creates or unlocks a clone must provide clear feedback. The player should understand what was purchased, what appeared, and how it changes the army. Avoid upgrades that silently change the game state.
 
