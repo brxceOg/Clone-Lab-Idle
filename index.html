@@ -341,7 +341,9 @@ function simulate(dt,now){
   const safeDistance=bossRadius+11,fromBossX=c.x-cx,fromBossY=c.y-cy,fromBossDistance=Math.max(.001,Math.hypot(fromBossX,fromBossY));
   if(fromBossDistance<safeDistance){c.x=cx+fromBossX/fromBossDistance*safeDistance;c.y=cy+fromBossY/fromBossDistance*safeDistance}
   if(c.formationPhase==="formed"){c.x=targetX;c.y=targetY;c.mode="idle";hitBoss(c,now)}else c.mode="walk";
-  // Apply a short outward impulse after formation steering; let it decay so clones visibly recoil, then settle back into their assigned slots.\n  if(c.knockbackX||c.knockbackY){const knockbackDecay=Math.pow(.94,dt/16.67);c.x+=(c.knockbackX||0);c.y+=(c.knockbackY||0);c.knockbackX=(c.knockbackX||0)*knockbackDecay;c.knockbackY=(c.knockbackY||0)*knockbackDecay;if(Math.abs(c.knockbackX)+Math.abs(c.knockbackY)<.12){c.knockbackX=0;c.knockbackY=0}}\n  c.slot=i;c.dir=Math.abs(cx-c.x)>Math.abs(cy-c.y)?(cx>c.x?"right":"left"):(cy>c.y?"down":"up");
+  // Apply a short outward impulse after formation steering; let it decay so clones visibly recoil, then settle back into their assigned slots.
+  if(c.knockbackX||c.knockbackY){const knockbackDecay=Math.pow(.94,dt/16.67);c.x+=(c.knockbackX||0);c.y+=(c.knockbackY||0);c.knockbackX=(c.knockbackX||0)*knockbackDecay;c.knockbackY=(c.knockbackY||0)*knockbackDecay;if(Math.abs(c.knockbackX)+Math.abs(c.knockbackY)<.12){c.knockbackX=0;c.knockbackY=0}}
+  c.slot=i;c.dir=Math.abs(cx-c.x)>Math.abs(cy-c.y)?(cx>c.x?"right":"left"):(cy>c.y?"down":"up");
   c.x=Math.max(12,Math.min(308,c.x));c.y=Math.max(70,Math.min(440,c.y));
  }
  if(now-state.lastBossAttack>bossAttackInterval()&&state.phase!=="death"&&state.phase!=="attack"){state.lastBossAttack=now;state.phase="telegraph";setTimeout(()=>{if(state.phase==="telegraph")bossStrike(Date.now())},650)}
