@@ -258,6 +258,7 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 - **License:** Free for personal use only, as stated on the DaFont listing. Do not use in a commercial release without obtaining the creator's commercial permission/license.
 - **Repository location:** `assets/fonts/Pixels.ttf` (extracted from the user-supplied `pixels.zip`).
 - **Integration:** Loaded locally with `@font-face` and used for HTML interface text and canvas-rendered labels. No external font service is required.
+- **Burning countdown (2026-11-08):** The boss-side `BURNING` label and remaining-seconds timer are both rendered with the local `Pixels` font. Preserve the pixel-art typeface while improving legibility through larger lettering, a dark high-contrast backing panel, dark text outlines, generous spacing, and a wide progress bar. Do not substitute a sans-serif font or alter burn mechanics for this presentation change.
 
 - **Upgrade access update (2026-11-08):** upgrade controls are opened with a dedicated UPGRADES button anchored at the bottom-left of the laboratory viewport. The button uses the existing Flat Theme nine-slice button sprite and pressed-state sprite. Tapping the cloning machine itself no longer opens the upgrade panel.
 
