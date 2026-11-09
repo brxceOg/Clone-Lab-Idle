@@ -199,7 +199,7 @@ function renderUpgrades(){
  let svg='<svg class="skill-links" viewBox="0 0 2200 2200" aria-hidden="true">';
  for(const p of defs){
   let from,to;
-  if(p.id==="divine"){from={x:core.x,y:core.y+nodeH/2};to={x:p.node.x,y:p.node.y-nodeH/2}}
+  if(p.id==="divine"){const prev=defs.find(x=>x.id==="power");from={x:prev.node.x,y:prev.node.y+nodeH/2};to={x:p.node.x,y:p.node.y-nodeH/2}}
   else if(p.id==="attackSpeed"){const prev=defs.find(x=>x.id==="divine");from={x:prev.node.x,y:prev.node.y+nodeH/2};to={x:p.node.x,y:p.node.y-nodeH/2}}
   else if(p.id==="power"){from={x:core.x,y:core.y+nodeH/2};to={x:p.node.x,y:p.node.y-nodeH/2}}
   else {const dx=p.node.x-core.x,dy=p.node.y-core.y,len=Math.hypot(dx,dy);from={x:core.x+dx/len*100,y:core.y+dy/len*74};to={x:p.node.x-dx/len*82,y:p.node.y-dy/len*55}}
