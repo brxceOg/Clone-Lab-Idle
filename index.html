@@ -415,7 +415,7 @@ function killClone(c,now){const i=state.clones.indexOf(c);if(i<0)return;state.cl
  function killSummon(s,now){if(!state.summons.includes(s)||s.mode==="death")return;s.mode="death";updateHud();s.hp=0;s.dyingStarted=performance.now();s.dyingUntil=now+500;spawnPvfx("hitSpark",s.x,s.y,null,null,.34,"foreground");addLog("A summoned skeleton crumbled.");}
 function bossStrike(now){state.phase="attack";if(!spawnPvfx("groundSlam",160,196,null,null,.5))spawnFx("boss",160,196);spawnPvfx("shockwaveRing",160,196,null,null,.68,"foreground",90);for(const c of [...state.clones,...state.summons]){if(c.mode==="death")continue;const d=Math.hypot(c.x-160,c.y-205);if(d<112){const pushLength=2.1+Math.random()*.5,pushAngle=Math.atan2(c.y-196,c.x-160)+(Math.random()-.5)*.22;c.knockbackX=(c.knockbackX||0)+Math.cos(pushAngle)*pushLength;c.knockbackY=(c.knockbackY||0)+Math.sin(pushAngle)*pushLength;c.knockbackFlash=now+340;const rangedUnit=c.type==="mage"||c.type==="archer"||c.type==="elder";if(!rangedUnit&&c.mode!=="summoning"){c.staggerUntil=now+760;c.nextHit=Math.max(c.nextHit||0,c.staggerUntil);c.flash=now+420}spawnPvfx("smallExplosion",c.x,c.y,null,null,.52);spawnPvfx("hitSpark",c.x,c.y,null,null,.5,"foreground",260);c.hp--;c.flash=now+360;if(c.hp<=0&&c.isSummon){killSummon(c,now)}else if(c.hp<=0&&divineReviveChance()>0&&Math.random()<divineReviveChance()){c.hp=Math.max(1,Math.ceil(cloneBaseHealth()*.5));c.flash=now+620;spawnPvfx("levelUp",c.x,c.y,null,null,.42,"foreground",180);combatPopups.push({label:"REVIVED!",x:c.x,y:c.y-12,born:now,duration:850});addLog("Divine intervention revived a "+c.type+" at "+c.hp+" HP.");save()}else if(c.hp<=0)killClone(c,now)}}setTimeout(()=>{if(state.phase==="attack")state.phase="idle"},520)}
 function defeatBoss(){if(state.phase==="death")return;state.phase="death";spawnPvfx("bigExplosion",160,196,null,null,.9);addLog(bossDef().name.replaceAll("_"," ")+" defeated.");const anim=bossAnim("death"),duration=(anim?.frames||6)*(anim?.ms_per_frame||130);setTimeout(()=>{const reward=Math.round(35*Math.pow(1.42,state.bossIndex));state.coins+=reward;spawnPvfx("coinPickup",160,126,null,null,.85);state.defeats++;state.bossIndex++;state.bossMax=bossHealthForIndex(state.bossIndex);state.bossHp=state.bossMax;state.phase="idle";state.burningUntil=0;state.burningNextTick=0;state.clones=state.clones.slice(0,12);addLog("Reward collected · +"+formatCount(reward)+" credits. Next specimen released.");notify("BOSS CLEARED  +"+formatCount(reward));updateHud();save()},duration)}
-function beginMeleeSwarm(c,angle,slot){c.formationPhase="swarm";c.swarmAngle=angle;c.swarmDirection=slot%2===0?1:-1;c.swarmSpeed=.00072+(slot%5)*.00012;c.swarmPhase=(slot%7)*.91}
+function beginMeleeSwarm(c,angle,slot){c.formationPhase="swarm";c.swarmAngle=angle;c.swarmDirection=slot%2===0?1:-1;c.swarmSpeed=.00098+(slot%5)*.00016;c.swarmPhase=(slot%7)*.91}
 function simulate(dt,now){
  if(!assetsReady)return;
  if(now-state.lastProduction>=state.rate*1000){state.lastProduction=now;produce(state.quantity)}
@@ -461,18 +461,18 @@ function simulate(dt,now){
     c.x=targetX;c.y=targetY;c.formationPhase="formed";
    }
   }else if(c.formationPhase==="swarm"){
-   // Once melee units reach the inner ring, they buzz around the boss instead of holding fixed slots.
-   // Each unit gets its own direction, speed, and radial wobble; ranged units never enter this state.
+   // Melee units press tightly against the boss perimeter in a fast, crowded swarm.
+   // Their circular paths are punctuated by synchronized inward surges, creating a mob-like rush without entering the boss sprite.
    if(now>=(c.staggerUntil||0)){
     c.swarmAngle=(c.swarmAngle??angle)+c.swarmDirection*c.swarmSpeed*dt;
     const buzz=c.swarmPhase||0,phase=now/145+buzz;
-    const radius=Math.max(bossRadius+12,baseRadius+Math.sin(phase)*5+Math.sin(phase*1.73)*2.5);
+    const surge=.5+.5*Math.sin(now/430+buzz),radius=bossRadius+9+surge*6;
     c.x=cx+Math.cos(c.swarmAngle)*radius;c.y=cy+Math.sin(c.swarmAngle)*radius*.82;
    }
   }else{
    c.x=targetX;c.y=targetY;
   }
-  const safeDistance=bossRadius+11,fromBossX=c.x-cx,fromBossY=c.y-cy,fromBossDistance=Math.max(.001,Math.hypot(fromBossX,fromBossY));
+  const safeDistance=bossRadius+8,fromBossX=c.x-cx,fromBossY=c.y-cy,fromBossDistance=Math.max(.001,Math.hypot(fromBossX,fromBossY));
   if(fromBossDistance<safeDistance){c.x=cx+fromBossX/fromBossDistance*safeDistance;c.y=cy+fromBossY/fromBossDistance*safeDistance}
   const staggered=!ranged&&now<(c.staggerUntil||0);
   if(c.formationPhase==="formed"||c.formationPhase==="swarm"){
