@@ -337,3 +337,8 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 
 ### Active Units panel sizing (2026-11-09)
 - Keep the Active Units status panel at a fixed 144px border-box height so changes in the number of deployed unit types never resize the status row or change the available play-area height. Keep the unit roster inside the panel with a compact, readable vertical list and an internal vertical scroll area when the roster exceeds the visible space. Preserve the unit sprite-head icons and live counts; do not let roster content expand the panel or room layout.
+
+
+### Floating translucent top HUD (2026-11-09)
+- The top bar and status panels overlay the laboratory scene rather than occupying vertical flex space. Keep them translucent so the lab remains visible beneath them and the canvas retains the maximum available play-area height.
+- Keep the Active Units card compact at a fixed 96px height, with its roster scrolling internally when needed. HUD content must not resize the room/canvas.
