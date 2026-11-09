@@ -365,8 +365,49 @@ function renderUpgrades(){
 }
 
 function renderManagePanel(){const panel=$("managePanel");if(!panel)return;const used=TEAM_ORDER.reduce((sum,type)=>sum+(state.teamTargets?.[type]||0),0);const rows=TEAM_ORDER.map(type=>{const unlocked=state.unlocked.includes(type),value=state.teamTargets?.[type]||0;return '<div class="manage-row '+(unlocked?"":"locked")+'"><div class="manage-row-head"><span>'+cloneTypeLabel(type)+'</span><strong id="manageValue-'+type+'">'+(unlocked?value:"LOCKED")+'</strong></div>'+(unlocked?'<input type="range" min="0" max="'+maxClones()+'" step="1" value="'+value+'" data-manage-type="'+type+'" aria-label="'+cloneTypeLabel(type)+' target count"><small>Target regular clones · '+teamTypeCount(type)+' active or queued</small>':'<small>Discover this DNA type to assign clones.</small>')+'</div>'}).join("");panel.innerHTML='<button class="buy manage-build-button" id="buildStrongestButton" type="button">BUILD AROUND STRONGEST</button><div class="manage-build-result" id="manageBuildResult">Automatically compare your unlocked units and combat upgrades to build a high-damage team.</div><div class="manage-summary"><span>ALLOCATED CLONE SLOTS</span><strong id="manageAllocated">'+used+' / '+maxClones()+'</strong></div>'+rows+'<div class="manage-footer">Move a slider to reserve that many slots for the selected class. The machine fills unmet targets over time, following your batch size and production speed. Summoned Skeletons are managed by Necromancers and do not use clone slots.</div>';$("buildStrongestButton").addEventListener("click",buildAroundStrongest);syncManagePanel()}
-function calculateStrongestTeam(){const slots=maxClones(),speed=Math.pow(.92,Math.max(0,state.attackSpeedLevel)),knightDps=1.15*(1+doubleHitChance())/(1.05*speed),mageDps=1/(1.45*speed),archerChance=fireTipChance(),archerUptime=archerChance>0?1-Math.pow(1-archerChance,slots*5/(1.45*speed)):0,archerDps=slots*mageDps+.45*archerUptime,skeletonDps=.65/(1.65*speed),candidates=[];const add=(label,targets,score)=>candidates.push({label,targets,score});for(const type of ["knight","mage","archer","elder"]){if(!state.unlocked.includes(type))continue;const targets=Object.fromEntries(TEAM_ORDER.map(t=>[t,t===type?slots:0]));let score=type==="knight"?slots*knightDps:type==="mage"?slots*mageDps:type==="archer"?archerDps:slots*mageDps+Math.floor(slots/2)*skeletonDps;add("all "+cloneTypeLabel(type)+"s",targets,score)}if(state.unlocked.includes("elder")&&slots>1){const targets=Object.fromEntries(TEAM_ORDER.map(t=>[t,0]));targets.elder=1;const remaining=slots-1;let bestType="knight",bestScore=knightDps;if(state.unlocked.includes("mage")&&mageDps>bestScore){bestType="mage";bestScore=mageDps}const archersBurn=archerChance > 0 ? 0.45 *(1-Math.pow(1-archerChance,remaining*5/(1.45*speed))):0,archerScore=remaining*mageDps+archersBurn;if(state.unlocked.includes("archer")&&archerScore>remaining*bestScore){bestType="archer";bestScore=archerScore/remaining}targets[bestType]+=remaining;const score=bestType==="knight"?remaining*knightDps:bestType==="mage"?remaining*mageDps:archerScore;add("1 Necromancer + "+remaining+" "+cloneTypeLabel(bestType)+(remaining===1?"":"s"),targets,score+mageDps+Math.floor(slots/2)*skeletonDps)}candidates.sort((a,b)=>b.score-a.score);return candidates[0]||{label:"Knight team",targets:{knight:slots,mage:0,archer:0,elder:0},score:slots*knightDps}}
-function buildAroundStrongest(){const result=calculateStrongestTeam();state.teamTargets={...result.targets};save();syncManagePanel();const note=$("manageBuildResult");if(note)note.textContent="Best estimated damage setup: "+result.label+". "+TEAM_ORDER.reduce((sum,type)=>sum+(state.teamTargets[type]||0),0)+" clone slots assigned. Existing units stay until replaced; new production follows this build.";addLog("Army preset applied · "+result.label+".");notify("STRONGEST BUILD SET");}
+function calculateStrongestTeam(){
+ const slots=maxClones(),speed=Math.pow(.92,Math.max(0,state.attackSpeedLevel)),power=Math.max(1,Number(state.power)||1);
+ const cooldown={knight:Math.max(420,1050*speed),mage:Math.max(420,1450*speed),archer:Math.max(420,1450*speed),elder:Math.max(420,1450*speed),skeleton:Math.max(420,1650*speed)};
+ const meleeBonus=1+doubleHitChance(),fireChance=fireTipChance(),burnPerSecond=fireBurnDamage();
+ const dps={
+  knight:power*1.15*meleeBonus/cooldown.knight*1000,
+  mage:power/cooldown.mage*1000,
+  archer:power/cooldown.archer*1000,
+  elder:power/cooldown.elder*1000,
+  skeleton:power*.65/cooldown.skeleton*1000
+ };
+ // Expected sustained burn: each archer has a chance to refresh a five-second burn on each hit.
+ const burnUptime=fireChance>0?1-Math.exp(-fireChance*1000/cooldown.archer*5):0;
+ dps.archer+=burnPerSecond*burnUptime;
+ const available=TEAM_ORDER.filter(type=>state.unlocked.includes(type));
+ const strongest=[...available].sort((a,b)=>dps[b]-dps[a])[0]||"knight";
+ let best=null;
+ // Search every legal slot distribution, requiring at least one copy of the strongest
+ // owned type. Necromancer support adds the skeleton damage its summon protocol enables.
+ for(let knights=0;knights<=slots;knights++){
+  for(let mages=0;mages<=slots-knights;mages++){
+   for(let archers=0;archers<=slots-knights-mages;archers++){
+    const elders=slots-knights-mages-archers;
+    const counts={knight:knights,mage:mages,archer:archers,elder:elders};
+    if(available.some(type=>counts[type]>0&& !state.unlocked.includes(type)))continue;
+    if(!available.every(type=>counts[type]===0||state.unlocked.includes(type)))continue;
+    if(counts[strongest]===0)continue;
+    let score=available.reduce((sum,type)=>sum+counts[type]*dps[type],0);
+    if(elders>0){
+     const summonCap=Math.floor(slots/2);
+     const summonInterval=skeletonSummonInterval();
+     const summonThroughput=Math.min(summonCap,Math.max(1,Math.floor(5000/summonInterval)));
+     score+=summonThroughput*dps.skeleton;
+    }
+    if(!best||score>best.score)best={counts,score};
+   }
+  }
+ }
+ const targets=best?.counts||{knight:slots,mage:0,archer:0,elder:0};
+ const label=TEAM_ORDER.filter(type=>targets[type]>0).map(type=>targets[type]+" "+cloneTypeLabel(type)+(targets[type]===1?"":"s")).join(" + ");
+ return{label,targets,score:best?.score||slots*dps.knight,strongest:cloneTypeLabel(strongest),unitDps:dps[strongest]};
+}
+function buildAroundStrongest(){const result=calculateStrongestTeam();state.teamTargets={...result.targets};save();syncManagePanel();const note=$("manageBuildResult");if(note)note.textContent="Strongest owned type: "+result.strongest+" ("+result.unitDps.toFixed(2)+" estimated DPS each). Best upgrade-scaled team: "+result.label+" · "+result.score.toFixed(2)+" estimated total DPS. Existing units stay until replaced; new production follows this build.";addLog("Army preset applied · "+result.label+".");notify("STRONGEST BUILD SET");}
 function syncManagePanel(){const panel=$("managePanel");if(!panel)return;const used=TEAM_ORDER.reduce((sum,type)=>sum+(state.teamTargets?.[type]||0),0),allocated=$("manageAllocated");if(allocated)allocated.textContent=used+" / "+maxClones();for(const type of TEAM_ORDER){const slider=panel.querySelector('[data-manage-type="'+type+'"]'),value=state.teamTargets?.[type]||0,label=$("manageValue-"+type);if(label)label.textContent=String(value);if(slider){const other=TEAM_ORDER.filter(t=>t!==type).reduce((sum,t)=>sum+(state.teamTargets?.[t]||0),0);slider.max=String(Math.max(0,maxClones()-other));slider.value=String(Math.min(value,Number(slider.max)))}}}
 $("managePanel").addEventListener("input",e=>{const slider=e.target.closest("[data-manage-type]");if(slider)setManagedTarget(slider.dataset.manageType,slider.value)});
 function renderDnaResearch(){
