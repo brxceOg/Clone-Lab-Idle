@@ -342,3 +342,7 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 ### Floating translucent top HUD (2026-11-09)
 - The top bar and status panels overlay the laboratory scene rather than occupying vertical flex space. Keep them translucent so the lab remains visible beneath them and the canvas retains the maximum available play-area height.
 - Keep the Active Units card compact at a fixed 96px height, with its roster scrolling internally when needed. HUD content must not resize the room/canvas.
+
+
+### Lab viewport clearance beneath floating HUD (2026-11-09)
+- Reserve a 120px top inset inside the laboratory viewport so the rendered room scene begins below the floating top HUD/status cards. The canvas uses the remaining viewport height, keeping boss health and unit sprites from sitting beneath the overlay while preserving the existing room artwork and simulation coordinates. Keep the bottom room controls anchored to the viewport edge.
