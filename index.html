@@ -95,24 +95,16 @@ button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
 .buy:disabled{opacity:.55;cursor:default}
 .section-label{display:block;margin:14px 0 7px;font-size:16px;color:#304957}
 .dna-research{margin:10px 0 16px;padding:14px;border:10px solid transparent;border-image:url("assets/ui/complete-ui-essential-pack-free/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_FrameSlot01a.png") 10 fill / 10px / 0 stretch;text-align:center}.dna-kicker{font-size:13px;color:#617b87;letter-spacing:.1em}.dna-display{margin:8px 0 5px;min-height:42px;display:flex;align-items:center;justify-content:center;font-size:25px;color:#267a91;text-shadow:0 1px #fff;letter-spacing:.04em}.dna-status{min-height:36px;font-size:14px;line-height:1.3;color:#617b87}.dna-button{width:100%;margin-top:8px}
-.dna-preview-stage{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:154px;margin:10px 0 8px;padding:12px 8px 9px;background:linear-gradient(180deg,#e8f0f2,#d5e3e8);border:2px solid #9aafb8;box-shadow:inset 0 0 0 2px #f8ffff,inset 0 -5px 0 #c4d5da;overflow:hidden}
-.dna-preview-stage:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.26;background:repeating-linear-gradient(0deg,transparent 0 5px,rgba(55,92,105,.18) 5px 6px)}
-.dna-preview-frame{position:relative;z-index:1;width:82px;height:82px;display:grid;place-items:center;border:2px solid var(--rarity-color,#89949a);background:rgba(255,255,255,.78);box-shadow:0 0 0 3px rgba(255,255,255,.72),0 0 12px 3px var(--rarity-glow,rgba(137,148,154,.45)),inset 0 0 10px var(--rarity-wash,rgba(137,148,154,.16));transition:box-shadow .12s,border-color .12s}
-.dna-preview-frame img{width:56px;height:56px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(0 0 4px var(--rarity-glow,rgba(137,148,154,.55)))}
-.dna-preview-frame.common{--rarity-color:#7c858a;--rarity-glow:rgba(112,124,132,.76);--rarity-wash:rgba(112,124,132,.18)}
-.dna-preview-frame.uncommon{--rarity-color:#35a65a;--rarity-glow:rgba(51,194,91,.82);--rarity-wash:rgba(51,194,91,.2)}
-.dna-preview-frame.rare{--rarity-color:#3188dc;--rarity-glow:rgba(49,136,220,.88);--rarity-wash:rgba(49,136,220,.2)}
-.dna-preview-frame.epic{--rarity-color:#9855d6;--rarity-glow:rgba(159,83,224,.9);--rarity-wash:rgba(159,83,224,.22)}
-.dna-preview-frame.legendary{--rarity-color:#ed922b;--rarity-glow:rgba(255,151,43,.95);--rarity-wash:rgba(255,151,43,.22)}
-.dna-preview-frame.mythic{--rarity-color:#e3424d;--rarity-glow:rgba(239,55,72,.98);--rarity-wash:rgba(239,55,72,.24)}
-.dna-preview-name{position:relative;z-index:1;min-height:18px;color:#304957;font-size:14px;font-weight:900;letter-spacing:.08em}
-.dna-preview-rarity{position:relative;z-index:1;color:var(--rarity-color,#7c858a);font-size:12px;font-weight:900;letter-spacing:.12em;text-shadow:0 1px #fff}
-.dna-preview-stars{position:relative;z-index:1;color:#b98222;font-size:16px;letter-spacing:2px;text-shadow:0 1px #fff,0 0 4px #e9c76b}
-.dna-research.scanning .dna-preview-frame{animation:dnaSpecimenPulse .72s steps(2,end) infinite}
-.dna-research.scanning .dna-preview-frame img{animation:dnaSpriteFlicker .72s steps(2,end) infinite}
-@keyframes dnaSpecimenPulse{0%,100%{transform:translateY(0);box-shadow:0 0 0 3px rgba(255,255,255,.72),0 0 8px 2px var(--rarity-glow),inset 0 0 8px var(--rarity-wash)}50%{transform:translateY(-2px);box-shadow:0 0 0 4px rgba(255,255,255,.82),0 0 20px 7px var(--rarity-glow),inset 0 0 14px var(--rarity-wash)}}
+.dna-display img{width:48px;height:48px;object-fit:contain;image-rendering:pixelated;transition:filter .12s}
+.dna-display img.common{filter:drop-shadow(0 0 4px rgba(112,124,132,.9))}
+.dna-display img.uncommon{filter:drop-shadow(0 0 5px rgba(51,194,91,.95))}
+.dna-display img.rare{filter:drop-shadow(0 0 6px rgba(49,136,220,.98))}
+.dna-display img.epic{filter:drop-shadow(0 0 6px rgba(159,83,224,.98))}
+.dna-display img.legendary{filter:drop-shadow(0 0 7px rgba(255,151,43,1))}
+.dna-display img.mythic{filter:drop-shadow(0 0 7px rgba(239,55,72,1))}
+.dna-research.scanning .dna-display img{animation:dnaSpriteFlicker .72s steps(2,end) infinite}
 @keyframes dnaSpriteFlicker{0%,100%{opacity:1}50%{opacity:.82}}
-@media(prefers-reduced-motion:reduce){.dna-research.scanning .dna-preview-frame,.dna-research.scanning .dna-preview-frame img{animation:none}}
+@media(prefers-reduced-motion:reduce){.dna-research.scanning .dna-display img{animation:none}}
 .dna-research.scanning .dna-display{color:#168da7;text-shadow:0 0 8px #8cecff}.dna-research.complete .dna-display{color:#287b56}
 .manage-build-button{display:block;width:100%;margin:0 0 8px;min-height:48px;font-size:15px}.manage-build-result{margin:0 0 12px;padding:8px 10px;border-left:4px solid #4c8a79;background:rgba(190,220,211,.55);color:#345665;font-size:13px;line-height:1.35}.manage-summary{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:8px 0 12px;padding:11px 13px;border:9px solid transparent;border-image:url("assets/ui/complete-ui-essential-pack-free/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_FrameSlot01a.png") 10 fill / 9px / 0 stretch;color:#304957;font-size:15px}.manage-summary strong{font-size:19px}.manage-row{margin:9px 0;padding:12px 13px 13px;border:9px solid transparent;border-image:url("assets/ui/complete-ui-essential-pack-free/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_FrameSlot01a.png") 10 fill / 9px / 0 stretch}.manage-row-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:9px;color:#304957;font-size:15px}.manage-row-head strong{font-size:19px}.manage-row input[type=range]{display:block;width:100%;height:28px;margin:0;appearance:none;-webkit-appearance:none;background:transparent;cursor:pointer;touch-action:pan-y}.manage-row input[type=range]::-webkit-slider-runnable-track{height:10px;border:2px solid #526c77;background:linear-gradient(#b9d0d4,#dce9e8);box-shadow:inset 0 1px 2px #607b83}.manage-row input[type=range]::-moz-range-track{height:10px;border:2px solid #526c77;background:linear-gradient(#b9d0d4,#dce9e8);box-shadow:inset 0 1px 2px #607b83}.manage-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:25px;height:25px;margin-top:-9px;border:0;border-radius:0;background:transparent url("assets/ui/complete-ui-essential-pack-free/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Handle01a.png") center/contain no-repeat;image-rendering:pixelated}.manage-row input[type=range]::-moz-range-thumb{width:25px;height:25px;border:0;border-radius:0;background:transparent url("assets/ui/complete-ui-essential-pack-free/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Handle01a.png") center/contain no-repeat;image-rendering:pixelated}.manage-row.locked{opacity:.55}.manage-row small{display:block;margin-top:5px;color:#617b87;font-size:12px;line-height:1.3}.manage-footer{margin-top:10px;color:#617b87;font-size:13px;line-height:1.4}
 .log{max-height:110px;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none;touch-action:pan-x;overscroll-behavior:contain;background:transparent;padding:13px 5px;font-size:15px;color:#536d78;line-height:1.5}.sheet::-webkit-scrollbar,.log::-webkit-scrollbar,.active-units-list::-webkit-scrollbar{display:none;width:0;height:0}
@@ -438,19 +430,14 @@ $("managePanel").addEventListener("input",e=>{const slider=e.target.closest("[da
 function renderDnaResearch(){
  const panel=$("dnaResearchPanel");if(!panel)return;
  const remaining=availableDnaTypes(),cost=dnaResearchCost(),complete=remaining.length===0;
- const currentType=dnaPreviewType||state.unlocked[state.unlocked.length-1]||"knight",rarity=cloneRarity(currentType),tier=rarity.tier;
- const name=dnaResearching?"SPECIMEN SCAN IN PROGRESS":dnaDisplayText==="AWAITING SCAN"?"AWAITING SCAN":cloneTypeLabel(currentType);
- panel.innerHTML='<section class="dna-research '+(dnaResearching?"scanning ":"")+(complete?"complete":"")+'"><div class="dna-kicker">GENETIC SEQUENCING TERMINAL</div><div class="dna-preview-stage"><div class="dna-preview-frame '+tier+'" id="dnaPreviewFrame"><img id="dnaPreviewSprite" src="'+dnaPreviewIcon(currentType)+'" alt="'+cloneTypeLabel(currentType)+' pixel-art sprite"></div><div class="dna-preview-name" id="dnaPreviewName">'+name+'</div><div class="dna-preview-rarity" id="dnaPreviewRarity">'+rarity.label+'</div><div class="dna-preview-stars" id="dnaPreviewStars">'+cloneStars(currentType)+'</div></div><div class="dna-display" id="dnaDisplay">'+dnaDisplayText+'</div><div class="dna-status" id="dnaStatus">'+(complete?"ALL CURRENT CLONE DNA TYPES DISCOVERED":dnaStatusText)+'</div><button class="buy dna-button" id="dnaButton" '+(complete||dnaResearching||state.coins<cost?"disabled":"")+'>'+(complete?"RESEARCH COMPLETE":dnaResearching?"SEQUENCING…":"REVEAL DNA · "+formatCount(cost)+" CREDITS")+'</button></section>';
+ const currentType=dnaPreviewType||state.unlocked[state.unlocked.length-1]||"knight";
+ panel.innerHTML='<section class="dna-research '+(dnaResearching?"scanning ":"")+(complete?"complete":"")+'"><div class="dna-display" id="dnaDisplay"><img id="dnaDisplaySprite" class="'+cloneRarity(currentType).tier+'" src="'+dnaPreviewIcon(currentType)+'" alt="'+cloneTypeLabel(currentType)+' sprite"></div><div class="dna-status" id="dnaStatus">'+(complete?"ALL CURRENT CLONE DNA TYPES DISCOVERED":dnaStatusText)+'</div><button class="buy dna-button" id="dnaButton" '+(complete||dnaResearching||state.coins<cost?"disabled":"")+'>'+(complete?"RESEARCH COMPLETE":dnaResearching?"SEQUENCING…":"REVEAL DNA · "+formatCount(cost)+" CREDITS")+'</button></section>';
  $("dnaButton")?.addEventListener("click",runDnaResearch);
 }
 function updateDnaPreview(type,confirmed=false){
- dnaPreviewType=type;const rarity=cloneRarity(type),frame=$("dnaPreviewFrame"),sprite=$("dnaPreviewSprite"),name=$("dnaPreviewName"),tier=$("dnaPreviewRarity"),stars=$("dnaPreviewStars"),display=$("dnaDisplay");
- if(frame)frame.className="dna-preview-frame "+rarity.tier;
- if(sprite){sprite.src=dnaPreviewIcon(type);sprite.alt=cloneTypeLabel(type)+" pixel-art sprite"}
- if(name)name.textContent=confirmed?cloneTypeLabel(type):"SCANNING SPECIMEN";
- if(tier)tier.textContent=rarity.label;
- if(stars)stars.textContent=cloneStars(type);
- if(display)display.textContent=confirmed?cloneTypeLabel(type):"SEQUENCING…";
+ dnaPreviewType=type;const sprite=$("dnaDisplaySprite"),display=$("dnaDisplay");
+ if(sprite){sprite.src=dnaPreviewIcon(type);sprite.className=cloneRarity(type).tier;sprite.alt=cloneTypeLabel(type)+" sprite"}
+ if(display)display.setAttribute("aria-label",confirmed?cloneTypeLabel(type)+" DNA discovered":"Scanning clone DNA");
 }
 function runDnaResearch(){
  const remaining=availableDnaTypes(),cost=dnaResearchCost();
@@ -463,7 +450,7 @@ function runDnaResearch(){
  save();
  dnaDisplayText="SEQUENCING…";dnaStatusText="Comparing genetic signatures across the known clone archive.";
  addLog("DNA research initiated · "+formatCount(cost)+" credits invested.");updateHud();
- const reel=["knight","mage","archer","elder"].filter(type=>type!=="skeleton");let frame=0,totalFrames=25;
+ const reel=["knight","mage","archer","elder"];let frame=0,totalFrames=25;
  const tick=()=>{
   if(frame<totalFrames){
    const type=reel[frame%reel.length];updateDnaPreview(type,false);
@@ -473,7 +460,6 @@ function runDnaResearch(){
   }
   dnaResearching=false;updateDnaPreview(result,true);dnaDisplayText=cloneTypeLabel(result);dnaStatusText=cloneTypeLabel(result)+" DNA CONFIRMED · "+cloneRarity(result).label+" · "+cloneStars(result)+" · Added to the cloning machine’s production pool.";
   const status=$("dnaStatus");if(status)status.textContent=dnaStatusText;
-  const name=$("dnaPreviewName");if(name)name.textContent=cloneTypeLabel(result);
   addLog("DNA breakthrough · "+cloneTypeLabel(result)+" ("+cloneRarity(result).label+") added to the clone pool.");notify(cloneTypeLabel(result)+" DNA DISCOVERED");updateHud();save();
  };
  tick();
