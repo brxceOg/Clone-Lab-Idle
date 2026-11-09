@@ -96,15 +96,21 @@ button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
 .section-label{display:block;margin:14px 0 7px;font-size:16px;color:#304957}
 .dna-research{margin:10px 0 16px;padding:14px;border:10px solid transparent;border-image:url("assets/ui/complete-ui-essential-pack-free/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_FrameSlot01a.png") 10 fill / 10px / 0 stretch;text-align:center}.dna-kicker{font-size:13px;color:#617b87;letter-spacing:.1em}.dna-display{margin:8px 0 5px;min-height:42px;display:flex;align-items:center;justify-content:center;font-size:25px;color:#267a91;text-shadow:0 1px #fff;letter-spacing:.04em}.dna-status{min-height:36px;font-size:14px;line-height:1.3;color:#617b87}.dna-button{width:100%;margin-top:8px}
 .dna-display img{width:48px;height:48px;object-fit:contain;image-rendering:pixelated;transition:filter .12s}
-/* Keep the unknown specimen prominent, then turn the scanning stage into a lively vertical slot reel. */
+/* Three synchronized specimen reels resolve to a matching triple before the discovery card appears. */
 .dna-unknown{width:76px;height:76px;font-size:64px;line-height:1;text-shadow:3px 3px 0 #29495c,0 0 12px #76d9e8;animation:dnaQuestionPulse 1.8s steps(2,end) infinite}
-.dna-research.scanning .dna-display{min-height:132px;height:132px;margin:10px 0 8px;position:relative;overflow:hidden;isolation:isolate}
-.dna-research.scanning .dna-display:before{content:"";position:absolute;inset:0 10%;pointer-events:none;background:radial-gradient(ellipse,rgba(74,190,210,.3),rgba(74,190,210,0) 70%);animation:dnaReelPulse .48s steps(3,end) infinite}
-.dna-research.scanning .dna-display:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(226,249,250,.82),transparent 23%,transparent 77%,rgba(226,249,250,.82));opacity:.48}
-.dna-research.scanning .dna-display img{position:relative;z-index:1;width:112px;height:112px;max-width:44vw;max-height:112px;filter:drop-shadow(0 0 10px rgba(77,205,230,.9));animation:dnaSlotRoll .24s cubic-bezier(.2,.78,.24,1) both;will-change:transform}
+.dna-research.scanning .dna-display{min-height:132px;height:132px;margin:10px 0 8px;position:relative;overflow:hidden;isolation:isolate;display:flex;align-items:center;justify-content:center;gap:clamp(5px,2vw,12px);padding:0 5px}
+.dna-research.scanning .dna-display:before{content:"";position:absolute;inset:0 5%;pointer-events:none;background:radial-gradient(ellipse,rgba(74,190,210,.32),rgba(74,190,210,0) 70%);animation:dnaReelPulse .48s steps(3,end) infinite}
+.dna-research.scanning .dna-display:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(226,249,250,.88),transparent 19%,transparent 81%,rgba(226,249,250,.88));opacity:.5;z-index:3}
+.dna-reel-slot{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;flex:1 1 0;min-width:0;height:116px;overflow:hidden;border:2px solid rgba(70,160,181,.58);background:linear-gradient(90deg,rgba(8,37,49,.2),rgba(12,57,69,.62),rgba(8,37,49,.2));box-shadow:inset 0 0 12px rgba(59,194,220,.2),0 0 5px rgba(62,187,211,.2)}
+.dna-reel-slot:before,.dna-reel-slot:after{content:"";position:absolute;left:0;right:0;height:2px;background:rgba(153,236,245,.62);z-index:2}
+.dna-reel-slot:before{top:4px}.dna-reel-slot:after{bottom:4px}
+.dna-research.scanning .dna-reel-slot img{position:relative;z-index:1;width:clamp(54px,22vw,88px);height:88px;max-width:100%;max-height:88px;object-fit:contain;filter:drop-shadow(0 0 7px rgba(77,205,230,.85));will-change:transform}
+.dna-research.scanning .dna-reel-slot img.rolling{animation:dnaSlotRoll .16s cubic-bezier(.2,.78,.24,1) both}
+.dna-research.scanning .dna-reel-slot img.landing{animation:dnaSlotLand .46s cubic-bezier(.16,.84,.24,1) both}
 @keyframes dnaReelPulse{0%,100%{opacity:.38;transform:scale(.9)}50%{opacity:1;transform:scale(1.09)}}
-@keyframes dnaSlotRoll{0%{transform:translateY(118%) rotate(17deg) scale(.78);opacity:.25}24%{transform:translateY(32%) rotate(10deg) scale(.9);opacity:.8}58%{transform:translateY(-7%) rotate(-5deg) scale(1.04);opacity:1}78%{transform:translateY(3%) rotate(2deg) scale(1.01);opacity:1}100%{transform:translateY(0) rotate(0) scale(1);opacity:1}}
-@media(prefers-reduced-motion:reduce){.dna-research.scanning .dna-display:before,.dna-research.scanning .dna-display img,.dna-unknown{animation:none}}
+@keyframes dnaSlotRoll{0%{transform:translateY(115%) rotate(15deg) scale(.78);opacity:.2}35%{transform:translateY(-13%) rotate(-8deg) scale(1.02);opacity:1}68%{transform:translateY(5%) rotate(4deg) scale(.98)}100%{transform:translateY(0) rotate(0) scale(1);opacity:1}}
+@keyframes dnaSlotLand{0%{transform:translateY(-95%) rotate(-13deg) scale(.84);opacity:.35}52%{transform:translateY(8%) rotate(5deg) scale(1.05);opacity:1}76%{transform:translateY(-3%) rotate(-2deg) scale(1)}100%{transform:translateY(0) rotate(0) scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){.dna-research.scanning .dna-display:before,.dna-research.scanning .dna-reel-slot img,.dna-unknown{animation:none!important}}
 
 .dna-display img.common{filter:drop-shadow(0 0 4px rgba(112,124,132,.9))}
 .dna-display img.uncommon{filter:drop-shadow(0 0 5px rgba(51,194,91,.95))}
@@ -469,10 +475,21 @@ function renderDnaResearch(){
  panel.innerHTML='<section class="dna-research '+(dnaResearching?"scanning ":"")+(complete?"complete":"")+'"><div class="dna-display" id="dnaDisplay" aria-label="Unknown clone DNA"><span class="dna-unknown" id="dnaUnknownMark" aria-hidden="true">?</span></div><div class="dna-status" id="dnaStatus">'+(complete?"ALL CURRENT CLONE DNA TYPES DISCOVERED":dnaStatusText)+'</div><button class="buy dna-button" id="dnaButton" '+(complete||dnaResearching||state.coins<cost?"disabled":"")+'>'+(complete?"RESEARCH COMPLETE":dnaResearching?"SEQUENCING…":"REVEAL DNA · "+formatCount(cost)+" CREDITS")+'</button></section>';
  $("dnaButton")?.addEventListener("click",runDnaResearch);
 }
-function updateDnaPreview(type,confirmed=false){
- dnaPreviewType=type;const display=$("dnaDisplay");if(!display)return;
- display.innerHTML='<img id="dnaDisplaySprite" class="'+cloneRarity(type).tier+'" src="'+dnaPreviewIcon(type)+'" alt="'+cloneTypeLabel(type)+' sprite">';
- display.setAttribute("aria-label",confirmed?cloneTypeLabel(type)+" DNA discovered":"Scanning clone DNA");
+function setDnaReelSlot(index,type,landing=false){
+ const img=$("dnaReelSprite"+index);if(!img)return;
+ img.className=cloneRarity(type).tier+(landing?" landing":" rolling");
+ img.src=dnaPreviewIcon(type);img.alt=cloneTypeLabel(type)+" specimen";
+ img.dataset.type=type;
+}
+function updateDnaPreview(type,confirmed=false,frame=0){
+ if(confirmed)dnaPreviewType=type;
+ const display=$("dnaDisplay");if(!display)return;
+ if(!$("dnaReelSprite0")){
+  display.innerHTML=[0,1,2].map(i=>'<div class="dna-reel-slot" aria-hidden="true"><img id="dnaReelSprite'+i+'" alt=""></div>').join("");
+ }
+ const reel=["knight","mage","archer","elder"];
+ for(let i=0;i<3;i++)setDnaReelSlot(i,confirmed?type:reel[(frame+i*2)%reel.length],confirmed);
+ display.setAttribute("aria-label",confirmed?"Three matching "+cloneTypeLabel(type)+" specimens revealed":"Three DNA specimen reels spinning");
 }
 function dnaBaseStats(type){const knight=type==="knight",damage=knight?1.15:1,cooldown=knight?1050:1450;return{hp:3,damage:damage.toFixed(2),speed:(cooldown/1000).toFixed(2)+"s"};}
 function dnaDiscoveryTitle(type){return({knight:"THE IRON VANGUARD",mage:"THE ARCANE CHANNELER",archer:"THE DEAD-EYE",elder:"THE BONE SUMMONER"})[type]||"NEW SPECIMEN";}
@@ -499,14 +516,20 @@ function runDnaResearch(){
  const reel=["knight","mage","archer","elder"];let frame=0,totalFrames=25;
  const tick=()=>{
   if(frame<totalFrames){
-   const type=reel[frame%reel.length];updateDnaPreview(type,false);
-   frame++;const progress=frame/totalFrames,delay=42+Math.pow(progress,2.8)*210;
+   updateDnaPreview(null,false,frame);
+   frame++;const progress=frame/totalFrames,delay=38+Math.pow(progress,2.8)*205;
    setTimeout(tick,delay);
    return;
   }
-  dnaResearching=false;updateDnaPreview(result,true);dnaDisplayText=cloneTypeLabel(result);dnaStatusText=cloneTypeLabel(result)+" DNA CONFIRMED · "+cloneRarity(result).label+" · "+cloneStars(result)+" · Added to the cloning machine’s production pool.";showDnaDiscovery(result);
-  const status=$("dnaStatus");if(status)status.textContent=dnaStatusText;
-  addLog("DNA breakthrough · "+cloneTypeLabel(result)+" ("+cloneRarity(result).label+") added to the clone pool.");notify(cloneTypeLabel(result)+" DNA DISCOVERED");updateHud();save();
+  // Stop the three reels one after another; each lands on the same winning specimen.
+  [0,1,2].forEach((slot)=>setTimeout(()=>{
+   setDnaReelSlot(slot,result,true);
+   if(slot===2)setTimeout(()=>{
+    dnaResearching=false;dnaPreviewType=result;dnaDisplayText=cloneTypeLabel(result);dnaStatusText=cloneTypeLabel(result)+" DNA CONFIRMED · "+cloneRarity(result).label+" · "+cloneStars(result)+" · Added to the cloning machine’s production pool.";showDnaDiscovery(result);
+    const status=$("dnaStatus");if(status)status.textContent=dnaStatusText;
+    addLog("DNA breakthrough · "+cloneTypeLabel(result)+" ("+cloneRarity(result).label+") added to the clone pool.");notify(cloneTypeLabel(result)+" DNA DISCOVERED");updateHud();save();
+   },520);
+  },slot*260));
  };
  tick();
 }
