@@ -313,3 +313,6 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 - On first Necromancer DNA discovery, deploy one Elder immediately when capacity permits; for existing saves with Necromancer DNA but no active Elder or queued replacement, queue a recovery deployment. Keep the Necromancer in the normal saved clone roster and production pool.
 - Render the Necromancer/Skeleton roster status directly beneath the boss health bar so the player can confirm whether the Necromancer is active and see the current Skeleton count against its target.
 - The Skeleton pack has named `hit` and `death` animations rather than directional `hit_*` / `death_*` names. Resolve those exact animation entries so attack and defeat states use the supplied strips instead of silently falling back to idle.
+
+### Burning countdown readability (2026-11-09)
+- The boss-side BURNING status panel uses a wider, taller opaque dark backing, a high-contrast amber header accent, a larger 10px label and 16px countdown, and a full-width five-second progress bar. Keep the countdown visually dominant and readable at portrait phone scale; do not compress the timer into the old tiny label treatment.
