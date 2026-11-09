@@ -317,3 +317,9 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 
 ### Burning countdown readability (2026-11-09)
 - Keep the boss-side BURNING status panel in the game’s `Pixels` font. Improve phone-scale readability with a 116×68 opaque dark backing, strong amber top stripe, 15px bold pixel-font label, 23px bold pixel-font countdown, and a 96px five-second progress bar. Add a dark 3px text outline for separation against the panel. Do not substitute a sans-serif font; do not change burn duration or damage.
+
+
+### Army management controls (2026-11-09)
+- The MANAGE button sits immediately to the right of UPGRADES along the lower-left room edge and uses the same imported Flat Theme button treatment.
+- The Manage sheet uses the imported Flat Theme frame and slot panels. Each unlocked regular clone class receives a touch-friendly horizontal slider with the imported `UI_Flat_Handle01a.png` thumb; locked DNA types are shown as locked rows without active controls.
+- Keep the manager compact, legible, and internally scrollable on portrait phones. Do not cover or restyle the room simulation itself.
