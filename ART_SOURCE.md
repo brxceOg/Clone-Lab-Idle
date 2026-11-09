@@ -346,3 +346,7 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 
 ### Lab viewport clearance beneath floating HUD (2026-11-09)
 - Reserve a 120px top inset inside the laboratory viewport so the rendered room scene begins below the floating top HUD/status cards. The canvas uses the remaining viewport height, keeping boss health and unit sprites from sitting beneath the overlay while preserving the existing room artwork and simulation coordinates. Keep the bottom room controls anchored to the viewport edge.
+
+
+### Custom in-game panel scrolling (2026-11-09)
+- Replace native iPhone vertical scrolling in the upgrade/manage/DNA sheets, activity log, and Active Units roster with direct touch-drag scrolling and a short inertial coast. Keep scroll positions within each panel, prevent page rubber-band behavior, and hide native scrollbar chrome across WebKit and other browsers. Preserve normal taps on buttons and inputs, and retain wheel scrolling for desktop users. The skill-tree viewport keeps its separate drag-to-pan interaction.
