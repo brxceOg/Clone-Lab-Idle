@@ -299,7 +299,7 @@ function drawRangedProjectiles(t){
  const keep=[];
  for(const p of projectileEvents){const age=Math.max(0,t-p.born),progress=Math.min(1,age/p.duration),ux=Math.cos(p.angle),uy=Math.sin(p.angle),asset=pvfxAssets[p.id],frame=asset?.manifest?.frames?.[3],rect=frame?.sheet;
   if(!asset||!rect)continue;
-  const size=asset.manifest.source_size||[64,32],pivot=asset.manifest.pivot||[50,17],tipOffset=18*p.scale,startX=p.x+ux*tipOffset,startY=p.y+uy*tipOffset,endX=p.targetX+ux*tipOffset,endY=p.targetY+uy*tipOffset,x=startX+(endX-startX)*progress,y=startY+(endY-startY)*progress;
+  const size=asset.manifest.source_size||[64,32],pivot=asset.manifest.pivot||[50,17],tailOffset=18*p.scale,headOffset=10*p.scale,bowOffset=7,startX=p.x+ux*(bowOffset+tailOffset),startY=p.y+uy*(bowOffset+tailOffset),endX=p.targetX-ux*headOffset,endY=p.targetY-uy*headOffset,x=startX+(endX-startX)*progress,y=startY+(endY-startY)*progress;
   if(progress<1){ctx.save();ctx.translate(Math.round(x),Math.round(y));ctx.rotate(p.angle);ctx.imageSmoothingEnabled=false;ctx.drawImage(asset.img,rect.x,rect.y,rect.width,rect.height,Math.round(-pivot[0]*p.scale),Math.round(-pivot[1]*p.scale),Math.round(size[0]*p.scale),Math.round(size[1]*p.scale));ctx.restore();keep.push(p)}
   else if(!p.impactPlayed){p.impactPlayed=true;spawnPvfx("hitSpark",p.targetX,p.targetY,null,null,.58,"foreground");keep.push(p)}
   else if(age<p.duration+220)keep.push(p)
