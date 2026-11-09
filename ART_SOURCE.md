@@ -287,3 +287,10 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 - **Layering:** Teleport-in is drawn in the world-background pass beneath clone sprites. Combat, machine, upgrade, and reward effects use the foreground pass. Keep effects brief and avoid obscuring characters, boss health, or the cloning machine. The PVFX teleport-in asset remains imported but is not used on routine clone arrivals.
 - **Runtime:** The game preloads only the selected effect subset; the full imported library remains available for future effects. The existing BDragon1727 atlases and custom clone-emergence ring remain intact as fallbacks and complementary effects.
 - **Import record:** `assets/effects/pvfx-foundry/IMPORT_MANIFEST.md`.
+
+
+### Necromancer and skeleton summon presentation
+
+- The Larchrow **Elder** hero is presented as the Necromancer. Use its native `elder_idle_*` and `elder_walk_*` four-direction strips from `PNG/heroes/elder/`; preserve the original 16×16 frames and palette. The pack has no Elder attack strip, so keep the Elder's idle pose during its ranged cast and communicate the attack with the existing arcane projectile/effect assets rather than inventing or recolouring an attack frame.
+- The summoned melee ally uses the Larchrow Skeleton monster strips in `PNG/monsters/skeleton/`: four-direction idle/walk plus the supplied hit and death strips. Keep the sprite at native 16×16 proportions with nearest-neighbour sampling.
+- Summon visuals use the existing portal-summon and magic-circle effects at the Necromancer's position. Skeletons then walk into the same inner melee ring as Knights; they must not be assigned the wider ranged orbit. Draw their own health bars when damaged and play the imported death strip when their health is depleted.
