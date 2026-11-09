@@ -350,3 +350,10 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 
 ### Custom in-game panel scrolling (2026-11-09)
 - Replace native iPhone vertical scrolling in the upgrade/manage/DNA sheets, activity log, and Active Units roster with direct touch-drag scrolling and a short inertial coast. Keep scroll positions within each panel, prevent page rubber-band behavior, and hide native scrollbar chrome across WebKit and other browsers. Preserve normal taps on buttons and inputs, and retain wheel scrolling for desktop users. The skill-tree viewport keeps its separate drag-to-pan interaction.
+
+
+### Dungeon cave biome (2026-11-09)
+
+- The repository does not currently contain a dedicated natural cave/rock tileset. The first dungeon chamber is therefore assembled from the installed CC0 sci-fi tileset's native dark floor and wall tiles, with restrained rust-floor accents and original pixel-shape detailing to create an underground stone-chamber mood.
+- Keep the cave visually separate from the bright lab: dark charcoal/blue-grey palette, enclosed perimeter, subtle mineral/rust accents, and a clear central boss arena. Do not introduce smooth high-resolution cave art or blur the native tiles.
+- Dungeon encounters reuse the installed Larchrow animated boss sprites and the normal clone combat simulation. On victory, show the equipment reward panel and restore the standard laboratory scene. A future dedicated cave asset pack can replace the assembled dark-tile treatment once an appropriately licensed pixel-art pack is supplied or verified.
