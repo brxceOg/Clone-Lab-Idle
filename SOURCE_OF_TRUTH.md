@@ -67,6 +67,14 @@ Upgrade families:
 - **Clone unlocks:** New warrior types/classes become available.
 - **Clone improvements:** Where appropriate, improve the strength or effectiveness of unlocked warriors.
 
+### Combat and survivability upgrade paths
+
+- The Combat Systems path is sequential: Combat Systems is its first node, Divine Intervention is the second, and Attack Speed is the third. Divine Intervention cannot be purchased until Combat Systems is unlocked; Attack Speed cannot be purchased until Divine Intervention is unlocked.
+- Divine Intervention gives a clone that would otherwise be defeated by a boss attack a 20% chance to revive immediately at half of its current maximum health. Each additional level adds 10 percentage points, capped at 75%. A successful revival prevents the normal defeat/replacement queue for that hit.
+- Attack Speed reduces the time between clone attacks by 8% per level, applied multiplicatively. Cooldowns have a 420 ms minimum to preserve readable combat timing.
+- A separate Clone Health path branches from the lower-left side of the core, opposite Credit Yield. Each level increases every clone's base maximum health by 1 HP; existing active clones gain the same 1 HP immediately, and future/restored clones use the upgraded base health.
+- Persist Divine Intervention, Attack Speed, and Clone Health levels in the local save. Older saves default these levels to zero and retain their existing progression.
+
 An upgrade that creates or unlocks a clone must provide clear feedback. The player should understand what was purchased, what appeared, and how it changes the army. Avoid upgrades that silently change the game state.
 
 The exact upgrade names, costs, scaling curves, class roster, and balance values are implementation decisions to be tuned during playtesting. Keep these values data-driven rather than scattering them through rendering code.
