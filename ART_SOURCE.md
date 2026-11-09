@@ -300,3 +300,9 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 
 - Skeleton summons should visibly emerge from the lab floor rather than simply appear. Use the original Larchrow 16×16 Skeleton sprite, clipped and moved upward over a brief 850 ms animation. Draw a small dark floor opening, fine violet cracks, and a few crisp pixel debris/motes; retain the original sprite palette and nearest-neighbour sampling.
 - Keep the existing portal-summon and magic-circle effects as a subtle magical accent. Hold the Skeleton in place during the rise; only after it completes should it walk toward its inner melee formation slot. Do not cover the character with a large flash or obscure the boss/other units.
+
+
+### Skeleton visibility glow (2026-11-09)
+
+- Summoned Skeletons receive a restrained animated cyan ground ring with a softer violet secondary ring and a few orbiting pixel motes. A cyan canvas-shadow rim follows the original Skeleton sprite to separate its silhouette from overlapping regular clones.
+- Keep the imported Skeleton palette and pixel art unchanged; the glow is a rendering effect only. Use a small blur radius and a tiny fixed number of particles per summon so the effect remains readable without creating a large particle load at high clone counts. The glow dims during the death animation.
