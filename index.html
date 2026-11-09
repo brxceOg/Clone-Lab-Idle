@@ -420,10 +420,11 @@ function simulate(dt,now){
  if(!assetsReady)return;
  if(now-state.lastProduction>=state.rate*1000){state.lastProduction=now;produce(state.quantity)}
  while(state.respawns.length&&state.respawns[0].due<=now&&state.clones.length<maxClones()){const r=state.respawns.shift();spawnClone(r.type);spawnFx("machine",272,395);state.phase="production";addLog("Cloning machine restored a fallen "+r.type+".");updateHud()}
- updateBossBurn(now);const b=bossDef(),size=b.size?.[0]||32,cx=160,cy=196,bossRadius=size*Math.max(1,Math.min(4,Math.floor(144/size)))/2,baseRadius=bossRadius+14,formationSlots=maxClones(),moveStep=dt*.042;maintainNecromancerSummons(now);const fighters=[...state.clones,...state.summons.filter(s=>s.mode!=="death")];
+ updateBossBurn(now);const b=bossDef(),size=b.size?.[0]||32,cx=160,cy=196,bossRadius=size*Math.max(1,Math.min(4,Math.floor(144/size)))/2,baseRadius=bossRadius+14,formationSlots=maxClones(),moveStep=dt*.042;maintainNecromancerSummons(now);const fighters=[...state.clones,...state.summons.filter(s=>s.mode!=="death")],meleeFormationReady=fighters.filter(c=>c.type==="knight"||c.isSummon).every(c=>c.mode==="summoning"||c.formationPhase==="formed"||c.formationPhase==="swarm");
  for(let i=0;i<fighters.length;i++){
   let c=fighters[i];if(c.mode==="summoning"){if(now<c.summonUntil)continue;c.mode="walk";c.formationPhase="approach";c.formationAngle=undefined}
   const formationSlot=Number.isInteger(c.formationSlot)?c.formationSlot:i,angle=c.isSummon?-Math.PI/2+((c.summonSlot+.5)/Math.max(1,maxClones()))*Math.PI*2:-Math.PI/2+(formationSlot/Math.max(1,formationSlots))*Math.PI*2,ranged=(c.type==="mage"||c.type==="archer"||c.type==="elder"),targetRadius=baseRadius+(ranged?28:0),targetX=cx+Math.cos(angle)*targetRadius,targetY=cy+Math.sin(angle)*targetRadius;
+  if(!ranged&&meleeFormationReady&&c.formationPhase==="formed")beginMeleeSwarm(c,angle,formationSlot);
   const dx=c.x-cx,dy=c.y-cy,currentRadius=Math.max(.001,Math.hypot(dx,dy)),currentAngle=Math.atan2(dy,dx);
   // If the roster changes a clone's assigned angle, reconverge through the
   // perimeter approach rather than cutting directly across the room.
@@ -449,7 +450,7 @@ function simulate(dt,now){
     c.x=cx+Math.cos(nextAngle)*baseRadius;c.y=cy+Math.sin(nextAngle)*baseRadius;moving=true;
    }else{
     c.x=cx+Math.cos(angle)*baseRadius;c.y=cy+Math.sin(angle)*baseRadius;
-    if(targetRadius>baseRadius+2)c.formationPhase="offset";else if(ranged)c.formationPhase="formed";else beginMeleeSwarm(c,angle,formationSlot);
+    if(targetRadius>baseRadius+2)c.formationPhase="offset";else c.formationPhase="formed";
    }
   }else if(c.formationPhase==="offset"){
    const radialDelta=targetRadius-currentRadius;
