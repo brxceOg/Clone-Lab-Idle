@@ -47,7 +47,7 @@ Boss progression must be sequential: do not spawn the next boss over the previou
 
 The main play area is one large, bright laboratory room.
 
-- **Boss:** Large and visually dominant near the center of the room. Show a readable boss name and health bar without obscuring the room.
+- **Boss:** Large and visually dominant near the center of the room. Show a readable boss name and health bar without obscuring the room. The boss name and health bar render in the final foreground layer above all clone sprites and combat effects, so units can never cover the bar.
 - **Cloning machine:** Anchored in the bottom-right of the room. It must remain easy to identify and tap.
 - **Warriors:** Small characters produced by the machine. They occupy the room and visibly engage the boss.
 - **HUD:** Currency, current boss/progression, and essential production/combat information. Keep it compact so the room remains the focus.
