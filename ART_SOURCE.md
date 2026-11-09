@@ -306,3 +306,10 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 
 - Summoned Skeletons receive a restrained animated cyan ground ring with a softer violet secondary ring and a few orbiting pixel motes. A cyan canvas-shadow rim follows the original Skeleton sprite to separate its silhouette from overlapping regular clones.
 - Keep the imported Skeleton palette and pixel art unchanged; the glow is a rendering effect only. Use a small blur radius and a tiny fixed number of particles per summon so the effect remains readable without creating a large particle load at high clone counts. The glow dims during the death animation.
+
+
+### Necromancer and Skeleton animation clarity (2026-11-09)
+
+- On first Necromancer DNA discovery, deploy one Elder immediately when capacity permits; for existing saves with Necromancer DNA but no active Elder or queued replacement, queue a recovery deployment. Keep the Necromancer in the normal saved clone roster and production pool.
+- Render the Necromancer/Skeleton roster status directly beneath the boss health bar so the player can confirm whether the Necromancer is active and see the current Skeleton count against its target.
+- The Skeleton pack has named `hit` and `death` animations rather than directional `hit_*` / `death_*` names. Resolve those exact animation entries so attack and defeat states use the supplied strips instead of silently falling back to idle.
