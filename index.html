@@ -413,8 +413,9 @@ function drawBurnStatus(now){if(!state.burningUntil||now>=state.burningUntil)ret
 function hitBoss(c,now){if(now<c.nextHit||state.phase==="death"||c.mode==="death")return;const baseCooldown=c.type==="knight"?1050:c.type==="skeleton"?1650:1450;c.nextHit=now+Math.max(420,baseCooldown*Math.pow(.92,state.attackSpeedLevel));c.mode="attack";if(c.type==="knight"){if(!spawnPvfx("swordCombo",160,196,null,null,.54))spawnFx("knight",160,196);spawnPvfx("hitSpark",160,196,null,null,.58,"foreground",320)}else if(c.type==="mage"||c.type==="elder"){if(!spawnRangedProjectile("magicMissile",c,c.type==="elder"?.32:.34))spawnPvfx("arcaneBurst",160,196,null,null,.4,"foreground")}else if(c.type==="skeleton"){if(!spawnPvfx("swordCombo",160,196,null,null,.32))spawnFx("knight",160,196);spawnPvfx("hitSpark",160,196,null,null,.38,"foreground",180)}else{const fire= c.type==="archer"&&fireTipChance()>0&&Math.random()<fireTipChance();if(!spawnRangedProjectile("arrowImpact",c,.82,fire))spawnFx("archer",c.x,c.y,160,196)}const damage=state.power*(c.type==="knight"?1.15:c.type==="skeleton"?.65:1);state.bossHp-=damage;combatPopups.push({label:"-"+(Math.round(damage*10)/10),x:160+(Math.random()-.5)*28,y:132,born:now,duration:720});if(combatPopups.length>12)combatPopups.shift();state.coins+=1+state.earningsLevel;$("coins").textContent=formatCount(state.coins);c.flash=now+150;if(state.phase!=="attack"&&state.phase!=="telegraph")state.phase="hurt";setTimeout(()=>{if(c.mode==="attack")c.mode="idle";if(state.phase==="hurt")state.phase="idle"},220);if(state.bossHp<=0)defeatBoss()}
 function killClone(c,now){const i=state.clones.indexOf(c);if(i<0)return;state.clones.splice(i,1);state.respawns.push({type:c.type,due:now+2800});addLog(c.type+" lost · replacement queued");updateHud();save()}
  function killSummon(s,now){if(!state.summons.includes(s)||s.mode==="death")return;s.mode="death";updateHud();s.hp=0;s.dyingStarted=performance.now();s.dyingUntil=now+500;spawnPvfx("hitSpark",s.x,s.y,null,null,.34,"foreground");addLog("A summoned skeleton crumbled.");}
-function bossStrike(now){state.phase="attack";if(!spawnPvfx("groundSlam",160,196,null,null,.5))spawnFx("boss",160,196);spawnPvfx("shockwaveRing",160,196,null,null,.68,"foreground",90);for(const c of [...state.clones,...state.summons]){if(c.mode==="death")continue;const d=Math.hypot(c.x-160,c.y-205);if(d<112){const pushLength=2.1+Math.random()*.5,pushAngle=Math.atan2(c.y-196,c.x-160)+(Math.random()-.5)*.22;c.knockbackX=(c.knockbackX||0)+Math.cos(pushAngle)*pushLength;c.knockbackY=(c.knockbackY||0)+Math.sin(pushAngle)*pushLength;c.knockbackFlash=now+340;spawnPvfx("smallExplosion",c.x,c.y,null,null,.52);spawnPvfx("hitSpark",c.x,c.y,null,null,.5,"foreground",260);c.hp--;c.flash=now+360;if(c.hp<=0&&c.isSummon){killSummon(c,now)}else if(c.hp<=0&&divineReviveChance()>0&&Math.random()<divineReviveChance()){c.hp=Math.max(1,Math.ceil(cloneBaseHealth()*.5));c.flash=now+620;spawnPvfx("levelUp",c.x,c.y,null,null,.42,"foreground",180);combatPopups.push({label:"REVIVED!",x:c.x,y:c.y-12,born:now,duration:850});addLog("Divine intervention revived a "+c.type+" at "+c.hp+" HP.");save()}else if(c.hp<=0)killClone(c,now)}}setTimeout(()=>{if(state.phase==="attack")state.phase="idle"},520)}
+function bossStrike(now){state.phase="attack";if(!spawnPvfx("groundSlam",160,196,null,null,.5))spawnFx("boss",160,196);spawnPvfx("shockwaveRing",160,196,null,null,.68,"foreground",90);for(const c of [...state.clones,...state.summons]){if(c.mode==="death")continue;const d=Math.hypot(c.x-160,c.y-205);if(d<112){const pushLength=2.1+Math.random()*.5,pushAngle=Math.atan2(c.y-196,c.x-160)+(Math.random()-.5)*.22;c.knockbackX=(c.knockbackX||0)+Math.cos(pushAngle)*pushLength;c.knockbackY=(c.knockbackY||0)+Math.sin(pushAngle)*pushLength;c.knockbackFlash=now+340;const rangedUnit=c.type==="mage"||c.type==="archer"||c.type==="elder";if(!rangedUnit&&c.mode!=="summoning"){c.staggerUntil=now+760;c.nextHit=Math.max(c.nextHit||0,c.staggerUntil);c.flash=now+420}spawnPvfx("smallExplosion",c.x,c.y,null,null,.52);spawnPvfx("hitSpark",c.x,c.y,null,null,.5,"foreground",260);c.hp--;c.flash=now+360;if(c.hp<=0&&c.isSummon){killSummon(c,now)}else if(c.hp<=0&&divineReviveChance()>0&&Math.random()<divineReviveChance()){c.hp=Math.max(1,Math.ceil(cloneBaseHealth()*.5));c.flash=now+620;spawnPvfx("levelUp",c.x,c.y,null,null,.42,"foreground",180);combatPopups.push({label:"REVIVED!",x:c.x,y:c.y-12,born:now,duration:850});addLog("Divine intervention revived a "+c.type+" at "+c.hp+" HP.");save()}else if(c.hp<=0)killClone(c,now)}}setTimeout(()=>{if(state.phase==="attack")state.phase="idle"},520)}
 function defeatBoss(){if(state.phase==="death")return;state.phase="death";spawnPvfx("bigExplosion",160,196,null,null,.9);addLog(bossDef().name.replaceAll("_"," ")+" defeated.");const anim=bossAnim("death"),duration=(anim?.frames||6)*(anim?.ms_per_frame||130);setTimeout(()=>{const reward=Math.round(35*Math.pow(1.42,state.bossIndex));state.coins+=reward;spawnPvfx("coinPickup",160,126,null,null,.85);state.defeats++;state.bossIndex++;state.bossMax=bossHealthForIndex(state.bossIndex);state.bossHp=state.bossMax;state.phase="idle";state.burningUntil=0;state.burningNextTick=0;state.clones=state.clones.slice(0,12);addLog("Reward collected · +"+formatCount(reward)+" credits. Next specimen released.");notify("BOSS CLEARED  +"+formatCount(reward));updateHud();save()},duration)}
+function beginMeleeSwarm(c,angle,slot){c.formationPhase="swarm";c.swarmAngle=angle;c.swarmDirection=slot%2===0?1:-1;c.swarmSpeed=.00072+(slot%5)*.00012;c.swarmPhase=(slot%7)*.91}
 function simulate(dt,now){
  if(!assetsReady)return;
  if(now-state.lastProduction>=state.rate*1000){state.lastProduction=now;produce(state.quantity)}
@@ -448,7 +449,7 @@ function simulate(dt,now){
     c.x=cx+Math.cos(nextAngle)*baseRadius;c.y=cy+Math.sin(nextAngle)*baseRadius;moving=true;
    }else{
     c.x=cx+Math.cos(angle)*baseRadius;c.y=cy+Math.sin(angle)*baseRadius;
-    c.formationPhase=targetRadius>baseRadius+2?"offset":"formed";
+    if(targetRadius>baseRadius+2)c.formationPhase="offset";else if(ranged)c.formationPhase="formed";else beginMeleeSwarm(c,angle,formationSlot);
    }
   }else if(c.formationPhase==="offset"){
    const radialDelta=targetRadius-currentRadius;
@@ -458,12 +459,24 @@ function simulate(dt,now){
    }else{
     c.x=targetX;c.y=targetY;c.formationPhase="formed";
    }
+  }else if(c.formationPhase==="swarm"){
+   // Once melee units reach the inner ring, they buzz around the boss instead of holding fixed slots.
+   // Each unit gets its own direction, speed, and radial wobble; ranged units never enter this state.
+   if(now>=(c.staggerUntil||0)){
+    c.swarmAngle=(c.swarmAngle??angle)+c.swarmDirection*c.swarmSpeed*dt;
+    const buzz=c.swarmPhase||0,phase=now/145+buzz;
+    const radius=Math.max(bossRadius+12,baseRadius+Math.sin(phase)*5+Math.sin(phase*1.73)*2.5);
+    c.x=cx+Math.cos(c.swarmAngle)*radius;c.y=cy+Math.sin(c.swarmAngle)*radius*.82;
+   }
   }else{
    c.x=targetX;c.y=targetY;
   }
   const safeDistance=bossRadius+11,fromBossX=c.x-cx,fromBossY=c.y-cy,fromBossDistance=Math.max(.001,Math.hypot(fromBossX,fromBossY));
   if(fromBossDistance<safeDistance){c.x=cx+fromBossX/fromBossDistance*safeDistance;c.y=cy+fromBossY/fromBossDistance*safeDistance}
-  if(c.formationPhase==="formed"){c.x=targetX;c.y=targetY;c.mode="idle";hitBoss(c,now)}else c.mode="walk";
+  const staggered=!ranged&&now<(c.staggerUntil||0);
+  if(c.formationPhase==="formed"||c.formationPhase==="swarm"){
+   if(staggered)c.mode="walk";else{if(c.formationPhase==="formed"){c.x=targetX;c.y=targetY}c.mode="idle";hitBoss(c,now)}
+  }else c.mode="walk";
   // Apply a short outward impulse after formation steering; let it decay so clones visibly recoil, then settle back into their assigned slots.
   if(c.knockbackX||c.knockbackY){const knockbackDecay=Math.pow(.78,dt/16.67);c.x+=(c.knockbackX||0);c.y+=(c.knockbackY||0);c.knockbackX=(c.knockbackX||0)*knockbackDecay;c.knockbackY=(c.knockbackY||0)*knockbackDecay;if(Math.abs(c.knockbackX)+Math.abs(c.knockbackY)<.12){c.knockbackX=0;c.knockbackY=0}}
   if(!c.isSummon)c.slot=state.clones.indexOf(c);c.dir=Math.abs(cx-c.x)>Math.abs(cy-c.y)?(cx>c.x?"right":"left"):(cy>c.y?"down":"up");
