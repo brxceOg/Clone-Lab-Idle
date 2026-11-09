@@ -191,3 +191,10 @@ This file is the canonical source of truth for product behavior and scope. When 
 ### Skeleton visual readability
 
 - Summoned Skeletons have a compact pulsing cyan/violet ground aura and cyan silhouette glow so they remain identifiable among large clone crowds. The aura follows their position and animation; it does not recolour the source sprite or affect combat behavior.
+
+
+### Necromancer deployment and summon feedback
+
+- The first successful Necromancer DNA discovery immediately deploys an Elder clone when capacity permits, in addition to unlocking it in the production pool. Existing saves with Necromancer DNA but no active Elder or queued Elder replacement receive a queued recovery deployment.
+- A persistent lab-room status strip below the boss health bar reports active Necromancers and Skeletons versus their current target, or clearly indicates locked DNA / pending recovery.
+- Skeleton combat uses the imported named `hit` strip during attacks and the named `death` strip on defeat; these are resolved by their actual manifest names, not directional animation aliases.
