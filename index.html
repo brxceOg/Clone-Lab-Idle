@@ -142,6 +142,16 @@ function charAnim(type,action,dir){return warData?.characters.find(c=>c.name===t
 function drawCombatant(c,t,isSummon=false){
  const action=c.mode==="death"?"death":c.mode==="walk"?"walk":c.mode==="attack"?"attack":"idle",a=action==="death"?charAnim(c.type,"death","none"):charAnim(c.type,action,c.dir||"up"),fallback=charAnim(c.type,"idle",c.dir||"up")||charAnim(c.type,"idle","down"),anim=a||fallback,image=warImgs[c.type]?.[anim?.name]||warImgs[c.type]?.[fallback?.name],frame=anim?(c.mode==="death"?Math.min(anim.frames-1,Math.floor(Math.max(0,t-(c.dyingStarted||t))/(1000/(anim.fps||6)))):Math.floor(t/(1000/(anim.fps||6)))%anim.frames):0;
  if(!image)return;
+ // Summons get a compact, animated ground aura so their silhouettes remain
+ // distinguishable from the regular army even when many units overlap.
+ if(isSummon){
+  const pulse=.5+.5*Math.sin(t/210+(c.summonSlot||0)*.7),fade=c.mode==="death"?.45:1;
+  ctx.save();ctx.globalAlpha=(.38+.22*pulse)*fade;ctx.strokeStyle="#49eaff";ctx.lineWidth=1;
+  ctx.beginPath();ctx.ellipse(Math.round(c.x),Math.round(c.y+5),7+Math.round(pulse*2),2,0,0,Math.PI*2);ctx.stroke();
+  ctx.globalAlpha=(.2+.16*pulse)*fade;ctx.strokeStyle="#a78bfa";ctx.beginPath();ctx.ellipse(Math.round(c.x),Math.round(c.y+5),10+Math.round(pulse*2),3,0,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle="#9ffaff";for(let i=0;i<3;i++){const a=t/520+i*Math.PI*2/3+(c.summonSlot||0),r=9+(i%2)*2;ctx.globalAlpha=(.55+.25*pulse)*fade;ctx.fillRect(Math.round(c.x+Math.cos(a)*r),Math.round(c.y+Math.sin(a)*5-2),1,1)}
+  ctx.restore();
+ }
  ctx.fillStyle="#8da0a8";ctx.globalAlpha=.25;ctx.fillRect(c.x-4,c.y+5,9,3);ctx.globalAlpha=1;
  if(isSummon&&c.mode==="summoning"){
   const p=Math.max(0,Math.min(1,(t-(c.summonStarted||t))/850)),ease=1-Math.pow(1-p,2.2),rise=20*(1-ease);
@@ -149,11 +159,16 @@ function drawCombatant(c,t,isSummon=false){
   ctx.save();ctx.globalAlpha=.22+.28*(1-p);ctx.fillStyle="#31283d";ctx.beginPath();ctx.ellipse(Math.round(c.x),Math.round(c.y+5),Math.round(3+7*ease),Math.max(1,Math.round(1+2*ease)),0,0,Math.PI*2);ctx.fill();
   ctx.globalAlpha=.8*(1-p*.45);ctx.strokeStyle="#8c72a8";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(c.x-7,c.y+3);ctx.lineTo(c.x-4,c.y+1,c.x-2,c.y+3);ctx.moveTo(c.x+7,c.y+3);ctx.lineTo(c.x+4,c.y+1,c.x+2,c.y+3);ctx.stroke();
   // Reveal the actual Skeleton sprite from below the floor, preserving its native pixels.
-  ctx.save();ctx.beginPath();ctx.rect(Math.round(c.x-9),Math.round(c.y-8),18,16);ctx.clip();stripFrame(image,frame,16,16,Math.round(c.x-8),Math.round(c.y-8+rise),16,16);ctx.restore();
+  ctx.save();ctx.shadowColor="#42eaff";ctx.shadowBlur=5;ctx.beginPath();ctx.rect(Math.round(c.x-13),Math.round(c.y-8),26,16);ctx.clip();stripFrame(image,frame,16,16,Math.round(c.x-8),Math.round(c.y-8+rise),16,16);ctx.restore();
   // Small square soil chips and violet motes lift away as the bones break the surface.
   for(let i=0;i<7;i++){const phase=(p*1.35+i*.143)%1,side=i%2?1:-1,px=Math.round(c.x+side*(4+phase*10)),py=Math.round(c.y+4-phase*(8+(i%3)*2));ctx.globalAlpha=(1-phase)*(.9-p*.22);ctx.fillStyle=i%3===0?"#9c83b8":i%3===1?"#8b9a9b":"#62566e";ctx.fillRect(px,py, i%2?2:1,i%2?2:1)}
   ctx.restore();
   if(p>=1)c.mode="walk";
+ }else if(isSummon){
+  // Canvas shadow creates a crisp-neighbourhood cyan rim without recolouring
+  // or resampling the imported Skeleton pixels.
+  ctx.save();ctx.shadowColor="#42eaff";ctx.shadowBlur=c.mode==="death"?3:5;
+  stripFrame(image,frame,16,16,Math.round(c.x-8),Math.round(c.y-8),16,16);ctx.restore();
  }else{
   stripFrame(image,frame,16,16,Math.round(c.x-8),Math.round(c.y-8),16,16);
  }
