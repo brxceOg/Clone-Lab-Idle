@@ -323,3 +323,8 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 - The MANAGE button sits immediately to the right of UPGRADES along the lower-left room edge and uses the same imported Flat Theme button treatment.
 - The Manage sheet uses the imported Flat Theme frame and slot panels. Each unlocked regular clone class receives a touch-friendly horizontal slider with the imported `UI_Flat_Handle01a.png` thumb; locked DNA types are shown as locked rows without active controls.
 - Keep the manager compact, legible, and internally scrollable on portrait phones. Do not cover or restyle the room simulation itself.
+
+
+### Build Around Strongest preset control (2026-11-09)
+- Add a full-width Flat Theme `buy` button at the top of the Manage sheet, labeled `BUILD AROUND STRONGEST`. Use the imported `UI_Flat_Button02a_1.png` / pressed `UI_Flat_Button02a_3.png` treatment already used by purchase controls.
+- Place a concise, high-contrast result line directly below it to explain the selected damage build. Preserve the existing frame-slot panels and imported slider handles.
