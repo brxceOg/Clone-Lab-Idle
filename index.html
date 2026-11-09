@@ -139,7 +139,28 @@ function drawPvfx(t,layer="foreground"){pvfxEvents=pvfxEvents.filter(e=>{const a
 function bossDef(){return bossData?.bosses[state.bossIndex%bossData.bosses.length]||{name:"slime_king",size:[32,32]}}
 function bossAnim(action){const b=bossDef(),rage=state.bossHp<=state.bossMax*.5&&action!=="death",key=b.name+"_"+(rage&&action==="idle"?"idle_enraged":rage&&action==="attack"?"attack_enraged":action);return bossData?.animations.find(a=>a.name===key)||bossData?.animations.find(a=>a.name===b.name+"_idle")}
 function charAnim(type,action,dir){return warData?.characters.find(c=>c.name===type)?.animations.find(a=>a.name===action+"_"+dir)}
-function drawCombatant(c,t,isSummon=false){const action=c.mode==="death"?"death":c.mode==="walk"?"walk":c.mode==="attack"?"attack":"idle",a=action==="death"?charAnim(c.type,"death","none"):charAnim(c.type,action,c.dir||"up"),fallback=charAnim(c.type,"idle",c.dir||"up")||charAnim(c.type,"idle","down"),anim=a||fallback,image=warImgs[c.type]?.[anim?.name]||warImgs[c.type]?.[fallback?.name],frame=anim?(c.mode==="death"?Math.min(anim.frames-1,Math.floor(Math.max(0,t-(c.dyingStarted||t))/(1000/(anim.fps||6)))):Math.floor(t/(1000/(anim.fps||6)))%anim.frames):0;if(!image)return;ctx.fillStyle="#8da0a8";ctx.globalAlpha=.25;ctx.fillRect(c.x-4,c.y+5,9,3);ctx.globalAlpha=1;stripFrame(image,frame,16,16,c.x-8,c.y-8,16,16);if(c.flash>t){ctx.fillStyle="#fff4a8";ctx.fillRect(c.x-5,c.y-7,10,2)}const maxHp=c.maxHp||cloneBaseHealth();if(c.hp<maxHp&&c.mode!=="death"){if(uiImgs["UI_Flat_Bar01a.png"])drawNineSlice(ctx,uiImgs["UI_Flat_Bar01a.png"],c.x-6,c.y-13,12,4,2);if(uiImgs["UI_Flat_BarFill01a.png"])drawNineSlice(ctx,uiImgs["UI_Flat_BarFill01a.png"],c.x-5,c.y-12,10*Math.max(0,c.hp/maxHp),2,1)}if(isSummon&&c.mode!=="death"){ctx.fillStyle="#b9a3dc";ctx.fillRect(c.x-2,c.y-11,4,1)}}
+function drawCombatant(c,t,isSummon=false){
+ const action=c.mode==="death"?"death":c.mode==="walk"?"walk":c.mode==="attack"?"attack":"idle",a=action==="death"?charAnim(c.type,"death","none"):charAnim(c.type,action,c.dir||"up"),fallback=charAnim(c.type,"idle",c.dir||"up")||charAnim(c.type,"idle","down"),anim=a||fallback,image=warImgs[c.type]?.[anim?.name]||warImgs[c.type]?.[fallback?.name],frame=anim?(c.mode==="death"?Math.min(anim.frames-1,Math.floor(Math.max(0,t-(c.dyingStarted||t))/(1000/(anim.fps||6)))):Math.floor(t/(1000/(anim.fps||6)))%anim.frames):0;
+ if(!image)return;
+ ctx.fillStyle="#8da0a8";ctx.globalAlpha=.25;ctx.fillRect(c.x-4,c.y+5,9,3);ctx.globalAlpha=1;
+ if(isSummon&&c.mode==="summoning"){
+  const p=Math.max(0,Math.min(1,(t-(c.summonStarted||t))/850)),ease=1-Math.pow(1-p,2.2),rise=20*(1-ease);
+  // A dark split in the floor opens beneath the summoning point.
+  ctx.save();ctx.globalAlpha=.22+.28*(1-p);ctx.fillStyle="#31283d";ctx.beginPath();ctx.ellipse(Math.round(c.x),Math.round(c.y+5),Math.round(3+7*ease),Math.max(1,Math.round(1+2*ease)),0,0,Math.PI*2);ctx.fill();
+  ctx.globalAlpha=.8*(1-p*.45);ctx.strokeStyle="#8c72a8";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(c.x-7,c.y+3);ctx.lineTo(c.x-4,c.y+1,c.x-2,c.y+3);ctx.moveTo(c.x+7,c.y+3);ctx.lineTo(c.x+4,c.y+1,c.x+2,c.y+3);ctx.stroke();
+  // Reveal the actual Skeleton sprite from below the floor, preserving its native pixels.
+  ctx.save();ctx.beginPath();ctx.rect(Math.round(c.x-9),Math.round(c.y-8),18,16);ctx.clip();stripFrame(image,frame,16,16,Math.round(c.x-8),Math.round(c.y-8+rise),16,16);ctx.restore();
+  // Small square soil chips and violet motes lift away as the bones break the surface.
+  for(let i=0;i<7;i++){const phase=(p*1.35+i*.143)%1,side=i%2?1:-1,px=Math.round(c.x+side*(4+phase*10)),py=Math.round(c.y+4-phase*(8+(i%3)*2));ctx.globalAlpha=(1-phase)*(.9-p*.22);ctx.fillStyle=i%3===0?"#9c83b8":i%3===1?"#8b9a9b":"#62566e";ctx.fillRect(px,py, i%2?2:1,i%2?2:1)}
+  ctx.restore();
+  if(p>=1)c.mode="walk";
+ }else{
+  stripFrame(image,frame,16,16,Math.round(c.x-8),Math.round(c.y-8),16,16);
+ }
+ if(c.flash>t){ctx.fillStyle="#fff4a8";ctx.fillRect(c.x-5,c.y-7,10,2)}
+ const maxHp=c.maxHp||cloneBaseHealth();if(c.hp<maxHp&&c.mode!=="death"&&c.mode!=="summoning"){if(uiImgs["UI_Flat_Bar01a.png"])drawNineSlice(ctx,uiImgs["UI_Flat_Bar01a.png"],c.x-6,c.y-13,12,4,2);if(uiImgs["UI_Flat_BarFill01a.png"])drawNineSlice(ctx,uiImgs["UI_Flat_BarFill01a.png"],c.x-5,c.y-12,10*Math.max(0,c.hp/maxHp),2,1)}
+ if(isSummon&&c.mode!=="death"&&c.mode!=="summoning"){ctx.fillStyle="#b9a3dc";ctx.fillRect(c.x-2,c.y-11,4,1)}
+}
  function drawRoom(t){
  ctx.clearRect(0,0,320,480);ctx.fillStyle="#e9f0f2";ctx.fillRect(0,0,320,480);
  for(let y=0;y<480;y+=16)for(let x=0;x<320;x+=16)tile((x/16+y/16)%3===0?"floor_white_2":"floor_white_1",x,y);
@@ -289,7 +310,7 @@ function showExistingCloneSpawnFx(){
  if(state.clones.length)spawnFx("cloneSpawn",224,400);
 }
 function spawnClone(type){if(state.clones.length>=maxClones())return;const i=state.clones.length,occupied=new Set(state.clones.map(c=>c.formationSlot).filter(Number.isInteger));let formationSlot=0;while(occupied.has(formationSlot))formationSlot++;/* Keep each clone's formation slot stable when other clones spawn or are lost. */const hp=cloneBaseHealth();state.clones.push({type,x:224,y:400,mode:"walk",dir:"up",nextHit:0,flash:0,hp,maxHp:hp,slot:i,formationSlot,formationPhase:"approach"});state.totalClones++;queueCloneSpawnFx()}
- function spawnSkeleton(necromancer,now){const occupied=new Set(state.summons.map(s=>s.summonSlot));let summonSlot=0;while(occupied.has(summonSlot))summonSlot++;const hp=Math.max(1,Math.floor(cloneBaseHealth()*.7));const skeleton={type:"skeleton",isSummon:true,x:necromancer.x,y:necromancer.y,mode:"walk",dir:necromancer.dir||"up",nextHit:now+350,flash:0,hp,maxHp:hp,summonSlot,formationPhase:"approach"};state.summons.push(skeleton);spawnPvfx("portalSummon",necromancer.x,necromancer.y,null,null,.34,"foreground");spawnPvfx("magicCircle",necromancer.x,necromancer.y,null,null,.3,"foreground",90);addLog("Necromancer summoned a skeleton.");return skeleton}
+ function spawnSkeleton(necromancer,now){const occupied=new Set(state.summons.map(s=>s.summonSlot));let summonSlot=0;while(occupied.has(summonSlot))summonSlot++;const hp=Math.max(1,Math.floor(cloneBaseHealth()*.7));const skeleton={type:"skeleton",isSummon:true,x:necromancer.x,y:necromancer.y,mode:"summoning",summonStarted:performance.now(),summonUntil:now+850,dir:necromancer.dir||"up",nextHit:now+1200,flash:0,hp,maxHp:hp,summonSlot,formationPhase:"approach"};state.summons.push(skeleton);spawnPvfx("portalSummon",skeleton.x,skeleton.y,null,null,.28,"foreground");spawnPvfx("magicCircle",skeleton.x,skeleton.y,null,null,.34,"foreground",80);addLog("Necromancer summoned a skeleton.");return skeleton}
  function maintainNecromancerSummons(now){state.summons=state.summons.filter(s=>!s.dyingUntil||s.dyingUntil>now);const necromancer=state.clones.find(c=>c.type==="elder"),desired=Math.floor(state.clones.length/2),living=state.summons.filter(s=>s.mode!=="death").length;if(necromancer&&living<desired&&now>=state.nextSummonAt){spawnSkeleton(necromancer,now);state.nextSummonAt=now+2200}}
 function produce(count=state.quantity,respawn=false){const openSlots=Math.max(0,maxClones()-state.clones.length-state.respawns.length),batch=Math.min(Math.max(0,count),openSlots);let made=0;for(let i=0;i<batch;i++){const type=respawn?state.respawns.shift()?.type:state.unlocked[state.totalClones%state.unlocked.length];if(!type)break;spawnClone(type);made++}if(!made)return;spawnFx("machine",272,395);spawnPvfx("portalSummon",272,402,null,null,.38,"foreground");spawnPvfx("magicCircle",272,462,null,null,.48,"foreground");state.phase="production";setTimeout(()=>{if(state.phase==="production")state.phase="idle"},620);addLog((respawn?"Machine replacement cycle · ":"Automatic production · ")+made+" clone"+(made===1?"":"s"));if(!respawn)notify(made===1?"CLONE RELEASED":"BATCH RELEASED");updateHud();save()}
 function spawnRangedProjectile(id,c,scale){
@@ -355,7 +376,8 @@ function simulate(dt,now){
  while(state.respawns.length&&state.respawns[0].due<=now&&state.clones.length<maxClones()){const r=state.respawns.shift();spawnClone(r.type);spawnFx("machine",272,395);state.phase="production";addLog("Cloning machine restored a fallen "+r.type+".");updateHud()}
  const b=bossDef(),size=b.size?.[0]||32,cx=160,cy=196,bossRadius=size*Math.max(1,Math.min(4,Math.floor(144/size)))/2,baseRadius=bossRadius+14,formationSlots=maxClones(),moveStep=dt*.042;maintainNecromancerSummons(now);const fighters=[...state.clones,...state.summons.filter(s=>s.mode!=="death")];
  for(let i=0;i<fighters.length;i++){
-  const c=fighters[i],formationSlot=Number.isInteger(c.formationSlot)?c.formationSlot:i,angle=c.isSummon?-Math.PI/2+((c.summonSlot+.5)/Math.max(1,maxClones()))*Math.PI*2:-Math.PI/2+(formationSlot/Math.max(1,formationSlots))*Math.PI*2,ranged=(c.type==="mage"||c.type==="archer"||c.type==="elder"),targetRadius=baseRadius+(ranged?28:0),targetX=cx+Math.cos(angle)*targetRadius,targetY=cy+Math.sin(angle)*targetRadius;
+  let c=fighters[i];if(c.mode==="summoning"){if(now<c.summonUntil)continue;c.mode="walk";c.formationPhase="approach";c.formationAngle=undefined}
+  const formationSlot=Number.isInteger(c.formationSlot)?c.formationSlot:i,angle=c.isSummon?-Math.PI/2+((c.summonSlot+.5)/Math.max(1,maxClones()))*Math.PI*2:-Math.PI/2+(formationSlot/Math.max(1,formationSlots))*Math.PI*2,ranged=(c.type==="mage"||c.type==="archer"||c.type==="elder"),targetRadius=baseRadius+(ranged?28:0),targetX=cx+Math.cos(angle)*targetRadius,targetY=cy+Math.sin(angle)*targetRadius;
   const dx=c.x-cx,dy=c.y-cy,currentRadius=Math.max(.001,Math.hypot(dx,dy)),currentAngle=Math.atan2(dy,dx);
   // If the roster changes a clone's assigned angle, reconverge through the
   // perimeter approach rather than cutting directly across the room.
