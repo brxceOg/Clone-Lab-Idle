@@ -186,3 +186,8 @@ This file is the canonical source of truth for product behavior and scope. When 
 
 - Each Skeleton begins in a short 850 ms summoning state at the Necromancer's position before it starts moving into its melee formation slot. It cannot move or attack while emerging.
 - The actual imported Skeleton idle sprite is revealed upward from below the floor with a crisp clipped rise, a dark ground opening, fine cracks, and small pixel soil/violet motes. The existing arcane portal and magic-circle effects provide a restrained magical accent. The effect is cosmetic and does not change summon count, health, or combat balance.
+
+
+### Skeleton visual readability
+
+- Summoned Skeletons have a compact pulsing cyan/violet ground aura and cyan silhouette glow so they remain identifiable among large clone crowds. The aura follows their position and animation; it does not recolour the source sprite or affect combat behavior.
