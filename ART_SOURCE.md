@@ -294,3 +294,9 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 - The Larchrow **Elder** hero is presented as the Necromancer. Use its native `elder_idle_*` and `elder_walk_*` four-direction strips from `PNG/heroes/elder/`; preserve the original 16×16 frames and palette. The pack has no Elder attack strip, so keep the Elder's idle pose during its ranged cast and communicate the attack with the existing arcane projectile/effect assets rather than inventing or recolouring an attack frame.
 - The summoned melee ally uses the Larchrow Skeleton monster strips in `PNG/monsters/skeleton/`: four-direction idle/walk plus the supplied hit and death strips. Keep the sprite at native 16×16 proportions with nearest-neighbour sampling.
 - Summon visuals use the existing portal-summon and magic-circle effects at the Necromancer's position. Skeletons then walk into the same inner melee ring as Knights; they must not be assigned the wider ranged orbit. Draw their own health bars when damaged and play the imported death strip when their health is depleted.
+
+
+### Skeleton ground-rise effect (2026-11-09)
+
+- Skeleton summons should visibly emerge from the lab floor rather than simply appear. Use the original Larchrow 16×16 Skeleton sprite, clipped and moved upward over a brief 850 ms animation. Draw a small dark floor opening, fine violet cracks, and a few crisp pixel debris/motes; retain the original sprite palette and nearest-neighbour sampling.
+- Keep the existing portal-summon and magic-circle effects as a subtle magical accent. Hold the Skeleton in place during the rise; only after it completes should it walk toward its inner melee formation slot. Do not cover the character with a large flash or obscure the boss/other units.
