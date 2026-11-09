@@ -44,7 +44,7 @@ button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
 .menu-button:active{transform:translateY(1px)}
 .menu-button:focus-visible{outline:2px solid #b7fff2;outline-offset:4px}
 .overlay.open{display:flex}
-.sheet{width:min(100%,560px);max-height:min(82dvh,720px);overflow-x:hidden;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none;touch-action:pan-x;overscroll-behavior:contain;padding:20px 22px 20px;background-color:transparent;border:16px solid transparent;border-image:url("assets/ui/complete-ui-essential-pack-free/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Frame01a.png") 16 fill / 16px / 0 stretch;overscroll-behavior:contain}
+.sheet{width:min(100%,560px);max-height:min(82dvh,720px);overflow-x:hidden;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none;touch-action:pan-x;overscroll-behavior:contain;padding:20px 22px 20px;background-color:transparent;border:16px solid transparent;border-image:url("assets/ui/complete-ui-essential-pack-free/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Frame01a.png") 16 fill / 16px / 0 stretch}.sheet,.log,.active-units-list{scrollbar-width:none;-ms-overflow-style:none;overscroll-behavior:contain;scrollbar-color:transparent transparent}.sheet::-webkit-scrollbar,.log::-webkit-scrollbar,.active-units-list::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}.sheet:focus-visible,.log:focus-visible,.active-units-list:focus-visible{outline:2px solid #2d829a;outline-offset:-2px}
 .sheet-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
 .sheet h2{font-size:23px;margin:0;color:#304957}
 .sheet p{font-size:16px;color:#617b87;margin:4px 0 12px;line-height:1.4}
@@ -511,29 +511,46 @@ let labRenderError="";function render(now){const dt=Math.min(40,now-(lastFrame||
 function save(){state.lastSave=Date.now();const d={coins:state.coins,playerLevel:state.playerLevel,playerXp:state.playerXp,maxedUpgradeRewards:state.maxedUpgradeRewards,bossIndex:state.bossIndex,bossHp:state.bossHp,bossMax:state.bossMax,totalClones:state.totalClones,cloneRoster:state.clones.map(c=>c.type),respawns:state.respawns,teamTargets:state.teamTargets,rate:state.rate,rateLevel:state.rateLevel,quantity:state.quantity,power:state.power,capacityLevel:state.capacityLevel,earningsLevel:state.earningsLevel,divineLevel:state.divineLevel,attackSpeedLevel:state.attackSpeedLevel,doubleHitLevel:state.doubleHitLevel,healthLevel:state.healthLevel,skeletonSpeedLevel:state.skeletonSpeedLevel,fireTipLevel:state.fireTipLevel,unlocked:state.unlocked,machineLevel:state.machineLevel,defeats:state.defeats,lastSave:state.lastSave};try{localStorage.setItem("cloneLabIdleSave",JSON.stringify(d))}catch{}}
 function loadSave(){try{const d=JSON.parse(localStorage.getItem("cloneLabIdleSave")||"null");if(!d){initializeTeamTargets();return}Object.assign(state,d);state.playerLevel=Math.max(1,Math.floor(Number(d.playerLevel)||1));state.playerXp=Math.max(0,Number(d.playerXp)||0);state.maxedUpgradeRewards=Array.isArray(d.maxedUpgradeRewards)?d.maxedUpgradeRewards:[];while(state.playerXp>=xpForNextLevel(state.playerLevel)){state.playerXp-=xpForNextLevel(state.playerLevel);state.playerLevel++}const savedBossMax=Math.max(1,Number(d.bossMax)||bossHealthForIndex(state.bossIndex)),bossProgress=Math.max(0,Math.min(1,Number(d.bossHp)/savedBossMax||0));state.bossMax=bossHealthForIndex(state.bossIndex);state.bossHp=Math.max(1,state.bossMax*bossProgress);if(!Number.isFinite(Number(d.rateLevel)))state.rateLevel=Math.max(0,Math.round(Math.log(Math.max(1.5,Math.min(8,Number(state.rate)||8))/8)/Math.log(.82)));state.skeletonSpeedLevel=Math.max(0,Math.floor(Number(d.skeletonSpeedLevel)||0));state.fireTipLevel=Math.max(0,Math.floor(Number(d.fireTipLevel)||0));state.doubleHitLevel=Math.max(0,Math.floor(Number(d.doubleHitLevel)||0));state.burningUntil=0;state.burningNextTick=0;state.summons=[];state.nextSummonAt=Date.now()+900;state.clones=(d.cloneRoster||[]).slice(0,maxClones()).map((type,i)=>({type,x:224,y:400,mode:"walk",dir:"up",nextHit:0,flash:0,hp:cloneBaseHealth(),maxHp:cloneBaseHealth(),slot:i,formationSlot:i,formationPhase:"approach"}));state.respawns=d.respawns||[];initializeTeamTargets(d.teamTargets||null);if(state.unlocked.includes("elder")&&!state.clones.some(c=>c.type==="elder")&&!state.respawns.some(r=>r.type==="elder")){state.respawns.push({type:"elder",due:Date.now()+1200});addLog("Necromancer recovery queued · summon protocol online.");}if(assetsReady)showExistingCloneSpawnFx();const elapsed=Math.max(0,Date.now()-(d.lastSave||Date.now()));state.lastProduction=Date.now()-(elapsed%(state.rate*1000));addLog("Saved lab data restored.")}catch(e){console.warn("Save could not be loaded",e)}}
 $("upgradesButton").addEventListener("click",()=>{$("overlay").classList.add("open")});$("close").addEventListener("click",()=>$("overlay").classList.remove("open"));$("manageButton").addEventListener("click",()=>{$("manageOverlay").classList.add("open");renderManagePanel()});$("manageClose").addEventListener("click",()=>$("manageOverlay").classList.remove("open"));$("manageOverlay").addEventListener("click",e=>{if(e.target===$("manageOverlay"))$("manageOverlay").classList.remove("open")});$("overlay").addEventListener("click",e=>{if(e.target===$("overlay"))$("overlay").classList.remove("open")});$("dnaResearchOpenButton").addEventListener("click",()=>{$("dnaOverlay").classList.add("open")});$("dnaClose").addEventListener("click",()=>$("dnaOverlay").classList.remove("open"));$("dnaOverlay").addEventListener("click",e=>{if(e.target===$("dnaOverlay"))$("dnaOverlay").classList.remove("open")});for(const eventName of ["gesturestart","gesturechange","gestureend"])document.addEventListener(eventName,e=>e.preventDefault(),{passive:false});document.addEventListener("touchstart",e=>{if(e.touches.length>1&&!e.target.closest("#skillViewport"))e.preventDefault()},{passive:false});document.addEventListener("dblclick",e=>e.preventDefault(),{passive:false});
-// Custom touch-drag scrolling for in-game panels: no native iOS scrollbars or rubber-band bounce.
+// Unified in-game scrolling: hidden bars, touch momentum, contained wheel input, and keyboard support.
 function installLabScrolling(){
  const selector=".sheet,.log,.active-units-list";
- let drag=null, momentumFrame=0;
+ const panels=[...document.querySelectorAll(selector)];
+ panels.forEach((el,i)=>{if(!el.hasAttribute("tabindex"))el.tabIndex=0;if(!el.hasAttribute("role"))el.setAttribute("role","region");if(!el.hasAttribute("aria-label"))el.setAttribute("aria-label",["Scrollable panel","Combat log","Active unit roster"][i]||"Scrollable game panel")});
+ let drag=null,momentumFrame=0;
  const stopMomentum=()=>{if(momentumFrame)cancelAnimationFrame(momentumFrame);momentumFrame=0};
+ const canScroll=(el,delta)=>el&&el.scrollHeight>el.clientHeight+1&&(delta>0?el.scrollTop<el.scrollHeight-el.clientHeight-1:el.scrollTop>1);
+ const parentScroller=(el,delta)=>{for(let p=el.parentElement;p;p=p.parentElement)if(p.matches?.(selector)&&canScroll(p,delta))return p;return null};
  document.addEventListener("touchstart",e=>{
   const el=e.target.closest(selector);
-  if(!el||e.touches.length!==1||el.scrollHeight<=el.clientHeight+1||e.target.closest("button,input,textarea,select,.skill-viewport"))return;
+  if(!el||e.touches.length!==1||!canScroll(el,1)&&!canScroll(el,-1)||e.target.closest("button,input,textarea,select,option,.skill-viewport"))return;
   stopMomentum();const t=e.touches[0];drag={el,startY:t.clientY,lastY:t.clientY,lastTime:performance.now(),velocity:0,moved:false};
  },{passive:true});
  document.addEventListener("touchmove",e=>{
   if(!drag||e.touches.length!==1)return;
   const t=e.touches[0],dy=t.clientY-drag.lastY,now=performance.now();
   if(Math.abs(t.clientY-drag.startY)>4)drag.moved=true;
-  if(drag.moved){e.preventDefault();drag.el.scrollTop-=dy;const elapsed=Math.max(1,now-drag.lastTime);drag.velocity=(-dy/elapsed)*16;}
+  if(drag.moved&&dy){e.preventDefault();const delta=-dy;if(!canScroll(drag.el,delta)){const parent=parentScroller(drag.el,delta);if(parent)drag.el=parent}
+   const before=drag.el.scrollTop;drag.el.scrollTop+=delta;const elapsed=Math.max(1,now-drag.lastTime);drag.velocity=((drag.el.scrollTop-before)/elapsed)*16;
+  }
   drag.lastY=t.clientY;drag.lastTime=now;
  },{passive:false});
  const finish=()=>{if(!drag)return;let {el,velocity}=drag;drag=null;
-  const coast=()=>{velocity*=.92;if(Math.abs(velocity)<.35){momentumFrame=0;return}el.scrollTop+=velocity;momentumFrame=requestAnimationFrame(coast)};
+  if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  const coast=()=>{if(Math.abs(velocity)<.35){momentumFrame=0;return}const before=el.scrollTop;el.scrollTop+=velocity;if(el.scrollTop===before){momentumFrame=0;return}velocity*=.92;momentumFrame=requestAnimationFrame(coast)};
   if(Math.abs(velocity)>.35)momentumFrame=requestAnimationFrame(coast);
  };
  document.addEventListener("touchend",finish,{passive:true});document.addEventListener("touchcancel",finish,{passive:true});
- document.addEventListener("wheel",e=>{const el=e.target.closest(selector);if(!el||el.scrollHeight<=el.clientHeight+1)return;e.preventDefault();el.scrollTop+=e.deltaY},{passive:false});
+ document.addEventListener("wheel",e=>{
+  let target=e.target.closest(selector);if(!target)return;
+  while(target&&!canScroll(target,e.deltaY))target=parentScroller(target,e.deltaY);
+  if(!target)return;e.preventDefault();stopMomentum();target.scrollTop+=e.deltaY;
+ },{passive:false});
+ document.addEventListener("keydown",e=>{
+  const el=e.target.closest(selector);if(!el||e.target!==el||!["ArrowUp","ArrowDown","PageUp","PageDown","Home","End"," "].includes(e.key))return;
+  const amount=e.key==="Home"?-el.scrollTop:e.key==="End"?el.scrollHeight:e.key==="PageUp"?-el.clientHeight:e.key==="PageDown"||e.key===" "?el.clientHeight:e.key==="ArrowUp"?-40:40;
+  if((amount<0&&el.scrollTop<=0)||(amount>0&&el.scrollTop>=el.scrollHeight-el.clientHeight))return;
+  e.preventDefault();el.scrollTop=Math.max(0,Math.min(el.scrollHeight-el.clientHeight,el.scrollTop+amount));
+ });
 }
 installLabScrolling();
 function startGame(){if(!assetsReady||gameStarted)return;loadSave();gameStarted=true;state.lastBossAttack=Date.now();$("startMenu").style.display="none";updateHud()}
