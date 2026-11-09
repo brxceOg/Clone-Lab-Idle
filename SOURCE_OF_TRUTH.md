@@ -171,3 +171,12 @@ This file is the canonical source of truth for product behavior and scope. When 
 - Knights and the inner rank hold the inner combat perimeter. Mages and Archers use the same angular slot pattern but a wider radius; additional ranks also use their assigned outer radius. No clone should select a random destination, orbit independently, or take a direct diagonal shortcut from the machine to its final slot.
 - Once a clone reaches its assigned slot, it holds that position and attacks. If the roster changes and its assigned angle changes, it reconverges through the same perimeter approach/orbit sequence.
 - Keep crowd separation as a small local anti-overlap nudge only; it must not redirect clones away from their assigned formation path.
+
+
+## Necromancer and summoned skeletons
+
+- The Elder hero is the **Necromancer** clone class and is part of the random DNA Research discovery pool. Once discovered, Necromancers can be produced by the cloning machine and are restored through the existing clone-save roster.
+- Necromancers are ranged units: they use their own four-direction Elder idle and walk strips, hold the same outer ranged formation radius as Mages and Archers, and fire the existing arcane projectile toward the boss. The pack does not include a dedicated Elder attack strip, so the idle pose is used while the arcane cast/projectile effect communicates the attack.
+- While at least one Necromancer is active, the army maintains up to one temporary Skeleton summon per two active regular clones. Summoning is paced at one Skeleton every 2.2 seconds until the target count is reached. Summons do not consume clone capacity, enter the production pool, count toward the clone HUD, or recursively increase their own summon target.
+- Each Skeleton uses the imported four-direction idle/walk strips and the pack's hit/death strips. It appears beside its Necromancer, routes to an assigned slot on the shared inner melee formation ring, and attacks the boss with a melee strike. Skeletons have 70% of the current base clone health (rounded down, minimum 1 HP) and deal 65% of normal clone damage.
+- Boss attacks can damage summons. When a Skeleton's health reaches zero it plays its death animation and is removed; an active Necromancer can summon a replacement while the army remains above the one-per-two target. Summons are temporary battle entities and are intentionally not persisted in the saved clone roster.
