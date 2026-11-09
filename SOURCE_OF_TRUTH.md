@@ -201,4 +201,4 @@ This file is the canonical source of truth for product behavior and scope. When 
 - Skeleton combat uses the imported named `hit` strip during attacks and the named `death` strip on defeat; these are resolved by their actual manifest names, not directional animation aliases.
 
 ### Burning countdown UI clarity
-- The boss-side burning indicator uses a dark high-contrast panel, a bold sans-serif `BURNING` label, a larger seconds countdown, and a wide progress bar. This status label intentionally prioritizes legibility over the game's pixel display font; damage and duration are unchanged.
+- The boss-side burning indicator retains the game’s `Pixels` font for both the `BURNING` label and seconds countdown. Improve legibility with larger pixel lettering, a high-contrast dark panel, a dark text outline, and a wide progress bar; do not switch to a sans-serif font. Burn damage and duration remain unchanged.
