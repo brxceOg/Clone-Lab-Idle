@@ -203,3 +203,12 @@ This file is the canonical source of truth for product behavior and scope. When 
 
 ### Burning countdown UI clarity
 - The boss-side burning indicator retains the game’s `Pixels` font for both the `BURNING` label and seconds countdown. Keep it compact so it occupies less of the play area (98 × 56 room pixels) while remaining easy to read through bold pixel lettering, a high-contrast dark backing, a dark text outline, clear spacing, and a wide progress bar relative to the panel. Do not switch to a sans-serif font. Burn damage and duration remain unchanged.
+
+
+## Army composition management (2026-11-09)
+- A dedicated MANAGE button appears immediately to the right of UPGRADES at the bottom-left of the lab viewport. It opens a separate army-management sheet.
+- The sheet provides one integer target slider for each unlocked regular clone class: Knight, Mage, Archer, and Necromancer. Undiscovered classes remain visible as locked entries and cannot be assigned.
+- The sum of all class targets cannot exceed current clone capacity. Any remaining slots are intentionally unassigned and remain empty; the manager displays allocated slots versus total capacity.
+- The cloning machine chooses production and replacement classes from the configured targets. It fills the largest unmet class allocation first, respects batch size and production interval, and does not spawn classes beyond their target. Summoned Skeletons are controlled by Necromancer summoning and never consume regular clone capacity or allocation slots.
+- Changing targets never removes active clones. Existing clones finish their current lives; subsequent replacements follow the updated allocation. Pending replacement slots count toward their class target, and a replacement can switch to another class if the allocation changes before it is produced.
+- Team targets are saved locally. Older saves without allocation data migrate using their existing active and queued class counts, then assign any remaining capacity to the first unlocked class. A fresh save assigns the starting capacity to Knights. Capacity upgrades increase available capacity without silently changing the chosen class allocations; new slots can be assigned in MANAGE.
