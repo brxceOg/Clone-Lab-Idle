@@ -515,6 +515,6 @@ function startGame(){if(!assetsReady||gameStarted)return;loadSave();gameStarted=
 $("playButton").addEventListener("click",startGame);
 $("retryLoadingButton").addEventListener("click",()=>{$("loadingStatus").classList.remove("boot-error");setLoadingProgress(0,"RESTARTING LAB INITIALIZATION…");loadAssets().then(()=>{state.bossMax=bossHealthForIndex(state.bossIndex);if(!state.bossHp||state.bossHp>state.bossMax)state.bossHp=state.bossMax;updateHud()})});
 $("resetSaveButton").addEventListener("click",()=>{if(!confirm("Reset all Clone Lab progress on this device? This cannot be undone."))return;try{localStorage.removeItem("cloneLabIdleSave")}catch(e){console.warn("Save could not be cleared",e)}location.reload()});
-setInterval(()=>{if(gameStarted){save();updateHud()}},5000);window.addEventListener("pagehide",()=>{if(gameStarted)save()});loadAssets().then(()=>{state.bossMax=bossHealthForIndex(state.bossIndex);if(!state.bossHp||state.bossHp>state.bossMax)state.bossHp=state.bossMax;updateHud()});updateHud();requestAnimationFrame(render);
+setInterval(()=>{if(gameStarted){save();updateHud()}},5000);setInterval(()=>{if(gameStarted)renderActiveUnits()},750);window.addEventListener("pagehide",()=>{if(gameStarted)save()});loadAssets().then(()=>{state.bossMax=bossHealthForIndex(state.bossIndex);if(!state.bossHp||state.bossHp>state.bossMax)state.bossHp=state.bossMax;updateHud()});updateHud();requestAnimationFrame(render);
 })();
 </script></body></html>
