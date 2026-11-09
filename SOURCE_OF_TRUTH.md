@@ -180,3 +180,9 @@ This file is the canonical source of truth for product behavior and scope. When 
 - While at least one Necromancer is active, the army maintains up to one temporary Skeleton summon per two active regular clones. Summoning is paced at one Skeleton every 2.2 seconds until the target count is reached. Summons do not consume clone capacity, enter the production pool, count toward the clone HUD, or recursively increase their own summon target.
 - Each Skeleton uses the imported four-direction idle/walk strips and the pack's hit/death strips. It appears beside its Necromancer, routes to an assigned slot on the shared inner melee formation ring, and attacks the boss with a melee strike. Skeletons have 70% of the current base clone health (rounded down, minimum 1 HP) and deal 65% of normal clone damage.
 - Boss attacks can damage summons. When a Skeleton's health reaches zero it plays its death animation and is removed; an active Necromancer can summon a replacement while the army remains above the one-per-two target. Summons are temporary battle entities and are intentionally not persisted in the saved clone roster.
+
+
+## Skeleton ground-rise summoning effect
+
+- Each Skeleton begins in a short 850 ms summoning state at the Necromancer's position before it starts moving into its melee formation slot. It cannot move or attack while emerging.
+- The actual imported Skeleton idle sprite is revealed upward from below the floor with a crisp clipped rise, a dark ground opening, fine cracks, and small pixel soil/violet motes. The existing arcane portal and magic-circle effects provide a restrained magical accent. The effect is cosmetic and does not change summon count, health, or combat balance.
