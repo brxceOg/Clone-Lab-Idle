@@ -315,4 +315,4 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 - The Skeleton pack has named `hit` and `death` animations rather than directional `hit_*` / `death_*` names. Resolve those exact animation entries so attack and defeat states use the supplied strips instead of silently falling back to idle.
 
 ### Burning countdown readability (2026-11-09)
-- The boss-side BURNING status panel uses a wider, taller opaque dark backing, a high-contrast amber header accent, a larger 10px label and 16px countdown, and a full-width five-second progress bar. Keep the countdown visually dominant and readable at portrait phone scale; do not compress the timer into the old tiny label treatment.
+- The boss-side BURNING status panel uses a 112×64 opaque dark backing with a strong amber top stripe, a crisp high-contrast 13px bold Arial/sans-serif label, a dominant 21px bold countdown, and a 90px five-second progress bar. Use a standard sans-serif face rather than the pixel display font for this small status UI so the letters remain distinct at phone scale. Keep the panel clearly legible without changing burn duration or damage.
