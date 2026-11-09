@@ -328,3 +328,8 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 ### Build Around Strongest preset control (2026-11-09)
 - Add a full-width Flat Theme `buy` button at the top of the Manage sheet, labeled `BUILD AROUND STRONGEST`. Use the imported `UI_Flat_Button02a_1.png` / pressed `UI_Flat_Button02a_3.png` treatment already used by purchase controls.
 - Place a concise, high-contrast result line directly below it to explain the selected damage build. Preserve the existing frame-slot panels and imported slider handles.
+
+
+### Player level HUD (2026-11-09)
+- Add a compact player-level readout and XP progress bar inside the existing top HUD frame, between the CLONE LAB title and Lab Credits. Preserve the established Flat Theme frame, pixel font, and overall three-part header layout; do not add a separate panel or push the room viewport into a substantially smaller layout.
+- Keep the level number, current/required XP, and progress fill readable at iPhone portrait width. The bar uses the existing mint progress colour and dark pixel border; it updates immediately when XP is awarded.
