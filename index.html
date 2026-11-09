@@ -293,7 +293,7 @@ function spawnRangedProjectile(id,c,scale){
  const isMage=id==="magicMissile",dx=160-c.x,dy=196-c.y,distance=Math.max(.001,Math.hypot(dx,dy)),ux=dx/distance,uy=dy/distance,b=bossDef(),bossSize=b.size?.[0]||32,bossRadius=bossSize*Math.max(1,Math.min(4,Math.floor(144/bossSize)))/2;
  const targetDistance=isMage?bossRadius*.42:Math.max(0,bossRadius-2),targetX=160-ux*targetDistance,targetY=196-uy*targetDistance;
  if(id==="arrowImpact"||id==="magicMissile"){
-  const projectileScale=Math.min(1,scale||(isMage?.34:.8)),tailOffset=(isMage?32:18)*projectileScale,headOffset=(isMage?21:10)*projectileScale,bowOffset=7;
+  const projectileScale=Math.min(1,scale||(isMage ? .34 : .8)),tailOffset=(isMage?32:18)*projectileScale,headOffset=(isMage?21:10)*projectileScale,bowOffset=7;
   const startX=c.x+ux*(bowOffset+tailOffset),startY=c.y+uy*(bowOffset+tailOffset),endX=targetX-ux*headOffset,endY=targetY-uy*headOffset,travelDistance=Math.hypot(endX-startX,endY-startY);
   // Flight time is derived from the actual visible anchor-to-anchor path; there is no distance cap.
   const travelSpeed=isMage?175:215,travelMs=Math.max(260,travelDistance/travelSpeed*1000);
