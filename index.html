@@ -96,13 +96,15 @@ button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
 .section-label{display:block;margin:14px 0 7px;font-size:16px;color:#304957}
 .dna-research{margin:10px 0 16px;padding:14px;border:10px solid transparent;border-image:url("assets/ui/complete-ui-essential-pack-free/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_FrameSlot01a.png") 10 fill / 10px / 0 stretch;text-align:center}.dna-kicker{font-size:13px;color:#617b87;letter-spacing:.1em}.dna-display{margin:8px 0 5px;min-height:42px;display:flex;align-items:center;justify-content:center;font-size:25px;color:#267a91;text-shadow:0 1px #fff;letter-spacing:.04em}.dna-status{min-height:36px;font-size:14px;line-height:1.3;color:#617b87}.dna-button{width:100%;margin-top:8px}
 .dna-display img{width:48px;height:48px;object-fit:contain;image-rendering:pixelated;transition:filter .12s}
-/* Give the moving DNA reel a much larger stage while keeping the idle question mark compact. */
-.dna-research.scanning .dna-display{min-height:112px;margin:10px 0 8px;position:relative}
-.dna-research.scanning .dna-display:before{content:"";position:absolute;inset:3px 14%;pointer-events:none;background:radial-gradient(ellipse,rgba(74,190,210,.2),rgba(74,190,210,0) 70%);animation:dnaReelPulse .72s steps(3,end) infinite}
-.dna-research.scanning .dna-display img{position:relative;width:104px;height:104px;max-width:42vw;max-height:104px;filter:drop-shadow(0 0 9px rgba(77,205,230,.88));animation:dnaReelFrame .24s steps(2,end) infinite}
-@keyframes dnaReelPulse{0%,100%{opacity:.45;transform:scale(.92)}50%{opacity:1;transform:scale(1.06)}}
-@keyframes dnaReelFrame{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2px) scale(1.035)}}
-@media(prefers-reduced-motion:reduce){.dna-research.scanning .dna-display:before,.dna-research.scanning .dna-display img{animation:none}}
+/* Keep the unknown specimen prominent, then turn the scanning stage into a lively vertical slot reel. */
+.dna-unknown{width:76px;height:76px;font-size:64px;line-height:1;text-shadow:3px 3px 0 #29495c,0 0 12px #76d9e8;animation:dnaQuestionPulse 1.8s steps(2,end) infinite}
+.dna-research.scanning .dna-display{min-height:132px;height:132px;margin:10px 0 8px;position:relative;overflow:hidden;isolation:isolate}
+.dna-research.scanning .dna-display:before{content:"";position:absolute;inset:0 10%;pointer-events:none;background:radial-gradient(ellipse,rgba(74,190,210,.3),rgba(74,190,210,0) 70%);animation:dnaReelPulse .48s steps(3,end) infinite}
+.dna-research.scanning .dna-display:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(226,249,250,.82),transparent 23%,transparent 77%,rgba(226,249,250,.82));opacity:.48}
+.dna-research.scanning .dna-display img{position:relative;z-index:1;width:112px;height:112px;max-width:44vw;max-height:112px;filter:drop-shadow(0 0 10px rgba(77,205,230,.9));animation:dnaSlotRoll .24s cubic-bezier(.2,.78,.24,1) both;will-change:transform}
+@keyframes dnaReelPulse{0%,100%{opacity:.38;transform:scale(.9)}50%{opacity:1;transform:scale(1.09)}}
+@keyframes dnaSlotRoll{0%{transform:translateY(118%) rotate(17deg) scale(.78);opacity:.25}24%{transform:translateY(32%) rotate(10deg) scale(.9);opacity:.8}58%{transform:translateY(-7%) rotate(-5deg) scale(1.04);opacity:1}78%{transform:translateY(3%) rotate(2deg) scale(1.01);opacity:1}100%{transform:translateY(0) rotate(0) scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){.dna-research.scanning .dna-display:before,.dna-research.scanning .dna-display img,.dna-unknown{animation:none}}
 
 .dna-display img.common{filter:drop-shadow(0 0 4px rgba(112,124,132,.9))}
 .dna-display img.uncommon{filter:drop-shadow(0 0 5px rgba(51,194,91,.95))}
