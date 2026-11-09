@@ -333,3 +333,7 @@ The user supplied all three ZIP archives. Their contents, source documentation, 
 ### Player level HUD (2026-11-09)
 - Add a compact player-level readout and XP progress bar inside the existing top HUD frame, between the CLONE LAB title and Lab Credits. Preserve the established Flat Theme frame, pixel font, and overall three-part header layout; do not add a separate panel or push the room viewport into a substantially smaller layout.
 - Keep the level number, current/required XP, and progress fill readable at iPhone portrait width. The bar uses the existing mint progress colour and dark pixel border; it updates immediately when XP is awarded.
+
+
+### Active Units panel sizing (2026-11-09)
+- Keep the Active Units status panel at a fixed 144px border-box height so changes in the number of deployed unit types never resize the status row or change the available play-area height. Keep the unit roster inside the panel with a compact, readable vertical list and an internal vertical scroll area when the roster exceeds the visible space. Preserve the unit sprite-head icons and live counts; do not let roster content expand the panel or room layout.
