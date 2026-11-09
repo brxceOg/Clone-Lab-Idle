@@ -173,8 +173,18 @@ function drawCombatant(c,t,isSummon=false){
   stripFrame(image,frame,16,16,Math.round(c.x-8),Math.round(c.y-8),16,16);
  }
  if(c.flash>t){ctx.fillStyle="#fff4a8";ctx.fillRect(c.x-5,c.y-7,10,2)}
- const maxHp=c.maxHp||cloneBaseHealth();if(c.hp<maxHp&&c.mode!=="death"&&c.mode!=="summoning"){if(uiImgs["UI_Flat_Bar01a.png"])drawNineSlice(ctx,uiImgs["UI_Flat_Bar01a.png"],c.x-6,c.y-13,12,4,2);if(uiImgs["UI_Flat_BarFill01a.png"])drawNineSlice(ctx,uiImgs["UI_Flat_BarFill01a.png"],c.x-5,c.y-12,10*Math.max(0,c.hp/maxHp),2,1)}
- if(isSummon&&c.mode!=="death"&&c.mode!=="summoning"){ctx.fillStyle="#b9a3dc";ctx.fillRect(c.x-2,c.y-11,4,1)}
+ const maxHp=c.maxHp||cloneBaseHealth();
+ if(isSummon&&c.mode!=="death"&&c.mode!=="summoning"){
+  // Summoned Skeletons always show a compact red health bar, distinct from clone UI.
+  const ratio=Math.max(0,Math.min(1,c.hp/maxHp)),bx=Math.round(c.x-7),by=Math.round(c.y-14);
+  ctx.fillStyle="#321b25";ctx.fillRect(bx-1,by-1,16,5);
+  ctx.fillStyle="#7a2635";ctx.fillRect(bx,by,14,3);
+  ctx.fillStyle="#f04452";ctx.fillRect(bx,by,Math.round(14*ratio),3);
+  if(ratio>0){ctx.fillStyle="#ff9b9f";ctx.fillRect(bx,by,Math.max(1,Math.round(14*ratio)),1)}
+ }else if(c.hp<maxHp&&c.mode!=="death"&&c.mode!=="summoning"){
+  if(uiImgs["UI_Flat_Bar01a.png"])drawNineSlice(ctx,uiImgs["UI_Flat_Bar01a.png"],c.x-6,c.y-13,12,4,2);
+  if(uiImgs["UI_Flat_BarFill01a.png"])drawNineSlice(ctx,uiImgs["UI_Flat_BarFill01a.png"],c.x-5,c.y-12,10*Math.max(0,c.hp/maxHp),2,1)
+ }
 }
  function drawRoom(t){
  ctx.clearRect(0,0,320,480);ctx.fillStyle="#e9f0f2";ctx.fillRect(0,0,320,480);
